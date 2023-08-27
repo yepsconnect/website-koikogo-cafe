@@ -1,0 +1,993 @@
+[
+  {
+    "name": "Сырники с манговой сгущенкой",
+    "portion_size": "190",
+    "price": 200,
+    "unit": "гр",
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Завтраки до 13:00"
+  },
+  {
+    "name": "Каша овсяная с ягодами",
+    "portion_size": "250",
+    "price": 240,
+    "unit": "гр",
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Завтраки до 13:00"
+  },
+  {
+    "name": "Черничная рисовая каша",
+    "portion_size": "250",
+    "price": 180,
+    "unit": "гр",
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Завтраки до 13:00"
+  },
+  {
+    "name": "Оладьи с соусом и халвой",
+    "portion_size": "240",
+    "price": 170,
+    "unit": "гр",
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Завтраки до 13:00"
+  },
+  {
+    "name": "Блины с фруктами",
+    "portion_size": "250",
+    "price": 220,
+    "unit": "гр",
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Завтраки до 13:00"
+  },
+  {
+    "name": "Глазунья Цезарь",
+    "portion_size": "250",
+    "price": 180,
+    "unit": "гр",
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Завтраки до 13:00"
+  },
+  {
+    "name": "Омлет с овощами и луковым вареньем",
+    "portion_size": "350",
+    "price": 210,
+    "unit": "гр",
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Завтраки до 13:00"
+  },
+  {
+    "name": "Бенедикт с лососем, сладкими томатами и авокадо",
+    "portion_size": "330",
+    "price": 440,
+    "unit": "гр",
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Завтраки до 13:00"
+  },
+  {
+    "name": "Бенедикт с мясом, малосольными огурцами",
+    "portion_size": "330",
+    "price": 420,
+    "unit": "гр",
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Завтраки до 13:00"
+  },
+  {
+    "name": "Пончики с фруктовым тартаром",
+    "portion_size": "220",
+    "price": 280,
+    "unit": "гр",
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Завтраки до 13:00"
+  },
+  {
+    "name": "Стрипсы из индейки с морковным барбекю",
+    "portion_size": "160/30/30",
+    "price": 450,
+    "unit": "гр",
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Закуски"
+  },
+  {
+    "name": "Сендвич BLT с уникальным соусом",
+    "portion_size": "300",
+    "price": 410,
+    "unit": "гр",
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Закуски"
+  },
+  {
+    "name": "Сендвич Бан Ми",
+    "portion_size": "250",
+    "price": 390,
+    "unit": "гр",
+    "image": "",
+    "description": "В начинку используется пашет из мяса птицы и томленой грудинкой. Дополняем свежими овощами и соусом с азиатскими нотками.",
+    "is_kids_menu": false,
+    "category": "Закуски"
+  },
+  {
+    "name": "Тартин с лососем и мягким сыром",
+    "portion_size": "170",
+    "price": 420,
+    "unit": "гр",
+    "image": "",
+    "description": "Открытый сендвич с лососем слабого посола, мягким сыром и сладким помидором.",
+    "is_kids_menu": false,
+    "category": "Закуски"
+  },
+  {
+    "name": "Тартин с говядиной и огурцами малой соли",
+    "portion_size": "50",
+    "price": 380,
+    "unit": "гр",
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Закуски"
+  },
+  {
+    "name": "Баклажаны с томатами в кисло-сладком соусе из кленового сиропа",
+    "portion_size": "150",
+    "price": 280,
+    "unit": "гр",
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Закуски"
+  },
+  {
+    "name": "Эклер с мерлузой и щучьей икрой",
+    "portion_size": "100",
+    "price": 310,
+    "unit": "гр",
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Закуски"
+  },
+  {
+    "name": "Тартар из говядины с пирожочками с луковым джемом",
+    "portion_size": "250",
+    "price": 450,
+    "unit": "гр",
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Закуски"
+  },
+  {
+    "name": "Рийет из рыбы с хлебом",
+    "portion_size": "180",
+    "price": 390,
+    "unit": "гр",
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Закуски"
+  },
+  {
+    "name": "Жареный картофель со сметаной и икрой",
+    "portion_size": "230",
+    "price": 280,
+    "unit": "гр",
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Закуски"
+  },
+  {
+    "name": "Оливье с томленым мясом и юньским горошком",
+    "portion_size": "230",
+    "price": 260,
+    "unit": "гр",
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Салаты"
+  },
+  {
+    "name": "Мимоза с соусом тум",
+    "portion_size": "270",
+    "price": 280,
+    "unit": "гр",
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Салаты"
+  },
+  {
+    "name": "С говяжьей грудинкой из печи",
+    "portion_size": "220",
+    "price": 380,
+    "unit": "гр",
+    "image": "",
+    "description": "Говяжья грудинка, листья салата, печеный перец цукини, огурцы, дополнено чатни из вишни",
+    "is_kids_menu": false,
+    "category": "Салаты"
+  },
+  {
+    "name": "Борщ с томленой грудинкой",
+    "portion_size": "380/40/20/20/5",
+    "price": 350,
+    "unit": "гр",
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Супы"
+  },
+  {
+    "name": "Просто вкусный куриный суп",
+    "portion_size": "360 гр",
+    "price": 240,
+    "unit": "гр",
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Супы"
+  },
+  {
+    "name": "Уха на крепком бульоне",
+    "portion_size": "290 гр",
+    "price": 260,
+    "unit": "гр",
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Супы"
+  },
+  {
+    "name": "Суп с фрикадельками",
+    "portion_size": "260 гр",
+    "price": 220,
+    "unit": "гр",
+    "image": "",
+    "description": "",
+    "is_kids_menu": true,
+    "category": "Супы"
+  },
+  {
+    "name": "Тыквенный суп-крем",
+    "portion_size": "250 гр",
+    "price": 280,
+    "unit": "гр",
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Супы"
+  },
+  {
+    "name": "Пельмени классические",
+    "portion_size": "350 гр",
+    "price": 240,
+    "unit": "гр",
+    "image": "",
+    "description": "С зеленью, черным перцем и бульоном",
+    "is_kids_menu": true,
+    "category": "Основные блюда"
+  },
+  {
+    "name": "Пельмени куриные",
+    "portion_size": "300 гр",
+    "price": 220,
+    "unit": "гр",
+    "image": "",
+    "description": "С зеленью, черным перцем и бульоном",
+    "is_kids_menu": true,
+    "category": "Основные блюда"
+  },
+  {
+    "name": "Рубленые куриные котлеты с картофельным пюре",
+    "portion_size": "320 гр",
+    "price": 450,
+    "unit": "гр",
+    "image": "",
+    "description": "Рубленые котлеты с пюре на сливках и сливочном масле, подается с помидорками",
+    "is_kids_menu": true,
+    "category": "Основные блюда"
+  },
+  {
+    "name": "Бифштекс с пшенной кашей из детства",
+    "portion_size": "330 гр",
+    "price": 400,
+    "unit": "гр",
+    "image": "",
+    "description": "Каша приготовлена методом ризотто. Бифштекс на гриле, сопровождается тартаром из огурца и соусом демиглас",
+    "is_kids_menu": true,
+    "category": "Основные блюда"
+  },
+  {
+    "name": "Томленое мясо с печеным в костре картофелем",
+    "portion_size": "350 гр",
+    "price": 650,
+    "unit": "гр",
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Основные блюда"
+  },
+  {
+    "name": "Кое-чья шаурма",
+    "portion_size": "400 гр",
+    "price": 550,
+    "unit": "гр",
+    "image": "",
+    "description": "Блюдо подается с соусом томатным, соусом майо и букетом из зелени",
+    "is_kids_menu": false,
+    "category": "Основные блюда"
+  },
+  {
+    "name": "Наши пироги с кое-каким мясом из печи",
+    "portion_size": "550/550 гр",
+    "price": 450,
+    "unit": "гр",
+    "image": "",
+    "description": "Говядина или курица на выбор",
+    "is_kids_menu": false,
+    "category": "Основные блюда"
+  },
+  {
+    "name": "Стейк из не горбуши",
+    "portion_size": "260 гр",
+    "price": 790,
+    "unit": "гр",
+    "image": "",
+    "description": "Лосось/семга запекается в печи, подается с кус-кусом, с семенами подсолнечника, тыквы",
+    "is_kids_menu": false,
+    "category": "Основные блюда"
+  },
+  {
+    "name": "Лопатка говяжья с овощами и вишней",
+    "portion_size": "180гр/150гр/50гр",
+    "price": 820,
+    "unit": "гр",
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Основные блюда"
+  },
+  {
+    "name": "Маргарита",
+    "portion_size": "440",
+    "price": 490,
+    "image": "",
+    "description": "Томатный соус собственного производства, сыр моцарелла, свежий базилик",
+    "is_kids_menu": false,
+    "category": "Пицца"
+  },
+  {
+    "name": "4 сыра",
+    "portion_size": "455",
+    "price": 520,
+    "image": "",
+    "description": "Пицца с четырьмя видами сыра",
+    "is_kids_menu": false,
+    "category": "Пицца"
+  },
+  {
+    "name": "С пельменями",
+    "portion_size": "600",
+    "price": 510,
+    "image": "",
+    "description": "Сметанный соус, пельмени, малосольные огурцы",
+    "is_kids_menu": true,
+    "category": "Пицца"
+  },
+  {
+    "name": "Пеперони",
+    "portion_size": "480",
+    "price": 490,
+    "image": "",
+    "description": "Томатный соус собственного производства, ломтики пеперони",
+    "is_kids_menu": false,
+    "category": "Пицца"
+  },
+  {
+    "name": "Арабьята",
+    "portion_size": "330",
+    "price": 380,
+    "image": "",
+    "description": "Соус из томатов, печеных перцев с небольшой ноткой чили перца. Используется паста пенне.",
+    "is_kids_menu": false,
+    "category": "Паста"
+  },
+  {
+    "name": "С лососем, сливками и икрой",
+    "portion_size": "300",
+    "price": 710,
+    "image": "",
+    "description": "Соус на сливках, белом вине с тимьяном и филе красной рыбы. Дополняется икрой. Используется паста пенне.",
+    "is_kids_menu": false,
+    "category": "Паста"
+  },
+  {
+    "name": "Болоньезе с шашлыком",
+    "portion_size": "310",
+    "price": 360,
+    "image": "",
+    "description": "Соус из фарша, томатов, овощей, вина. Сопровождается шпажкой шашлыка. Используется паста спагетти.",
+    "is_kids_menu": false,
+    "category": "Паста"
+  },
+  {
+    "name": "Карбонара без кое-каких сливок",
+    "portion_size": "290",
+    "price": 340,
+    "image": "",
+    "description": "Соус приготовлен на базе желтков, белого вина и сыра пармезан с беконом. Используется паста спагетти.",
+    "is_kids_menu": false,
+    "category": "Паста"
+  },
+  {
+    "name": "Картофель фри",
+    "portion_size": "150",
+    "price": 180,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Гарниры"
+  },
+  {
+    "name": "Картофельное пюре",
+    "portion_size": "150",
+    "price": 170,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Гарниры"
+  },
+  {
+    "name": "Овощи на пару",
+    "portion_size": "150",
+    "price": 120,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Гарниры"
+  },
+  {
+    "name": "Овощи на гриле",
+    "portion_size": "150",
+    "price": 160,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Гарниры"
+  },
+  {
+    "name": "Рис отварной",
+    "portion_size": "150",
+    "price": 100,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Гарниры"
+  },
+  {
+    "name": "Манговый медовик",
+    "portion_size": "150",
+    "price": 220,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Десерты"
+  },
+  {
+    "name": "Наполеон малиновый",
+    "portion_size": "150",
+    "price": 220,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Десерты"
+  },
+  {
+    "name": "Чизкейк с ягодным соусом",
+    "portion_size": "150",
+    "price": 280,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Десерты"
+  },
+  {
+    "name": "Шоколадный чиз",
+    "portion_size": "150",
+    "price": 285,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Десерты"
+  },
+  {
+    "name": "Эспрессо",
+    "portion_size": "38",
+    "price": 80,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Кофе"
+  },
+  {
+    "name": "Американо",
+    "portion_size": "300",
+    "price": 120,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Кофе"
+  },
+  {
+    "name": "Капучино",
+    "portion_size": "300",
+    "price": 140,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Кофе"
+  },
+  {
+    "name": "Флет Уайт",
+    "portion_size": "300",
+    "price": 160,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Кофе"
+  },
+  {
+    "name": "Раф",
+    "portion_size": "300",
+    "price": 180,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Кофе"
+  },
+  {
+    "name": "Капучино с лавандой",
+    "portion_size": "300",
+    "price": 160,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Кофе"
+  },
+  {
+    "name": "Кофе на банановом",
+    "portion_size": "300",
+    "price": 180,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Кофе"
+  },
+  {
+    "name": "Кофе на кокосовом",
+    "portion_size": "300",
+    "price": 180,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Кофе"
+  },
+  {
+    "name": "Капучино с малиной",
+    "portion_size": "300",
+    "price": 180,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Кофе"
+  },
+  {
+    "name": "Банановый фраппе",
+    "portion_size": "350",
+    "price": 170,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Кофе"
+  },
+  {
+    "name": "Черный",
+    "portion_size": "600",
+    "price": 150,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Чай"
+  },
+  {
+    "name": "Зеленый Сенча",
+    "portion_size": "600",
+    "price": 150,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Чай"
+  },
+  {
+    "name": "Зеленый Дыня Карамель",
+    "portion_size": "600",
+    "price": 150,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Чай"
+  },
+  {
+    "name": "Пуэр Юннань",
+    "portion_size": "600",
+    "price": 150,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Чай"
+  },
+  {
+    "name": "Улун Молочный",
+    "portion_size": "600",
+    "price": 150,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Чай"
+  },
+  {
+    "name": "Дерзкий Фрукт",
+    "portion_size": "600",
+    "price": 150,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Чай"
+  },
+  {
+    "name": "Черный Черная Смородина",
+    "portion_size": "600",
+    "price": 150,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Чай"
+  },
+  {
+    "name": "Черный Эрл Грей",
+    "portion_size": "600",
+    "price": 150,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Чай"
+  },
+  {
+    "name": "Черный Барбарисовый",
+    "portion_size": "600",
+    "price": 150,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Чай"
+  },
+  {
+    "name": "Травяной Лимон с Имбирем",
+    "portion_size": "600",
+    "price": 150,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Чай"
+  },
+  {
+    "name": "Травяной Мятный Каркаде",
+    "portion_size": "600",
+    "price": 150,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Чай"
+  },
+  {
+    "name": "Персик-Розмарин",
+    "portion_size": "600",
+    "price": 250,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Фирменный чай"
+  },
+  {
+    "name": "Лемонграсс-Киви",
+    "portion_size": "600",
+    "price": 250,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Фирменный чай"
+  },
+  {
+    "name": "Черная Смородина-Каркаде",
+    "portion_size": "600",
+    "price": 250,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Фирменный чай"
+  },
+  {
+    "name": "Облепиха-Глинтвейн",
+    "portion_size": "600",
+    "price": 250,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Фирменный чай"
+  },
+  {
+    "name": "Бон Аква Газ",
+    "portion_size": "330",
+    "price": 120,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Напитки"
+  },
+  {
+    "name": "Бон Аква Негаз",
+    "portion_size": "330",
+    "price": 120,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Напитки"
+  },
+  {
+    "name": "Рич Ананас",
+    "portion_size": "200",
+    "price": 180,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Напитки"
+  },
+  {
+    "name": "Рич Апельсин",
+    "portion_size": "200",
+    "price": 180,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Напитки"
+  },
+  {
+    "name": "Рич Яблоко",
+    "portion_size": "200",
+    "price": 180,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Напитки"
+  },
+  {
+    "name": "Рич Вишня",
+    "portion_size": "200",
+    "price": 180,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Напитки"
+  },
+  {
+    "name": "Рич Персик",
+    "portion_size": "200",
+    "price": 180,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Напитки"
+  },
+  {
+    "name": "Рич Томат",
+    "portion_size": "200",
+    "price": 180,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Напитки"
+  },
+  {
+    "name": "Добрый Кола",
+    "portion_size": "330",
+    "price": 140,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Напитки"
+  },
+  {
+    "name": "Классический",
+    "portion_size": "1000",
+    "price": 250,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Лимонады"
+  },
+  {
+    "name": "Тархун",
+    "portion_size": "1000",
+    "price": 250,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Лимонады"
+  },
+  {
+    "name": "Огурец-Мята",
+    "portion_size": "1000",
+    "price": 290,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Лимонады"
+  },
+  {
+    "name": "Маракуя-Матча",
+    "portion_size": "1000",
+    "price": 290,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Лимонады"
+  },
+  {
+    "name": "Малина-Клубника-Огурец",
+    "portion_size": "1000",
+    "price": 290,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Лимонады"
+  },
+  {
+    "name": "Груша-Базилик",
+    "portion_size": "1000",
+    "price": 290,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Лимонады"
+  },
+  {
+    "name": "Облепиха-Тархун",
+    "portion_size": "1000",
+    "price": 290,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Лимонады"
+  },
+  {
+    "name": "Груша-Щавель",
+    "portion_size": "1000",
+    "price": 290,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Лимонады"
+  },
+  {
+    "name": "Грейпфрут-Бабл Гам",
+    "portion_size": "1000",
+    "price": 250,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Лимонады"
+  },
+  {
+    "name": "Лаванда-Малина",
+    "portion_size": "1000",
+    "price": 250,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Лимонады"
+  },
+  {
+    "name": "Ананас-Миндаль",
+    "portion_size": "1000",
+    "price": 290,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Лимонады"
+  },
+  {
+    "name": "Ягодный Лемонграсс",
+    "portion_size": "250",
+    "price": 80,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Морсы"
+  },
+  {
+    "name": "Клюква-Имбирь",
+    "portion_size": "250",
+    "price": 80,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Морсы"
+  },
+  {
+    "name": "Облепиха-Вишня",
+    "portion_size": "250",
+    "price": 80,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Морсы"
+  },
+  {
+    "name": "Киви",
+    "portion_size": "300",
+    "price": 210,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Милкшейки"
+  },
+  {
+    "name": "Банановый с Шоколадом",
+    "portion_size": "300",
+    "price": 210,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Милкшейки"
+  },
+  {
+    "name": "Классика",
+    "portion_size": "300",
+    "price": 210,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Милкшейки"
+  },
+  {
+    "name": "Карамельный",
+    "portion_size": "300",
+    "price": 210,
+    "image": "",
+    "description": "",
+    "is_kids_menu": false,
+    "category": "Милкшейки"
+  }
+]
