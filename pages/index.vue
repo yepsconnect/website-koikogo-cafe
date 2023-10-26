@@ -25,7 +25,11 @@ useHead({
   ],
 });
 
+// composables
 const { menu, menuAlco } = useMenu();
+const { order } = useOrder();
+
+// state
 const categories = [
   "завтраки до 13:00",
   "закуски",
@@ -73,11 +77,11 @@ const alcoCategories = [
     </div>
     <div class="mb-12">
       <div id="menu" class="py-6">
-        <h2 class="text-3xl text-center">Меню</h2>
+        <h2 class="text-4xl text-center">Меню</h2>
       </div>
       <div class="flex flex-col gap-12 mt-6">
         <div v-for="(category, index) in categories" :key="index">
-          <h3 class="text-2xl uppercase">{{ category }}</h3>
+          <h3 class="text-3xl uppercase">{{ category }}</h3>
           <div class="flex flex-col gap-2 mt-3">
             <template v-for="(item, index) in menu" :key="index">
               <DishItem v-if="item.category === category" :dish="item" />
@@ -88,11 +92,11 @@ const alcoCategories = [
     </div>
     <div>
       <div class="py-6">
-        <h2 class="text-3xl text-center">Винная карта бара</h2>
+        <h2 class="text-4xl text-center">Винная карта бара</h2>
       </div>
       <div class="flex flex-col gap-12 mt-6">
         <div v-for="(category, index) in alcoCategories" :key="index">
-          <h3 class="text-2xl uppercase">{{ category }}</h3>
+          <h3 class="text-3xl uppercase">{{ category }}</h3>
           <div class="flex flex-col gap-2 mt-3">
             <template v-for="(item, index) in menuAlco" :key="index">
               <DishItem v-if="item.category === category" :dish="item" />
@@ -100,6 +104,15 @@ const alcoCategories = [
           </div>
         </div>
       </div>
+    </div>
+    <div
+      v-if="order.length"
+      class="sticky flex justify-between bottom-0 bg-white py-5 border-t mt-10"
+    >
+      <p>Выбрано блюд: {{ order.length }}</p>
+      <NuxtLink :to="{ name: 'order' }" class="active:underline">
+        Посмотреть
+      </NuxtLink>
     </div>
   </div>
 </template>
