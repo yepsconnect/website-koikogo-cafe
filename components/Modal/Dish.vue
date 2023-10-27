@@ -29,7 +29,8 @@ const showOrder = () => {
 
 <template>
   <Modal v-model="isOpen">
-    <div v-if="dish" class="mt-6">
+    <h2 class="text-2xl font-bold">Информация</h2>
+    <div v-if="dish" class="mt-2">
       <div class="avatar w-full">
         <div class="rounded-xl bg-gray-200 w-full animate-pulse">
           <!-- <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" /> -->

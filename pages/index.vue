@@ -88,33 +88,35 @@ const showInfo = (dishId: Number) => {
 <template>
   <div>
     <Modal v-model="isOpen">
-      <div class="mt-4 flex flex-col gap-4">
+      <div class="flex flex-col gap-4">
         <h2 class="text-2xl font-bold">Мой заказ</h2>
-        <template v-if="orderList.length">
+        <div v-if="orderList.length" class="flex flex-col gap-2 mt-4">
           <div
             v-for="item in orderList"
             :key="item.name"
             class="flex justify-between gap-2"
           >
             <p class="uppercase" @click="showInfo(item.id)">{{ item.name }}</p>
-            <div class="flex items-center gap-5">
+            <div class="flex items-center gap-2">
               <button
-                class="w-8 aspect-square flex items-center justify-center border rounded-full active:scale-75"
+                class="btn btn-xs btn-outline btn-circle"
                 @click="removeFromOrder(item.id)"
               >
                 -
               </button>
-              <p>{{ item.count }}</p>
+              <div class="w-10">
+                <p class="text-center">{{ item.count }}</p>
+              </div>
               <button
-                class="w-8 aspect-square flex items-center justify-center border rounded-full active:scale-75"
+                class="btn btn-xs btn-outline btn-circle"
                 @click="addToOrder(item.id)"
               >
                 +
               </button>
             </div>
           </div>
-        </template>
-        <div v-else>
+        </div>
+        <div v-else class="mt-4">
           <p class="text-center">Заказ пуст</p>
         </div>
       </div>
