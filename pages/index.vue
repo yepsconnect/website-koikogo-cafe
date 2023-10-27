@@ -157,14 +157,11 @@ const showInfo = (dishId: Number) => {
         </div>
       </div>
     </Container>
-    <div
-      v-if="order.length"
-      class="sticky bottom-0 bg-white py-5 border-t mt-10"
-    >
-      <Container class="flex items-center justify-between gap-3">
-        <p>Выбрано позиций: {{ order.length }}</p>
-        <button class="btn" @click="isOpen = true">Посмотреть</button>
-      </Container>
-    </div>
+    <Container v-if="order.length" class="sticky bottom-3">
+      <div class="alert shadow-lg flex justify-between">
+        <p class="text-based-content">Выбрано позиций: {{ order.length }}</p>
+        <button class="btn btn-sm" @click="isOpen = true">Посмотреть</button>
+      </div>
+    </Container>
   </div>
 </template>

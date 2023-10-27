@@ -3,6 +3,6 @@
     <main class="flex-1">
       <slot />
     </main>
-    <Footer />
+    <Footer class="mt-10" />
   </div>
 </template>
