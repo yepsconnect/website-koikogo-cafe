@@ -165,7 +165,7 @@ const activeCategory = ref();
             :class="{
               'badge-primary': activeCategory === category,
             }"
-            :href="'#category' + index"
+            :href="'#' + category"
             @click="activeCategory = category"
           >
             {{ category }}
@@ -178,7 +178,7 @@ const activeCategory = ref();
             :key="index"
             class="relative"
           >
-            <span :id="'category' + index" class="absolute -top-16"></span>
+            <span :id="category" class="absolute -top-16"></span>
             <h3 class="text-3xl uppercase">{{ category }}</h3>
             <div class="flex flex-col gap-4 mt-3">
               <template v-for="(item, index) in menu" :key="index">
