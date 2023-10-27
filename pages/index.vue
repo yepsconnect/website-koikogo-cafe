@@ -29,7 +29,7 @@ useHead({
 
 // composables
 const { menu } = useMenu();
-const { order, addToOrder, removeFromOrder } = useOrder();
+const { order, addToOrder, removeFromOrder, notifications } = useOrder();
 
 const orderList = computed(() => {
   return order.value.map((item) => {
@@ -89,6 +89,11 @@ const activeCategory = ref();
 
 <template>
   <div>
+    <div class="toast toast-top toast-end z-50">
+      <div v-for="item in notifications" class="alert alert-success">
+        <span>Добавлено {{ item.count }} шт</span>
+      </div>
+    </div>
     <Modal v-model="isOpen">
       <div class="flex flex-col gap-4">
         <h2 class="text-2xl font-bold">Мой заказ</h2>

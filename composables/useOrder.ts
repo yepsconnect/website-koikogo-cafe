@@ -6,16 +6,36 @@ export default function () {
     }[]
   >("order", () => []);
 
-  const addToOrder = (id: Number) => {
+  const notifications = useState<
+    {
+      id: Number;
+      count: Number;
+    }[]
+  >("notifications", () => []);
+
+  const addToOrder = (id: Number, count: Number) => {
     const orderItem = order.value.find((item) => item.id === id);
+
     if (orderItem) {
       orderItem.count++;
     } else {
       order.value.push({
         id,
-        count: 1,
+        count,
       });
     }
+    const notificationId = +Math.random().toString().slice(2);
+    notifications.value.push({
+      id: notificationId,
+      count,
+    });
+    setTimeout(() => {
+      notifications.value = notifications.value.filter(
+        (item) => item.id !== notificationId
+      );
+      console.log(notifications.value);
+    }, 3000);
+    console.log(notifications.value);
   };
 
   const removeFromOrder = (id: Number) => {
@@ -32,5 +52,6 @@ export default function () {
     order,
     addToOrder,
     removeFromOrder,
+    notifications,
   };
 }

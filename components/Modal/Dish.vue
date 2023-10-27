@@ -9,12 +9,10 @@ const emit = defineEmits(["update:modelValue", "show-order"]);
 const props = defineProps<Props>();
 
 //composables
-const { order, addToOrder, removeFromOrder } = useOrder();
+const { order, addToOrder } = useOrder();
 
 // computed
-const dishCount = computed(() => {
-  return order.value.find((x) => x.id === props.dish.id)?.count;
-});
+const count = ref(1);
 
 const isOpen = computed({
   get: () => props.modelValue,
@@ -25,6 +23,13 @@ const showOrder = () => {
   isOpen.value = false;
   emit("show-order");
 };
+
+// reset count when modal is closed
+watch(isOpen, (value) => {
+  if (!value) {
+    count.value = 1;
+  }
+});
 </script>
 
 <template>
@@ -42,19 +47,22 @@ const showOrder = () => {
         <span class="text-lg font-bold">{{ dish?.price }} р</span>
         {{ dish?.portion_size }} {{ dish?.unit }}
       </p>
-      <div v-if="dishCount" class="mt-4 flex flex-col gap-4">
-        <button class="btn w-full" @click="showOrder">Посмотреть заказ</button>
+      <div class="mt-4 flex flex-col gap-4">
         <div class="flex items-center justify-between">
-          <button class="btn btn-square" @click="removeFromOrder(dish.id)">
+          <button class="btn btn-square" :disabled="count < 2" @click="count--">
             -
           </button>
-          <div>{{ dishCount }} шт</div>
-          <button class="btn btn-square" @click="addToOrder(dish.id)">+</button>
+          <div>{{ count }} шт</div>
+          <button class="btn btn-square" @click="count++">+</button>
         </div>
       </div>
-      <div v-else class="mt-4">
-        <button class="btn w-full" @click="addToOrder(dish.id)">
-          Добавить в заказ
+      <div class="mt-2 flex justify-between gap-2">
+        <button class="btn flex-1" @click="isOpen = false">Закрыть</button>
+        <button
+          class="btn flex-1"
+          @click="addToOrder(dish.id, count), (isOpen = false)"
+        >
+          Добавить
         </button>
       </div>
     </div>
