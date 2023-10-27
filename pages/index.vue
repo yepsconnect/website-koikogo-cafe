@@ -83,6 +83,8 @@ const showInfo = (dishId: Number) => {
   selectedDish.value = menu.find((item) => item.id === dishId);
   isShowDish.value = true;
 };
+
+const activeCategory = ref();
 </script>
 
 <template>
@@ -143,8 +145,30 @@ const showInfo = (dishId: Number) => {
         <div id="menu" class="py-6">
           <h2 class="text-4xl text-center">Меню</h2>
         </div>
+        <div
+          class="navbar bg-base-100 overflow-x-scroll gap-3 py-3 position: sticky top-0 z-10"
+        >
+          <a
+            v-for="(category, index) in categories"
+            :key="index"
+            class="badge badge-lg badge-outline whitespace-nowrap capitalize"
+            :class="{
+              'badge-primary': activeCategory === category,
+            }"
+            :href="'#category' + index"
+            @click="activeCategory = category"
+          >
+            {{ category }}
+          </a>
+        </div>
+
         <div class="flex flex-col gap-12 mt-6">
-          <div v-for="(category, index) in categories" :key="index">
+          <div
+            v-for="(category, index) in categories"
+            :key="index"
+            class="relative"
+          >
+            <span :id="'category' + index" class="absolute -top-16"></span>
             <h3 class="text-3xl uppercase">{{ category }}</h3>
             <div class="flex flex-col gap-4 mt-3">
               <template v-for="(item, index) in menu" :key="index">
@@ -167,3 +191,9 @@ const showInfo = (dishId: Number) => {
     </Container>
   </div>
 </template>
+
+<style>
+* {
+  scroll-behavior: smooth;
+}
+</style>
