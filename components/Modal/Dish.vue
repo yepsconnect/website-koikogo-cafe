@@ -42,7 +42,7 @@ watch(isOpen, (value) => {
         </div>
       </div>
       <h2 class="uppercase text-xl font-bold">{{ dish?.name }}</h2>
-      <p>{{ dish?.description }}</p>
+      <p v-if="dish?.description">{{ dish.description }}</p>
       <p class="text-sm">
         <span class="text-lg font-bold">{{ dish?.price }} р</span>
         {{ dish?.portion_size }} {{ dish?.unit }}

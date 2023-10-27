@@ -97,13 +97,15 @@ const activeCategory = ref();
     <Modal v-model="isOpen">
       <div class="flex flex-col gap-4">
         <h2 class="text-2xl font-bold">Мой заказ</h2>
-        <div v-if="orderList.length" class="flex flex-col gap-2 mt-4">
+        <div v-if="orderList.length" class="flex flex-col gap-2">
           <div
             v-for="item in orderList"
             :key="item.name"
             class="flex justify-between gap-2"
           >
-            <p class="uppercase" @click="showInfo(item.id)">{{ item.name }}</p>
+            <p class="uppercase text-lg" @click="showInfo(item.id)">
+              {{ item.name }}
+            </p>
             <div class="flex items-center gap-2">
               <button
                 class="btn btn-xs btn-outline btn-circle"
@@ -112,7 +114,7 @@ const activeCategory = ref();
                 -
               </button>
               <div class="w-10">
-                <p class="text-center">{{ item.count }}</p>
+                <p class="text-center text-lg font-bold">{{ item.count }}</p>
               </div>
               <button
                 class="btn btn-xs btn-outline btn-circle"
@@ -123,8 +125,11 @@ const activeCategory = ref();
             </div>
           </div>
         </div>
-        <div v-else class="mt-4">
+        <div v-else>
           <p class="text-center">Заказ пуст</p>
+        </div>
+        <div>
+          <button class="btn w-full" @click="isOpen = false">Закрыть</button>
         </div>
       </div>
     </Modal>
@@ -188,8 +193,8 @@ const activeCategory = ref();
         </div>
       </div>
     </Container>
-    <Container v-if="order.length" class="sticky bottom-3">
-      <div class="alert shadow-lg flex justify-between">
+    <Container v-if="order.length" class="sticky bottom-3 flex justify-center">
+      <div class="alert shadow-lg flex justify-between max-w-xl">
         <p class="text-based-content">Выбрано позиций: {{ order.length }}</p>
         <button class="btn btn-sm" @click="isOpen = true">Посмотреть</button>
       </div>
