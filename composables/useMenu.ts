@@ -1178,9 +1178,6 @@ export default function () {
       category: "милкшейки",
       id: 106,
     },
-  ];
-
-  const menuAlco = [
     {
       name: "чело э терра с.п.а. шардоне",
       portion_size: "750",
@@ -1726,6 +1723,5 @@ export default function () {
 
   return {
     menu,
-    menuAlco,
   };
 }
