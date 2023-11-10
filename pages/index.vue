@@ -142,7 +142,7 @@ const activeCategory = ref();
         <div class="flex gap-3">
           <button class="btn flex-1" @click="isOpen = false">Закрыть</button>
           <button class="btn flex-1" @click="(isOpen = false), (order = [])">
-            Отчистить заказ
+            Очистить заказ
           </button>
         </div>
       </div>
