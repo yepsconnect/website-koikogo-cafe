@@ -17,7 +17,7 @@ export default function () {
     const orderItem = order.value.find((item) => item.id === id);
 
     if (orderItem) {
-      orderItem.count++;
+      +orderItem.count + 1;
     } else {
       order.value.push({
         id,
@@ -41,7 +41,7 @@ export default function () {
   const removeFromOrder = (id: Number) => {
     const orderItem = order.value.find((item) => item.id === id);
     if (orderItem) {
-      orderItem.count--;
+      +orderItem.count - 1;
       if (orderItem.count === 0) {
         order.value = order.value.filter((item) => item.id !== id);
       }

@@ -6,27 +6,7 @@ interface Props {
 }
 
 defineEmits(["toggle"]);
-const props = defineProps<Props>();
-
-//composables
-const { order } = useOrder();
-
-// state
-const isActive = ref(false);
-
-const toggleItem = () => {
-  const dishIndex = order.value.findIndex((item) => item.id === props.dish.id);
-
-  if (isActive.value) {
-    if (dishIndex === -1) {
-      order.value.push(props.dish);
-    }
-  } else {
-    if (dishIndex !== -1) {
-      order.value.splice(dishIndex, 1);
-    }
-  }
-};
+defineProps<Props>();
 </script>
 
 <template>
@@ -34,7 +14,7 @@ const toggleItem = () => {
     <div class="flex items-start gap-4 w-full">
       <div class="avatar">
         <div class="w-16 rounded-xl bg-gray-200">
-          <!-- <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" /> -->
+          <img v-if="dish.image" :src="dish.image" />
         </div>
       </div>
       <div class="flex flex-col md:flex-row justify-between w-full md:gap-4">

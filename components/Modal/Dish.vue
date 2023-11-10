@@ -1,5 +1,7 @@
 import { Button } from '#build/components';
 <script setup lang="ts">
+import type { Dish } from "~/types/Dish";
+
 interface Props {
   modelValue: boolean;
   dish: Dish | null;
@@ -37,8 +39,13 @@ watch(isOpen, (value) => {
     <h2 class="text-2xl font-bold">Информация</h2>
     <div v-if="dish" class="mt-2">
       <div class="avatar w-full">
-        <div class="rounded-xl bg-gray-200 w-full animate-pulse">
-          <!-- <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" /> -->
+        <div
+          class="rounded-xl bg-gray-200 w-full"
+          :class="{
+            'animate-pulse': !dish.image,
+          }"
+        >
+          <img v-if="dish.image" :src="dish.image" />
         </div>
       </div>
       <h2 class="uppercase text-xl font-bold">{{ dish?.name }}</h2>

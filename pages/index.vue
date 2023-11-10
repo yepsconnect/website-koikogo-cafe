@@ -103,7 +103,10 @@ const activeCategory = ref();
             :key="item.name"
             class="flex justify-between gap-2"
           >
-            <p class="uppercase text-lg" @click="showInfo(item.id)">
+            <p
+              class="uppercase text-lg hover:underline cursor-pointer"
+              @click="showInfo(item.id)"
+            >
               {{ item.name }}
             </p>
             <div class="flex items-center gap-2">
@@ -118,7 +121,7 @@ const activeCategory = ref();
               </div>
               <button
                 class="btn btn-xs btn-outline btn-circle"
-                @click="addToOrder(item.id)"
+                @click="addToOrder(item.id, 1)"
               >
                 +
               </button>
