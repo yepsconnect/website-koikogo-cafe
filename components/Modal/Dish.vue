@@ -36,7 +36,6 @@ watch(isOpen, (value) => {
 
 <template>
   <Modal v-model="isOpen">
-    <h2 class="text-2xl font-bold">Информация</h2>
     <div v-if="dish" class="mt-2">
       <div class="avatar w-full">
         <div
@@ -48,7 +47,7 @@ watch(isOpen, (value) => {
           <img v-if="dish.image" :src="dish.image" loading="lazy" />
         </div>
       </div>
-      <h2 class="uppercase text-xl font-bold">{{ dish?.name }}</h2>
+      <h2 class="uppercase text-lg font-bold">{{ dish?.name }}</h2>
       <p v-if="dish?.description">{{ dish.description }}</p>
       <p class="text-sm">
         <span class="text-lg font-bold">{{ dish?.price }} р</span>
