@@ -14,7 +14,7 @@ defineProps<Props>();
     <div class="flex items-start gap-4 w-full">
       <div class="avatar">
         <div class="w-16 rounded-xl bg-gray-200">
-          <img v-if="dish.image" :src="dish.image" />
+          <img v-if="dish.image" :src="dish.image" loading="lazy" />
         </div>
       </div>
       <div class="flex flex-col md:flex-row justify-between w-full md:gap-4">

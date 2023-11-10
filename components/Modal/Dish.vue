@@ -45,7 +45,7 @@ watch(isOpen, (value) => {
             'animate-pulse': !dish.image,
           }"
         >
-          <img v-if="dish.image" :src="dish.image" />
+          <img v-if="dish.image" :src="dish.image" loading="lazy" />
         </div>
       </div>
       <h2 class="uppercase text-xl font-bold">{{ dish?.name }}</h2>
