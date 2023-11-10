@@ -22,6 +22,11 @@ defineProps<Props>();
           <p class="uppercase text-md">
             {{ dish.name }}
           </p>
+          <p>
+            <span class="text-sm text-gray-600">
+              {{ dish.portion_size }} {{ dish.unit }}
+            </span>
+          </p>
           <div
             v-if="dish.is_kids_menu"
             class="tooltip tooltip-right"
@@ -33,12 +38,7 @@ defineProps<Props>();
           </div>
         </div>
 
-        <p class="text-md">
-          {{ dish.price }} р
-          <span class="text-sm text-gray-600">
-            {{ dish.portion_size }} {{ dish.unit }}
-          </span>
-        </p>
+        <p class="text-md">{{ dish.price }} р</p>
       </div>
     </div>
     <div class="btn btn-circle btn-xs btn-ghost">
