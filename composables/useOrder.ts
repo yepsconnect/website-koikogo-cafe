@@ -24,6 +24,9 @@ export default function () {
         count,
       });
     }
+
+    localStorage.setItem("order", JSON.stringify(order.value));
+
     const notificationId = +Math.random().toString().slice(2);
     notifications.value.push({
       id: notificationId,
@@ -33,9 +36,7 @@ export default function () {
       notifications.value = notifications.value.filter(
         (item) => item.id !== notificationId
       );
-      console.log(notifications.value);
     }, 3000);
-    console.log(notifications.value);
   };
 
   const removeFromOrder = (id: Number) => {
@@ -46,6 +47,7 @@ export default function () {
         order.value = order.value.filter((item) => item.id !== id);
       }
     }
+    localStorage.setItem("order", JSON.stringify(order.value));
   };
 
   return {

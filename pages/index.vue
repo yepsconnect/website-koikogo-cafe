@@ -31,6 +31,14 @@ useHead({
 const { menu } = useMenu();
 const { order, addToOrder, removeFromOrder, notifications } = useOrder();
 
+onMounted(() => {
+  const orderCache = localStorage.getItem("order");
+  if (orderCache) {
+    const parsedOrder = JSON.parse(orderCache);
+    order.value = parsedOrder;
+  }
+});
+
 const orderList = computed(() => {
   return order.value.map((item) => {
     const dish = menu.find((x) => x.id === item.id);
@@ -131,8 +139,11 @@ const activeCategory = ref();
         <div v-else>
           <p class="text-center">Заказ пуст</p>
         </div>
-        <div>
-          <button class="btn w-full" @click="isOpen = false">Закрыть</button>
+        <div class="flex gap-3">
+          <button class="btn flex-1" @click="isOpen = false">Закрыть</button>
+          <button class="btn flex-1" @click="(isOpen = false), (order = [])">
+            Отчистить заказ
+          </button>
         </div>
       </div>
     </Modal>

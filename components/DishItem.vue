@@ -10,7 +10,9 @@ defineProps<Props>();
 </script>
 
 <template>
-  <div class="flex items-center gap-1 p-2 rounded-xl hover:bg-base-200">
+  <div
+    class="flex items-center gap-1 p-2 rounded-xl hover:bg-base-200 cursor-pointer"
+  >
     <div class="flex items-start gap-4 w-full">
       <div class="avatar">
         <div class="w-16 rounded-xl bg-gray-200">
