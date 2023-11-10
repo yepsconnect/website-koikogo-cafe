@@ -29,6 +29,15 @@ watch(isOpen, (newValue) => {
     closeModal();
   }
 });
+
+// change esc key to close modal
+onMounted(() => {
+  modalRef.value.addEventListener("keydown", (e: KeyboardEvent) => {
+    if (e.key === "Escape") {
+      closeModal();
+    }
+  });
+});
 </script>
 
 <template>
