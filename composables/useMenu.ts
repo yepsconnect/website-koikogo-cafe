@@ -275,8 +275,10 @@ export default function () {
       portion_size: "270",
       price: 280,
       unit: "гр",
-      image: "",
-      description: "",
+      image:
+        "https://avatars.mds.yandex.net/get-sprav-products/9495815/2a000001894504457d81845cfefd782901aa/M_height",
+      description:
+        "Салат собирается из печеных овощей и заправляется домашним майонезом",
       is_kids_menu: false,
       category: "салаты",
       id: 22,
@@ -1669,10 +1671,8 @@ export default function () {
       portion_size: "300",
       unit: "мл",
       price: 280,
-      image:
-        "https://avatars.mds.yandex.net/get-sprav-products/9495815/2a000001894504457d81845cfefd782901aa/M_height",
-      description:
-        "Салат собирается из печеных овощей и заправляется домашним майонезом",
+      image: "",
+      description: "",
       is_kids_menu: false,
       category: "коктейли",
       id: 142,
