@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Dish } from "~/types/Dish";
+import type { Dish } from "~/types/Dish";
 
 interface Props {
   dish: Dish;

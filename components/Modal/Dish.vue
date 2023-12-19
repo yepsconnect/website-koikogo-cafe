@@ -66,7 +66,7 @@ watch(isOpen, (value) => {
         <button class="btn flex-1" @click="isOpen = false">Закрыть</button>
         <button
           class="btn flex-1"
-          @click="addToOrder(dish.id, count), (isOpen = false)"
+          @click="addToOrder(dish.id, count, false), (isOpen = false)"
         >
           Добавить
         </button>

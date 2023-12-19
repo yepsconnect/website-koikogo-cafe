@@ -86,7 +86,7 @@ onMounted(() => {
   selectedDish.value = menu[0];
 });
 
-const showInfo = (dishId: Number) => {
+const showInfo = (dishId: number) => {
   isOpen.value = false;
   selectedDish.value = menu.find((item) => item.id === dishId);
   isShowDish.value = true;
@@ -129,7 +129,7 @@ const activeCategory = ref();
               </div>
               <button
                 class="btn btn-xs btn-outline btn-circle"
-                @click="addToOrder(item.id, 1)"
+                @click="addToOrder(item.id, 1, true)"
               >
                 +
               </button>

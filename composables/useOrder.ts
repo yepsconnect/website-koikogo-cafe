@@ -1,23 +1,23 @@
 export default function () {
   const order = useState<
     {
-      id: Number;
-      count: Number;
+      id: number;
+      count: number;
     }[]
   >("order", () => []);
 
   const notifications = useState<
     {
-      id: Number;
-      count: Number;
+      id: number;
+      count: number;
     }[]
   >("notifications", () => []);
 
-  const addToOrder = (id: Number, count: Number) => {
+  const addToOrder = (id: number, count: number, isNew: boolean) => {
     const orderItem = order.value.find((item) => item.id === id);
 
-    if (orderItem) {
-      +orderItem.count + 1;
+    if (orderItem?.count) {
+      orderItem.count += 1;
     } else {
       order.value.push({
         id,
@@ -26,6 +26,10 @@ export default function () {
     }
 
     localStorage.setItem("order", JSON.stringify(order.value));
+
+    if (isNew) {
+      return;
+    }
 
     const notificationId = +Math.random().toString().slice(2);
     notifications.value.push({
@@ -39,10 +43,10 @@ export default function () {
     }, 3000);
   };
 
-  const removeFromOrder = (id: Number) => {
+  const removeFromOrder = (id: number) => {
     const orderItem = order.value.find((item) => item.id === id);
     if (orderItem) {
-      +orderItem.count - 1;
+      orderItem.count -= 1;
       if (orderItem.count === 0) {
         order.value = order.value.filter((item) => item.id !== id);
       }
