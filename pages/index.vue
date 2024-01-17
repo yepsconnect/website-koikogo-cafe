@@ -74,23 +74,23 @@ const currentHour = computed(() => {
 // state
 const categories = [
   "BRANCH BREAKFAST",
-  "ЗАКУСКИ",
-  "СУПЫ",
-  "ГАРНИР",
-  "НА УГЛЯХ",
-  "ПИЦЦА",
-  "ПИРОГИ",
-  "ПАСТА",
-  "ГОРЯЧЕЕ",
-  "САЛАТЫ",
-  "ДЕСЕРТЫ",
-  "КОФЕ",
-  "ЧАЙ",
-  "ФИРМЕННЫЙ ЧАЙ",
-  "НАПИТКИ",
-  "ЛИМОНАДЫ",
-  "МОРСЫ",
-  "МИЛКШЕЙКИ",
+  "закуски",
+  "супы",
+  "гарнир",
+  "на углях",
+  "пицца",
+  "пироги",
+  "паста",
+  "горячее",
+  "салаты",
+  "десерты",
+  "кофе",
+  "чай",
+  "фирменный чай",
+  "напитки",
+  "лимонады",
+  "морсы",
+  "милкшейки",
 ];
 
 const filteredCategories = computed(() => {
@@ -120,7 +120,7 @@ const activeCategory = ref();
 
 <template>
   <div>
-    <div class="fixed top-2 right-2 dropdown dropdown-end">
+    <div class="fixed top-16 right-2 dropdown dropdown-end">
       <div tabindex="0" role="button" class="btn btn-circle m-1">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -260,7 +260,7 @@ const activeCategory = ref();
           <a
             v-for="(category, index) in filteredCategories"
             :key="index"
-            class="badge badge-lg badge-outline whitespace-nowrap capitalize"
+            class="badge badge-lg badge-outline whitespace-nowrap uppercase"
             :class="{
               'badge-primary': activeCategory === category,
             }"

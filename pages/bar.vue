@@ -110,7 +110,7 @@ const activeCategory = ref();
 
 <template>
   <div>
-    <div class="fixed top-2 right-2 dropdown dropdown-end">
+    <div class="fixed top-16 right-2 dropdown dropdown-end z-50">
       <div tabindex="0" role="button" class="btn btn-circle m-1">
         <svg
           xmlns="http://www.w3.org/2000/svg"
