@@ -5,6 +5,5 @@ export interface Dish {
   price: number;
   portion_size: string;
   unit: string;
-  is_kids_menu: boolean;
   image: string;
 }

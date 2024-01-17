@@ -1,6 +1,6 @@
 import { Button } from '#build/components';
 <script setup lang="ts">
-import type { Dish } from "~/types/Dish";
+import type { Dish } from "@/types/Dish";
 
 interface Props {
   modelValue: boolean;

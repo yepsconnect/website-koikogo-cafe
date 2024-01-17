@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Dish } from "~/types/Dish";
+import type { Dish } from "@/types/Dish";
 
 interface Props {
   dish: Dish;
@@ -29,15 +29,6 @@ defineProps<Props>();
               {{ dish.portion_size }} {{ dish.unit }}
             </span>
           </p>
-          <div
-            v-if="dish.is_kids_menu"
-            class="tooltip tooltip-right"
-            data-tip="Детское меню"
-          >
-            <button class="btn btn-sm btn-circle btn-ghost">
-              <Child class="w-7" />
-            </button>
-          </div>
         </div>
 
         <p class="text-md">{{ dish.price }} р</p>
