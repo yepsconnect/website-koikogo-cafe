@@ -2,17 +2,17 @@
 import type { Dish } from "@/types/Dish";
 
 useSeoMeta({
-  title: "Кафе имени Койкого",
+  title: "Кафе имени Койкого - Винная карта",
   description:
-    "Мы рады приветствовать вас в кафе в историческом центре города - на всеми известной улице в кой-каком парке.",
-  ogTitle: "Кафе имени Койкого",
+    "Мы рады предложить вам ознакомиться с  винной картой нашего кафе.",
+  ogTitle: "Кафе имени Койкого - Винная карта",
   ogDescription:
-    "Мы рады приветствовать вас в кафе в историческом центре города - на всеми известной улице в кой-каком парке.",
+    "Мы рады предложить вам ознакомиться с  винной картой нашего кафе.",
   ogImage: "https://koikogo.cafe/logo.png",
   ogUrl: "https://koikogo.cafe/",
-  twitterTitle: "Кафе имени Койкого",
+  twitterTitle: "Кафе имени Койкого - Винная карта",
   twitterDescription:
-    "Мы рады приветствовать вас в кафе в историческом центре города - на всеми известной улице в кой-каком парке.",
+    "Мы рады предложить вам ознакомиться с  винной картой нашего кафе.",
   twitterImage: "https://koikogo.cafe/logo.png",
   twitterCard: "summary",
 });
@@ -73,24 +73,14 @@ const currentHour = computed(() => {
 
 // state
 const categories = [
-  "BRANCH BREAKFAST",
-  "закуски",
-  "супы",
-  "гарнир",
-  "на углях",
-  "пицца",
-  "пироги",
-  "паста",
-  "горячее",
-  "салаты",
-  "десерты",
-  "кофе",
-  "чай",
-  "фирменный чай",
-  "напитки",
-  "лимонады",
-  "морсы",
-  "милкшейки",
+  "БЕЛЫЕ ВИНА",
+  "КРАСНЫЕ ВИНА",
+  "РОЗОВЫЕ ВИНА",
+  "ИГРИСТЫЕ ВИНА",
+  "ВИНА ПО БОКАЛАМ",
+  "Пиво",
+  "КОКТЕЙЛИ АЛКОГОЛЬНЫЕ",
+  "КОКТЕЙЛИ Б/А",
 ];
 
 const filteredCategories = computed(() => {
@@ -106,12 +96,12 @@ const isOpen = ref(false);
 const isShowDish = ref(false);
 
 onMounted(() => {
-  selectedDish.value = menu[0];
+  selectedDish.value = bar[0];
 });
 
 const showInfo = (dishId: number) => {
   isOpen.value = false;
-  selectedDish.value = menu.find((item) => item.id === dishId);
+  selectedDish.value = bar.find((item) => item.id === dishId);
   isShowDish.value = true;
 };
 
@@ -248,6 +238,8 @@ const activeCategory = ref();
             <br />
             Койкого
           </h1>
+          <br />
+          <p class="text-xl">ВИННАЯ КАРТА</p>
         </div>
       </div>
       <div class="mb-12">
@@ -280,7 +272,7 @@ const activeCategory = ref();
             <span :id="category" class="absolute -top-16"></span>
             <h3 class="text-3xl uppercase">{{ category }}</h3>
             <div class="flex flex-col gap-4 mt-3">
-              <template v-for="(item, index) in menu" :key="index">
+              <template v-for="(item, index) in bar" :key="index">
                 <DishItem
                   v-if="item.category === category"
                   :dish="item"

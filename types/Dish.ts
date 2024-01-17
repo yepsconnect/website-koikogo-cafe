@@ -7,4 +7,5 @@ export interface Dish {
   unit: string;
   image: string;
   category: string;
+  type: string[];
 }

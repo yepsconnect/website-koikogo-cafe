@@ -4,7 +4,7 @@ import type { Dish } from "@/types/Dish";
 
 interface Props {
   modelValue: boolean;
-  dish: Dish | null;
+  dish: Dish | undefined;
 }
 
 const emit = defineEmits(["update:modelValue", "show-order"]);
@@ -37,7 +37,7 @@ watch(isOpen, (value) => {
   <Modal v-model="isOpen">
     <div v-if="dish" class="mt-2">
       <div class="avatar w-full">
-        <div class="rounded-xl bg-gray-200 w-full">
+        <div class="rounded-xl bg-gray-200 w-full max-w-sm m-auto">
           <img v-if="dish.image" :src="dish.image" loading="lazy" />
           <img
             v-else
