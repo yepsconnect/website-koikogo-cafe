@@ -54,10 +54,16 @@ export default function () {
     localStorage.setItem("order", JSON.stringify(order.value));
   };
 
+  const clearOrder = () => {
+    order.value = [];
+    localStorage.removeItem("order");
+  };
+
   return {
     order,
     addToOrder,
     removeFromOrder,
     notifications,
+    clearOrder,
   };
 }

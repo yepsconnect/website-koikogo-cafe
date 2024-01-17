@@ -29,7 +29,8 @@ useHead({
 
 // composables
 const { menu, bar } = useMenu();
-const { order, addToOrder, removeFromOrder, notifications } = useOrder();
+const { order, addToOrder, removeFromOrder, notifications, clearOrder } =
+  useOrder();
 
 onMounted(() => {
   const orderCache = localStorage.getItem("order");
@@ -216,7 +217,7 @@ const activeCategory = ref();
         </div>
         <div class="flex gap-3">
           <button class="btn flex-1" @click="isOpen = false">Закрыть</button>
-          <button class="btn flex-1" @click="(isOpen = false), (order = [])">
+          <button class="btn flex-1" @click="clearOrder()">
             Очистить заказ
           </button>
         </div>
