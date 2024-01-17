@@ -231,15 +231,17 @@ const activeCategory = ref();
       <div class="h-screen w-full flex justify-center items-center">
         <div class="flex flex-col md:flex-row items-center md:items-end">
           <Logo class="max-w-64" animated />
-          <h1 class="text-4xl font-bold uppercase">
-            <span class="text-2xl">Кафе</span>
+          <div>
+            <h1 class="text-4xl font-bold uppercase">
+              <span class="text-2xl">Кафе</span>
+              <br />
+              Имени
+              <br />
+              Койкого
+            </h1>
             <br />
-            Имени
-            <br />
-            Койкого
-          </h1>
-          <br />
-          <p class="text-xl">ВИННАЯ КАРТА</p>
+            <p class="text-xl">ВИННАЯ КАРТА</p>
+          </div>
         </div>
       </div>
       <div class="mb-12">
