@@ -49,27 +49,38 @@ const orderList = computed(() => {
   });
 });
 
+const currentHour = computed(() => {
+  return new Date().getHours();
+});
+
 // state
 const categories = [
   "BRANCH BREAKFAST",
+  "закуски",
+  "супы",
+  "гарнир",
+  "на углях",
+  "пицца",
+  "пироги",
+  "паста",
+  "горячее",
+  "салаты",
+  "десерты",
   "кофе",
   "чай",
   "фирменный чай",
-  "закуски",
-  "салаты",
-  "пицца",
-  "пироги",
-  "супы",
-  "паста",
-  "горячее",
-  "десерты",
-  "гарнир",
-  "на углях",
   "напитки",
   "лимонады",
   "морсы",
   "милкшейки",
 ];
+
+const filteredCategories = computed(() => {
+  if (currentHour.value > 15) {
+    return categories.filter((x) => x !== "BRANCH BREAKFAST");
+  }
+  return categories;
+});
 
 // state
 const selectedDish = ref<Dish>();
@@ -167,7 +178,7 @@ const activeCategory = ref();
           class="navbar bg-base-100 overflow-x-scroll gap-3 py-3 position: sticky top-0 z-10"
         >
           <a
-            v-for="(category, index) in categories"
+            v-for="(category, index) in filteredCategories"
             :key="index"
             class="badge badge-lg badge-outline whitespace-nowrap capitalize"
             :class="{
@@ -182,7 +193,7 @@ const activeCategory = ref();
 
         <div class="flex flex-col gap-12 mt-6">
           <div
-            v-for="(category, index) in categories"
+            v-for="(category, index) in filteredCategories"
             :key="index"
             class="relative"
           >

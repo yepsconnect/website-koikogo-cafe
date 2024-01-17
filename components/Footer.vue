@@ -138,9 +138,7 @@
           Онлайн бронирование
         </a>
       </div>
-      <a href="https://othershep.com" target="_blank">
-        This website is made with ♡ by OthersGroup
-      </a>
+      <a href="https://t.me/yepsconnect" target="_blank"> Created by Dmitry Kungurov</a>
     </Container>
   </footer>
 </template>

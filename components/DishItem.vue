@@ -17,6 +17,11 @@ defineProps<Props>();
       <div class="avatar">
         <div class="w-16 rounded-xl bg-gray-200">
           <img v-if="dish.image" :src="dish.image" loading="lazy" />
+          <img
+            v-else
+            src="https://multimedia.properati.com.co/properati/images/no-image-placeholder.png"
+            loading="lazy"
+          />
         </div>
       </div>
       <div class="flex flex-col md:flex-row justify-between w-full md:gap-4">

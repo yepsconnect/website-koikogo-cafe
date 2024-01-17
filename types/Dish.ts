@@ -6,4 +6,5 @@ export interface Dish {
   portion_size: string;
   unit: string;
   image: string;
+  category: string;
 }

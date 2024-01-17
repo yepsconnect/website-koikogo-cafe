@@ -11,22 +11,21 @@ const emit = defineEmits(["update:modelValue", "show-order"]);
 const props = defineProps<Props>();
 
 //composables
-const { order, addToOrder } = useOrder();
+const { addToOrder } = useOrder();
+
+const currentHour = computed(() => {
+  return new Date().getHours();
+});
 
 // computed
 const count = ref(1);
 
+// computed
 const isOpen = computed({
   get: () => props.modelValue,
   set: (value) => emit("update:modelValue", value),
 });
 
-const showOrder = () => {
-  isOpen.value = false;
-  emit("show-order");
-};
-
-// reset count when modal is closed
 watch(isOpen, (value) => {
   if (!value) {
     count.value = 1;
@@ -38,13 +37,13 @@ watch(isOpen, (value) => {
   <Modal v-model="isOpen">
     <div v-if="dish" class="mt-2">
       <div class="avatar w-full">
-        <div
-          class="rounded-xl bg-gray-200 w-full"
-          :class="{
-            'animate-pulse': !dish.image,
-          }"
-        >
+        <div class="rounded-xl bg-gray-200 w-full">
           <img v-if="dish.image" :src="dish.image" loading="lazy" />
+          <img
+            v-else
+            src="https://multimedia.properati.com.co/properati/images/no-image-placeholder.png"
+            loading="lazy"
+          />
         </div>
       </div>
       <h2 class="uppercase text-lg font-bold">{{ dish?.name }}</h2>
@@ -52,6 +51,12 @@ watch(isOpen, (value) => {
       <p class="text-sm">
         <span class="text-lg font-bold">{{ dish?.price }} р</span>
         {{ dish?.portion_size }} {{ dish?.unit }}
+      </p>
+      <p
+        v-if="dish.category === 'BRANCH BREAKFAST' && currentHour > 15"
+        class="text-red-400"
+      >
+        Извивините, но блюда из данной категории доступны только до 16:00
       </p>
       <div class="mt-4 flex flex-col gap-4">
         <div class="flex items-center justify-between">
@@ -67,6 +72,7 @@ watch(isOpen, (value) => {
         <button
           class="btn flex-1"
           @click="addToOrder(dish.id, count, false), (isOpen = false)"
+          :disabled="dish.category === 'BRANCH BREAKFAST' && currentHour > 15"
         >
           Добавить
         </button>
