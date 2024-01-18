@@ -29,6 +29,12 @@ defineProps<Props>();
           <p class="uppercase text-md">
             {{ dish.name }}
           </p>
+          <p v-if="dish?.type" class="text-sm text-gray-600">
+            <template v-for="(item, index) in dish.type">
+              {{ item
+              }}<template v-if="index !== dish.type.length - 1">, </template>
+            </template>
+          </p>
           <p>
             <span class="text-sm text-gray-600">
               {{ dish.portion_size }} {{ dish.unit }}

@@ -48,6 +48,12 @@ watch(isOpen, (value) => {
       </div>
       <h2 class="uppercase text-lg font-bold">{{ dish?.name }}</h2>
       <p v-if="dish?.description">{{ dish.description }}</p>
+      <p v-if="dish?.type" class="text-sm text-gray-600">
+        <template v-for="(item, index) in dish.type">
+          {{ item
+          }}<template v-if="index !== dish.type.length - 1">, </template>
+        </template>
+      </p>
       <p class="text-sm">
         <span class="text-lg font-bold">{{ dish?.price }} р</span>
         {{ dish?.portion_size }} {{ dish?.unit }}
@@ -77,6 +83,14 @@ watch(isOpen, (value) => {
           Добавить
         </button>
       </div>
+    </div>
+    <div class="flex justify-center mt-4">
+      <a
+        :href="`mailto:limconnect@ya.ru?body=В позоции '${dish?.name}' c идентификатором ${dish?.id} есть ошибка&subject=Ошибка на сайте koikogo.cafe`"
+        class="btn btn-xs btn-ghost lowercase"
+      >
+        Написать о проблеме
+      </a>
     </div>
   </Modal>
 </template>
