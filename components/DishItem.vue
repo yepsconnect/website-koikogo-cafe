@@ -36,7 +36,9 @@ defineProps<Props>();
           </p>
         </div>
 
-        <p class="text-md">{{ dish.price }} р</p>
+        <p class="text-md">
+          {{ dish.price === 0 ? "Уточните в меню" : dish.price }}
+        </p>
       </div>
     </div>
     <div class="btn btn-circle btn-xs btn-ghost">

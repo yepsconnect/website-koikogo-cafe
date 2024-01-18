@@ -616,20 +616,10 @@ export default function () {
       unit: "гр",
       price: 380,
       image: "",
-      description: "",
+      description:
+        "Говяжья грудинка с огурцом малой соли, запеченным болгарским перцем, листьями салата, свежим цукини и соусом пад тай. Украшен чатни из вишни и яблока",
       category: "салаты",
       id: 54,
-      type: [],
-    },
-    {
-      name: "Говяжья грудинка с огурцом малой соли, запеченным болгарским перцем, листьями салата, свежим цукини и соусом пад тай. Украшен чатни из вишни и яблока",
-      portion_size: "220",
-      unit: "гр",
-      price: 380,
-      image: "",
-      description: "",
-      category: "салаты",
-      id: 55,
       type: [],
     },
     {
@@ -1223,7 +1213,7 @@ export default function () {
       type: [],
     },
     {
-      name: "ШАШЛЫК ИЗ КУРИНОГО БЕДРА.",
+      name: "ШАШЛЫК ИЗ КУРИНОГО БЕДРА",
       portion_size: "180/40/40",
       unit: "гр",
       price: 340,
@@ -1585,9 +1575,7 @@ export default function () {
       id: 136,
       type: [],
     },
-  ];
 
-  const bar = [
     {
       name: "КАВИРО АГРИКОЛА ПИНО ГРИДЖИО",
       portion_size: "750",
@@ -1622,7 +1610,7 @@ export default function () {
       id: 1002,
     },
     {
-      name: "РИВЕР РУТ ГЕВЮРЦТРАМИНЕР,",
+      name: "РИВЕР РУТ ГЕВЮРЦТРАМИНЕР",
       portion_size: "750",
       unit: "мл",
       price: 1850,
@@ -1754,7 +1742,7 @@ export default function () {
       id: 1014,
     },
     {
-      name: "КАВА ВИНАРТ БРЮТ.",
+      name: "КАВА ВИНАРТ БРЮТ",
       portion_size: "750",
       unit: "мл",
       price: 2200,
@@ -1798,7 +1786,7 @@ export default function () {
       id: 1018,
     },
     {
-      name: "ФАЛЬКЕГБУРГ МУСКАТ.",
+      name: "ФАЛЬКЕГБУРГ МУСКАТ",
       portion_size: "150",
       unit: "мл",
       price: 340,
@@ -2055,10 +2043,10 @@ export default function () {
       portion_size: "300",
       unit: "мл",
       price: 0,
-      image:
-        "Кленовый сироп, грушевый сироп, сок лимона, вино б/а, хугарден 0%",
+      image: "",
       type: [],
-      description: "",
+      description:
+        "Кленовый сироп, грушевый сироп, сок лимона, вино б/а, хугарден 0%",
       category: "КОКТЕЙЛИ Б/А",
       id: 1042,
     },
@@ -2123,6 +2111,5 @@ export default function () {
 
   return {
     menu,
-    bar,
   };
 }
