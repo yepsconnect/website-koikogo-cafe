@@ -48,7 +48,7 @@ onMounted(() => {
 
   const now = new Date();
 
-  if (now.getHours() > 16) {
+  if (now.getHours() > 15) {
     return;
   }
 
