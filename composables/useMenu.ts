@@ -73,7 +73,7 @@ export default function () {
       image:
         "https://avatars.mds.yandex.net/get-sprav-products/9240521/2a00000189451aeebcc5f80d57dcece54cc3/M_height",
       description:
-        "Пончики с  тартаром из яблока, груши, персика с ягодами и соусом кленовым",
+        "Пончики с тартаром из яблока, груши, персика с ягодами и соусом кленовым",
       category: "BRANCH BREAKFAST",
       id: 6,
       type: [],
@@ -2042,7 +2042,7 @@ export default function () {
       name: "ГРУШЕВЫЙ",
       portion_size: "300",
       unit: "мл",
-      price: 0,
+      price: 220,
       image: "",
       type: [],
       description:
@@ -2054,7 +2054,7 @@ export default function () {
       name: "АПЕРОЛЬ",
       portion_size: "300",
       unit: "мл",
-      price: 0,
+      price: 200,
       image: "",
       type: [],
       description: "Сиропапероль, вино Б/А",
@@ -2065,7 +2065,7 @@ export default function () {
       name: "МОХИТО",
       portion_size: "300",
       unit: "мл",
-      price: 0,
+      price: 200,
       image: "",
       type: [],
       description: "Сахарный сироп, лайм, мята, содовая",
@@ -2076,7 +2076,7 @@ export default function () {
       name: "МАНДАРИН-ТАРХУН",
       portion_size: "300",
       unit: "мл",
-      price: 0,
+      price: 190,
       image: "",
       type: [],
       description:
@@ -2088,7 +2088,7 @@ export default function () {
       name: "КУРАСАО",
       portion_size: "300",
       unit: "мл",
-      price: 0,
+      price: 200,
       image: "",
       type: [],
       description:
@@ -2100,7 +2100,7 @@ export default function () {
       name: "ГЛИНТВЕЙН",
       portion_size: "300",
       unit: "мл",
-      price: 0,
+      price: 230,
       image: "",
       type: [],
       description: "Сок вишня/яблоко, апельсин, лимон, мед, яблоко, специи",

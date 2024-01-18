@@ -106,31 +106,7 @@ const activeCategory = ref();
 
 <template>
   <div>
-    <div class="fixed top-16 right-2 dropdown dropdown-end z-50">
-      <div tabindex="0" role="button" class="btn btn-circle m-1">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="w-6 h-6"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-          />
-        </svg>
-      </div>
-      <ul
-        tabindex="0"
-        class="dropdown-content z-[1] menu p-2 shadow bg-base-200 rounded-box w-52"
-      >
-        <li><NuxtLink to="/">Основное меню</NuxtLink></li>
-        <li><NuxtLink :to="{ name: 'bar' }">Винная карта</NuxtLink></li>
-      </ul>
-    </div>
+    <Menu />
     <div class="toast toast-top toast-end z-50">
       <div v-for="item in notifications" class="alert alert-success">
         <span>Добавлено {{ item.count }} шт</span>
@@ -174,7 +150,7 @@ const activeCategory = ref();
           </div>
         </template>
         <template v-if="barList.length">
-          <h3>Винная карта</h3>
+          <h3>Карта бара</h3>
           <div class="flex flex-col gap-2">
             <div
               v-for="item in barList"
@@ -226,7 +202,8 @@ const activeCategory = ref();
     <Container>
       <div class="h-screen w-full flex justify-center items-center">
         <div class="flex flex-col md:flex-row items-center md:items-end">
-          <Logo class="max-w-64" animated />
+          <LogoMenu v-if="page === 'home'" class="max-w-64" animated />
+          <Vine v-if="page === 'bar'" class="max-w-64" />
           <div>
             <h1 class="text-4xl font-bold uppercase">
               <span class="text-2xl">Кафе</span>
@@ -235,17 +212,18 @@ const activeCategory = ref();
               <br />
               Койкого
             </h1>
-            <template v-if="page === 'bar'">
-              <br />
-              <p class="text-xl">ВИННАЯ КАРТА</p>
-            </template>
+
+            <br />
+            <p v-if="page === 'home'" class="text-xl uppercase">
+              Основное меню
+            </p>
+            <p v-else-if="page === 'bar'" class="text-xl uppercase">
+              Карта Бара
+            </p>
           </div>
         </div>
       </div>
       <div class="mb-12">
-        <div id="menu" class="py-6">
-          <h2 class="text-4xl text-center">Меню</h2>
-        </div>
         <div
           class="navbar bg-base-100 overflow-x-scroll gap-3 py-3 position: sticky top-0 z-10"
         >

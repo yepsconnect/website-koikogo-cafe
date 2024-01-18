@@ -73,7 +73,7 @@ watch(isOpen, (value) => {
           <button class="btn btn-square" @click="count++">+</button>
         </div>
       </div>
-      <div class="mt-2 flex justify-between gap-2">
+      <div class="mt-4 flex justify-between gap-2">
         <button class="btn flex-1" @click="isOpen = false">Закрыть</button>
         <button
           class="btn flex-1"
@@ -89,7 +89,7 @@ watch(isOpen, (value) => {
         :href="`mailto:limconnect@ya.ru?body=В позоции '${dish?.name}' c идентификатором ${dish?.id} есть ошибка&subject=Ошибка на сайте koikogo.cafe`"
         class="btn btn-xs btn-ghost lowercase"
       >
-        Написать о проблеме
+        Сообщить о проблеме
       </a>
     </div>
   </Modal>
