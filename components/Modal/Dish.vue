@@ -84,13 +84,5 @@ watch(isOpen, (value) => {
         </button>
       </div>
     </div>
-    <div class="flex justify-center mt-4">
-      <a
-        :href="`mailto:limconnect@ya.ru?body=В позоции '${dish?.name}' c идентификатором ${dish?.id} есть ошибка&subject=Ошибка на сайте koikogo.cafe`"
-        class="btn btn-xs btn-ghost lowercase"
-      >
-        Сообщить о проблеме
-      </a>
-    </div>
   </Modal>
 </template>
