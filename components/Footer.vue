@@ -134,11 +134,10 @@
           </svg>
           +7 (951) 198-57-79
         </a>
-        <a href="https://koy-kogo.restoplace.ws/" target="_blank">
-          Онлайн бронирование
-        </a>
       </div>
-      <a href="https://t.me/yepsconnect" target="_blank"> Created by Dmitry Kungurov</a>
+      <a href="https://t.me/yepsconnect" target="_blank">
+        Created by Dmitry Kungurov
+      </a>
     </Container>
   </footer>
 </template>

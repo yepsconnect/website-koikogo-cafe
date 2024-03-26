@@ -197,11 +197,7 @@ setInterval(() => {
             сервис порадуют любого, кто решит заглянуть к нам после неспешной
             прогулки по любимым окрестностям.
           </p>
-          <a
-            class="btn btn-primary w-full md:max-w-xs"
-            href="https://koy-kogo.restoplace.ws/"
-            target="_blank"
-          >
+          <a class="btn btn-primary w-full md:max-w-xs" href="tel:+79511985779">
             Забронировать столик
           </a>
         </div>
