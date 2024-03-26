@@ -1,6 +1,4 @@
 <script setup lang="ts">
-const route = useRoute();
-
 const seo = {
   title: "Кафе имени Койкого",
   description:
@@ -17,30 +15,15 @@ const seo = {
   twitterCard: "summary",
 };
 
-const categories = [
-  "BRANCH BREAKFAST",
-  "закуски",
-  "супы",
-  "гарнир",
-  "на углях",
-  "пицца",
-  "пироги",
-  "паста",
-  "горячее",
-  "салаты",
-  "десерты",
-  "кофе",
-  "чай",
-  "фирменный чай",
-  "напитки",
-  "лимонады",
-  "морсы",
-  "милкшейки",
-];
+const { categories } = useMenu();
+
+const filteredCategories = computed(() =>
+  categories.filter((x) => x.menu === "Основное меню").map((x) => x.name)
+);
 </script>
 
 <template>
   <div>
-    <TemplatePage :seo="seo" :categories="categories" page="home" />
+    <TemplatePage :seo="seo" :categories="filteredCategories" page="home" />
   </div>
 </template>

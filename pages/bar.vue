@@ -15,18 +15,15 @@ const seo = {
   twitterCard: "summary",
 };
 
-const categories = [
-  "БЕЛЫЕ ВИНА",
-  "КРАСНЫЕ ВИНА",
-  "РОЗОВЫЕ ВИНА",
-  "ИГРИСТЫЕ ВИНА",
-  "ВИНА ПО БОКАЛАМ",
-  "ПИВО",
-  "КОКТЕЙЛИ АЛКОГОЛЬНЫЕ",
-  "КОКТЕЙЛИ Б/А",
-];
+const { categories } = useMenu();
+
+const filteredCategories = computed(() =>
+  categories.filter((x) => x.menu === "Бар").map((x) => x.name)
+);
 </script>
 
 <template>
-  <TemplatePage :seo="seo" :categories="categories" page="bar" />
+  <div>
+    <TemplatePage :seo="seo" :categories="filteredCategories" page="bar" />
+  </div>
 </template>

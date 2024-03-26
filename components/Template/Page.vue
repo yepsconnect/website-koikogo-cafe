@@ -59,32 +59,7 @@ const orderList = computed(() => {
   });
 });
 
-const barItems = computed(() => {
-  return order.value.filter((x) => x.id > 999);
-});
-
-const barList = computed(() => {
-  return barItems.value.map((item) => {
-    const dish = menu.find((x) => x.id === item.id);
-    return {
-      ...item,
-      ...dish,
-    };
-  });
-});
-
-const currentHour = computed(() => {
-  return new Date().getHours();
-});
-
 // state
-
-const filteredCategories = computed(() => {
-  if (currentHour.value > 15) {
-    return props.categories.filter((x) => x !== "BRANCH BREAKFAST");
-  }
-  return props.categories;
-});
 
 // state
 const selectedDish = ref<Dish>();
@@ -116,7 +91,9 @@ const activeCategory = ref();
       <div class="flex flex-col gap-4">
         <h2 class="text-2xl font-bold">Мой заказ</h2>
         <template v-if="orderList.length">
-          <h3>Основное меню</h3>
+          <h3>
+            {{ page === "home" ? "Основное меню" : "Карта бара" }}
+          </h3>
           <div class="flex flex-col gap-2">
             <div
               v-for="item in orderList"
@@ -149,41 +126,8 @@ const activeCategory = ref();
             </div>
           </div>
         </template>
-        <template v-if="barList.length">
-          <h3>Карта бара</h3>
-          <div class="flex flex-col gap-2">
-            <div
-              v-for="item in barList"
-              :key="item.name"
-              class="flex justify-between gap-2"
-            >
-              <p
-                class="uppercase text-lg hover:underline cursor-pointer"
-                @click="showInfo(item.id)"
-              >
-                {{ item.name }}
-              </p>
-              <div class="flex items-center gap-2">
-                <button
-                  class="btn btn-xs btn-outline btn-circle"
-                  @click="removeFromOrder(item.id)"
-                >
-                  -
-                </button>
-                <div class="w-10">
-                  <p class="text-center text-lg font-bold">{{ item.count }}</p>
-                </div>
-                <button
-                  class="btn btn-xs btn-outline btn-circle"
-                  @click="addToOrder(item.id, 1, true)"
-                >
-                  +
-                </button>
-              </div>
-            </div>
-          </div>
-        </template>
-        <div v-if="!barList.length && !orderList.length">
+
+        <div v-if="!orderList.length">
           <p class="text-center">Заказ пуст</p>
         </div>
         <div class="flex gap-3">
@@ -228,7 +172,7 @@ const activeCategory = ref();
           class="navbar bg-base-100 overflow-x-scroll gap-3 py-3 position: sticky top-0 z-10"
         >
           <a
-            v-for="(category, index) in filteredCategories"
+            v-for="(category, index) in categories"
             :key="index"
             class="badge badge-lg badge-outline whitespace-nowrap capitalize"
             :class="{
@@ -243,7 +187,7 @@ const activeCategory = ref();
 
         <div class="flex flex-col gap-12 mt-6">
           <div
-            v-for="(category, index) in filteredCategories"
+            v-for="(category, index) in categories"
             :key="index"
             class="relative"
           >
