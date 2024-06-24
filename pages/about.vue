@@ -2,16 +2,18 @@
 const active = ref(1);
 const activeDish = ref(1);
 
-setInterval(() => {
-  if (active.value === 8) {
-    active.value = 0;
-  }
-  if (activeDish.value === 4) {
-    activeDish.value = 0;
-  }
-  active.value++;
-  activeDish.value++;
-}, 3000);
+onMounted(() => {
+  setInterval(() => {
+    if (active.value === 8) {
+      active.value = 0;
+    }
+    if (activeDish.value === 4) {
+      activeDish.value = 0;
+    }
+    active.value++;
+    activeDish.value++;
+  }, 3000);
+})
 </script>
 
 <template>
@@ -36,12 +38,7 @@ setInterval(() => {
         Кафе имени Койкого. <br />Так, все-таки, кого?
       </h2>
       <div class="max-h-96 overflow-hidden">
-        <img
-          src="@/assets/images/place0.jpg"
-          alt="place0"
-          loading="lazy"
-          class="object-cover"
-        />
+        <img src="@/assets/images/place0.jpg" alt="place0" loading="lazy" class="object-cover" />
       </div>
       <p class="text-lg">
         Кого-то, к кому приходишь в гости, как к доброму другу, кто удивительно
@@ -123,12 +120,7 @@ setInterval(() => {
           </div>
         </div>
         <img src="@/assets/images/dish1.jpeg" alt="dish1" loading="lazy" />
-        <img
-          src="@/assets/images/dish4.jpeg"
-          alt="dish4"
-          loading="lazy"
-          class="mb-4"
-        />
+        <img src="@/assets/images/dish4.jpeg" alt="dish4" loading="lazy" class="mb-4" />
         <div class="avatar w-full">
           <div class="w-full">
             <img src="@/assets/images/dish3.jpeg" alt="dish3" loading="lazy" />
@@ -138,42 +130,22 @@ setInterval(() => {
       <div class="md:hidden">
         <div class="avatar w-full" v-if="activeDish === 1">
           <div class="w-full">
-            <img
-              src="@/assets/images/dish1.jpeg"
-              alt="dish1"
-              loading="lazy"
-              class="object-cover"
-            />
+            <img src="@/assets/images/dish1.jpeg" alt="dish1" loading="lazy" class="object-cover" />
           </div>
         </div>
         <div class="avatar w-full" v-else-if="activeDish === 2">
           <div class="w-full">
-            <img
-              src="@/assets/images/dish2.jpeg"
-              alt="dish2"
-              loading="lazy"
-              class="object-cover"
-            />
+            <img src="@/assets/images/dish2.jpeg" alt="dish2" loading="lazy" class="object-cover" />
           </div>
         </div>
         <div class="avatar w-full" v-else-if="activeDish === 3">
           <div class="w-full">
-            <img
-              src="@/assets/images/dish3.jpeg"
-              alt="dish3"
-              loading="lazy"
-              class="object-cover"
-            />
+            <img src="@/assets/images/dish3.jpeg" alt="dish3" loading="lazy" class="object-cover" />
           </div>
         </div>
         <div class="avatar w-full" v-else-if="activeDish === 4">
           <div class="w-full">
-            <img
-              src="@/assets/images/dish4.jpeg"
-              alt="dish4"
-              loading="lazy"
-              class="object-cover"
-            />
+            <img src="@/assets/images/dish4.jpeg" alt="dish4" loading="lazy" class="object-cover" />
           </div>
         </div>
       </div>
@@ -208,18 +180,8 @@ setInterval(() => {
             </div>
           </div>
 
-          <img
-            src="@/assets/images/place3.jpeg"
-            alt="3"
-            loading="lazy"
-            class="mb-4"
-          />
-          <img
-            src="@/assets/images/place4.jpeg"
-            alt="4"
-            loading="lazy"
-            class="mb-4"
-          />
+          <img src="@/assets/images/place3.jpeg" alt="3" loading="lazy" class="mb-4" />
+          <img src="@/assets/images/place4.jpeg" alt="4" loading="lazy" class="mb-4" />
           <div class="avatar w-full">
             <div class="w-full">
               <img src="@/assets/images/place5.jpeg" alt="5" loading="lazy" />
@@ -249,10 +211,7 @@ setInterval(() => {
       </div>
       <iframe
         src="https://yandex.ru/map-widget/v1/?um=constructor%3A63ccde52ac73bdd72e9a96d3dfe386069f6869a31541ddf24841c7908d8bc31b&amp;source=constructor"
-        width="100%"
-        height="400"
-        frameborder="0"
-      ></iframe>
+        width="100%" height="400" frameborder="0"></iframe>
     </section>
     <section class="flex flex-col gap-6">
       <h2 class="text-3xl font-bold">
@@ -351,11 +310,8 @@ setInterval(() => {
       </div>
       <p class="text-lg">А вы уже были в нашем стильном пространстве?</p>
       <p class="text-lg">Поделитесь ощущениями и чувствами!</p>
-      <a
-        class="btn btn-primary capitalize md:max-w-xs"
-        href="https://yandex.ru/maps/org/imeni_koykogo/66827419380/?ll=53.197919%2C56.846779&z=16"
-        target="_blank"
-      >
+      <a class="btn btn-primary capitalize md:max-w-xs"
+        href="https://yandex.ru/maps/org/imeni_koykogo/66827419380/?ll=53.197919%2C56.846779&z=16" target="_blank">
         Рассказать
       </a>
     </section>

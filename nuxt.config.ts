@@ -1,16 +1,22 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  css: ["~/assets/css/fonts.css"],
+  runtimeConfig: {
+    TOKEN_SECRET: process.env.TOKEN_SECRET,
+  },
   modules: [
     "@nuxtjs/tailwindcss",
-    [
-      "yandex-metrika-module-nuxt3",
-      {
-        id: "95378132",
-        webvisor: true,
-      },
-    ],
+    "nuxt-mongoose",
+    "yandex-metrika-module-nuxt3",
   ],
-  css: ["~/assets/css/fonts.css"],
+  mongoose: {
+    uri: process.env.MONGODB_URI,
+    options: {},
+    modelsDir: "models",
+  },
+  yandexMetrika: {
+    id: "95378132",
+    webvisor: true,
+  },
 });
-[]

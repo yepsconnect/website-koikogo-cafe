@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import type { Dish } from "@/types/Dish";
-
-interface Props {
+const props = defineProps<{
   seo: {
     title: string;
     description: string;
@@ -16,9 +14,7 @@ interface Props {
   };
   categories: string[];
   page: string;
-}
-
-const props = defineProps<Props>();
+}>();
 
 useSeoMeta(props.seo);
 
@@ -62,7 +58,7 @@ const orderList = computed(() => {
 // state
 
 // state
-const selectedDish = ref<Dish>();
+const selectedDish = ref<IDish>();
 const isOpen = ref(false);
 const isShowDish = ref(false);
 
