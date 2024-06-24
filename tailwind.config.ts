@@ -7,7 +7,11 @@ module.exports = {
     "./nuxt.config.{js,ts}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      boxShadow: {
+        "custom-hover": "0 0 5px 1px #f65d32",
+      },
+    },
   },
   plugins: [require("daisyui")],
 };

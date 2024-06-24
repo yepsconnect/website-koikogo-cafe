@@ -95,31 +95,18 @@ const activeCategory = ref();
             {{ page === "home" ? "Основное меню" : "Карта бара" }}
           </h3>
           <div class="flex flex-col gap-2">
-            <div
-              v-for="item in orderList"
-              :key="item.name"
-              class="flex justify-between gap-2"
-            >
-              <p
-                class="uppercase text-lg hover:underline cursor-pointer"
-                @click="showInfo(item.id)"
-              >
+            <div v-for="item in orderList" :key="item.name" class="flex justify-between gap-2">
+              <p class="uppercase text-lg hover:underline cursor-pointer" @click="showInfo(item.id)">
                 {{ item.name }}
               </p>
               <div class="flex items-center gap-2">
-                <button
-                  class="btn btn-xs btn-outline btn-circle"
-                  @click="removeFromOrder(item.id)"
-                >
+                <button class="btn btn-xs btn-outline btn-circle" @click="removeFromOrder(item.id)">
                   -
                 </button>
                 <div class="w-10">
                   <p class="text-center text-lg font-bold">{{ item.count }}</p>
                 </div>
-                <button
-                  class="btn btn-xs btn-outline btn-circle"
-                  @click="addToOrder(item.id, 1, true)"
-                >
+                <button class="btn btn-xs btn-outline btn-circle" @click="addToOrder(item.id, 1, true)">
                   +
                 </button>
               </div>
@@ -138,11 +125,7 @@ const activeCategory = ref();
         </div>
       </div>
     </Modal>
-    <ModalDish
-      v-model="isShowDish"
-      :dish="selectedDish"
-      @show-order="isOpen = true"
-    />
+    <ModalDish v-model="isShowDish" :dish="selectedDish" @show-order="isOpen = true" />
     <Container>
       <div class="h-screen w-full flex justify-center items-center">
         <div class="flex flex-col md:flex-row items-center md:items-end">
@@ -168,50 +151,40 @@ const activeCategory = ref();
         </div>
       </div>
       <div class="mb-12">
-        <div
-          class="navbar bg-base-100 overflow-x-scroll gap-3 py-3 position: sticky top-0 z-10"
-        >
-          <a
-            v-for="(category, index) in categories"
-            :key="index"
-            class="badge badge-lg badge-outline whitespace-nowrap capitalize"
-            :class="{
+        <div class="navbar bg-base-100 overflow-x-scroll gap-3 py-3 position: sticky top-0 z-10">
+          <a v-for="(category, index) in categories" :key="index"
+            class="badge badge-lg badge-outline whitespace-nowrap capitalize" :class="{
               'badge-primary': activeCategory === category,
-            }"
-            :href="'#' + category"
-            @click="activeCategory = category"
-          >
+            }" :href="'#' + category" @click="activeCategory = category">
             {{ category }}
           </a>
         </div>
 
         <div class="flex flex-col gap-12 mt-6">
-          <div
-            v-for="(category, index) in categories"
-            :key="index"
-            class="relative"
-          >
+          <div v-for="(category, index) in categories" :key="index" class="relative">
             <span :id="category" class="absolute -top-16"></span>
             <h3 class="text-3xl uppercase">{{ category }}</h3>
             <div class="flex flex-col gap-4 mt-3">
               <template v-for="item in menu" :key="item.id">
-                <DishItem
-                  v-if="item.category === category"
-                  :dish="item"
-                  @click="showInfo(item.id)"
-                />
+                <DishItem v-if="item.category === category" :dish="item" @click="showInfo(item.id)" />
               </template>
             </div>
           </div>
         </div>
       </div>
     </Container>
-    <Container v-if="order.length" class="sticky bottom-3 flex justify-center">
-      <div class="alert shadow-lg flex justify-between max-w-xl">
-        <p class="text-based-content">Выбрано позиций: {{ order.length }}</p>
-        <button class="btn btn-sm" @click="isOpen = true">Посмотреть</button>
+    <div v-if="order.length" tabindex="0" role="button"
+      class="btn btn-circle bg-[#f65d32] border-[#f65d32] hover:bg-[#f65d32] hover:border-[#f65d32] hover:shadow-custom-hover fixed bottom-8 left-8 z-99"
+      @click="isOpen = true">
+      <div class="indicator">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="white">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+        </svg>
+        <span v-if="order.length" class="badge badge-sm indicator-item">{{ order.length }}</span>
       </div>
-    </Container>
+    </div>
+
   </div>
 </template>
 
