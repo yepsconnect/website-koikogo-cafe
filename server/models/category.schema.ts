@@ -1,7 +1,16 @@
 import { defineMongooseModel } from "#nuxt/mongoose";
 
 export const Category = defineMongooseModel<Category>("Category", {
-  description: { type: String },
+  description: {
+    type: Map,
+    of: String,
+    default: {},
+  },
   slug: { type: String, required: true, unique: true },
-  title: { type: String, required: true },
+  title: {
+    type: Map,
+    of: String,
+    required: true,
+    default: {},
+  },
 });

@@ -1,4 +1,10 @@
+language:
+  ru: "Russian"
+  en: "English"
+
 label:
+  select: Select
+  deleteTranslate: Delete locale
   add: "Add"
   categoryName: "Category Name"
   categoryInfo: "Category Information"

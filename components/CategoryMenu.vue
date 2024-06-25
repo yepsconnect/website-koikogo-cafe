@@ -3,6 +3,7 @@ defineEmits(["onSubmit"])
 defineProps<{
   categories: Category[]
   activeCategory: string | null
+  locale: string
 }>()
 </script>
 
@@ -12,7 +13,7 @@ defineProps<{
       class="badge badge-lg badge-outline whitespace-nowrap capitalize" :class="{
         'badge-primary': activeCategory === category.slug,
       }" :href="'#' + category.slug" @click="$emit('onSubmit', category.slug)">
-      {{ category.title }}
+      {{ category.title[locale] }}
     </a>
   </div>
 </template>

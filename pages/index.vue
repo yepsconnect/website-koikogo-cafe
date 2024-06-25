@@ -30,6 +30,7 @@ useHead({
 });
 // composables
 const { menu } = useMenu()
+const { locale } = useI18n();
 // state
 const activeCategory = ref(null);
 const isModalInfo = ref(false);
@@ -66,13 +67,13 @@ const openModalInfo = (dish: Dish) => {
     </div>
     <template v-if="data?.categories">
       <CategoryMenu :categories="data?.categories" :active-category="activeCategory"
-        @on-submit="val => activeCategory = val" />
+        @on-submit="val => activeCategory = val" :locale="locale" />
       <Container>
-        <div v-for="(category, index) in data.categories" :key="category._id" class="relative mb-6">
+        <div v-for="(category) in data.categories" :key="category._id" class="relative mb-6">
           <span :id="category.slug" class="absolute -top-16"></span>
-          <h2 class="text-2xl font-bold uppercase">{{ category.title }}</h2>
-          <DishItem v-for="item in filteredMenu.filter(x => x.category === category.title)" :key="item._id" :dish="item"
-            @on-submit="openModalInfo" />
+          <h2 class="text-2xl font-bold uppercase">{{ category.title[locale] }}</h2>
+          <DishItem v-for="item in filteredMenu.filter(x => x.category === category.title[locale])" :key="item._id"
+            :dish="item" @on-submit="openModalInfo" />
         </div>
       </Container>
     </template>

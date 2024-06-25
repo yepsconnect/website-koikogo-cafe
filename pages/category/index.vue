@@ -4,7 +4,7 @@ definePageMeta({
   layout: 'auth'
 });
 // composables
-const { t } = useI18n()
+const { t, locale } = useI18n()
 
 const { data } = useFetch<{
   ok: boolean
@@ -23,7 +23,7 @@ const { data } = useFetch<{
     <div v-if="data?.categories" class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-6">
       <NuxtLink v-for="category in data.categories" :key="category._id"
         :to="{ name: 'category-id', params: { id: category._id } }" class="aspect-square rounded-md border p-3">
-        <p>{{ category.title }}</p>
+        <p>{{ category.title[locale] }}</p>
       </NuxtLink>
     </div>
   </Container>

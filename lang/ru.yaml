@@ -1,4 +1,10 @@
+language:
+  ru: "Русский"
+  en: "Английский"
+
 label:
+  select: Выбрать
+  deleteTranslate: Удалить перевод
   add: Добавить
   categoryName: Название категории
   categoryInfo: Информация о категории

@@ -7,9 +7,13 @@ interface User {
 
 interface Category {
   _id: string;
-  description: string | null;
+  description: {
+    [key: string]: string;
+  };
   slug: string;
-  title: string;
+  title: {
+    [key: string]: string;
+  };
 }
 
 interface Dish {
