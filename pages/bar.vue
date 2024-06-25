@@ -38,6 +38,7 @@ const selectedDish = ref<Dish>();
 const isOpen = ref(false);
 const isModalInfo = ref(false);
 const activeCategory = ref(null);
+const { locale } = useI18n();
 
 onMounted(() => {
   const orderCache = localStorage.getItem("order");
@@ -78,13 +79,13 @@ const openModalInfo = (dish: Dish) => {
     <Container>
       <div class="mb-12">
         <CategoryMenu :categories="categories" :active-category="activeCategory"
-          @on-submit="val => activeCategory = val" />
+          @on-submit="val => activeCategory = val" :locale="locale" />
         <div class="flex flex-col gap-12 mt-6">
           <div v-for="(category, index) in categories" :key="index" class="relative">
             <span :id="category._id" class="absolute -top-16"></span>
-            <h3 class="text-3xl uppercase">{{ category.title }}</h3>
+            <h3 class="text-3xl uppercase">{{ category.title[locale] }}</h3>
             <div class="flex flex-col gap-4 mt-3">
-              <DishItem v-for="item in menu.filter(x => x.category === category.title)" :dish="item"
+              <DishItem v-for="item in menu.filter(x => x.category === category.title[locale])" :dish="item"
                 @on-submit="openModalInfo" />
             </div>
           </div>
