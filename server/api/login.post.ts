@@ -8,7 +8,7 @@ export default defineEventHandler(async (event) => {
   const user = await User.findOne({ email });
   if (!user) {
     return {
-      success: false,
+      ok: false,
       message: "Неверный логин или пароль",
     };
   }
@@ -16,7 +16,7 @@ export default defineEventHandler(async (event) => {
   const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch) {
     return {
-      success: false,
+      ok: false,
       message: "Неверный логин или пароль",
     };
   }

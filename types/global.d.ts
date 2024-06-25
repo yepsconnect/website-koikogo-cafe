@@ -1,17 +1,18 @@
-interface IUser {
+interface User {
   _id: string;
   email: string;
   password: string;
   role: "root" | "owner" | "manager" | "waiter" | "guest";
 }
 
-interface ICategory {
+interface Category {
   _id: string;
-  title: string;
   description: string | null;
+  slug: string;
+  title: string;
 }
 
-interface IDish {
+interface Dish {
   _id: string;
   menu: string;
   category: string;
@@ -21,4 +22,6 @@ interface IDish {
   price: number;
   feature: string | null;
   image: string | null;
+  type: string | null;
+  portion_size: string | null;
 }

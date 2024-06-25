@@ -1,55 +1,39 @@
 export default function () {
   const order = useState<
     {
-      id: number;
+      _id: string;
       count: number;
     }[]
   >("order", () => []);
 
-  const notifications = useState<
-    {
-      id: number;
-      count: number;
-    }[]
-  >("notifications", () => []);
-
-  const addToOrder = (id: number, count: number, isNew: boolean) => {
-    const orderItem = order.value.find((item) => item.id === id);
-
-    if (orderItem?.count) {
-      orderItem.count += 1;
+  const addToOrder = (_id: string, count: number) => {
+    const orderItem = order.value.find((item) => item._id === _id);
+    if (orderItem) {
+      orderItem.count += count;
     } else {
       order.value.push({
-        id,
+        _id,
         count,
       });
     }
-
     localStorage.setItem("order", JSON.stringify(order.value));
-
-    if (isNew) {
-      return;
-    }
-
-    const notificationId = +Math.random().toString().slice(2);
-    notifications.value.push({
-      id: notificationId,
-      count,
-    });
-    setTimeout(() => {
-      notifications.value = notifications.value.filter(
-        (item) => item.id !== notificationId
-      );
-    }, 3000);
   };
 
-  const removeFromOrder = (id: number) => {
-    const orderItem = order.value.find((item) => item.id === id);
+  const decrementOrder = (_id: string) => {
+    const orderItem = order.value.find((item) => item._id === _id);
     if (orderItem) {
       orderItem.count -= 1;
       if (orderItem.count === 0) {
-        order.value = order.value.filter((item) => item.id !== id);
+        order.value = order.value.filter((item) => item._id !== _id);
       }
+    }
+    localStorage.setItem("order", JSON.stringify(order.value));
+  };
+
+  const incrementOrder = (_id: string) => {
+    const orderItem = order.value.find((item) => item._id === _id);
+    if (orderItem) {
+      orderItem.count += 1;
     }
     localStorage.setItem("order", JSON.stringify(order.value));
   };
@@ -59,11 +43,16 @@ export default function () {
     localStorage.removeItem("order");
   };
 
+  if (import.meta.client) {
+    const orderStorage = localStorage.getItem("order");
+    order.value = JSON.parse(orderStorage || "[]");
+  }
+
   return {
     order,
     addToOrder,
-    removeFromOrder,
-    notifications,
+    decrementOrder,
+    incrementOrder,
     clearOrder,
   };
 }

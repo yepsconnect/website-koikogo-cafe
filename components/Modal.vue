@@ -1,27 +1,25 @@
 <script setup lang="ts">
-interface Props {
-  modelValue: boolean;
-}
-
 const emit = defineEmits(["update:modelValue"]);
-const props = defineProps<Props>();
+const props = defineProps<{
+  modelValue: boolean;
+}>();
 
+// state
+const modalRef = ref();
+// computed
 const isOpen = computed({
   get: () => props.modelValue,
   set: (value) => emit("update:modelValue", value),
 });
+onMounted(() => {
+  modalRef.value.addEventListener("keydown", (e: KeyboardEvent) => {
+    if (e.key === "Escape") {
+      closeModal();
+    }
+  });
+});
 
-const modalRef = ref();
-
-const openModal = () => {
-  modalRef.value.showModal();
-};
-
-const closeModal = () => {
-  modalRef.value.close();
-  isOpen.value = false;
-};
-
+// watch
 watch(isOpen, (newValue) => {
   if (newValue) {
     openModal();
@@ -30,14 +28,15 @@ watch(isOpen, (newValue) => {
   }
 });
 
-// change esc key to close modal
-onMounted(() => {
-  modalRef.value.addEventListener("keydown", (e: KeyboardEvent) => {
-    if (e.key === "Escape") {
-      closeModal();
-    }
-  });
-});
+// method
+const openModal = () => {
+  modalRef.value.showModal();
+};
+
+const closeModal = () => {
+  modalRef.value.close();
+  isOpen.value = false;
+};
 </script>
 
 <template>

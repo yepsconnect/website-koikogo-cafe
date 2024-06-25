@@ -1,0 +1,62 @@
+label:
+  add: "Add"
+  categoryName: "Category Name"
+  categoryInfo: "Category Information"
+  save: "Save"
+  delete: "Delete"
+  call: "Call"
+  kitchen: "Kitchen"
+  bar: "Bar"
+  reserve: "Reserve a table"
+  talk: "Talk"
+  vk: "VKontakte"
+  telegram: "Telegram"
+  whatsup: "WhatsApp"
+  viber: "Viber"
+
+screen:
+  category:
+    title: "Categories"
+  categoryAdd:
+    title: "New category"
+  about:
+    title:
+      - "Cafe named after Koikogo."
+      - "So, after all, who?"
+    description: "Someone you come to visit as a good friend, who will feed you amazingly tasty food, will pleasantly surprise you every time, with whom a hearty dinner or a couple of glasses of wine will fly by unnoticed. A glass dome with panoramic views of the city, a varied menu and warm service will delight anyone who decides to visit us after a leisurely stroll through their favorite surroundings."
+    question:
+      title: "Why is there still a cafe named after KOIKOGO?"
+      talk:
+        - "So. It is necessary to treat. You're going to bring a bottle to me dfa yaza in nephele."
+        - "Where to?"
+        - "To Koikogo Street."
+        - "Where's To Koikogo?"
+        - "Koikogo Street"
+      info:
+        - "Inspiration came to us after watching the Soviet film 'For family Reasons', which became famous thanks to this dialogue"
+        - "Koikogo is how a burr-lisping speech therapist named Gorky Street in an old comedy."
+        - "This phrase hooked us and perfectly complemented the family concept of our institution."
+    new:
+      title: "Do you want something new?"
+      info:
+        - "We made sure that no one went hungry after visiting our cafe, and that's why we paid special attention to developing dishes for the youngest guests"
+        - "And for those who want everything at once or can't decide on a choice, we did it for you! We are glad to present the most unpredictable combination: PIZZA WITH DUMPLINGS. Juicy, hearty pizza with homemade dumplings on crispy dough - you definitely did not expect this, but we promise that you will be delighted."
+        - "Have you tried it yet? We need to fix the situation urgently!"
+    comfort:
+      title: "Is it cozy?"
+      info:
+        - "Stylish, modern, talking about many things, captivating with space and inspiring for new achievements"
+        - "The interior of the KOIKOGO cafe will not leave any lover of beauty, aesthete, gourmet of style and modern trends indifferent"
+        - "When you come to our cafe, you immerse yourself in a special atmosphere. A glass dome with panoramic views of the city, a varied menu and warm service will delight anyone who decides to stop by after a leisurely stroll through their favorite surroundings."
+    find:
+      title: "Is it easy to find?"
+      info:
+        - "We are always happy to welcome you to a cafe in the historical center of the city - on a well-known street in some park."
+        - "We chose a place away from the hustle and bustle of the carousels, overlooking the beautiful, picturesque rotunda. Ah, we are already looking forward to these magnificent sunsets on Izhevsk Pond, musical evenings and your smiles..."
+        - "Our home is a summer garden or Gorky Park!"
+    gallery:
+      title: "Once you try it, you'll fall in love forever"
+      info:
+        - "Choose any of the reasons to visit the Hotel: meet friends for breakfast, have a romantic dinner with a view of the embankment or just for family reasons! In any weather, we will create an unsurpassed atmosphere, authentic cuisine and friendly service."
+        - "Have you been to our stylish space before?"
+        - "Share your feelings and feelings!"

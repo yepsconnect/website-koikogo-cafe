@@ -4,11 +4,13 @@ export default defineNuxtConfig({
   css: ["~/assets/css/fonts.css"],
   runtimeConfig: {
     TOKEN_SECRET: process.env.TOKEN_SECRET,
+    PHONE_NUMBER: "+79511985779",
   },
   modules: [
     "@nuxtjs/tailwindcss",
     "nuxt-mongoose",
     "yandex-metrika-module-nuxt3",
+    "@nuxtjs/i18n",
   ],
   mongoose: {
     uri: process.env.MONGODB_URI,
@@ -18,5 +20,21 @@ export default defineNuxtConfig({
   yandexMetrika: {
     id: "95378132",
     webvisor: true,
+  },
+  i18n: {
+    strategy: "no_prefix",
+    locales: [
+      {
+        code: "ru",
+        file: "ru.yaml",
+      },
+      {
+        code: "en",
+        file: "en.yaml",
+      },
+    ],
+    lazy: true,
+    langDir: "lang",
+    defaultLocale: "ru",
   },
 });

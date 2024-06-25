@@ -1,6 +1,6 @@
 import { defineMongooseModel } from "#nuxt/mongoose";
 
-export const User = defineMongooseModel<IUser>(
+export const User = defineMongooseModel<User>(
   "User",
   {
     email: { type: String, required: true, unique: true },

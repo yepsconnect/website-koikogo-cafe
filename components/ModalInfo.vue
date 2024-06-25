@@ -2,17 +2,13 @@
 const emit = defineEmits(["update:modelValue", "show-order"]);
 const props = defineProps<{
   modelValue: boolean;
-  dish: IDish;
+  dish: Dish | undefined;
 }>();
 
 //composables
 const { addToOrder } = useOrder();
 
-const currentHour = computed(() => {
-  return new Date().getHours();
-});
-
-// computed
+// state
 const count = ref(1);
 
 // computed
@@ -21,11 +17,13 @@ const isOpen = computed({
   set: (value) => emit("update:modelValue", value),
 });
 
-watch(isOpen, (value) => {
-  if (!value) {
-    count.value = 1;
-  }
-});
+// methods
+const handleSubmit = () => {
+  if (!props.dish) return;
+  addToOrder(props.dish._id, count.value)
+  isOpen.value = false
+  count.value = 1
+}
 </script>
 
 <template>
@@ -50,9 +48,6 @@ watch(isOpen, (value) => {
         <span class="text-lg font-bold">{{ dish?.price }} р</span>
         {{ dish?.portion_size }} {{ dish?.unit }}
       </p>
-      <p v-if="dish.category === 'BRANCH BREAKFAST' && currentHour > 15" class="text-red-400">
-        Извивините, но блюда из данной категории доступны только до 16:00
-      </p>
       <div class="mt-4 flex flex-col gap-4">
         <div class="flex items-center justify-between">
           <button class="btn btn-square" :disabled="count < 2" @click="count--">
@@ -64,8 +59,7 @@ watch(isOpen, (value) => {
       </div>
       <div class="mt-4 flex justify-between gap-2">
         <button class="btn flex-1" @click="isOpen = false">Закрыть</button>
-        <button class="btn flex-1" @click="addToOrder(dish.id, count, false), (isOpen = false)"
-          :disabled="dish.category === 'BRANCH BREAKFAST' && currentHour > 15">
+        <button class="btn flex-1" @click="handleSubmit">
           Добавить
         </button>
       </div>

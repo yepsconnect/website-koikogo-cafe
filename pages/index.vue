@@ -1,5 +1,9 @@
 <script setup lang="ts">
-const seo = {
+definePageMeta({
+  layout: 'menu'
+});
+
+useSeoMeta({
   title: "Кафе имени Койкого",
   description:
     "Мы рады приветствовать вас в кафе в историческом центре города - на всеми известной улице в кой-каком парке.",
@@ -13,17 +17,65 @@ const seo = {
     "Мы рады приветствовать вас в кафе в историческом центре города - на всеми известной улице в кой-каком парке.",
   twitterImage: "https://koikogo.cafe/logo.png",
   twitterCard: "summary",
-};
+})
 
-const { categories } = useMenu();
+useHead({
+  link: [
+    {
+      rel: "icon",
+      type: "image/png",
+      href: "logo.png",
+    },
+  ],
+});
+// composables
+const { menu } = useMenu()
+// state
+const activeCategory = ref(null);
+const isModalInfo = ref(false);
+const selectedDish = ref();
+const { data } = useFetch<{
+  ok: boolean
+  categories: Category[]
+}>('/api/category')
+// computed
+const filteredMenu = computed(() => menu.filter(x => x.menu === "Основное меню"))
 
-const filteredCategories = computed(() =>
-  categories.filter((x) => x.menu === "Основное меню").map((x) => x.name)
-);
+// methods
+const openModalInfo = (dish: Dish) => {
+  isModalInfo.value = true
+  selectedDish.value = dish
+}
 </script>
 
 <template>
   <div>
-    <TemplatePage :seo="seo" :categories="filteredCategories" page="home" />
+    <div class="h-screen w-full flex justify-center items-center">
+      <div class="flex flex-col md:flex-row items-center md:items-end">
+        <LogoMenu class="max-w-64" animated />
+        <div>
+          <h1 class="text-4xl font-bold uppercase">
+            <span class="text-2xl">Кафе</span>
+            <br />
+            Имени
+            <br />
+            Койкого
+          </h1>
+        </div>
+      </div>
+    </div>
+    <template v-if="data?.categories">
+      <CategoryMenu :categories="data?.categories" :active-category="activeCategory"
+        @on-submit="val => activeCategory = val" />
+      <Container>
+        <div v-for="(category, index) in data.categories" :key="category._id" class="relative mb-6">
+          <span :id="category.slug" class="absolute -top-16"></span>
+          <h2 class="text-2xl font-bold uppercase">{{ category.title }}</h2>
+          <DishItem v-for="item in filteredMenu.filter(x => x.category === category.title)" :key="item._id" :dish="item"
+            @on-submit="openModalInfo" />
+        </div>
+      </Container>
+    </template>
+    <ModalInfo v-model="isModalInfo" :dish="selectedDish" />
   </div>
 </template>
