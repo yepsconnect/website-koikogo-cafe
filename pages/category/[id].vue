@@ -10,6 +10,7 @@ definePageMeta({
 });
 
 // composables
+const category = ref<Category>();
 const route = useRoute();
 const router = useRouter();
 const { t, locales } = useI18n();
@@ -30,13 +31,13 @@ const notSelectedLocales = computed(() => {
 })
 
 // state
-const newLang = ref(null);
+const newLang = ref("");
 const isLoading = ref(false);
 // Список языков по умолчанию
 
 // methods
 const handleSubmit = async () => {
-  if (!data.value?.category) {
+  if (!category.value) {
     return
   }
   try {
@@ -47,29 +48,34 @@ const handleSubmit = async () => {
         Authorization: token.value!
       },
       body: JSON.stringify({
-        description: data.value.category.description,
-        title: data.value.category.title,
-        slug: data.value.category.slug
+        description: category.value.description,
+        title: category.value.title,
       })
     })
   } catch (error) {
-
+    console.error(error)
   } finally {
     isLoading.value = false
   }
 }
 
-const { data } = useFetch<{
-  ok: boolean,
-  category: Category
-}>(`/api/category/${route.params.id}`)
-
-
-for (const key in data.value?.category.title) {
-  languages.value.push(key);
-
-}
-
+onMounted(async () => {
+  try {
+    const response = await $fetch<{
+      ok: boolean,
+      category: Category
+    }>(`/api/category/${route.params.id}`)
+    if (!response.ok) {
+      return alert("Ошибка при загрузке")
+    }
+    category.value = response.category
+    for (const key in category.value.title) {
+      languages.value.push(key);
+    }
+  } catch (error) {
+    console.error(error)
+  }
+})
 
 const handleDelete = async () => {
   try {
@@ -95,13 +101,13 @@ const handleDelete = async () => {
 }
 
 const addLanguage = (language: string) => {
-  if (!data.value?.category) return
+  if (!category.value) return
 
   if (!languages.value.includes(language)) {
     languages.value.push(language);
-    data.value.category.description[language] = '';
-    data.value.category.title[language] = '';
-    newLang.value = null;
+    category.value.description[language] = '';
+    category.value.title[language] = '';
+    newLang.value = "";
   }
 };
 
@@ -112,34 +118,39 @@ const deleteLocale = (code: string) => {
 
 <template>
   <Container class="flex flex-col gap-2">
-    <div class="py-2">
-      <h1 class="text-2xl font-bold">{{ t("screen.categoryAdd.title") }}</h1>
+    <div class="py-2 grid grid-cols-3 mb-4">
+      <div>
+        <NuxtLink :to="{ name: 'category' }" class="btn btn-sm btn-ghost">
+          <IconChevronLeft class="w-3" />
+        </NuxtLink>
+      </div>
+      <h1 class="text-2xl font-bold text-center">{{ t("screen.categoryEdit.title") }}</h1>
+      <div></div>
     </div>
-    <div class="flex gap-6">
-      <div class="w-full max-w-lg">
-        <form v-if="data?.category" @submit.prevent="handleSubmit" class="flex flex-col gap-2">
+    <div class="grid sm:grid-cols-2 gap-6">
+      <div class="w-full sm:max-w-lg">
+        <form v-if="category" @submit.prevent="handleSubmit" class="flex flex-col gap-2">
           <div v-for="code in languages" :key="code" class="flex flex-col gap-2">
             <div class="flex items-center justify-between w-full">
               <h3>{{ t(`language.${code}`) }}</h3>
               <button v-if="languages.length > 1" class="btn btn-sm" @click="deleteLocale(code)">{{
                 t('label.deleteTranslate') }}</button>
             </div>
-            <input v-model="data.category.title[code]" type="text" class="input input-bordered"
+            <input v-model="category.title[code]" type="text" class="input input-bordered"
               :placeholder="t('label.categoryName') + ' (' + code + ')'">
-            <textarea v-model="data.category.description[code]" class="textarea textarea-bordered"
+            <textarea v-model="category.description[code]" class="textarea textarea-bordered"
               :placeholder="t('label.categoryInfo') + ' (' + code + ')'"></textarea>
           </div>
-          <input v-model="data.category.slug" type="text" class="input input-bordered" :placeholder="t('label.slug')">
           <button class="btn btn-neutral" type="submit">{{ t('label.save') }}</button>
         </form>
-        <button class="btn btn-neutral btn-outline w-full max-w-lg mt-2" @click="handleDelete">
+        <button class="btn btn-neutral btn-outline w-full mt-2" @click="handleDelete">
           {{ t('label.delete') }}
         </button>
       </div>
       <div class="flex flex-col flex-1 gap-4">
-        <p>Добавление перевода</p>
+        <p>{{ t('label.addLocale') }}</p>
         <select v-model="newLang" class="select select-bordered">
-          <option value="null" disabled>{{ t('label.select') }}</option>
+          <option value="" disabled>{{ t('label.select') }}</option>
           <option v-for="option in notSelectedLocales" :key="option.value" :value="option.value">{{ option.label }}
           </option>
         </select>

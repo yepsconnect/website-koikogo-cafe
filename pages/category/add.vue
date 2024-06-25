@@ -28,10 +28,9 @@ const notSelectedLocales = computed(() => {
 })
 
 // state
-const newLang = ref(null);
+const newLang = ref("");
 const description = ref<{ [key: string]: string }>({ ru: '' });
 const title = ref<{ [key: string]: string }>({ ru: '' });
-const slug = ref('');
 const isLoading = ref(false);
 // Список языков по умолчанию
 
@@ -47,7 +46,6 @@ const handleSubmit = async () => {
       body: JSON.stringify({
         description: description.value,
         title: title.value,
-        slug: slug.value
       })
     });
   } catch (error) {
@@ -62,7 +60,7 @@ const addLanguage = (language: string) => {
     languages.value.push(language);
     description.value[language] = '';
     title.value[language] = '';
-    newLang.value = null;
+    newLang.value = "";
   }
 };
 
@@ -73,11 +71,17 @@ const deleteLocale = (code: string) => {
 
 <template>
   <Container class="flex flex-col gap-2">
-    <div class="py-2">
-      <h1 class="text-2xl font-bold">{{ t("screen.categoryAdd.title") }}</h1>
+    <div class="py-2 grid grid-cols-3 mb-4">
+      <div>
+        <NuxtLink :to="{ name: 'category' }" class="btn btn-sm btn-ghost">
+          <IconChevronLeft class="w-3" />
+        </NuxtLink>
+      </div>
+      <h1 class="text-2xl font-bold text-center">{{ t("screen.categoryAdd.title") }}</h1>
+      <div></div>
     </div>
-    <div class="flex gap-6">
-      <form @submit.prevent="handleSubmit" class="flex flex-col gap-2 w-full max-w-lg">
+    <div class="grid sm:grid-cols-2 gap-6">
+      <form @submit.prevent="handleSubmit" class="flex flex-col gap-2 w-full sm:max-w-lg">
         <div v-for="code in languages" :key="code" class="flex flex-col gap-2">
           <div class="flex items-center justify-between w-full">
             <h3>{{ t(`language.${code}`) }}</h3>
@@ -89,13 +93,12 @@ const deleteLocale = (code: string) => {
           <textarea v-model="description[code]" class="textarea textarea-bordered"
             :placeholder="t('label.categoryInfo') + ' (' + code + ')'"></textarea>
         </div>
-        <input v-model="slug" type="text" class="input input-bordered" :placeholder="t('label.slug')">
         <button class="btn btn-neutral" type="submit">{{ t('label.add') }}</button>
       </form>
       <div class="flex-1 flex flex-col gap-2">
-        <p>Добавление перевода</p>
+        <p>{{ t('label.addLocale') }}</p>
         <select v-model="newLang" class="select select-bordered">
-          <option value="null" disabled>{{ t('label.select') }}</option>
+          <option value="" disabled>{{ t('label.select') }}</option>
           <option v-for="option in notSelectedLocales" :key="option.value" :value="option.value">{{ option.label }}
           </option>
         </select>

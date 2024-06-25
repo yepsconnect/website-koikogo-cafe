@@ -29,7 +29,7 @@ const handleSubmit = async () => {
       return alert(response.message)
     }
     setAuth(response.token)
-    router.push({ name: "dashboard" });
+    router.push({ name: "admin" });
   } catch (error) {
     alert(error)
   } finally {

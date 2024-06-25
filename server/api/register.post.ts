@@ -3,6 +3,15 @@ import { User } from "~/server/models/user.schema";
 import { generateToken } from "~/utils/tokenUtils";
 
 export default defineEventHandler(async (event) => {
+  const config = useRuntimeConfig();
+
+  if (config.REGISTER_ACCESS !== "1") {
+    return {
+      ok: false,
+      message: "Регистрация недоступна.",
+    };
+  }
+
   const { email, password } = await readBody(event);
 
   const candidate = await User.findOne({ email });

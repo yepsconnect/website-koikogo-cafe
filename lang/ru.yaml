@@ -12,6 +12,7 @@ language:
   en: "Английский"
 
 label:
+  logout: "Выйти"
   rub: "руб."
   clear: "Удалить все"
   close: "Закрыть"
@@ -33,14 +34,21 @@ label:
   telegram: Telegram
   whatsup: WhatsApp
   viber: Viber
+  addLocale: "Добавить перевод"
 
 screen:
+  admin:
+    title: "Панель управления"
+  settings:
+    title: "Настройки"
   menu:
     title: "Основное меню"
   bar:
     title: "Карта бара"
   category:
     title: Категории
+  categoryEdit:
+    title: Редактировать категорию
   categoryAdd:
     title: Новая категория
   about:

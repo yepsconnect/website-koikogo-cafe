@@ -3,18 +3,20 @@ definePageMeta({
   middleware: 'auth',
   layout: 'auth'
 });
+
+const { t } = useI18n();
 </script>
 
 <template>
   <div>
     <Container>
-      <h1 class="text-2xl font-bold mb-6">Управление</h1>
+      <h1 class="text-2xl font-bold mb-6">{{ t('screen.admin.title') }}</h1>
       <ul class="menu bg-base-200 rounded-box w-56">
         <li>
-          <NuxtLink :to="{ name: 'category' }">Управление категориями</NuxtLink>
+          <NuxtLink :to="{ name: 'category' }">{{ t('screen.category.title') }}</NuxtLink>
         </li>
         <li>
-          <NuxtLink :to="{ name: 'settings' }">Настройки</NuxtLink>
+          <NuxtLink :to="{ name: 'settings' }">{{ t('screen.settings.title') }}</NuxtLink>
         </li>
       </ul>
     </Container>

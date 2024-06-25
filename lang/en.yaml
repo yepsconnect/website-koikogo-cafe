@@ -12,6 +12,7 @@ language:
   en: "English"
 
 label:
+  logout: "Logout"
   rub: "rub"
   clear: "Clear"
   close: "Close"
@@ -33,14 +34,21 @@ label:
   telegram: "Telegram"
   whatsup: "WhatsApp"
   viber: "Viber"
+  addLocale: "Add locale"
 
 screen:
+  admin:
+    title: "Admin panel"
+  settings:
+    title: "Settings"
   menu:
     title: "Menu"
   bar:
     title: "Beverages"
   category:
     title: "Categories"
+  categoryEdit:
+    title: "Edit category"
   categoryAdd:
     title: "New category"
   about:
