@@ -2367,5 +2367,5 @@ export default function () {
   return {
     menu,
     categories,
-  };s
+  };
 }
