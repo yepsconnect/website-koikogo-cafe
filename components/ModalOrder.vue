@@ -35,14 +35,14 @@ const totalPrice = computed(() => {
   <Modal v-model="isOpen">
     <div class="flex flex-col gap-4">
       <h2 class="text-2xl font-bold">{{ t("modal.order.title") }}</h2>
-      <div v-if="order.length" class="flex flex-col gap-2 max-h-[450px] overflow-y-auto">
+      <div v-if="order.length" class="flex flex-col gap-2 max-h-[310px] overflow-y-auto">
         <DishOrderCard v-for="dish in order" :key="dish._id" :dish="dish" :menu="menu" />
       </div>
       <div v-else>
         <p class="text-center">{{ t('modal.order.empty') }}</p>
       </div>
       <div class="flex flex-col gap-3">
-        <div v-if="totalPrice" class="flex items-end justify-between my-4">
+        <div v-if="totalPrice" class="flex items-end justify-between my-2">
           <p>{{ t('modal.order.totalPrice') }}</p>
           <p>{{ totalPrice }}₽</p>
         </div>

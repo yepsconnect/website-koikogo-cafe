@@ -29,15 +29,17 @@ const handleSubmit = () => {
 <template>
   <Modal v-model="isOpen">
     <div v-if="dish" class="mt-2">
-      <div class="avatar w-full">
-        <div class="rounded-xl bg-gray-200 w-full max-w-sm m-auto">
-          <img v-if="dish.image" :src="dish.image" loading="lazy" />
-          <img v-else src="https://multimedia.properati.com.co/properati/images/no-image-placeholder.png"
-            loading="lazy" />
+      <div class="flex justify-center">
+        <div class="avatar w-full max-w-64 mx-auto mb-2">
+          <div class="rounded-xl bg-gray-200">
+            <img v-if="dish.image" :src="dish.image" loading="lazy" />
+            <img v-else src="https://multimedia.properati.com.co/properati/images/no-image-placeholder.png"
+              loading="lazy" />
+          </div>
         </div>
       </div>
       <h2 class="uppercase text-lg font-bold">{{ dish?.name }}</h2>
-      <p v-if="dish?.description">{{ dish.description }}</p>
+      <p v-if="dish?.description" class="text-sm text-gray-500">{{ dish.description }}</p>
       <p v-if="dish?.type" class="text-sm text-gray-600">
         <template v-for="(item, index) in dish.type">
           {{ item
@@ -50,18 +52,18 @@ const handleSubmit = () => {
       </p>
       <div class="mt-4 flex flex-col gap-4">
         <div class="flex items-center justify-between">
-          <button class="btn btn-square" :disabled="count < 2" @click="count--">
+          <button class="btn btn-sm btn-circle btn-glass" :disabled="count < 2" @click="count--">
             -
           </button>
           <div>{{ count }} {{ t("label.pieces") }}</div>
-          <button class="btn btn-square" @click="count++">+</button>
+          <button class="btn btn-sm btn-circle btn-glass" @click="count++">+</button>
         </div>
       </div>
       <div class="mt-4 flex justify-between gap-2">
-        <button class="btn flex-1" @click="isOpen = false">
+        <button class="btn btn-sm btn-outline flex-1" @click="isOpen = false">
           {{ t('label.close') }}
         </button>
-        <button class="btn flex-1" @click="handleSubmit">
+        <button class="btn btn-sm btn-neutral flex-1" @click="handleSubmit">
           {{ t('label.add') }}
         </button>
       </div>

@@ -11,7 +11,7 @@ const { t } = useI18n();
   <div class="flex items-center gap-1 p-2 rounded-xl hover:bg-base-200 cursor-pointer" @click="$emit('onSubmit', dish)">
     <div class="flex items-start gap-4 w-full">
       <div class="avatar">
-        <div class="w-16 rounded-xl bg-gray-200">
+        <div class="w-14 rounded-xl bg-gray-200">
           <img v-if="dish.image" :src="dish.image" loading="lazy" />
           <img v-else src="https://multimedia.properati.com.co/properati/images/no-image-placeholder.png"
             loading="lazy" />
@@ -19,24 +19,16 @@ const { t } = useI18n();
       </div>
       <div class="flex flex-col md:flex-row justify-between w-full md:gap-4">
         <div class="flex-1 flex flex-col items-start">
-          <p class="uppercase text-md">
+          <p class="uppercase">
             {{ dish.name }}
-          </p>
-          <p v-if="dish?.type" class="text-sm text-gray-600">
-            <template v-for="(item, index) in dish.type">
-              {{ item
-              }}<template v-if="index !== dish.type.length - 1">, </template>
-            </template>
-          </p>
-          <p>
-            <span class="text-sm text-gray-600">
-              {{ dish.portion_size }} {{ dish.unit }}
-            </span>
           </p>
         </div>
 
-        <p class="text-md">
-          {{ dish.price === 0 ? "Уточните в меню" : dish.price }} ₽
+        <p>
+          {{ dish.price }}₽
+          <span class="text-sm text-gray-600">
+            {{ dish.portion_size }} {{ dish.unit }}
+          </span>
         </p>
       </div>
     </div>
