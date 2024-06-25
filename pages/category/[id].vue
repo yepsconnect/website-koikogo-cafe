@@ -64,6 +64,14 @@ const { data } = useFetch<{
   category: Category
 }>(`/api/category/${route.params.id}`)
 
+console.log(data.value?.category.title); // {ru: 'Закуски', en: 'Snack'}
+// нужно получить ключи
+for (const key in data.value?.category.title) {
+  console.log(key);
+
+}
+
+
 const handleDelete = async () => {
   try {
     isLoading.value = true
@@ -105,28 +113,35 @@ const addLanguage = (language: string) => {
       <h1 class="text-2xl font-bold">{{ t("screen.categoryAdd.title") }}</h1>
     </div>
     <pre>{{ data?.category }}</pre>
-    <form v-if="data?.category" @submit.prevent="handleSubmit" class="flex flex-col gap-2 w-full max-w-lg">
-      <div v-for="code in languages" :key="code" class="flex flex-col gap-2">
-        <div class="flex items-center justify-between w-full">
-          <h3>{{ t(`language.${code}`) }}</h3>
-          <button class="btn btn-sm">{{ t('label.deleteTranslate') }}</button>
-        </div>
-        <input v-model="data.category.title[code]" type="text" class="input input-bordered"
-          :placeholder="t('label.categoryName') + ' (' + code + ')'">
-        <textarea v-model="data.category.description[code]" class="textarea textarea-bordered"
-          :placeholder="t('label.categoryInfo') + ' (' + code + ')'"></textarea>
+    <div class="flex gap-6">
+      <div class="w-full max-w-lg">
+        <form v-if="data?.category" @submit.prevent="handleSubmit" class="flex flex-col gap-2">
+          <div v-for="code in languages" :key="code" class="flex flex-col gap-2">
+            <div class="flex items-center justify-between w-full">
+              <h3>{{ t(`language.${code}`) }}</h3>
+              <button v-if="languages.length > 1" class="btn btn-sm">{{ t('label.deleteTranslate') }}</button>
+            </div>
+            <input v-model="data.category.title[code]" type="text" class="input input-bordered"
+              :placeholder="t('label.categoryName') + ' (' + code + ')'">
+            <textarea v-model="data.category.description[code]" class="textarea textarea-bordered"
+              :placeholder="t('label.categoryInfo') + ' (' + code + ')'"></textarea>
+          </div>
+          <input v-model="data.category.slug" type="text" class="input input-bordered" :placeholder="t('label.slug')">
+          <button class="btn btn-neutral" type="submit">{{ t('label.save') }}</button>
+        </form>
+        <button class="btn btn-neutral btn-outline w-full max-w-lg mt-2" @click="handleDelete">
+          {{ t('label.delete') }}
+        </button>
       </div>
-      <input v-model="data.category.slug" type="text" class="input input-bordered" :placeholder="t('label.slug')">
-      <button class="btn btn-neutral" type="submit">{{ t('label.add') }}</button>
-    </form>
-    <div class="mt-4">
-      <select v-model="newLang" class="select select-bordered">
-        <option value="null" disabled>{{ t('label.select') }}</option>
-        <option v-for="option in notSelectedLocales" :key="option.value" :value="option.value">{{ option.label }}
-        </option>
-      </select>
-      <button class="btn btn-primary" :disabled="!newLang" @click="addLanguage(newLang)">{{ t('label.add') }}</button>
+      <div class="flex flex-col flex-1 gap-4">
+        <p>Добавление перевода</p>
+        <select v-model="newLang" class="select select-bordered">
+          <option value="null" disabled>{{ t('label.select') }}</option>
+          <option v-for="option in notSelectedLocales" :key="option.value" :value="option.value">{{ option.label }}
+          </option>
+        </select>
+        <button class="btn btn-primary" :disabled="!newLang" @click="addLanguage(newLang)">{{ t('label.add') }}</button>
+      </div>
     </div>
-    <button class="btn btn-neutral btn-outline w-full max-w-lg" @click="handleDelete">{{ t('label.delete') }}</button>
   </Container>
 </template>

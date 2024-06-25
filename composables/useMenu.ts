@@ -2227,111 +2227,145 @@ export default function () {
 
   const categories: Category[] = [
     {
-      title: "Кофе",
+      title: {
+        ru: "Кофе",
+      },
       slug: "coffee",
       _id: "_17",
-      description: "",
+      description: { ru: "" },
     },
     {
-      title: "Какао & Горячий шоколад",
+      title: {
+        ru: "Какао & Горячий шоколад",
+      },
       slug: "hot_chocolate",
       _id: "_16",
-      description: "",
+      description: { ru: "" },
     },
     {
-      title: "Чай",
+      title: {
+        ru: "Чай",
+      },
       slug: "tea",
       _id: "_15",
-      description: "",
+      description: { ru: "" },
     },
     {
-      title: "Добавки к чаю",
+      title: {
+        ru: "Добавки к чаю",
+      },
       slug: "tea_additives",
       _id: "_14",
-      description: "",
+      description: { ru: "" },
     },
     {
-      title: "Авторский Чай",
+      title: {
+        ru: "Авторский Чай",
+      },
       slug: "authors_tea",
       _id: "_13",
-      description: "",
+      description: { ru: "" },
     },
     {
-      title: "Морсы",
+      title: {
+        ru: "Морсы",
+      },
       slug: "friut_drinks",
       _id: "_12",
-      description: "",
+      description: { ru: "" },
     },
     {
-      title: "Лимонады",
+      title: {
+        ru: "Лимонады",
+      },
       slug: "lemonades",
       _id: "_11",
-      description: "",
+      description: { ru: "" },
     },
     {
-      title: "Напитки",
+      title: {
+        ru: "Напитки",
+      },
       slug: "beverages",
       _id: "_10",
-      description: "",
+      description: { ru: "" },
     },
     {
-      title: "Коктели БА",
+      title: {
+        ru: "Коктели БА",
+      },
       slug: "cocktails",
       _id: "_9",
-      description: "",
+      description: { ru: "" },
     },
     {
-      title: "Милшейки",
+      title: {
+        ru: "Милшейки",
+      },
       slug: "milkshakes",
       _id: "_8",
-      description: "",
+      description: { ru: "" },
     },
     {
-      title: "Алкогольные коктели",
+      title: {
+        ru: "Алкогольные коктели",
+      },
       slug: "cocktail",
       _id: "_7",
-      description: "",
+      description: { ru: "" },
     },
     {
-      title: "Вино",
+      title: {
+        ru: "Вино",
+      },
       slug: "wine",
       _id: "_6",
-      description: "",
+      description: { ru: "" },
     },
     {
-      title: "Белые Вина",
+      title: {
+        ru: "Белые Вина",
+      },
       slug: "white_wine",
       _id: "_5",
-      description: "",
+      description: { ru: "" },
     },
     {
-      title: "Розовые Вина",
+      title: {
+        ru: "Розовые Вина",
+      },
       slug: "pink_wine",
       _id: "_4",
-      description: "",
+      description: { ru: "" },
     },
     {
-      title: "Не виноградные вина",
+      title: {
+        ru: "Не виноградные вина",
+      },
       slug: "no_red_wine",
       _id: "_3",
-      description: "",
+      description: { ru: "" },
     },
     {
-      title: "Красные Вина",
+      title: {
+        ru: "Красные Вина",
+      },
       slug: "red_wine",
       _id: "_2",
-      description: "",
+      description: { ru: "" },
     },
     {
-      title: "Пиво",
+      title: {
+        ru: "Пиво",
+      },
       slug: "beer",
       _id: "_1",
-      description: "",
+      description: { ru: "" },
     },
   ];
 
   return {
     menu,
     categories,
-  };
+  };s
 }
