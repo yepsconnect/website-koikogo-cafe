@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const emit = defineEmits(["update:modelValue", "show-order"]);
+const emit = defineEmits(["update:modelValue"]);
 const props = defineProps<{
   modelValue: boolean;
 }>();
@@ -7,12 +7,27 @@ const props = defineProps<{
 // composables
 const { t } = useI18n();
 const { menu } = useMenu();
-const { order, decrementOrder, incrementOrder, clearOrder } = useOrder();
+const { order, clearOrder } = useOrder();
 // computed
 const isOpen = computed({
   get: () => props.modelValue,
   set: (value) => emit("update:modelValue", value),
 });
+
+const totalPrice = computed(() => {
+  const idToCountMap = order.value.reduce((map, item) => {
+    map[item._id] = item.count;
+    return map;
+  }, {});
+
+  return menu.reduce((sum, item) => {
+    if (idToCountMap[item._id] != null) {
+      return sum + item.price * idToCountMap[item._id];
+    }
+    return sum;
+  }, 0);
+});
+
 
 </script>
 
@@ -20,32 +35,21 @@ const isOpen = computed({
   <Modal v-model="isOpen">
     <div class="flex flex-col gap-4">
       <h2 class="text-2xl font-bold">{{ t("modal.order.title") }}</h2>
-      <div v-if="order.length" class="flex flex-col gap-2">
-        <div v-for="item in order" :key="item._id" class="flex justify-between gap-2">
-          <p class="uppercase text-lg hover:underline cursor-pointer">
-            {{ menu.find((x) => x._id === item._id)?.name }}
-          </p>
-          <div class="flex items-center gap-2">
-            <button class="btn btn-xs btn-outline btn-circle" @click="decrementOrder(item._id)">
-              -
-            </button>
-            <div class="w-10">
-              <p class="text-center text-lg font-bold">{{ item.count }}</p>
-            </div>
-            <button class="btn btn-xs btn-outline btn-circle" @click="incrementOrder(item._id)">
-              +
-            </button>
-          </div>
-        </div>
+      <div v-if="order.length" class="flex flex-col gap-2 max-h-[450px] overflow-y-auto">
+        <DishOrderCard v-for="dish in order" :key="dish._id" :dish="dish" :menu="menu" />
       </div>
       <div v-else>
-        <p class="text-center">Заказ пуст</p>
+        <p class="text-center">{{ t('modal.order.empty') }}</p>
       </div>
-      <div class="flex gap-3">
-        <button class="btn flex-1" @click="isOpen = false">
+      <div class="flex flex-col gap-3">
+        <div v-if="totalPrice" class="flex items-end justify-between my-4">
+          <p>{{ t('modal.order.totalPrice') }}</p>
+          <p>{{ totalPrice }}₽</p>
+        </div>
+        <button class="btn btn-neutral" @click="isOpen = false">
           {{ t("label.close") }}
         </button>
-        <button class="btn flex-1" @click="clearOrder()">
+        <button class="btn btn-outline" @click="clearOrder()">
           {{ t("label.clear") }}
         </button>
       </div>

@@ -36,7 +36,7 @@ const { t } = useI18n();
         </div>
 
         <p class="text-md">
-          {{ dish.price === 0 ? "Уточните в меню" : dish.price }} {{ t('label.rub') }}
+          {{ dish.price === 0 ? "Уточните в меню" : dish.price }} ₽
         </p>
       </div>
     </div>

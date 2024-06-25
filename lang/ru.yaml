@@ -5,7 +5,9 @@ name:
 
 modal:
   order:
-    title: "Мой заказ"
+    title: "Ваш заказ"
+    totalPrice: "Еда на сумму"
+    empty: "Ваш заказ сейчас пуст"
 
 language:
   ru: "Русский"

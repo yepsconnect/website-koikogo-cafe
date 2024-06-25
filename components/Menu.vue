@@ -1,26 +1,31 @@
 <script setup lang="ts">
 const { t } = useI18n()
+const dropdown = ref()
+
+const closeDropdown = () => {
+  dropdown.value.removeAttribute('open');
+}
 </script>
 
 <template>
-  <div class="dropdown dropdown-end z-50">
-    <div tabindex="0" role="button" class="btn btn-circle m-1">
+  <details ref="dropdown" class="dropdown dropdown-end z-50">
+    <summary tabindex="0" role="button" class="btn btn-circle m-1">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
         class="w-6 h-6">
         <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
       </svg>
-    </div>
+    </summary>
     <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-200 rounded-box w-52">
       <li>
         <NuxtLink :to="{ name: 'about' }">{{ t('screen.about.title') }}</NuxtLink>
       </li>
       <li></li>
       <li>
-        <NuxtLink to="/">{{ t('screen.menu.title') }}</NuxtLink>
+        <NuxtLink to="/" @click="closeDropdown()">{{ t('screen.menu.title') }}</NuxtLink>
       </li>
       <li>
-        <NuxtLink :to="{ name: 'bar' }">{{ t('screen.bar.title') }}</NuxtLink>
+        <NuxtLink :to="{ name: 'bar' }" @click="closeDropdown()">{{ t('screen.bar.title') }}</NuxtLink>
       </li>
     </ul>
-  </div>
+  </details>
 </template>

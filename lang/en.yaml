@@ -1,11 +1,13 @@
 name:
   - "Сafe"
   - "named"
-  - "after Koikogo"
+  - "Koikogo"
 
 modal:
   order:
-    title: "My order"
+    title: "Your order"
+    totalPrice: "Total price"
+    empty: "Add something to your order"
 
 language:
   ru: "Russian"
