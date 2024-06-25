@@ -16,7 +16,7 @@ const { t, locales } = useI18n();
 const { token } = useAuth();
 
 // computed
-const languages = ref(['ru']);
+const languages = ref<string[]>([]);
 
 const availableLocales = computed(() => locales.value.map(x => {
   return {
@@ -64,10 +64,9 @@ const { data } = useFetch<{
   category: Category
 }>(`/api/category/${route.params.id}`)
 
-console.log(data.value?.category.title); // {ru: 'Закуски', en: 'Snack'}
-// нужно получить ключи
+
 for (const key in data.value?.category.title) {
-  console.log(key);
+  languages.value.push(key);
 
 }
 
@@ -112,7 +111,6 @@ const addLanguage = (language: string) => {
     <div class="py-2">
       <h1 class="text-2xl font-bold">{{ t("screen.categoryAdd.title") }}</h1>
     </div>
-    <pre>{{ data?.category }}</pre>
     <div class="flex gap-6">
       <div class="w-full max-w-lg">
         <form v-if="data?.category" @submit.prevent="handleSubmit" class="flex flex-col gap-2">

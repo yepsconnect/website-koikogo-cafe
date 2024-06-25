@@ -71,9 +71,9 @@ const openModalInfo = (dish: Dish) => {
       <Container>
         <div v-for="(category) in data.categories" :key="category._id" class="relative mb-6">
           <span :id="category.slug" class="absolute -top-16"></span>
-          <h2 class="text-2xl font-bold uppercase">{{ category.title[locale] }}</h2>
-          <DishItem v-for="item in filteredMenu.filter(x => x.category === category.title[locale])" :key="item._id"
-            :dish="item" @on-submit="openModalInfo" />
+          <h2 class="text-2xl font-bold uppercase">{{ category?.title[locale] || Object.keys(category.title)[0] }}</h2>
+          <DishItem v-for="item in filteredMenu.filter(x => x.categoryId === category._id)" :key="item._id" :dish="item"
+            @on-submit="openModalInfo" />
         </div>
       </Container>
     </template>

@@ -2,7 +2,7 @@ export default function () {
   const menu: Dish[] = [
     {
       menu: "Основное меню",
-      category: "Закуски",
+      categoryId: "667aa60907d1b9558d226be9",
       name: "Хлебные палочки с чесноком",
       description: "С ссыром пармезан, чесноком и соусом кимчи",
       unit: 120,
@@ -13,7 +13,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Закуски",
+      categoryId: "667aa60907d1b9558d226be9",
       name: "Баклажаны с томатами в кленовом соусе",
       description:
         "Баклажаны приготовленные во фритюре, с томатами, украшен лепестками миндаля",
@@ -25,7 +25,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Закуски",
+      categoryId: "667aa60907d1b9558d226be9",
       name: "Сырная тарелка",
       description:
         "Изысканное сочетание сыров Бри, Памезан, Дор-блю, Качотта с трюфелем, подается с миндалем, грецким орехом и кешью. Дополнено финиками, виноградом и голубикой. Оттеняется топпингами: мед и малиновое варенье.",
@@ -37,7 +37,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Закуски",
+      categoryId: "667aa60907d1b9558d226be9",
       name: "Фруктовая тарелка",
       description: "Из сезонных фруктов",
       unit: 510,
@@ -48,7 +48,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Закуски",
+      categoryId: "667aa60907d1b9558d226be9",
       name: "Жареный картофель со сметаной и икрой палтуса",
       description: "-",
       unit: 230,
@@ -59,7 +59,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Закуски",
+      categoryId: "667aa60907d1b9558d226be9",
       name: "Стрипсы из индейки с муссом из моркови",
       description: "-",
       unit: "160/30/30",
@@ -71,7 +71,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Закуски",
+      categoryId: "667aa60907d1b9558d226be9",
       name: "Сэндвич BLT",
       description:
         "Авторская бриошь от шефа с томатами, салатом, индейкой приготовленной по технологии сувид, авторским соусом, сыром гауда и беконом. Украше чатни из яблок",
@@ -84,7 +84,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Закуски",
+      categoryId: "667aa60907d1b9558d226be9",
       name: "Тартин с лососем, мягким сыром",
       description:
         "Хлеб тартин с авокадо, мягким сыром, томатами и слабосоленым лососем",
@@ -97,7 +97,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Закуски",
+      categoryId: "667aa60907d1b9558d226be9",
       name: "Тартар из говядины с  луковыми пирожками",
       description: "-",
       unit: 250,
@@ -109,7 +109,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Закуски",
+      categoryId: "667aa60907d1b9558d226be9",
       name: "Хлебная корзина",
       description: null,
       unit: "245/320",
@@ -120,7 +120,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Салаты",
+      categoryId: "667aa61407d1b9558d226bec",
       name: "Кое-какие овощи с рублеными орехами\n",
       description:
         "Салат из свежих овощей с мелко порубленными орехами, подается с лепестками миндаля и микрозеленью",
@@ -132,7 +132,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Салаты",
+      categoryId: "667aa61407d1b9558d226bec",
       name: "Пряный сыр с фруктами гриль на листьях салата",
       description:
         "Мягкий творожный сыр со специями сумах. Подается с листьями салата, грушей, персиком обжаренным на углях",
@@ -144,7 +144,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Салаты",
+      categoryId: "667aa61407d1b9558d226bec",
       name: "Авторская мимоза с соусом майо",
       description:
         "Авторское прочтение классического рецепта мимозы с нежнейшим риетом из двух видов рыбы с домашним майонезом и печеной свеклой",
@@ -156,7 +156,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Салаты",
+      categoryId: "667aa61407d1b9558d226bec",
       name: "Салат с брискетом из печи",
       description:
         "Говяжья грудинка с огурцом малой соли, запеченым болгарским перцем, листьями салата, цукини под соусом пад-тай с чатни из вишни и яблок.",
@@ -168,7 +168,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Салаты",
+      categoryId: "667aa61407d1b9558d226bec",
       name: "Оливье с брискетом ",
       description:
         "Салат с маринованной говядиной, малосольными огурцами, муссом из моркови, заправленный домашним майонезом",
@@ -180,7 +180,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Салаты",
+      categoryId: "667aa61407d1b9558d226bec",
       name: "Салат с ароматным филе цыпленка и кленовой заправкой",
       description:
         "Микс салатов романо и шпината, с томатами, цукини и сочным филе цыпленка на гриле",
@@ -192,7 +192,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Супы",
+      categoryId: "667aa62607d1b9558d226bf1",
       name: "Тыквенный суп крем",
       description: null,
       unit: 250,
@@ -204,7 +204,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Супы",
+      categoryId: "667aa62607d1b9558d226bf1",
       name: "Борщ с томленой грудинкой в печи",
       description: null,
       unit: "380/40/20/20/5",
@@ -216,7 +216,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Супы",
+      categoryId: "667aa62607d1b9558d226bf1",
       name: "Уха на крепком бульоне",
       description: null,
       unit: 290,
@@ -228,7 +228,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Супы",
+      categoryId: "667aa62607d1b9558d226bf1",
       name: "Просто вкусный куриный суп",
       description: null,
       unit: 360,
@@ -240,7 +240,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Супы",
+      categoryId: "667aa62607d1b9558d226bf1",
       name: "Суп с фрикадельками",
       description: null,
       unit: 260,
@@ -252,7 +252,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Пицца",
+      categoryId: "667aa62e07d1b9558d226bf4",
       name: "Пицца маргарита",
       description: null,
       unit: 440,
@@ -264,7 +264,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Пицца",
+      categoryId: "667aa62e07d1b9558d226bf4",
       name: "Пицца груша дор-блю",
       description: null,
       unit: 450,
@@ -275,7 +275,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Пицца",
+      categoryId: "667aa62e07d1b9558d226bf4",
       name: "Пицца 4 сыра",
       description: null,
       unit: 455,
@@ -287,7 +287,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Пицца",
+      categoryId: "667aa62e07d1b9558d226bf4",
       name: "Пицца с пельменями",
       description: null,
       unit: 600,
@@ -299,7 +299,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Пицца",
+      categoryId: "667aa62e07d1b9558d226bf4",
       name: "Пицца ветчина грибы",
       description: null,
       unit: 530,
@@ -310,7 +310,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Пицца",
+      categoryId: "667aa62e07d1b9558d226bf4",
       name: "Пицца с куриным бедром и соусом ранч",
       description: null,
       unit: 530,
@@ -321,7 +321,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Пицца",
+      categoryId: "667aa62e07d1b9558d226bf4",
       name: "Пицца пиперони ",
       description: null,
       unit: 480,
@@ -332,7 +332,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Пицца",
+      categoryId: "667aa62e07d1b9558d226bf4",
       name: "Авторский хачапури по-аджарски",
       description: null,
       unit: 380,
@@ -343,7 +343,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Добавки к пицце",
+      categoryId: "667aa65807d1b9558d226bfa",
       name: "Сыр моцарелла, Пепперони, Ветчина, Халапенью, Маслины/оливки, Бекон",
       description: null,
       unit: 50,
@@ -354,7 +354,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Паста",
+      categoryId: "667aa66107d1b9558d226bfd",
       name: "Арабьята",
       description: null,
       unit: 330,
@@ -366,7 +366,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Паста",
+      categoryId: "667aa66107d1b9558d226bfd",
       name: "Сливочная с лососем и красной икрой",
       description: null,
       unit: 300,
@@ -378,7 +378,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Паста",
+      categoryId: "667aa66107d1b9558d226bfd",
       name: "Болоньезе с шашлыком",
       description: null,
       unit: 310,
@@ -390,7 +390,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Паста",
+      categoryId: "667aa66107d1b9558d226bfd",
       name: "Карбонара без кое-каких сливок",
       description: null,
       unit: 290,
@@ -402,7 +402,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Горячее",
+      categoryId: "667aa68e07d1b9558d226c01",
       name: "Пельмени классические",
       description:
         "Пельмени ручной лепки(свинина/говядина), подается со сметаной",
@@ -415,7 +415,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Горячее",
+      categoryId: "667aa68e07d1b9558d226c01",
       name: "Пельмени куриные",
       description: "Пельмени ручной лепки(курица), подается со сметаной",
       unit: 300,
@@ -427,7 +427,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Горячее",
+      categoryId: "667aa68e07d1b9558d226c01",
       name: "Порубленные куриные котлеты с картофельным пюре",
       description: null,
       unit: 320,
@@ -439,7 +439,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Горячее",
+      categoryId: "667aa68e07d1b9558d226c01",
       name: "Бифштекс с пшенной кашей из детства",
       description: null,
       unit: 330,
@@ -451,7 +451,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Горячее",
+      categoryId: "667aa68e07d1b9558d226c01",
       name: "Печеный на углях картофель с томленым мясом",
       description: null,
       unit: 350,
@@ -462,7 +462,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Горячее",
+      categoryId: "667aa68e07d1b9558d226c01",
       name: "Четверть цыпленка в лаваше",
       description:
         "Цыпленок приготовленный на углях, с овощами и томатным соусом в лаваше.",
@@ -474,7 +474,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Горячее",
+      categoryId: "667aa68e07d1b9558d226c01",
       name: "Стейк из не горбуши",
       description:
         "Рыба семейства лососевых, подается на подушке из кус-куса с овощами, семенами тыквы и подсолнечника",
@@ -486,7 +486,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Горячее",
+      categoryId: "667aa68e07d1b9558d226c01",
       name: "Лопатка говяжья с овощами",
       description:
         "Стейк топ-блед, беби картофель и морковью. Украшен чатни из вишни и микрозеленью",
@@ -498,7 +498,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "На углях",
+      categoryId: "667aa6a907d1b9558d226c04",
       name: "Шашлык из свиной шеи",
       description: null,
       unit: "180/40/40",
@@ -509,7 +509,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "На углях",
+      categoryId: "667aa6a907d1b9558d226c04",
       name: "Шашлык из куриного бедра",
       description: null,
       unit: "180/40/40",
@@ -520,7 +520,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "На углях",
+      categoryId: "667aa6a907d1b9558d226c04",
       name: "Люля-кебаб из говядины и баранины",
       description: null,
       unit: "150/40/40",
@@ -531,7 +531,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "На углях",
+      categoryId: "667aa6a907d1b9558d226c04",
       name: "Купаты из свинины",
       description: null,
       unit: "150/40/40",
@@ -542,7 +542,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "На углях",
+      categoryId: "667aa6a907d1b9558d226c04",
       name: "Купаты домашние",
       description: null,
       unit: "150/40/40",
@@ -553,7 +553,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Гарниры",
+      categoryId: "667aa6d407d1b9558d226c08",
       name: "Картофель фри",
       description: null,
       unit: 150,
@@ -565,7 +565,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Гарниры",
+      categoryId: "667aa6d407d1b9558d226c08",
       name: "Картофельное пюре",
       description: null,
       unit: 150,
@@ -577,7 +577,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Гарниры",
+      categoryId: "667aa6d407d1b9558d226c08",
       name: "Картофель беби",
       description: null,
       unit: 150,
@@ -588,7 +588,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Гарниры",
+      categoryId: "667aa6d407d1b9558d226c08",
       name: "Овощи на пару",
       description: null,
       unit: 150,
@@ -600,7 +600,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Гарниры",
+      categoryId: "667aa6d407d1b9558d226c08",
       name: "Овощи на гриле",
       description: null,
       unit: 150,
@@ -612,7 +612,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Соусы",
+      categoryId: "667aa6eb07d1b9558d226c0c",
       name: "томатный с травами, сырный, барбекю, кетчуп, сметана, майонез, чили остро-сладкий, ягодный, сгущенка",
       description: null,
       unit: 40,
@@ -623,7 +623,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Десерты",
+      categoryId: "667aa70007d1b9558d226c0f",
       name: "Манговый медовик",
       description:
         "Пропитанные медовые коржи в сочетании со сметанным кремом и прослойкой из мангового пюре. Украшен ягодами голубики.",
@@ -636,7 +636,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Десерты",
+      categoryId: "667aa70007d1b9558d226c0f",
       name: "Торт Красный бархат",
       description: "Красный бисквит с начинкой крем чиз и клубникой",
       unit: 150,
@@ -647,7 +647,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Десерты",
+      categoryId: "667aa70007d1b9558d226c0f",
       name: "Наполеон малиновый",
       description:
         "Слоеное тесто собственного производства в сочетании с заварным кремом и прослойкой из малинового соуса.",
@@ -660,7 +660,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Десерты",
+      categoryId: "667aa70007d1b9558d226c0f",
       name: "Чизкейк с ягодным соусом",
       description:
         "классический чизкейк на корже из песочного теста. Подается с ягодным соусом.",
@@ -672,7 +672,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Десерты",
+      categoryId: "667aa70007d1b9558d226c0f",
       name: "Шоколадный чиз",
       description:
         "Классический чизкейк с добавлением шоколада на корже из песочного теста. Украшен шоколадной крошкой.",
@@ -684,7 +684,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Десерты",
+      categoryId: "667aa70007d1b9558d226c0f",
       name: "Торт Эстерхази",
       description:
         "Фундучный бисквит выпекается без муки, с молочно-карамельной начинкой украшен грецким орехом и лепестками миндаля",
@@ -696,7 +696,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Десерты",
+      categoryId: "667aa70007d1b9558d226c0f",
       name: "Меренговый рулет",
       description:
         "Основа - нежная хрустящая меренга, с кремом чиз и манговой прослойкой. Украшен мятой и свежей клубникой.",
@@ -708,7 +708,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Десерты",
+      categoryId: "667aa70007d1b9558d226c0f",
       name: "Торт Сникерс",
       description:
         "Шоколадный бисквит с сливочно сырным кремом с соленой карамелью и арахисом.",
@@ -720,7 +720,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Десерты",
+      categoryId: "667aa70007d1b9558d226c0f",
       name: "Торт Маковый с Лимоном",
       description:
         "Маковый нежный бисквит с ванильным крем чизом и лимонным куртом.",
@@ -732,7 +732,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Десерты",
+      categoryId: "667aa70007d1b9558d226c0f",
       name: "Торт Красный бархат",
       description: "Красный бисквит с начинкой крем чиз и клубникой",
       unit: "150 г.",
@@ -743,7 +743,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Десерты",
+      categoryId: "667aa70007d1b9558d226c0f",
       name: "Торт Шоколадно-банановый",
       description:
         "Маковый нежный бисквит с ванильным крем чизом и лимонным куртом",
@@ -755,7 +755,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Десерты",
+      categoryId: "667aa70007d1b9558d226c0f",
       name: "Капкейк малина",
       description:
         "Шоколадный бисквит с начинкой из малинового пюре, украшен шапкой из крем чиза",
@@ -767,7 +767,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Десерты",
+      categoryId: "667aa70007d1b9558d226c0f",
       name: "Капкейк банан",
       description:
         "Шоколадный бисквит с начинкой из свежего банана, украшен шапкой из крем чиза",
@@ -779,7 +779,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Десерты",
+      categoryId: "667aa70007d1b9558d226c0f",
       name: "Капкейк соленая карамель",
       description:
         "Шоколадный бисквит с начинкой из малинового пюре, украшен шапкой из крем чиз",
@@ -791,7 +791,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Десерты",
+      categoryId: "667aa70007d1b9558d226c0f",
       name: "Кейк-поп",
       description: null,
       unit: 50,
@@ -802,7 +802,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Десерты",
+      categoryId: "667aa70007d1b9558d226c0f",
       name: "Тарт лимонный",
       description:
         " Основа из песочного теста, начинка из лимонного курда и украшенные белковым кремом, миндальными лепестками и долькой карамелизированного лимона",
@@ -814,7 +814,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Десерты",
+      categoryId: "667aa70007d1b9558d226c0f",
       name: "Тарт грушевый",
       description:
         "Основа из песочного теста, начинка из груши и корицы, запеченная в сметане ",
@@ -826,7 +826,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Десерты",
+      categoryId: "667aa70007d1b9558d226c0f",
       name: "Тарт банан и соленая карамель",
       description:
         "Основа из песочного теста, начинка из банана, карамели, украшен взбитыми сливками",
@@ -838,7 +838,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Десерты",
+      categoryId: "667aa70007d1b9558d226c0f",
       name: "Торт на заказ ",
       description: "В ассортименте",
       unit: 1000,
@@ -849,7 +849,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Завтраки",
+      categoryId: "667aa71507d1b9558d226c12",
       name: "Просто вкусные сырники с манговым соусом",
       description: null,
       unit: 190,
@@ -860,7 +860,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Завтраки",
+      categoryId: "667aa71507d1b9558d226c12",
       name: "Черничная рисовая каша",
       description: null,
       unit: 250,
@@ -871,7 +871,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Завтраки",
+      categoryId: "667aa71507d1b9558d226c12",
       name: "Блины на манер креп Сюзет с фруктами",
       description: null,
       unit: 250,
@@ -883,7 +883,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Завтраки",
+      categoryId: "667aa71507d1b9558d226c12",
       name: "Глазунья Цезарь",
       description: null,
       unit: 250,
@@ -895,7 +895,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Завтраки",
+      categoryId: "667aa71507d1b9558d226c12",
       name: "Омлет с овощами и луковым вареньем",
       description: null,
       unit: 350,
@@ -907,7 +907,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Завтраки",
+      categoryId: "667aa71507d1b9558d226c12",
       name: "Бенедикт с лососем, томатами и авокадо",
       description: null,
       unit: 330,
@@ -919,7 +919,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Завтраки",
+      categoryId: "667aa71507d1b9558d226c12",
       name: "Драник картофельный \nсо сметаной",
       description: null,
       unit: 170,
@@ -930,7 +930,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Завтраки",
+      categoryId: "667aa71507d1b9558d226c12",
       name: "Драник картофельный  с слабосоленой красной рыбой",
       description: null,
       unit: 200,
@@ -941,7 +941,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Завтраки",
+      categoryId: "667aa71507d1b9558d226c12",
       name: "Драник картофельный с томленной грудинкой",
       description: null,
       unit: 200,
@@ -952,7 +952,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Завтраки",
+      categoryId: "667aa71507d1b9558d226c12",
       name: "Шакшука классическая",
       description: null,
       unit: "210/50",
@@ -963,7 +963,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Бизнес-Ланчи",
+      categoryId: "667aa72e07d1b9558d226c15",
       name: "Салат Имбирный цыпленок с киноа и томатами",
       description: null,
       unit: 140,
@@ -974,7 +974,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Бизнес-Ланчи",
+      categoryId: "667aa72e07d1b9558d226c15",
       name: "Зеленый салат с киноа",
       description: null,
       unit: 140,
@@ -985,7 +985,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Бизнес-Ланчи",
+      categoryId: "667aa72e07d1b9558d226c15",
       name: "Куриный суп с лапшой",
       description: null,
       unit: 300,
@@ -996,7 +996,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Бизнес-Ланчи",
+      categoryId: "667aa72e07d1b9558d226c15",
       name: "Суп гуляш",
       description: null,
       unit: 300,
@@ -1007,7 +1007,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Бизнес-Ланчи",
+      categoryId: "667aa72e07d1b9558d226c15",
       name: "Бефстроганов с картофельным пюре",
       description: null,
       unit: 300,
@@ -1018,7 +1018,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Бизнес-Ланчи",
+      categoryId: "667aa72e07d1b9558d226c15",
       name: "Котлеты пожарские с картофельным пюре",
       description: null,
       unit: 290,
@@ -1029,7 +1029,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Бизнес-Ланчи",
+      categoryId: "667aa72e07d1b9558d226c15",
       name: "Напиток дня (чай: черный/зеленый, кофе: американо/капучино, морс в ассортименте)",
       description: null,
       unit: "1 шт",
@@ -1040,7 +1040,7 @@ export default function () {
     },
     {
       menu: "Основное меню",
-      category: "Бизнес-Ланчи",
+      categoryId: "667aa72e07d1b9558d226c15",
       name: "Десерт дня",
       description: null,
       unit: "1шт",
@@ -1051,7 +1051,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Кофе",
+      categoryId: "_17",
       name: "Эспрессо",
       description: "Кофе",
       unit: 40,
@@ -1062,7 +1062,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Кофе",
+      categoryId: "_17",
       name: "Американо",
       description: "Кофе, вода",
       unit: 250,
@@ -1073,7 +1073,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Кофе",
+      categoryId: "_17",
       name: "Капучино ",
       description: "Кофе, молоко",
       unit: 250,
@@ -1084,7 +1084,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Кофе",
+      categoryId: "_17",
       name: "Латте",
       description: "Кофе, молоко",
       unit: 250,
@@ -1095,7 +1095,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Кофе",
+      categoryId: "_17",
       name: "Флет уайт",
       description: "Кофе, молоко",
       unit: 250,
@@ -1106,7 +1106,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Кофе",
+      categoryId: "_17",
       name: "Раф",
       description: "Кофе, сливки, сироп ",
       unit: 250,
@@ -1117,7 +1117,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Кофе",
+      categoryId: "_17",
       name: "Капучино на банановом/кокосовом",
       description: null,
       unit: 250,
@@ -1128,7 +1128,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Кофе",
+      categoryId: "_17",
       name: "Капучино с лавандой",
       description: null,
       unit: 250,
@@ -1139,7 +1139,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Кофе",
+      categoryId: "_17",
       name: "Капучино с малиной",
       description: null,
       unit: 250,
@@ -1150,7 +1150,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Кофе",
+      categoryId: "_17",
       name: "Банановый фраппе",
       description: null,
       unit: 300,
@@ -1161,7 +1161,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Кофе",
+      categoryId: "_17",
       name: "Матча латте",
       description: null,
       unit: 250,
@@ -1172,7 +1172,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Кофе",
+      categoryId: "_17",
       name: "Матча латте (на альтернативном молоке)",
       description: null,
       unit: 250,
@@ -1183,7 +1183,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Какао & Горячий шоколад",
+      categoryId: "_16",
       name: "Облачное какао",
       description:
         "Классический какао с маршмеллоу, взбитыми сливками и сиропом",
@@ -1195,7 +1195,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Какао & Горячий шоколад",
+      categoryId: "_16",
       name: "Классическое какао",
       description:
         "Классический какао с маршмеллоу, взбитыми сливками и сиропом",
@@ -1207,7 +1207,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Какао & Горячий шоколад",
+      categoryId: "_16",
       name: "Белый шоколад Малина-Питахайя",
       description:
         "Белый шоколад со вкусом малины и питахайи с сублимированной малиной",
@@ -1219,7 +1219,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Какао & Горячий шоколад",
+      categoryId: "_16",
       name: "Шоколадная бомба",
       description: null,
       unit: "",
@@ -1230,7 +1230,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Чай",
+      categoryId: "_15",
       name: "Черный",
       description: null,
       unit: "600 мл.",
@@ -1241,7 +1241,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Чай",
+      categoryId: "_15",
       name: "Черный Черная смородина",
       description: null,
       unit: "600 мл.",
@@ -1252,7 +1252,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Чай",
+      categoryId: "_15",
       name: "Черный Барбарислвый",
       description: null,
       unit: "600 мл.",
@@ -1263,7 +1263,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Чай",
+      categoryId: "_15",
       name: "ПуЭр Юннань",
       description: null,
       unit: "600 мл.",
@@ -1274,7 +1274,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Чай",
+      categoryId: "_15",
       name: "Зеленый сенча",
       description: null,
       unit: "600 мл.",
@@ -1285,7 +1285,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Чай",
+      categoryId: "_15",
       name: "Зеленый Дыня-Карамель",
       description: null,
       unit: "600 мл.",
@@ -1296,7 +1296,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Чай",
+      categoryId: "_15",
       name: "Зеленый с жасмином",
       description: null,
       unit: "600 мл.",
@@ -1307,7 +1307,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Чай",
+      categoryId: "_15",
       name: "Улун молочный",
       description: null,
       unit: "600 мл.",
@@ -1318,7 +1318,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Чай",
+      categoryId: "_15",
       name: "Травяной Лимон с Имбирем",
       description: null,
       unit: "600 мл.",
@@ -1329,7 +1329,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Чай",
+      categoryId: "_15",
       name: "Каркаде",
       description: null,
       unit: "600 мл.",
@@ -1340,7 +1340,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Чай",
+      categoryId: "_15",
       name: "Дерзкий фрукт",
       description: null,
       unit: "600 мл.",
@@ -1351,7 +1351,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Чай",
+      categoryId: "_15",
       name: "Чай Мятный Каркаде",
       description: null,
       unit: "600 мл.",
@@ -1362,7 +1362,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Добавки к чаю",
+      categoryId: "_14",
       name: "Мята",
       description: null,
       unit: "5 гр.",
@@ -1373,7 +1373,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Добавки к чаю",
+      categoryId: "_14",
       name: "Мед",
       description: null,
       unit: 30,
@@ -1384,7 +1384,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Добавки к чаю",
+      categoryId: "_14",
       name: "Лимон",
       description: null,
       unit: "50 гр.",
@@ -1395,7 +1395,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Добавки к чаю",
+      categoryId: "_14",
       name: "Чабрец",
       description: null,
       unit: "5 гр.",
@@ -1406,7 +1406,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Авторский Чай",
+      categoryId: "_13",
       name: "Персик-розмарин",
       description: null,
       unit: "600 мл.",
@@ -1417,7 +1417,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Авторский Чай",
+      categoryId: "_13",
       name: "Лемонграсс-киви",
       description: null,
       unit: "600 мл.",
@@ -1429,7 +1429,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Авторский Чай",
+      categoryId: "_13",
       name: "Черная смородина-каркаде",
       description: null,
       unit: "600 мл.",
@@ -1441,7 +1441,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Авторский Чай",
+      categoryId: "_13",
       name: "Облепиха глинтвейн",
       description: null,
       unit: "600 мл.",
@@ -1453,7 +1453,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Авторский Чай",
+      categoryId: "_13",
       name: "Гранатовый",
       description: null,
       unit: "600 мл.",
@@ -1464,7 +1464,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Авторский Чай",
+      categoryId: "_13",
       name: "Груша-жасмин",
       description: null,
       unit: "600 мл.",
@@ -1475,7 +1475,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Авторский Чай",
+      categoryId: "_13",
       name: "Цитрусовый",
       description: null,
       unit: "600 мл.",
@@ -1486,7 +1486,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Морсы",
+      categoryId: "_12",
       name: "Ягодный лемонграсс",
       description: null,
       unit: "300/1000мл",
@@ -1497,7 +1497,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Морсы",
+      categoryId: "_12",
       name: "Клюква-Имбирь",
       description: null,
       unit: "300/1000мл",
@@ -1508,7 +1508,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Морсы",
+      categoryId: "_12",
       name: "Облепиха-вишня",
       description: null,
       unit: "300/1000мл",
@@ -1519,7 +1519,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Морсы",
+      categoryId: "_12",
       name: "Апельсин-мандарин",
       description: null,
       unit: "300/1000мл",
@@ -1530,7 +1530,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Лимонады",
+      categoryId: "_11",
       name: "Классический Лимонад",
       description: "Сок Лимона, сахарный сироп, лимон, мята, содовая",
       unit: "1000 мл.",
@@ -1542,7 +1542,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Лимонады",
+      categoryId: "_11",
       name: "Тархун",
       description: "Сироп Тархун, сок лимона, лимон",
       unit: "1000 мл.",
@@ -1554,7 +1554,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Лимонады",
+      categoryId: "_11",
       name: "Маракуйя-матча",
       description:
         "Пюре Маракуйя, сироп маракуйя, сахарный сироп, сок лимона, чай матча",
@@ -1566,7 +1566,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Лимонады",
+      categoryId: "_11",
       name: "Груша-Базилик",
       description: "Сироп груша, свежий базилик, сок лимона",
       unit: "1000 мл.",
@@ -1578,7 +1578,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Лимонады",
+      categoryId: "_11",
       name: "Облепиха-Тархун",
       description: "Сироп облепиха, сироп тархун, сок лимона, апельсин",
       unit: "1000 мл.",
@@ -1590,7 +1590,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Лимонады",
+      categoryId: "_11",
       name: "Грейпфрут-Бабл гам",
       description:
         "Грейпфрутовый сок, сироп бабл гам, сок лимона, лайм, сахарный сироп",
@@ -1603,7 +1603,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Лимонады",
+      categoryId: "_11",
       name: "Лаванда-Малина",
       description: "Сироп лаванда, сироп малина, сок лимона, апельсин",
       unit: 1000,
@@ -1615,7 +1615,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Лимонады",
+      categoryId: "_11",
       name: "Ананас-миндаль",
       description:
         "Ананасовый сок, сахарный сироп, сироп миндаль, сок лимона,мята, лайм ",
@@ -1628,7 +1628,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Напитки",
+      categoryId: "_10",
       name: "Вода газ /негаз",
       description: null,
       unit: 330,
@@ -1639,7 +1639,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Напитки",
+      categoryId: "_10",
       name: "Сок в ассортименте (вишня, яблоко, ананас, грейпфрут, апельсин, персик)",
       description: null,
       unit: 200,
@@ -1650,7 +1650,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Напитки",
+      categoryId: "_10",
       name: "Газированные напитки (в ассортименте)",
       description: null,
       unit: 330,
@@ -1661,7 +1661,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Коктели БА",
+      categoryId: "_9",
       name: "Апероль БА",
       description: null,
       unit: 200,
@@ -1672,7 +1672,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Коктели БА",
+      categoryId: "_9",
       name: "Мохито БА ",
       description: null,
       unit: 200,
@@ -1683,7 +1683,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Коктели БА",
+      categoryId: "_9",
       name: "Мандариновый Тархун",
       description: null,
       unit: 200,
@@ -1694,7 +1694,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Коктели БА",
+      categoryId: "_9",
       name: "Курасао",
       description: null,
       unit: 200,
@@ -1705,7 +1705,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Коктели БА",
+      categoryId: "_9",
       name: "Глинтвейн БА",
       description: null,
       unit: 350,
@@ -1716,7 +1716,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Милшейки",
+      categoryId: "_8",
       name: "Киви",
       description: null,
       unit: 250,
@@ -1728,7 +1728,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Милшейки",
+      categoryId: "_8",
       name: "Банан-шоколад",
       description: null,
       unit: 250,
@@ -1739,7 +1739,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Милшейки",
+      categoryId: "_8",
       name: "Классический ",
       description: null,
       unit: 250,
@@ -1751,7 +1751,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Милшейки",
+      categoryId: "_8",
       name: "Карамельный",
       description: null,
       unit: 250,
@@ -1763,7 +1763,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Милшейки",
+      categoryId: "_8",
       name: "Клубничный",
       description: null,
       unit: 250,
@@ -1774,7 +1774,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Алкогольные коктели",
+      categoryId: "_7",
       name: "Мандарин Рояль",
       description: null,
       unit: 200,
@@ -1785,7 +1785,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Алкогольные коктели",
+      categoryId: "_7",
       name: "Мимоза",
       description: null,
       unit: 200,
@@ -1796,7 +1796,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Алкогольные коктели",
+      categoryId: "_7",
       name: "Кир рояль",
       description: null,
       unit: 200,
@@ -1807,7 +1807,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Алкогольные коктели",
+      categoryId: "_7",
       name: "Титаник",
       description: null,
       unit: 200,
@@ -1818,7 +1818,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Алкогольные коктели",
+      categoryId: "_7",
       name: "Апероль Спритц",
       description: null,
       unit: 200,
@@ -1829,7 +1829,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Алкогольные коктели",
+      categoryId: "_7",
       name: "Беллини",
       description: null,
       unit: 200,
@@ -1840,7 +1840,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Алкогольные коктели",
+      categoryId: "_7",
       name: "Фиеро Тоник",
       description: null,
       unit: 200,
@@ -1851,7 +1851,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Алкогольные коктели",
+      categoryId: "_7",
       name: "Клубничный Сауер",
       description: null,
       unit: 200,
@@ -1862,7 +1862,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Алкогольные коктели",
+      categoryId: "_7",
       name: "Ягодно-ванильный сауэр",
       description: null,
       unit: 200,
@@ -1873,7 +1873,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Алкогольные коктели",
+      categoryId: "_7",
       name: "Черносмородиновый Сауер",
       description: null,
       unit: 200,
@@ -1884,7 +1884,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Алкогольные коктели",
+      categoryId: "_7",
       name: "Глинтвейн на белом вине",
       description: null,
       unit: 200,
@@ -1895,7 +1895,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Алкогольные коктели",
+      categoryId: "_7",
       name: "Глинтвейн на красном вине",
       description: null,
       unit: 200,
@@ -1906,7 +1906,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Вино",
+      categoryId: "_6",
       name: "Новый свет",
       description: "Россия, Розовое, п/сл",
       unit: 750,
@@ -1917,7 +1917,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Вино",
+      categoryId: "_6",
       name: "Аристов ",
       description: "Кубань, белое, брют",
       unit: 750,
@@ -1928,7 +1928,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Вино",
+      categoryId: "_6",
       name: "Глера Спуманте Фонте ",
       description: "Италия, белое, extra dry",
       unit: 750,
@@ -1939,7 +1939,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Вино",
+      categoryId: "_6",
       name: "Просекко Болла",
       description: "Италия, белое, сухое",
       unit: 200,
@@ -1950,7 +1950,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Белые Вина",
+      categoryId: "_5",
       name: "Рислинг Бекштайнер",
       description: "Германия, белое, сухое",
       unit: 750,
@@ -1961,7 +1961,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Белые Вина",
+      categoryId: "_5",
       name: "Арко бэйМальборо Совиньон Блан",
       description: "Новая зеландия, белое, сухое",
       unit: 750,
@@ -1972,7 +1972,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Белые Вина",
+      categoryId: "_5",
       name: "Винье Верде Альту Лима",
       description: "Португалия, белое, сухое",
       unit: 750,
@@ -1983,7 +1983,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Белые Вина",
+      categoryId: "_5",
       name: "Геометрия Кокур",
       description: "Крым, белое, п/сух",
       unit: 750,
@@ -1994,7 +1994,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Белые Вина",
+      categoryId: "_5",
       name: "Ривер Рут ГевюрцРаминер",
       description: "Германия, Полусладкое",
       unit: 750,
@@ -2005,7 +2005,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Белые Вина",
+      categoryId: "_5",
       name: "Мскат Массандра",
       description: "Крым, п/сл",
       unit: 750,
@@ -2016,7 +2016,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Белые Вина",
+      categoryId: "_5",
       name: "Палавани Алазанская долина (Ркацители)",
       description: "Грузия, п/сл",
       unit: 750,
@@ -2027,7 +2027,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Розовые Вина",
+      categoryId: "_4",
       name: "Вайнкеллерай Ленц Мозер Цвайгельт Розе",
       description: "Австрия, сухое",
       unit: 750,
@@ -2038,7 +2038,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Розовые Вина",
+      categoryId: "_4",
       name: "Павао Розе",
       description: "Португалия, п/сух",
       unit: 750,
@@ -2049,7 +2049,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Не виноградные вина",
+      categoryId: "_3",
       name: "Сады Армении Гранат",
       description: "Армения, Гранатовое, п/сл",
       unit: 750,
@@ -2060,7 +2060,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Не виноградные вина",
+      categoryId: "_3",
       name: "ШанХазарян Малина",
       description: "Армения, Малиновое, п/сл",
       unit: 750,
@@ -2071,7 +2071,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Красные Вина",
+      categoryId: "_2",
       name: "Каберне ",
       description: "Крым, красное, сухое",
       unit: 750,
@@ -2082,7 +2082,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Красные Вина",
+      categoryId: "_2",
       name: "Трапиче Вильярдс Мальбек",
       description: "Аргентина, красное, сухое",
       unit: 750,
@@ -2093,7 +2093,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Красные Вина",
+      categoryId: "_2",
       name: "Пино Нуар Пэид'ок Мэзон Кастель",
       description: "Франция, красное, сухое",
       unit: 750,
@@ -2104,7 +2104,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Красные Вина",
+      categoryId: "_2",
       name: "Кукабара Каберне Совиньон",
       description: "Австралия, красное, п/сух",
       unit: 750,
@@ -2115,7 +2115,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Красные Вина",
+      categoryId: "_2",
       name: "Шато Руж",
       description: "Крым, красное, п/сух",
       unit: 750,
@@ -2126,7 +2126,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Красные Вина",
+      categoryId: "_2",
       name: "Абшерон Шараб",
       description: "Азербайджан, красное, п/сл",
       unit: 750,
@@ -2137,7 +2137,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Красные Вина",
+      categoryId: "_2",
       name: "Палавани Алазанская долина (Саперави)",
       description: "Грузия, красное , п/сл",
       unit: 750,
@@ -2148,7 +2148,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Пиво",
+      categoryId: "_1",
       name: "Крюгер Пилснер",
       description: "Светлое, фильтрованное",
       unit: 500,
@@ -2159,7 +2159,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Пиво",
+      categoryId: "_1",
       name: "Крюгер Дункель",
       description: "Темное, фильтрованное",
       unit: 500,
@@ -2170,7 +2170,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Пиво",
+      categoryId: "_1",
       name: "Харвестр",
       description: "Светлое, нефильтрованное",
       unit: 500,
@@ -2181,7 +2181,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Пиво",
+      categoryId: "_1",
       name: "Аркобой Мозер Лизель",
       description: "Светлое, фильтрованное",
       unit: 500,
@@ -2192,7 +2192,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Пиво",
+      categoryId: "_1",
       name: "Либейнвайс Хефе-Вайсиб",
       description: "Светлое, нефильтрованное",
       unit: 500,
@@ -2203,7 +2203,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Пиво",
+      categoryId: "_1",
       name: "Черновар",
       description: "Темное, фильтрованное",
       unit: 500,
@@ -2214,7 +2214,7 @@ export default function () {
     },
     {
       menu: "Бар",
-      category: "Пиво",
+      categoryId: "_1",
       name: "Бакалар (б/а)",
       description: "Светлое, фильтрованное, безалкогольное",
       unit: 500,
@@ -2229,6 +2229,7 @@ export default function () {
     {
       title: {
         ru: "Кофе",
+        en: "Coffee",
       },
       slug: "coffee",
       _id: "_17",
@@ -2237,6 +2238,7 @@ export default function () {
     {
       title: {
         ru: "Какао & Горячий шоколад",
+        en: "Cocoa and Hot Chocolate",
       },
       slug: "hot_chocolate",
       _id: "_16",
@@ -2245,6 +2247,7 @@ export default function () {
     {
       title: {
         ru: "Чай",
+        en: "Tea",
       },
       slug: "tea",
       _id: "_15",
@@ -2253,6 +2256,7 @@ export default function () {
     {
       title: {
         ru: "Добавки к чаю",
+        en: "Tea additives",
       },
       slug: "tea_additives",
       _id: "_14",
@@ -2261,6 +2265,7 @@ export default function () {
     {
       title: {
         ru: "Авторский Чай",
+        en: "Author's Tea",
       },
       slug: "authors_tea",
       _id: "_13",
@@ -2269,6 +2274,7 @@ export default function () {
     {
       title: {
         ru: "Морсы",
+        en: "Fruit drinks",
       },
       slug: "friut_drinks",
       _id: "_12",
@@ -2277,6 +2283,7 @@ export default function () {
     {
       title: {
         ru: "Лимонады",
+        en: "Lemonades",
       },
       slug: "lemonades",
       _id: "_11",
@@ -2285,6 +2292,7 @@ export default function () {
     {
       title: {
         ru: "Напитки",
+        en: "Beverages",
       },
       slug: "beverages",
       _id: "_10",
@@ -2293,6 +2301,7 @@ export default function () {
     {
       title: {
         ru: "Коктели БА",
+        en: "Cocktails (W/A)",
       },
       slug: "cocktails",
       _id: "_9",
@@ -2301,6 +2310,7 @@ export default function () {
     {
       title: {
         ru: "Милшейки",
+        en: "Milsheyki",
       },
       slug: "milkshakes",
       _id: "_8",
@@ -2308,7 +2318,8 @@ export default function () {
     },
     {
       title: {
-        ru: "Алкогольные коктели",
+        ru: "Алкогольные коктейли",
+        en: "Alcoholic cocktails",
       },
       slug: "cocktail",
       _id: "_7",
@@ -2317,6 +2328,7 @@ export default function () {
     {
       title: {
         ru: "Вино",
+        en: "Wine",
       },
       slug: "wine",
       _id: "_6",
@@ -2325,6 +2337,7 @@ export default function () {
     {
       title: {
         ru: "Белые Вина",
+        en: "White Wines",
       },
       slug: "white_wine",
       _id: "_5",
@@ -2333,6 +2346,7 @@ export default function () {
     {
       title: {
         ru: "Розовые Вина",
+        en: "Rose Wines",
       },
       slug: "pink_wine",
       _id: "_4",
@@ -2341,6 +2355,7 @@ export default function () {
     {
       title: {
         ru: "Не виноградные вина",
+        en: "Not grape wines",
       },
       slug: "no_red_wine",
       _id: "_3",
@@ -2349,6 +2364,7 @@ export default function () {
     {
       title: {
         ru: "Красные Вина",
+        en: "Red Wines",
       },
       slug: "red_wine",
       _id: "_2",
@@ -2357,6 +2373,7 @@ export default function () {
     {
       title: {
         ru: "Пиво",
+        en: "Beer",
       },
       slug: "beer",
       _id: "_1",

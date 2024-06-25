@@ -10,8 +10,8 @@ const notifications: { count: 2 }[] = []
 
 <template>
   <div class="flex flex-col min-h-screen">
-    <div class="fixed top-8 w-full flex justify-end px-6">
-      <!-- <ChangeLanguage /> -->
+    <div class="fixed top-8 w-full flex justify-between px-6">
+      <ChangeLanguage />
       <Menu />
     </div>
     <main class="flex-1">

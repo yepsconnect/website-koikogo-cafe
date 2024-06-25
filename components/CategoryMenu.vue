@@ -13,7 +13,7 @@ defineProps<{
       class="badge badge-lg badge-outline whitespace-nowrap capitalize" :class="{
         'badge-primary': activeCategory === category.slug,
       }" :href="'#' + category.slug" @click="$emit('onSubmit', category.slug)">
-      {{ category.title[locale] }}
+      {{ category?.title[locale] || category?.title[Object.keys(category.title)[0]] }}
     </a>
   </div>
 </template>

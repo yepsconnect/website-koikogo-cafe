@@ -19,7 +19,7 @@ interface Category {
 interface Dish {
   _id: string;
   menu: string;
-  category: string;
+  categoryId: string;
   name: string;
   description: string | null;
   unit: string | number;

@@ -82,10 +82,12 @@ const openModalInfo = (dish: Dish) => {
           @on-submit="val => activeCategory = val" :locale="locale" />
         <div class="flex flex-col gap-12 mt-6">
           <div v-for="(category, index) in categories" :key="index" class="relative">
-            <span :id="category._id" class="absolute -top-16"></span>
-            <h3 class="text-3xl uppercase">{{ category.title[locale] }}</h3>
+            <span :id="category.slug" class="absolute -top-16"></span>
+            <h2 class="text-2xl font-bold uppercase">
+              {{ category?.title[locale] || category?.title[Object.keys(category.title)[0]] }}
+            </h2>
             <div class="flex flex-col gap-4 mt-3">
-              <DishItem v-for="item in menu.filter(x => x.category === category.title[locale])" :dish="item"
+              <DishItem v-for="item in menu.filter(x => x.categoryId === category._id)" :dish="item"
                 @on-submit="openModalInfo" />
             </div>
           </div>
