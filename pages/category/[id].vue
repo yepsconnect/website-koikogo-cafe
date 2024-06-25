@@ -104,6 +104,10 @@ const addLanguage = (language: string) => {
     newLang.value = null;
   }
 };
+
+const deleteLocale = (code: string) => {
+  languages.value = languages.value.filter(x => x !== code);
+};
 </script>
 
 <template>
@@ -117,7 +121,8 @@ const addLanguage = (language: string) => {
           <div v-for="code in languages" :key="code" class="flex flex-col gap-2">
             <div class="flex items-center justify-between w-full">
               <h3>{{ t(`language.${code}`) }}</h3>
-              <button v-if="languages.length > 1" class="btn btn-sm">{{ t('label.deleteTranslate') }}</button>
+              <button v-if="languages.length > 1" class="btn btn-sm" @click="deleteLocale(code)">{{
+                t('label.deleteTranslate') }}</button>
             </div>
             <input v-model="data.category.title[code]" type="text" class="input input-bordered"
               :placeholder="t('label.categoryName') + ' (' + code + ')'">
