@@ -1,10 +1,24 @@
+name:
+  - "Сafe"
+  - "named"
+  - "after Koikogo"
+
+modal:
+  order:
+    title: "My order"
+
 language:
   ru: "Russian"
   en: "English"
 
 label:
-  select: Select
-  deleteTranslate: Delete locale
+  rub: "rub"
+  clear: "Clear"
+  close: "Close"
+  added: "Added"
+  pieces: "pcs."
+  select: "Select"
+  deleteTranslate: "Delete locale"
   add: "Add"
   categoryName: "Category Name"
   categoryInfo: "Category Information"
@@ -21,12 +35,17 @@ label:
   viber: "Viber"
 
 screen:
+  menu:
+    title: "Menu"
+  bar:
+    title: "Beverages"
   category:
     title: "Categories"
   categoryAdd:
     title: "New category"
   about:
-    title:
+    title: "About restaurant"
+    subtitle:
       - "Cafe named after Koikogo."
       - "So, after all, who?"
     description: "Someone you come to visit as a good friend, who will feed you amazingly tasty food, will pleasantly surprise you every time, with whom a hearty dinner or a couple of glasses of wine will fly by unnoticed. A glass dome with panoramic views of the city, a varied menu and warm service will delight anyone who decides to visit us after a leisurely stroll through their favorite surroundings."

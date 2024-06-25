@@ -1,3 +1,7 @@
+<script setup lang="ts">
+const { t } = useI18n()
+</script>
+
 <template>
   <div class="dropdown dropdown-end z-50">
     <div tabindex="0" role="button" class="btn btn-circle m-1">
@@ -8,14 +12,14 @@
     </div>
     <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-200 rounded-box w-52">
       <li>
-        <NuxtLink :to="{ name: 'about' }">О заведении</NuxtLink>
+        <NuxtLink :to="{ name: 'about' }">{{ t('screen.about.title') }}</NuxtLink>
       </li>
       <li></li>
       <li>
-        <NuxtLink to="/">Основное меню</NuxtLink>
+        <NuxtLink to="/">{{ t('screen.menu.title') }}</NuxtLink>
       </li>
       <li>
-        <NuxtLink :to="{ name: 'bar' }">Карта бара</NuxtLink>
+        <NuxtLink :to="{ name: 'bar' }">{{ t('screen.bar.title') }}</NuxtLink>
       </li>
     </ul>
   </div>

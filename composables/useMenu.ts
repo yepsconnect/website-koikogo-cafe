@@ -344,8 +344,9 @@ export default function () {
     {
       menu: "Основное меню",
       categoryId: "667aa65807d1b9558d226bfa",
-      name: "Сыр моцарелла, Пепперони, Ветчина, Халапенью, Маслины/оливки, Бекон",
-      description: null,
+      name: "Добавки в ассортименте",
+      description:
+        "Сыр моцарелла, Пепперони, Ветчина, Халапенью, Маслины/оливки, Бекон",
       unit: 50,
       price: 70,
       feature: null,
@@ -613,8 +614,9 @@ export default function () {
     {
       menu: "Основное меню",
       categoryId: "667aa6eb07d1b9558d226c0c",
-      name: "томатный с травами, сырный, барбекю, кетчуп, сметана, майонез, чили остро-сладкий, ягодный, сгущенка",
-      description: null,
+      name: "Соусы в ассортименте",
+      description:
+        "томатный с травами, сырный, барбекю, кетчуп, сметана, майонез, чили остро-сладкий, ягодный, сгущенка",
       unit: 40,
       price: 50,
       feature: null,
@@ -651,7 +653,7 @@ export default function () {
       name: "Наполеон малиновый",
       description:
         "Слоеное тесто собственного производства в сочетании с заварным кремом и прослойкой из малинового соуса.",
-      unit: "150 г.",
+      unit: "150",
       price: 230,
       feature: null,
       image:
@@ -664,7 +666,7 @@ export default function () {
       name: "Чизкейк с ягодным соусом",
       description:
         "классический чизкейк на корже из песочного теста. Подается с ягодным соусом.",
-      unit: "150 г.",
+      unit: "150",
       price: 280,
       feature: null,
       image: "",
@@ -676,7 +678,7 @@ export default function () {
       name: "Шоколадный чиз",
       description:
         "Классический чизкейк с добавлением шоколада на корже из песочного теста. Украшен шоколадной крошкой.",
-      unit: "150 г.",
+      unit: "150",
       price: 285,
       feature: null,
       image: "",
@@ -688,7 +690,7 @@ export default function () {
       name: "Торт Эстерхази",
       description:
         "Фундучный бисквит выпекается без муки, с молочно-карамельной начинкой украшен грецким орехом и лепестками миндаля",
-      unit: "150 г.",
+      unit: "150",
       price: 270,
       feature: null,
       image: "",
@@ -700,7 +702,7 @@ export default function () {
       name: "Меренговый рулет",
       description:
         "Основа - нежная хрустящая меренга, с кремом чиз и манговой прослойкой. Украшен мятой и свежей клубникой.",
-      unit: "150 г.",
+      unit: "150",
       price: 240,
       feature: null,
       image: "",
@@ -712,7 +714,7 @@ export default function () {
       name: "Торт Сникерс",
       description:
         "Шоколадный бисквит с сливочно сырным кремом с соленой карамелью и арахисом.",
-      unit: "150 г.",
+      unit: "150",
       price: 220,
       feature: null,
       image: "",
@@ -724,7 +726,7 @@ export default function () {
       name: "Торт Маковый с Лимоном",
       description:
         "Маковый нежный бисквит с ванильным крем чизом и лимонным куртом.",
-      unit: "150 г.",
+      unit: "150",
       price: 260,
       feature: null,
       image: "",
@@ -735,7 +737,7 @@ export default function () {
       categoryId: "667aa70007d1b9558d226c0f",
       name: "Торт Красный бархат",
       description: "Красный бисквит с начинкой крем чиз и клубникой",
-      unit: "150 г.",
+      unit: "150",
       price: 230,
       feature: null,
       image: "",
@@ -747,7 +749,7 @@ export default function () {
       name: "Торт Шоколадно-банановый",
       description:
         "Маковый нежный бисквит с ванильным крем чизом и лимонным куртом",
-      unit: "150 г.",
+      unit: "150",
       price: 220,
       feature: null,
       image: "",
@@ -759,7 +761,7 @@ export default function () {
       name: "Капкейк малина",
       description:
         "Шоколадный бисквит с начинкой из малинового пюре, украшен шапкой из крем чиза",
-      unit: "150 г.",
+      unit: "150",
       price: 110,
       feature: null,
       image: "",
@@ -771,7 +773,7 @@ export default function () {
       name: "Капкейк банан",
       description:
         "Шоколадный бисквит с начинкой из свежего банана, украшен шапкой из крем чиза",
-      unit: "150 г.",
+      unit: "150",
       price: 100,
       feature: null,
       image: "",
@@ -783,7 +785,7 @@ export default function () {
       name: "Капкейк соленая карамель",
       description:
         "Шоколадный бисквит с начинкой из малинового пюре, украшен шапкой из крем чиз",
-      unit: "150 г.",
+      unit: "150",
       price: 100,
       feature: null,
       image: "",
@@ -1030,9 +1032,10 @@ export default function () {
     {
       menu: "Основное меню",
       categoryId: "667aa72e07d1b9558d226c15",
-      name: "Напиток дня (чай: черный/зеленый, кофе: американо/капучино, морс в ассортименте)",
-      description: null,
-      unit: "1 шт",
+      name: "Напиток дня",
+      description:
+        "Чай: черный/зеленый, кофе: американо/капучино, морс в ассортименте",
+      unit: "1",
       price: 75,
       feature: null,
       image: "",
@@ -1043,7 +1046,7 @@ export default function () {
       categoryId: "667aa72e07d1b9558d226c15",
       name: "Десерт дня",
       description: null,
-      unit: "1шт",
+      unit: "1",
       price: 100,
       feature: null,
       image: "",
@@ -1365,7 +1368,7 @@ export default function () {
       categoryId: "_14",
       name: "Мята",
       description: null,
-      unit: "5 гр.",
+      unit: "5",
       price: 30,
       feature: null,
       image: "",
@@ -1387,7 +1390,7 @@ export default function () {
       categoryId: "_14",
       name: "Лимон",
       description: null,
-      unit: "50 гр.",
+      unit: "50",
       price: 30,
       feature: null,
       image: "",
@@ -1398,7 +1401,7 @@ export default function () {
       categoryId: "_14",
       name: "Чабрец",
       description: null,
-      unit: "5 гр.",
+      unit: "5",
       price: 30,
       feature: null,
       image: "",

@@ -32,6 +32,7 @@ useHead({
 // composables
 const { menu, categories } = useMenu();
 const { order } = useOrder();
+const { t } = useI18n();
 
 // state
 const selectedDish = ref<Dish>();
@@ -62,16 +63,15 @@ const openModalInfo = (dish: Dish) => {
         <Vine class="max-w-64" />
         <div>
           <h1 class="text-4xl font-bold uppercase">
-            <span class="text-2xl">Кафе</span>
+            <span class="text-2xl">{{ t('name[0]') }}</span>
             <br />
-            Имени
+            {{ t('name[1]') }}
             <br />
-            Койкого
+            {{ t('name[2]') }}
           </h1>
           <br />
-
           <p class="text-xl uppercase">
-            Карта Бара
+            {{ t("screen.bar.title") }}
           </p>
         </div>
       </div>

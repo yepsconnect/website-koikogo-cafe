@@ -5,6 +5,7 @@ const props = defineProps<{
 }>();
 
 // composables
+const { t } = useI18n();
 const { menu } = useMenu();
 const { order, decrementOrder, incrementOrder, clearOrder } = useOrder();
 // computed
@@ -18,7 +19,7 @@ const isOpen = computed({
 <template>
   <Modal v-model="isOpen">
     <div class="flex flex-col gap-4">
-      <h2 class="text-2xl font-bold">Мой заказ</h2>
+      <h2 class="text-2xl font-bold">{{ t("modal.order.title") }}</h2>
       <div v-if="order.length" class="flex flex-col gap-2">
         <div v-for="item in order" :key="item._id" class="flex justify-between gap-2">
           <p class="uppercase text-lg hover:underline cursor-pointer">
@@ -41,9 +42,11 @@ const isOpen = computed({
         <p class="text-center">Заказ пуст</p>
       </div>
       <div class="flex gap-3">
-        <button class="btn flex-1" @click="isOpen = false">Закрыть</button>
+        <button class="btn flex-1" @click="isOpen = false">
+          {{ t("label.close") }}
+        </button>
         <button class="btn flex-1" @click="clearOrder()">
-          Очистить заказ
+          {{ t("label.clear") }}
         </button>
       </div>
     </div>

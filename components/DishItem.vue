@@ -3,6 +3,8 @@ defineEmits(["onSubmit"]);
 defineProps<{
   dish: Dish;
 }>();
+
+const { t } = useI18n();
 </script>
 
 <template>
@@ -34,7 +36,7 @@ defineProps<{
         </div>
 
         <p class="text-md">
-          {{ dish.price === 0 ? "Уточните в меню" : dish.price }}
+          {{ dish.price === 0 ? "Уточните в меню" : dish.price }} {{ t('label.rub') }}
         </p>
       </div>
     </div>

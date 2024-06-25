@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // composables
-const { order } =
-  useOrder();
+const { t } = useI18n();
+const { order } = useOrder();
 
 // state
 const isModalOrder = ref(false)
@@ -17,7 +17,7 @@ const notifications: { count: 2 }[] = []
     <main class="flex-1">
       <div class="toast toast-top toast-end z-50">
         <div v-for="item in notifications" class="alert alert-success">
-          <span>Добавлено {{ item.count }} шт</span>
+          <span>{{ t("label.added") }} {{ item.count }} {{ t("label.pieces") }}</span>
         </div>
       </div>
       <slot />

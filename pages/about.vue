@@ -28,18 +28,18 @@ onMounted(() => {
         <Logo class="max-w-64" animated />
         <div>
           <h1 class="text-4xl font-bold uppercase">
-            <span class="text-2xl">Кафе</span>
+            <span class="text-2xl">{{ t('name[0]') }}</span>
             <br />
-            Имени
+            {{ t('name[1]') }}
             <br />
-            Койкого
+            {{ t('name[2]') }}
           </h1>
         </div>
       </div>
     </section>
     <section class="flex flex-col gap-6">
       <h2 class="text-3xl font-bold">
-        {{ t('screen.about.title[0]') }} <br />{{ t('screen.about.title[1]') }}
+        {{ t('screen.about.subtitle[0]') }} <br />{{ t('screen.about.subtitle[1]') }}
       </h2>
       <div class="max-h-96 overflow-hidden">
         <img src="@/assets/images/place0.jpg" alt="place0" loading="lazy" class="object-cover" />

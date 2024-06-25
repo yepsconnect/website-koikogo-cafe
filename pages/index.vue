@@ -30,7 +30,7 @@ useHead({
 });
 // composables
 const { menu } = useMenu()
-const { locale } = useI18n();
+const { locale, t } = useI18n();
 // state
 const activeCategory = ref(null);
 const isModalInfo = ref(false);
@@ -56,12 +56,16 @@ const openModalInfo = (dish: Dish) => {
         <LogoMenu class="max-w-64" animated />
         <div>
           <h1 class="text-4xl font-bold uppercase">
-            <span class="text-2xl">Кафе</span>
+            <span class="text-2xl">{{ t('name[0]') }}</span>
             <br />
-            Имени
+            {{ t('name[1]') }}
             <br />
-            Койкого
+            {{ t('name[2]') }}
           </h1>
+          <br>
+          <p class="text-xl uppercase">
+            {{ t("screen.menu.title") }}
+          </p>
         </div>
       </div>
     </div>

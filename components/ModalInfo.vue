@@ -7,7 +7,7 @@ const props = defineProps<{
 
 //composables
 const { addToOrder } = useOrder();
-
+const { t } = useI18n();
 // state
 const count = ref(1);
 
@@ -53,14 +53,16 @@ const handleSubmit = () => {
           <button class="btn btn-square" :disabled="count < 2" @click="count--">
             -
           </button>
-          <div>{{ count }} шт</div>
+          <div>{{ count }} {{ t("label.pieces") }}</div>
           <button class="btn btn-square" @click="count++">+</button>
         </div>
       </div>
       <div class="mt-4 flex justify-between gap-2">
-        <button class="btn flex-1" @click="isOpen = false">Закрыть</button>
+        <button class="btn flex-1" @click="isOpen = false">
+          {{ t('label.close') }}
+        </button>
         <button class="btn flex-1" @click="handleSubmit">
-          Добавить
+          {{ t('label.add') }}
         </button>
       </div>
     </div>
