@@ -20,7 +20,8 @@ export default function () {
       unit: 150,
       price: 280,
       feature: null,
-      image: "",
+      image:
+        "https://avatars.mds.yandex.net/get-sprav-products/5236693/2a000001894541ec8b73435270b127655cca/orig",
       _id: 2,
     },
     {
@@ -54,7 +55,8 @@ export default function () {
       unit: 230,
       price: 280,
       feature: null,
-      image: "",
+      image:
+        "https://avatars.mds.yandex.net/get-sprav-products/5399152/2a0000018945492a876b99b65b1cef36e32d/orig",
       _id: 5,
     },
     {
@@ -66,7 +68,7 @@ export default function () {
       price: 260,
       feature: null,
       image:
-        "https://avatars.mds.yandex.net/get-sprav-products/5399152/2a000001894532f2993dae8b89b3d0b3b9c6/M_height",
+        "https://avatars.mds.yandex.net/get-sprav-products/5399152/2a000001894532f2993dae8b89b3d0b3b9c6/orig",
       _id: 6,
     },
     {
@@ -139,7 +141,8 @@ export default function () {
       unit: 160,
       price: 260,
       feature: null,
-      image: "",
+      image:
+        "https://avatars.mds.yandex.net/get-sprav-products/9495815/2a00000189450bee3c0ac2a8fa06f1327607/orig",
       _id: 12,
     },
     {
@@ -151,7 +154,8 @@ export default function () {
       unit: 270,
       price: 310,
       feature: null,
-      image: "",
+      image:
+        "https://avatars.mds.yandex.net/get-sprav-products/9495815/2a000001894504457d81845cfefd782901aa/orig",
       _id: 13,
     },
     {
@@ -169,13 +173,14 @@ export default function () {
     {
       menu: "Основное меню",
       categoryId: "667aa61407d1b9558d226bec",
-      name: "Оливье с брискетом ",
+      name: "Оливье с брискетом",
       description:
         "Салат с маринованной говядиной, малосольными огурцами, муссом из моркови, заправленный домашним майонезом",
       unit: 230,
       price: 280,
       feature: null,
-      image: "",
+      image:
+        "https://avatars.mds.yandex.net/get-sprav-products/5399152/2a0000018944d7153a383c556b0188f817a1/orig",
       _id: 15,
     },
     {
@@ -187,7 +192,7 @@ export default function () {
       unit: 210,
       price: 360,
       feature: null,
-      image: "",
+      image: "https://avatars.mds.yandex.net/get-sprav-products/9240521/2a0000018944f1b5b3297cdd447c561ff4ce/orig",
       _id: 16,
     },
     {
@@ -322,12 +327,12 @@ export default function () {
     {
       menu: "Основное меню",
       categoryId: "667aa62e07d1b9558d226bf4",
-      name: "Пицца пиперони ",
+      name: "Пицца пиперони",
       description: null,
       unit: 480,
       price: 490,
       feature: "острое",
-      image: "",
+      image: "https://avatars.mds.yandex.net/get-sprav-products/9495815/2a00000189537bdc875ac23ca89ba213fbeb/orig",
       _id: 28,
     },
     {
@@ -453,12 +458,12 @@ export default function () {
     {
       menu: "Основное меню",
       categoryId: "667aa68e07d1b9558d226c01",
-      name: "Печеный на углях картофель с томленым мясом",
+      name: "Печеный в костре картофель с томленым мясом",
       description: null,
       unit: 350,
       price: 520,
       feature: null,
-      image: "",
+      image: "https://avatars.mds.yandex.net/get-sprav-products/9854027/2a0000018953b6ff96c7b2281c1fe5ff34e8/orig",
       _id: 39,
     },
     {
@@ -482,7 +487,7 @@ export default function () {
       unit: 260,
       price: 790,
       feature: null,
-      image: "",
+      image: "https://avatars.mds.yandex.net/get-sprav-products/9854027/2a0000018953b2be28d1a17ecca31c1b4445/orig",
       _id: 41,
     },
     {
@@ -494,7 +499,7 @@ export default function () {
       unit: "180/150/50",
       price: 840,
       feature: null,
-      image: "",
+      image: "https://avatars.mds.yandex.net/get-sprav-products/5236693/2a0000018953ce0a0df0f26dba42bb194883/orig",
       _id: 42,
     },
     {
@@ -639,17 +644,6 @@ export default function () {
     {
       menu: "Основное меню",
       categoryId: "667aa70007d1b9558d226c0f",
-      name: "Торт Красный бархат",
-      description: "Красный бисквит с начинкой крем чиз и клубникой",
-      unit: 150,
-      price: 230,
-      feature: null,
-      image: "",
-      _id: 55,
-    },
-    {
-      menu: "Основное меню",
-      categoryId: "667aa70007d1b9558d226c0f",
       name: "Наполеон малиновый",
       description:
         "Слоеное тесто собственного производства в сочетании с заварным кремом и прослойкой из малинового соуса.",
@@ -669,7 +663,7 @@ export default function () {
       unit: "150",
       price: 280,
       feature: null,
-      image: "",
+      image: "https://avatars.mds.yandex.net/get-sprav-products/5399152/2a0000018953e5041bc15b075cc004e4703c/orig",
       _id: 57,
     },
     {
@@ -681,7 +675,7 @@ export default function () {
       unit: "150",
       price: 285,
       feature: null,
-      image: "",
+      image: "https://avatars.mds.yandex.net/get-sprav-products/9854027/2a0000018953dde80c25281025e64417f748/orig",
       _id: 58,
     },
     {
@@ -841,7 +835,7 @@ export default function () {
     {
       menu: "Основное меню",
       categoryId: "667aa70007d1b9558d226c0f",
-      name: "Торт на заказ ",
+      name: "Торт на заказ",
       description: "В ассортименте",
       unit: 1000,
       price: 0,
@@ -857,7 +851,7 @@ export default function () {
       unit: 190,
       price: 220,
       feature: null,
-      image: "",
+      image: "https://avatars.mds.yandex.net/get-sprav-products/9685839/2a00000189451ee46fcee9e46b9f0e63b7e5/orig",
       _id: 73,
     },
     {
@@ -868,7 +862,7 @@ export default function () {
       unit: 250,
       price: 180,
       feature: null,
-      image: "",
+      image: "https://avatars.mds.yandex.net/get-sprav-products/9495815/2a0000018945269c223f8fe88b13cfc6739c/orig",
       _id: 74,
     },
     {
@@ -988,12 +982,12 @@ export default function () {
     {
       menu: "Основное меню",
       categoryId: "667aa72e07d1b9558d226c15",
-      name: "Куриный суп с лапшой",
+      name: "Просто вкусный Куриный суп",
       description: null,
       unit: 300,
       price: 120,
       feature: null,
-      image: "",
+      image: "https://avatars.mds.yandex.net/get-sprav-products/9495815/2a000001895372003d0aa8d88f5074a63c08/orig",
       _id: 85,
     },
     {
