@@ -15,12 +15,12 @@ const { token } = useAuth();
 const languages = ref(['ru']);
 const isLoading = ref(false);
 // form state
-const categoryId = ref(route.query.id);
-const name = ref<{ [key: string]: string }>({ ru: 'Пицца маргарита', en: 'Margherita Pizza' });
+const categoryId = ref("");
+const name = ref<{ [key: string]: string }>({ ru: '' });
 const description = ref<{ [key: string]: string }>({ ru: '' });
-const unit = ref(440)
-const price = ref(520)
-const image = ref("https://avatars.mds.yandex.net/get-sprav-products/9240521/2a00000189537a6893fc63308d95f91387d0/M_height")
+const unit = ref()
+const price = ref()
+const image = ref("")
 
 // methods
 const handleSubmit = async () => {

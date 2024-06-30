@@ -53,6 +53,23 @@ const handleSubmit = async () => {
     isLoading.value = false;
   }
 };
+
+const handleDelete = async () => {
+  try {
+    isLoading.value = true;
+    const response = await $fetch(`/api/dish/${route.params.id}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: token.value!
+      }
+    });
+
+  } catch (error) {
+    console.error(error);
+  } finally {
+    isLoading.value = false;
+  }
+}
 </script>
 
 <template>
