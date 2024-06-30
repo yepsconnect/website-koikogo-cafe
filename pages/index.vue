@@ -29,8 +29,23 @@ useHead({
   ],
 });
 // composables
-const { menu } = useMenu()
 const { locale, t } = useI18n();
+// data
+const availableCategories = [
+  "667aa60907d1b9558d226be9",
+  "667aa61407d1b9558d226bec",
+  "667aa62607d1b9558d226bf1",
+  "667aa62e07d1b9558d226bf4",
+  "667aa65807d1b9558d226bfa",
+  "667aa66107d1b9558d226bfd",
+  "667aa68e07d1b9558d226c01",
+  "667aa6a907d1b9558d226c04",
+  "667aa6d407d1b9558d226c08",
+  "667aa6eb07d1b9558d226c0c",
+  "667aa70007d1b9558d226c0f",
+  "667aa71507d1b9558d226c12",
+  "667aa72e07d1b9558d226c15"
+]
 // state
 const activeCategory = ref(null);
 const isModalInfo = ref(false);
@@ -39,8 +54,16 @@ const { data } = useFetch<{
   ok: boolean
   categories: Category[]
 }>('/api/category')
+const { data: dataMenu } = useFetch<{
+  ok: boolean
+  dishes: Dish[]
+}>('/api/dish')
+
 // computed
-const filteredMenu = computed(() => menu.filter(x => x.menu === "Основное меню"))
+const result = computed(() => {
+  if (!data.value?.categories) return []
+  return data.value?.categories.filter(category => availableCategories.includes(category._id))
+})
 
 // methods
 const openModalInfo = (dish: Dish) => {
@@ -69,18 +92,18 @@ const openModalInfo = (dish: Dish) => {
         </div>
       </div>
     </div>
-    <template v-if="data?.categories">
-      <CategoryMenu :categories="data?.categories" :active-category="activeCategory"
-        @on-submit="val => activeCategory = val" :locale="locale" />
-      <Container>
-        <div v-for="(category) in data.categories" :key="category._id" class="relative mb-6">
-          <span :id="category.slug" class="absolute -top-16"></span>
-          <h2 class="text-2xl font-bold uppercase">{{ category?.title[locale] || Object.keys(category.title)[0] }}</h2>
-          <DishItem v-for="item in filteredMenu.filter(x => x.categoryId === category._id)" :key="item._id" :dish="item"
-            @on-submit="openModalInfo" />
-        </div>
-      </Container>
-    </template>
+
+    <Container v-if="dataMenu">
+      <CategoryMenu :categories="result" :active-category="activeCategory" @on-submit="val => activeCategory = val"
+        :locale="locale" />
+      <div v-for="(category) in result" :key="category._id" class="relative mb-6">
+        <span :id="category.slug" class="absolute -top-16"></span>
+        <h2 class="text-2xl font-bold uppercase">{{ category?.title[locale] || "ru" }}</h2>
+        <DishItem v-for="item in dataMenu.dishes.filter(x => x.categoryId === category._id)" :key="item._id"
+          :dish="item" :locale="locale" @on-submit="openModalInfo" />
+      </div>
+    </Container>
+
     <ModalInfo v-model="isModalInfo" :dish="selectedDish" />
   </div>
 </template>

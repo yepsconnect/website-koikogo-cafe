@@ -30,7 +30,7 @@ const { data } = useFetch<{
     <div v-if="data?.categories" class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-6">
       <NuxtLink v-for="category in data.categories" :key="category._id"
         :to="{ name: 'category-id', params: { id: category._id } }" class="aspect-square rounded-md border p-3">
-        <p>{{ category?.title[locale] || category?.title[Object.keys(category.title)[0]] }}</p>
+        <p>{{ category?.title[locale] || category?.title["ru"] }}</p>
       </NuxtLink>
     </div>
   </Container>

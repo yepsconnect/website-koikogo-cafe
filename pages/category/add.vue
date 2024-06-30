@@ -13,7 +13,6 @@ definePageMeta({
 const { t, locales } = useI18n();
 const { token } = useAuth();
 
-// computed
 const languages = ref(['ru']);
 
 const availableLocales = computed(() => locales.value.map(x => {
@@ -23,7 +22,6 @@ const availableLocales = computed(() => locales.value.map(x => {
   }
 }));
 const notSelectedLocales = computed(() => {
-  // return all locales except selected locales
   return availableLocales.value.filter(x => !languages.value.includes(x.value));
 })
 
@@ -87,6 +85,7 @@ const deleteLocale = (code: string) => {
             <h3>{{ t(`language.${code}`) }}</h3>
             <button v-if="languages.length > 1" class="btn btn-sm" @click="deleteLocale(code)">{{
               t('label.deleteTranslate') }}</button>
+            <button v-else @click="addLanguage('en')">Add en</button>
           </div>
           <input v-model="title[code]" type="text" class="input input-bordered"
             :placeholder="t('label.categoryName') + ' (' + code + ')'">

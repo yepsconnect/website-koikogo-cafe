@@ -16,6 +16,9 @@ const { t } = useI18n();
           <NuxtLink :to="{ name: 'category' }">{{ t('screen.category.title') }}</NuxtLink>
         </li>
         <li>
+          <NuxtLink :to="{ name: 'dish' }">{{ t('screen.dishes.title') }}</NuxtLink>
+        </li>
+        <li>
           <NuxtLink :to="{ name: 'settings' }">{{ t('screen.settings.title') }}</NuxtLink>
         </li>
       </ul>

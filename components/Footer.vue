@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import IconTelegram from "../components/IconTelegram"
-import IconVaber from "../components/IconVaber"
-import IconVK from "../components/IconVK"
-import IconWhatsApp from "../components/IconWhatsApp"
+import IconTelegram from "../components/IconTelegram.vue"
+import IconViber from "../components/IconViber.vue"
+import IconVK from "../components/IconVK.vue"
+import IconWhatsApp from "../components/IconWhatsApp.vue"
 
 const config = useRuntimeConfig();
 const { t } = useI18n();
@@ -28,7 +28,7 @@ const socials = [
   {
     label: t('label.viber'),
     value: "viber",
-    icon: IconVaber,
+    icon: IconViber,
     link: "viber://chat?number=79511985779"
   },
 ]

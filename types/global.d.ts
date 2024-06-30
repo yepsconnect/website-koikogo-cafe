@@ -18,14 +18,20 @@ interface Category {
 
 interface Dish {
   _id: string;
-  menu: string;
   categoryId: string;
-  name: string;
-  description: string | null;
-  unit: string | number;
+  name: {
+    [key: string]: string;
+  };
+  description: {
+    [key: string]: string;
+  };
+  unit: string;
   price: number;
-  feature: string | null;
   image: string | null;
-  type: string | null;
-  portion_size: string | null;
+  slug: string;
+}
+
+interface OrderItem {
+  _id: string;
+  count: number;
 }

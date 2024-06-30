@@ -6,7 +6,7 @@ name:
 modal:
   order:
     title: "Ваш заказ"
-    totalPrice: "Еда на сумму"
+    totalPrice: "Сумма заказа"
     empty: "Ваш заказ сейчас пуст"
 
 language:

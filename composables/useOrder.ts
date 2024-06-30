@@ -1,10 +1,5 @@
 export default function () {
-  const order = useState<
-    {
-      _id: string;
-      count: number;
-    }[]
-  >("order", () => []);
+  const order = useState<OrderItem[]>("order", () => []);
 
   const addToOrder = (_id: string, count: number) => {
     const orderItem = order.value.find((item) => item._id === _id);

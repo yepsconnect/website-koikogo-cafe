@@ -2,6 +2,7 @@
 defineEmits(["onSubmit"]);
 defineProps<{
   dish: Dish;
+  locale: string;
 }>();
 
 const { t } = useI18n();
@@ -17,17 +18,17 @@ const { t } = useI18n();
             loading="lazy" />
         </div>
       </div>
-      <div class="flex flex-col md:flex-row justify-between w-full md:gap-4">
+      <div class="flex flex-col w-full">
         <div class="flex-1 flex flex-col items-start">
           <p class="uppercase">
-            {{ dish.name }}
+            {{ dish.name[locale] || dish.name["ru"] }}
           </p>
         </div>
 
         <p>
           {{ dish.price }}₽
           <span class="text-sm text-gray-600">
-            {{ dish.portion_size }} {{ dish.unit }}
+            {{ dish.unit }}
           </span>
         </p>
       </div>

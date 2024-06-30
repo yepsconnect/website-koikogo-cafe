@@ -2,8 +2,6 @@
 import Container from '~/components/Container.vue';
 import { ref } from 'vue';
 
-
-
 definePageMeta({
   middleware: 'auth',
   layout: 'auth'
