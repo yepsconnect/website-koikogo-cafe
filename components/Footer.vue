@@ -20,7 +20,7 @@ const socials = [
     link: "https://t.me/+79511985779"
   },
   {
-    label: t('label.whatsup'),
+    label: t('label.whatsapp'),
     value: "whatsapp",
     icon: IconWhatsApp,
     link: "https://wa.me/79511985779"

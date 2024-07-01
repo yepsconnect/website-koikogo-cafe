@@ -5,29 +5,33 @@ interface User {
   role: "root" | "owner" | "manager" | "waiter" | "guest";
 }
 
-interface Category {
-  _id: string;
+interface CategoryNew {
   description: {
     [key: string]: string;
   };
-  slug: string;
   title: {
     [key: string]: string;
   };
 }
 
-interface Dish {
+interface Category extends CategoryNew {
   _id: string;
+  order: number;
+  slug: string;
+}
+
+interface NewDish {
   categoryId: string;
-  name: {
-    [key: string]: string;
-  };
-  description: {
-    [key: string]: string;
-  };
-  unit: string;
-  price: number;
+  description: { [key: string]: string };
   image: string | null;
+  name: { [key: string]: string };
+  price: number;
+  unit: string;
+}
+
+interface Dish extends NewDish {
+  _id: string;
+  order: number;
   slug: string;
 }
 

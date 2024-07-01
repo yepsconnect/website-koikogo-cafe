@@ -17,4 +17,5 @@ export const Dish = defineMongooseModel<Dish>("Dish", {
   categoryId: { type: String, required: true },
   image: { type: String, default: null },
   slug: { type: String, required: true, unique: true },
+  order: { type: Number, default: 0, unique: true },
 });

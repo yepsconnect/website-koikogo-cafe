@@ -5,26 +5,30 @@ export default defineEventHandler(async (event) => {
   const { isAuth } = event.context;
   if (!isAuth) return;
 
-  const { description, title } = await readBody(event);
+  const { category } = await readBody(event);
 
   let slug;
-  if (title["en"]) {
-    slug = slugify(title["en"], { lower: true });
+  if (category.title["en"]) {
+    slug = slugify(category.title["en"], { lower: true });
   } else {
-    slug = slugify(title[Object.keys(title)[0]], {
+    slug = slugify(category.title[Object.keys(category.title)[0]], {
       lower: true,
     });
   }
 
-  const category = await Category.create({
-    description,
+  // нужно добавить порядковый номер категории
+  const lastCategory = await Category.find().sort({ order: -1 }).limit(1);
+  const order = lastCategory.length ? lastCategory[0].order + 1 : 1;
+
+  const newCategory = await Category.create({
+    ...category,
     slug,
-    title,
+    order,
   });
 
   return {
     ok: true,
     message: "Категория создана",
-    category,
+    category: newCategory,
   };
 });

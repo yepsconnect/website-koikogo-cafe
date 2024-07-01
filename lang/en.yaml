@@ -14,6 +14,14 @@ language:
   en: "English"
 
 label:
+  edit: "Edit"
+  category: "Category"
+  name: "Name"
+  description: "Description"
+  unit: "Unit"
+  price: "Price"
+  image: "Image URL"
+  search: "Find %{field}"
   logout: "Logout"
   rub: "rub"
   clear: "Clear"
@@ -32,13 +40,20 @@ label:
   bar: "Bar"
   reserve: "Reserve a table"
   talk: "Talk"
-  vk: "VKontakte"
+  vk: "Vkontakte"
   telegram: "Telegram"
-  whatsup: "WhatsApp"
+  whatsapp: "WhatsApp"
   viber: "Viber"
-  addLocale: "Add locale"
 
 screen:
+  dishes:
+    title: "Menu positions"
+  dishAdd:
+    title: "Add menu position"
+    remark: "Set image url for this menu item"
+  dishEdit:
+    title: "Edit menu position"
+    remark: "Set image url for this menu item"
   admin:
     title: "Admin panel"
   settings:
@@ -52,7 +67,7 @@ screen:
   categoryEdit:
     title: "Edit category"
   categoryAdd:
-    title: "New category"
+    title: "Add category"
   about:
     title: "About restaurant"
     subtitle:

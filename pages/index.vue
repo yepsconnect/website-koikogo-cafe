@@ -62,7 +62,7 @@ const { data: dataMenu } = useFetch<{
 // computed
 const result = computed(() => {
   if (!data.value?.categories) return []
-  return data.value?.categories.filter(category => availableCategories.includes(category._id))
+  return data.value?.categories.filter(category => availableCategories.includes(category._id)).sort((a, b) => a.order - b.order)
 })
 
 // methods
