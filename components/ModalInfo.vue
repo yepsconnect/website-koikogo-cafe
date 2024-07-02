@@ -38,7 +38,7 @@ const handleSubmit = () => {
           </div>
         </div>
       </div>
-      <h2 class="uppercase text-lg font-bold">{{ dish?.name[locale] || dish?.name['ru'] }}</h2>
+      <h2 class="uppercase text-lg font-bold">{{ dish?.title[locale] || dish?.title['ru'] }}</h2>
       <p v-if="dish?.description" class="text-sm text-gray-500">{{ dish.description[locale] || dish.description['ru'] }}
       </p>
       <div class="flex items-center justify-between gap-2">

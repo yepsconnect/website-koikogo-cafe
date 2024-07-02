@@ -38,7 +38,7 @@ onMounted(async () => {
 
 // methods
 const handleSubmit = async () => {
-  if (!dish.value || !dish.value.name["ru"] || !dish.value.price || !dish.value.unit || !dish.value.categoryId) {
+  if (!dish.value || !dish.value.title["ru"] || !dish.value.price || !dish.value.unit || !dish.value.categoryId) {
     return alert("")
   }
   try {
@@ -62,7 +62,7 @@ const handleSubmit = async () => {
     const isConfirmed = confirm("Успуешно добавлено. Добавить еще?");
     if (isConfirmed) {
       dish.value.image = "";
-      dish.value.name = {};
+      dish.value.title = {};
       dish.value.price = 0;
       dish.value.unit = "";
       dish.value.categoryId = "";
@@ -117,12 +117,12 @@ const handleDelete = async () => {
           'badge-primary': item.code === selectedLocale,
         }" @click="selectedLocale = item.code">
           {{ $t(`language.${item.code}`) }}
-          <IconCheck v-if="dish.name[item.code]" class="w-4 fill-success" />
+          <IconCheck v-if="dish.title[item.code]" class="w-4 fill-success" />
           <IconСircleXmark v-else class="w-4 fill-error" />
         </div>
       </div>
-      <input v-model="dish.name[selectedLocale]" class="input input-bordered"
-        :placeholder="$t('label.name') + ' (' + selectedLocale + ')'" />
+      <input v-model="dish.title[selectedLocale]" class="input input-bordered"
+        :placeholder="$t('label.title') + ' (' + selectedLocale + ')'" />
       <textarea v-model="dish.description[selectedLocale]"
         class="textarea textarea-bordered placeholder:text-base text-base"
         :placeholder="$t('label.description') + ' (' + selectedLocale + ')'"></textarea>

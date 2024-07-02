@@ -7,20 +7,20 @@ export default defineEventHandler(async (event) => {
 
   const { dish } = await readBody(event);
 
-  const { categoryId, name, description, unit, price, image } = dish;
+  const { categoryId, title, description, unit, price, image } = dish;
 
   let slug;
-  if (name["en"]) {
-    slug = slugify(name["en"], { lower: true });
+  if (title["en"]) {
+    slug = slugify(title["en"], { lower: true });
   } else {
-    slug = slugify(name[Object.keys(name)[0]], {
+    slug = slugify(title[Object.keys(title)[0]], {
       lower: true,
     });
   }
 
   const newDish = await Dish.create({
     categoryId,
-    name,
+    title,
     description,
     unit,
     price,

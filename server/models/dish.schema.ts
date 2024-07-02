@@ -1,7 +1,7 @@
 import { defineMongooseModel } from "#nuxt/mongoose";
 
 export const Dish = defineMongooseModel<Dish>("Dish", {
-  name: {
+  title: {
     type: Map,
     of: String,
     required: true,

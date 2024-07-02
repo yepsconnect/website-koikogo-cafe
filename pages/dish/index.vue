@@ -25,9 +25,9 @@ const dishes = computed(() => {
   return data.value.dishes
     .sort((a, b) => a.order - b.order)
     .filter(dish => {
-      const name = dish.name[currentLocale] || dish.name['en']
+      const title = dish.title[currentLocale] || dish.title['en']
 
-      return name.toLowerCase().includes(searchableDish.value.toLowerCase())
+      return title.toLowerCase().includes(searchableDish.value.toLowerCase())
     })
 })
 
@@ -85,7 +85,7 @@ const changeOrder = async (firstCategoryId: string, secondCategoryId: string) =>
     </div>
     <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-6">
       <div v-for="(dish, index) in dishes" :key="dish._id" class=" flex flex-col aspect-square rounded-md border p-3">
-        <p class="font-bold line-clamp-2">{{ dish.name[locale] || dish?.name["ru"] }}</p>
+        <p class="font-bold line-clamp-2">{{ dish.title[locale] || dish?.title["ru"] }}</p>
         <p class="text-gray-400">{{ dish.price }}₽</p>
         <div class="flex-1 flex flex-col justify-end gap-1">
           <NuxtLink class="btn btn-sm btn-outline" :to="{ name: 'dish-id', params: { id: dish._id } }">

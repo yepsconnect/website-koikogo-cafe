@@ -19,7 +19,7 @@ export default defineNuxtConfig({
     modelsDir: "models",
   },
   yandexMetrika: {
-    id: "95378132",
+    id: process.env.YANDEX_METRIKA_ID,
     webvisor: true,
   },
   i18n: {

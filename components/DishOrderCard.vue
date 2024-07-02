@@ -25,7 +25,7 @@ const item = computed(() => {
       </div>
       <div class="flex-1">
         <p class="line-clamp-2 text-md">
-          {{ item?.name[locale] || item?.name['ru'] }}
+          {{ item?.title[locale] || item?.title['ru'] }}
         </p>
         <p class="text-gray-700">
           {{ item?.price }}₽

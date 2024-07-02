@@ -8,13 +8,14 @@ export default defineEventHandler(async (event) => {
   if (!id) return;
 
   // update category
-  const { description, title } = await readBody(event);
+  const { description, title, page } = await readBody(event);
 
   const category = await Category.findByIdAndUpdate(
     id,
     {
       description,
       title,
+      page,
     },
     {
       new: true,

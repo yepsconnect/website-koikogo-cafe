@@ -12,6 +12,7 @@ interface CategoryNew {
   title: {
     [key: string]: string;
   };
+  page: string;
 }
 
 interface Category extends CategoryNew {
@@ -24,7 +25,7 @@ interface NewDish {
   categoryId: string;
   description: { [key: string]: string };
   image: string | null;
-  name: { [key: string]: string };
+  title: { [key: string]: string };
   price: number;
   unit: string;
 }

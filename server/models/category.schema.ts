@@ -14,4 +14,5 @@ export const Category = defineMongooseModel<Category>("Category", {
     default: {},
   },
   order: { type: Number, required: true, unique: true },
+  page: { type: String },
 });

@@ -21,7 +21,7 @@ const { t } = useI18n();
       <div class="flex flex-col w-full">
         <div class="flex-1 flex flex-col items-start">
           <p class="uppercase">
-            {{ dish.name[locale] || dish.name["ru"] }}
+            {{ dish.title[locale] || dish.title["ru"] }}
           </p>
         </div>
 

@@ -29,27 +29,8 @@ useHead({
   ],
 });
 // composables
+const route = useRoute();
 const { locale, t } = useI18n();
-// data
-const availableCategories = [
-  "66803f7e410a17d1138d937c",
-  "66803f93410a17d1138d937f",
-  "66803f9c410a17d1138d9381",
-  "66803fa9410a17d1138d9383",
-  "66803fb9410a17d1138d9385",
-  "66803fc3410a17d1138d9387",
-  "66803fcd410a17d1138d9389",
-  "66803fd9410a17d1138d938b",
-  "66803fe3410a17d1138d938d",
-  "66803ff4410a17d1138d9390",
-  "66803ffe410a17d1138d9392",
-  "6680400d410a17d1138d9394",
-  "66804019410a17d1138d9396",
-  "66804025410a17d1138d9398",
-  "66804031410a17d1138d939a",
-  "6680403d410a17d1138d939c",
-  "668074ec410a17d1138d93ab",
-]
 // state
 const activeCategory = ref(null);
 const isModalInfo = ref(false);
@@ -57,7 +38,7 @@ const selectedDish = ref();
 const { data } = useFetch<{
   ok: boolean
   categories: Category[]
-}>('/api/category')
+}>(`/api/category?page=${route.name?.toString()}`)
 const { data: dataMenu } = useFetch<{
   ok: boolean
   dishes: Dish[]
@@ -66,7 +47,7 @@ const { data: dataMenu } = useFetch<{
 // computed
 const result = computed(() => {
   if (!data.value?.categories) return []
-  return data.value?.categories.filter(category => availableCategories.includes(category._id)).sort((a, b) => a.order - b.order)
+  return data.value?.categories.sort((a, b) => a.order - b.order)
 })
 
 // methods

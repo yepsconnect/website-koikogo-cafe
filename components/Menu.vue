@@ -21,7 +21,7 @@ const closeDropdown = () => {
       </li>
       <li></li>
       <li>
-        <NuxtLink to="/" @click="closeDropdown()">{{ t('screen.menu.title') }}</NuxtLink>
+        <NuxtLink to="/" @click="closeDropdown()">{{ t('screen.index.title') }}</NuxtLink>
       </li>
       <li>
         <NuxtLink :to="{ name: 'bar' }" @click="closeDropdown()">{{ t('screen.bar.title') }}</NuxtLink>

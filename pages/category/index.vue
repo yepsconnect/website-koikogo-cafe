@@ -85,6 +85,7 @@ const changeOrder = async (firstCategoryId: string, secondCategoryId: string) =>
       <div v-for="(category, index) in categories" :key="category._id"
         class="flex flex-col aspect-square rounded-md border p-3 cursor:pointer hover:bg-gray-100">
         <p>{{ category?.title[locale] || category?.title["ru"] }}</p>
+        <p v-if="category?.page" class="text-xs text-gray-400">{{ $t(`screen.${category?.page}.title`) }}</p>
         <div class="flex flex-col gap-2 justify-end flex-1">
           <NuxtLink :to="{ name: 'category-id', params: { id: category._id } }" class="btn btn-sm btn-glass">
             {{

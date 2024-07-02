@@ -18,15 +18,11 @@ const selectedLocale = ref('ru');
 // form
 const category = ref<CategoryNew>({
   title: {},
-  description: {}
+  description: {},
+  page: ""
 })
 // computed
-const availableLocales = computed(() => locales.value.map(x => {
-  return {
-    value: x.code,
-    label: t(`language.${x.code}`)
-  }
-}));
+const availablePages = router.options.routes.filter(x => x.meta?.layout === 'menu')
 // methods
 const handleSubmit = async () => {
   try {
@@ -84,10 +80,16 @@ const handleSubmit = async () => {
           </div>
         </div>
         <input v-model="category.title[selectedLocale]" type="text" class="input input-bordered"
-          :placeholder="t('label.categoryName') + ' (selectedLocale' + code + ')'">
+          :placeholder="t('label.categoryName') + ' (selectedLocale' + selectedLocale + ')'">
         <textarea v-model="category.description[selectedLocale]"
           class="textarea textarea-bordered placeholder:text-base text-base"
           :placeholder="t('label.categoryInfo') + ' (' + selectedLocale + ')'"></textarea>
+        <select v-model="category.page" class="select select-bordered">
+          <option value="" disabled>{{ $t('label.select') }}</option>
+          <option v-for="route in availablePages" :key="route.name" :value="route.name">
+            {{ $t(`screen.${route.name?.toString()}.title`) }}
+          </option>
+        </select>
       </div>
       <button class="btn btn-neutral" type="submit">{{ t('label.add') }}</button>
     </form>

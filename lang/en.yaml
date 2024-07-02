@@ -16,7 +16,7 @@ language:
 label:
   edit: "Edit"
   category: "Category"
-  name: "Name"
+  title: "Name"
   description: "Description"
   unit: "Unit"
   price: "Price"
@@ -58,7 +58,7 @@ screen:
     title: "Admin panel"
   settings:
     title: "Settings"
-  menu:
+  index:
     title: "Menu"
   bar:
     title: "Beverages"

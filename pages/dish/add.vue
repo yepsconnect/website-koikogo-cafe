@@ -22,14 +22,14 @@ const dish = reactive<NewDish>({
   categoryId: "",
   description: {},
   image: "",
-  name: {},
+  title: {},
   price: 0,
   unit: "",
 })
 
 // methods
 const handleSubmit = async () => {
-  if (!dish.name["ru"] || !dish.price || !dish.unit || !dish.categoryId) {
+  if (!dish.title["ru"] || !dish.price || !dish.unit || !dish.categoryId) {
     return alert("")
   }
   try {
@@ -53,7 +53,7 @@ const handleSubmit = async () => {
     const isConfirmed = confirm("Успуешно добавлено. Добавить еще?");
     if (isConfirmed) {
       dish.image = "";
-      dish.name = {};
+      dish.title = {};
       dish.price = 0;
       dish.unit = "";
       dish.categoryId = "";
@@ -91,12 +91,12 @@ const handleSubmit = async () => {
           'badge-primary': item.code === selectedLocale,
         }" @click="selectedLocale = item.code">
           {{ $t(`language.${item.code}`) }}
-          <IconCheck v-if="dish.name[item.code]" class="w-4 fill-success" />
+          <IconCheck v-if="dish.title[item.code]" class="w-4 fill-success" />
           <IconСircleXmark v-else class="w-4 fill-error" />
         </div>
       </div>
-      <input v-model="dish.name[selectedLocale]" class="input input-bordered"
-        :placeholder="$t('label.name') + ' (' + selectedLocale + ')'" />
+      <input v-model="dish.title[selectedLocale]" class="input input-bordered"
+        :placeholder="$t('label.title') + ' (' + selectedLocale + ')'" />
       <textarea v-model="dish.description[selectedLocale]"
         class="textarea textarea-bordered placeholder:text-base text-base"
         :placeholder="$t('label.description') + ' (' + selectedLocale + ')'"></textarea>

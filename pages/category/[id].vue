@@ -13,7 +13,7 @@ definePageMeta({
 // composables
 const route = useRoute();
 const router = useRouter();
-const { t, locale, locales } = useI18n();
+const { t, locales } = useI18n();
 const { token } = useAuth();
 // state
 const isLoading = ref(false);
@@ -24,12 +24,7 @@ const { data } = await useFetch<{
   category: Category
 }>(`/api/category/${route.params.id}`)
 // computed
-const availableLocales = computed(() => locales.value.map(x => {
-  return {
-    value: x.code,
-    label: t(`language.${x.code}`)
-  }
-}));
+const availablePages = router.options.routes.filter(x => x.meta?.layout === 'menu')
 
 // methods
 const handleSubmit = async () => {
@@ -49,13 +44,14 @@ const handleSubmit = async () => {
       body: JSON.stringify({
         title: data.value.category.title,
         description: data.value.category.description,
+        page: data.value.category.page,
       })
     });
     if (!response.ok) {
       return alert("Ошибка при обновлении")
     }
-    const isConfirm = confirm("Категория успешно обновлена. Внести ещё изменения?");
-    if (!isConfirm) {
+    const isConfirm = confirm("Категория успешно обновлена. Закончить изменения?");
+    if (isConfirm) {
       router.push({ name: 'category' })
     }
   } catch (error) {
@@ -114,10 +110,16 @@ const handleDelete = async () => {
           </div>
         </div>
         <input v-model="data.category.title[selectedLocale]" type="text" class="input input-bordered"
-          :placeholder="t('label.categoryName') + ' (selectedLocale' + code + ')'">
+          :placeholder="t('label.categoryName') + ' (selectedLocale' + selectedLocale + ')'">
         <textarea v-model="data.category.description[selectedLocale]"
           class="textarea textarea-bordered placeholder:text-base text-base"
           :placeholder="t('label.categoryInfo') + ' (' + selectedLocale + ')'"></textarea>
+        <select v-model="data.category.page" class="select select-bordered">
+          <option :value="undefined" disabled>{{ $t('label.select') }}</option>
+          <option v-for="route in availablePages" :key="route.name" :value="route.name">
+            {{ $t(`screen.${route.name?.toString()}.title`) }}
+          </option>
+        </select>
       </div>
       <button class="btn btn-neutral" type="submit">{{ t('label.save') }}</button>
     </form>

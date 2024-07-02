@@ -16,7 +16,7 @@ language:
 label:
   edit: "Редактировать"
   category: "Категория"
-  name: "Название"
+  title: "Название"
   description: "Описанин"
   unit: "Размер порции"
   price: "Цена"
@@ -58,7 +58,7 @@ screen:
     title: "Панель управления"
   settings:
     title: "Настройки"
-  menu:
+  index:
     title: "Основное меню"
   bar:
     title: "Карта бара"
