@@ -34,6 +34,7 @@ interface Dish extends NewDish {
   _id: string;
   order: number;
   slug: string;
+  isAvailable: boolean;
 }
 
 interface OrderItem {

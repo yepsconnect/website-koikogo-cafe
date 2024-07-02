@@ -42,7 +42,7 @@ const { data } = useFetch<{
 const { data: dataMenu } = useFetch<{
   ok: boolean
   dishes: Dish[]
-}>('/api/dish')
+}>('/api/dish?available=true')
 
 // computed
 const result = computed(() => {

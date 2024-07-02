@@ -67,6 +67,33 @@ const changeOrder = async (firstCategoryId: string, secondCategoryId: string) =>
     isLoading.value = false;
   }
 }
+
+const handleChangeVisibility = async (item: Dish) => {
+  try {
+    const response = await $fetch<{
+      ok: boolean
+      dishes: Dish[]
+    }>(`/api/dish/visibility`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: token.value!
+      },
+      body: JSON.stringify({
+        id: item._id,
+        isAvailable: !item.isAvailable
+      }),
+    })
+    if (!response.ok) {
+      return alert("Ошибка! Пожалуйста, обновите страницу и попробуйте еще раз.")
+    }
+
+  } catch (error) {
+    console.error('An error occurred while updating the order:', error);
+  } finally {
+    isLoading.value = false;
+  }
+}
 </script>
 
 <template>
@@ -85,7 +112,10 @@ const changeOrder = async (firstCategoryId: string, secondCategoryId: string) =>
     </div>
     <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-6">
       <div v-for="(dish, index) in dishes" :key="dish._id" class=" flex flex-col aspect-square rounded-md border p-3">
-        <p class="font-bold line-clamp-2">{{ dish.title[locale] || dish?.title["ru"] }}</p>
+        <div class="flex justify-between gap-2">
+          <p class="font-bold line-clamp-2">{{ dish.title[locale] || dish?.title["ru"] }}</p>
+          <input type="checkbox" class="toggle" :checked="dish.isAvailable" @change="handleChangeVisibility(dish)" />
+        </div>
         <p class="text-gray-400">{{ dish.price }}₽</p>
         <div class="flex-1 flex flex-col justify-end gap-1">
           <NuxtLink class="btn btn-sm btn-outline" :to="{ name: 'dish-id', params: { id: dish._id } }">
@@ -103,7 +133,6 @@ const changeOrder = async (firstCategoryId: string, secondCategoryId: string) =>
             </button>
           </div>
         </div>
-
       </div>
     </div>
   </div>
