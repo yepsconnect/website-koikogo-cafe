@@ -16,9 +16,10 @@ export default defineEventHandler(async (event) => {
       new: true,
     }
   );
+  const dishes = await Dish.find();
 
   return {
     ok: true,
-    isAvailable,
+    dishes,
   };
 });

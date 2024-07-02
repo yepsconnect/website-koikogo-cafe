@@ -81,7 +81,7 @@ const changeOrder = async (firstCategoryId: string, secondCategoryId: string) =>
       <input v-model="searchableCategory" type="text" class="input input-bordered w-full"
         :placeholder="t('label.search', { field: t('label.categoryName') })">
     </div>
-    <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4">
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
       <div v-for="(category, index) in categories" :key="category._id"
         class="flex flex-col aspect-square rounded-md border p-3 cursor:pointer hover:bg-gray-100">
         <p>{{ category?.title[locale] || category?.title["ru"] }}</p>

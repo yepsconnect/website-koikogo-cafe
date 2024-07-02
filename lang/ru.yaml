@@ -14,6 +14,14 @@ language:
   en: "Английский"
 
 label:
+  cards: "Карточки"
+  table: "Таблица"
+  action: "Действия"
+  all: "Все"
+  availability: "Наличие"
+  available: "В наличии"
+  unavailable: "Недоступны"
+  empty: "Пусто"
   edit: "Редактировать"
   category: "Категория"
   title: "Название"
@@ -48,6 +56,7 @@ label:
 screen:
   dishes:
     title: "Позиции"
+    subtitle: "Найденные позиции"
   dishAdd:
     title: "Добавление позиции"
     remark: "Вставьте ссылку на изображение"
