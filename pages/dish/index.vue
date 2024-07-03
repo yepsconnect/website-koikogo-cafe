@@ -119,14 +119,14 @@ const handleChangeVisibility = async (item: Dish) => {
       </NuxtLink>
       <h1 class="text-2xl font-bold">{{ $t("screen.dishes.title") }}</h1>
       <NuxtLink :to="{ name: 'dish-add' }" class="btn btn-sm btn-square">
-          <IconPlus class="w-3" />
-        </NuxtLink>
+        <IconPlus class="w-3" />
+      </NuxtLink>
     </div>
     <div class="py-3 flex flex-col gap-2">
       <input v-model="searchableDish" type="text" class="input input-bordered w-full" :placeholder="$t('label.search')">
       <div class="grid md:grid-cols-3 gap-2">
         <select v-if="dataCategory" v-model="selectedCategory" class="select select-bordered">
-          <option :value="null">{{ $t("label.category") }}</option>
+          <option :value="null">{{ $t("label.all") }}</option>
           <option v-for="category in dataCategory.categories" :key="category._id" :value="category._id">
             {{ category.title[locale] || category?.title["ru"] }}
           </option>
@@ -143,16 +143,16 @@ const handleChangeVisibility = async (item: Dish) => {
       </div>
     </div>
     <h2 class="text-xl font-bold mb-2">{{ $t("screen.dishes.subtitle") }}</h2>
-    <div v-if="mode === 'cards'"
-      class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
-      <div v-for="(dish, index) in dishes" :key="dish._id" class=" flex flex-col aspect-square rounded-md border p-3">
+    <div v-if="mode === 'cards'" class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+      <div v-for="(dish, index) in dishes" :key="dish._id"
+        class=" flex flex-col sm:aspect-square rounded-md border p-3">
         <div class="flex justify-between gap-2">
           <p class="font-bold line-clamp-2">{{ dish.title[locale] || dish?.title["ru"] }}</p>
           <input type="checkbox" class="toggle" :checked="dish.isAvailable" @change="handleChangeVisibility(dish)" />
         </div>
         <p class="text-gray-400">{{ dish.price }}₽</p>
-        <div class="flex-1 flex flex-col justify-end gap-1">
-          <NuxtLink class="btn btn-sm btn-outline" :to="{ name: 'dish-id', params: { id: dish._id } }">
+        <div class="flex-1 flex flex-col justify-end gap-1  mt-4 sm:mt-0">
+          <NuxtLink class="btn btn-sm hidden sm:inline-flex" :to="{ name: 'dish-id', params: { id: dish._id } }">
             {{ $t('label.edit') }}
           </NuxtLink>
 
@@ -161,6 +161,9 @@ const handleChangeVisibility = async (item: Dish) => {
               :disabled="isLoading">
               <IconChevronLeft class="w-2" />
             </button>
+            <NuxtLink class="btn btn-sm sm:hidden" :to="{ name: 'dish-id', params: { id: dish._id } }">
+              {{ $t('label.edit') }}
+            </NuxtLink>
             <button v-if="index !== dishes.length - 1" class="btn btn-sm flex-1"
               @click="changeOrder(dish._id, dishes[index + 1]._id)" :disabled="isLoading">
               <IconChevronRight class="w-2" />

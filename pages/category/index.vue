@@ -86,13 +86,14 @@ const changeOrder = async (firstCategoryId: string, secondCategoryId: string) =>
       <input v-model="searchableCategory" type="text" class="input input-bordered w-full"
         :placeholder="t('label.search', { field: t('label.categoryName') })">
     </div>
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
       <div v-for="(category, index) in categories" :key="category._id"
-        class="flex flex-col aspect-square rounded-md border p-3 cursor:pointer hover:bg-gray-100">
+        class="flex flex-col sm:aspect-square rounded-md border p-3 cursor:pointer hover:bg-gray-100">
         <p>{{ category?.title[locale] || category?.title["ru"] }}</p>
         <p v-if="category?.page" class="text-xs text-gray-400">{{ $t(`screen.${category?.page}.title`) }}</p>
-        <div class="flex flex-col gap-2 justify-end flex-1">
-          <NuxtLink :to="{ name: 'category-id', params: { id: category._id } }" class="btn btn-sm btn-glass">
+        <div class="flex flex-col gap-2 justify-end flex-1 mt-4 sm:mt-0">
+          <NuxtLink :to="{ name: 'category-id', params: { id: category._id } }"
+            class="btn btn-sm btn-glass hidden sm:inline-flex">
             {{
               $t('label.edit')
             }}
@@ -102,6 +103,12 @@ const changeOrder = async (firstCategoryId: string, secondCategoryId: string) =>
               @click="changeOrder(category._id, categories[index - 1]._id)">
               <IconChevronLeft class="w-2" />
             </button>
+            <NuxtLink :to="{ name: 'category-id', params: { id: category._id } }"
+              class="btn btn-sm btn-glass flex-1 sm:hidden">
+              {{
+                $t('label.edit')
+              }}
+            </NuxtLink>
             <button v-if="index !== categories.length - 1" class="btn btn-sm flex-1"
               @click="changeOrder(category._id, categories[index + 1]._id)">
               <IconChevronRight class="w-2" />
