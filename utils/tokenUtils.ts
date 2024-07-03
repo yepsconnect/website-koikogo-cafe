@@ -1,8 +1,8 @@
 import jwt from "jsonwebtoken";
 
-export function generateToken(userId: string, isAdmin: boolean) {
+export function generateToken(userId: string, role: string) {
   const config = useRuntimeConfig();
-  const token = jwt.sign({ userId, isAdmin }, config.TOKEN_SECRET, {
+  const token = jwt.sign({ userId, role }, config.TOKEN_SECRET, {
     expiresIn: "30d",
   });
   return token;

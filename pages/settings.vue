@@ -15,11 +15,11 @@ const handleLogout = () => {
 </script>
 
 <template>
-  <Container>
+  <div class="flex flex-col gap-4 p-3">
     <div class="py-2 grid grid-cols-3 mb-4">
       <div>
-        <NuxtLink :to="{ name: 'admin' }" class="btn btn-sm btn-ghost">
-          <IconChevronLeft class="w-3" />
+        <NuxtLink :to="{ name: 'admin' }" class="btn btn-sm btn-square btn-ghost">
+          <IconChevronLeft class="w-2" />
         </NuxtLink>
       </div>
       <h1 class="text-2xl font-bold text-center">
@@ -29,5 +29,5 @@ const handleLogout = () => {
       </div>
     </div>
     <button class="btn btn-neutral" @click="handleLogout">{{ t("label.logout") }}</button>
-  </Container>
+  </div>
 </template>

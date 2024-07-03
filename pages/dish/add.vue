@@ -6,6 +6,7 @@ definePageMeta({
   middleware: 'auth',
   layout: 'auth'
 });
+
 const { data } = useFetch<{
   ok: boolean
   categories: Category[]
@@ -36,6 +37,7 @@ const handleSubmit = async () => {
     isLoading.value = true;
     const response = await $fetch<{
       ok: boolean
+      message: string
       dish: Dish
     }>("/api/dish", {
       method: 'POST',
@@ -47,7 +49,7 @@ const handleSubmit = async () => {
       })
     });
     if (!response.ok) {
-      alert("Ошибка при добавлении");
+      alert(response.message);
       return;
     }
     const isConfirmed = confirm("Успуешно добавлено. Добавить еще?");
@@ -69,11 +71,11 @@ const handleSubmit = async () => {
 </script>
 
 <template>
-  <div class="flex flex-col gap-4">
+  <div class="flex flex-col gap-4 p-3">
     <div class="py-2 grid grid-cols-3 mb-4">
       <div>
-        <NuxtLink :to="{ name: 'dish' }" class="btn btn-sm btn-ghost">
-          <IconChevronLeft class="w-3" />
+        <NuxtLink :to="{ name: 'dish' }" class="btn btn-sm btn-square btn-ghost">
+          <IconChevronLeft class="w-2" />
         </NuxtLink>
       </div>
       <h1 class="text-2xl font-bold text-center">{{ t("screen.dishAdd.title") }}</h1>
@@ -110,7 +112,11 @@ const handleSubmit = async () => {
           {{ category.title[locale] }}
         </option>
       </select>
-      <button class="btn btn-primary w-full" @click="handleSubmit()">{{ $t('label.add') }}</button>
+      <button class="btn btn-primary w-full" @click="handleSubmit()"
+        :disabled="isLoading || !dish.title['ru'] || !dish.unit || !dish.price || !dish.categoryId">
+        <Loading v-if="isLoading" />
+        <template v-else>{{ $t('label.add') }}</template>
+      </button>
     </div>
   </div>
 </template>

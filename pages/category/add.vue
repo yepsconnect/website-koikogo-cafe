@@ -30,6 +30,7 @@ const handleSubmit = async () => {
     const response = await $fetch<{
       category: Category
       ok: boolean
+      message: string
     }>("/api/category", {
       method: 'POST',
       headers: {
@@ -38,7 +39,7 @@ const handleSubmit = async () => {
       body: JSON.stringify({ category: category.value })
     });
     if (!response.ok) {
-      return alert("Ошибка при создании категории")
+      return alert(response.message)
     }
     const isConfirmed = confirm(t("screen.categoryAdd.confirm"));
     if (isConfirmed) {
@@ -56,11 +57,11 @@ const handleSubmit = async () => {
 </script>
 
 <template>
-  <Container class="flex flex-col gap-2">
+  <div class="flex flex-col gap-2 p-3">
     <div class="py-2 grid grid-cols-3 mb-4">
       <div>
-        <NuxtLink :to="{ name: 'category' }" class="btn btn-sm btn-ghost">
-          <IconChevronLeft class="w-3" />
+        <NuxtLink :to="{ name: 'category' }" class="btn btn-sm btn-square btn-ghost">
+          <IconChevronLeft class="w-2" />
         </NuxtLink>
       </div>
       <h1 class="text-2xl font-bold text-center">{{ t("screen.categoryAdd.title") }}</h1>
@@ -91,8 +92,11 @@ const handleSubmit = async () => {
           </option>
         </select>
       </div>
-      <button class="btn btn-neutral" type="submit">{{ t('label.add') }}</button>
+      <button class="btn btn-neutral" type="submit" :disabled="isLoading || !category.title['ru'] || !category.page">
+        <span v-if="isLoading" class="loading loading-dots loading-sm"></span>
+        <template v-else>{{ t('label.add') }}</template>
+      </button>
     </form>
 
-  </Container>
+  </div>
 </template>

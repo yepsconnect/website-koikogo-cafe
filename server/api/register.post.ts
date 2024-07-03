@@ -31,7 +31,7 @@ export default defineEventHandler(async (event) => {
 
   try {
     await newUser.save();
-    const token = await generateToken(newUser._id, newUser.role === "root");
+    const token = generateToken(newUser._id, newUser.role);
 
     return {
       ok: true,

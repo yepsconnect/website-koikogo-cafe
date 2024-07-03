@@ -45,7 +45,11 @@ const changeOrder = async (firstCategoryId: string, secondCategoryId: string) =>
   isLoading.value = true;
 
   try {
-    const response = await fetch('/api/dish/order', {
+    const response = await $fetch<{
+      ok: boolean
+      message: string
+      dishes: Dish[]
+    }>('/api/dish/order', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -57,20 +61,19 @@ const changeOrder = async (firstCategoryId: string, secondCategoryId: string) =>
       }),
     });
 
-    const result = await response.json();
-
-    if (result.ok) {
-      const firstCategoryIndex = data.value!.dishes.findIndex(cat => cat._id === firstCategoryId);
-      const secondCategoryIndex = data.value!.dishes.findIndex(cat => cat._id === secondCategoryId);
-
-      if (firstCategoryIndex !== -1 && secondCategoryIndex !== -1) {
-        const tempOrder = data.value!.dishes[firstCategoryIndex].order;
-        data.value!.dishes[firstCategoryIndex].order = data.value!.dishes[secondCategoryIndex].order;
-        data.value!.dishes[secondCategoryIndex].order = tempOrder;
-      }
-    } else {
-      console.error('Failed to update order:', result.message);
+    if (!response.ok) {
+      return alert(response.message)
     }
+
+    const firstCategoryIndex = data.value!.dishes.findIndex(cat => cat._id === firstCategoryId);
+    const secondCategoryIndex = data.value!.dishes.findIndex(cat => cat._id === secondCategoryId);
+
+    if (firstCategoryIndex !== -1 && secondCategoryIndex !== -1) {
+      const tempOrder = data.value!.dishes[firstCategoryIndex].order;
+      data.value!.dishes[firstCategoryIndex].order = data.value!.dishes[secondCategoryIndex].order;
+      data.value!.dishes[secondCategoryIndex].order = tempOrder;
+    }
+
   } catch (error) {
     console.error('An error occurred while updating the order:', error);
   } finally {
@@ -82,6 +85,7 @@ const handleChangeVisibility = async (item: Dish) => {
   try {
     const response = await $fetch<{
       ok: boolean
+      message: string
       dishes: Dish[]
     }>(`/api/dish/visibility`, {
       method: 'PUT',
@@ -95,7 +99,7 @@ const handleChangeVisibility = async (item: Dish) => {
       }),
     })
     if (!response.ok) {
-      return alert("Ошибка! Пожалуйста, обновите страницу и попробуйте еще раз.")
+      return alert(response.message)
     }
     data.value!.dishes = response.dishes;
 
@@ -108,20 +112,20 @@ const handleChangeVisibility = async (item: Dish) => {
 </script>
 
 <template>
-  <div>
+  <div class="flex flex-col gap-4 p-3">
     <div class="flex items-center justify-between">
-      <NuxtLink class="btn btn-square btn-ghost" :to="{ name: 'admin' }">
-        <IconChevronLeft class="w-3" />
+      <NuxtLink :to="{ name: 'admin' }" class="btn btn-sm btn-square btn-ghost">
+        <IconChevronLeft class="w-2" />
       </NuxtLink>
       <h1 class="text-2xl font-bold">{{ $t("screen.dishes.title") }}</h1>
-      <NuxtLink class="btn btn-primary" :to="{ name: 'dish-add' }">
-        {{ $t("label.add") }}
-      </NuxtLink>
+      <NuxtLink :to="{ name: 'dish-add' }" class="btn btn-sm btn-square">
+          <IconPlus class="w-3" />
+        </NuxtLink>
     </div>
     <div class="py-3 flex flex-col gap-2">
       <input v-model="searchableDish" type="text" class="input input-bordered w-full" :placeholder="$t('label.search')">
       <div class="grid md:grid-cols-3 gap-2">
-        <select v-model="selectedCategory" class="select select-bordered">
+        <select v-if="dataCategory" v-model="selectedCategory" class="select select-bordered">
           <option :value="null">{{ $t("label.category") }}</option>
           <option v-for="category in dataCategory.categories" :key="category._id" :value="category._id">
             {{ category.title[locale] || category?.title["ru"] }}

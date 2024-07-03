@@ -22,7 +22,7 @@ export default defineEventHandler(async (event) => {
   }
 
   try {
-    const token = await generateToken(user._id, user.isAdmin);
+    const token = await generateToken(user._id, user.role);
 
     return {
       ok: true,

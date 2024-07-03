@@ -2,8 +2,17 @@ import { Category } from "~/server/models/category.schema";
 import slugify from "slugify";
 
 export default defineEventHandler(async (event) => {
-  const { isAuth } = event.context;
-  if (!isAuth) return;
+  const { isAuth, userRole } = event.context;
+  if (!isAuth)
+    return {
+      ok: false,
+      message: "Срок сессии истек",
+    };
+  if (userRole !== "root")
+    return {
+      ok: false,
+      message: "Недостаточно прав для выполнения операции",
+    };
 
   const { category } = await readBody(event);
 

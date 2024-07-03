@@ -9,10 +9,8 @@ const notifications: { count: 2 }[] = []
 
 <template>
   <div class="flex flex-col min-h-screen">
-    <div class="fixed top-12 w-full flex justify-between px-6 z-50">
-      <ChangeLanguage />
-      <Menu />
-    </div>
+    <ChangeLanguage class="fixed top-12 left-6 z-50" />
+    <Menu class="fixed top-12 right-6 z-50" />
     <main class="flex-1">
       <div class="toast toast-top toast-end z-50">
         <div v-for="item in notifications" class="alert alert-success">

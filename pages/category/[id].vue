@@ -3,8 +3,6 @@ import Container from '~/components/Container.vue';
 import { ref } from 'vue';
 import IconСircleXmark from '~/components/IconСircleXmark.vue';
 
-
-
 definePageMeta({
   middleware: 'auth',
   layout: 'auth'
@@ -17,6 +15,7 @@ const { t, locales } = useI18n();
 const { token } = useAuth();
 // state
 const isLoading = ref(false);
+const isLoadingDelete = ref(false);
 const selectedLocale = ref("ru");
 // form
 const { data } = await useFetch<{
@@ -36,6 +35,7 @@ const handleSubmit = async () => {
     const response = await $fetch<{
       ok: boolean
       category: Category
+      message: string
     }>(`/api/category/${route.params.id}`, {
       method: 'PUT',
       headers: {
@@ -48,7 +48,7 @@ const handleSubmit = async () => {
       })
     });
     if (!response.ok) {
-      return alert("Ошибка при обновлении")
+      return alert(response.message)
     }
     const isConfirm = confirm("Категория успешно обновлена. Закончить изменения?");
     if (isConfirm) {
@@ -63,10 +63,11 @@ const handleSubmit = async () => {
 
 const handleDelete = async () => {
   try {
-    isLoading.value = true
+    isLoadingDelete.value = true
     const response = await $fetch<{
       ok: boolean
       category: Category
+      message: string
     }>(`/api/category/${route.params.id}`, {
       method: 'DELETE',
       headers: {
@@ -74,23 +75,23 @@ const handleDelete = async () => {
       }
     })
     if (!response.ok) {
-      return alert("Ошибка при удалении")
+      return alert(response.message)
     }
     router.push({ name: 'category' })
   } catch (error) {
 
   } finally {
-    isLoading.value = false
+    isLoadingDelete.value = false
   }
 }
 </script>
 
 <template>
-  <Container class="flex flex-col gap-2">
+  <div class="flex flex-col gap-2 p-3">
     <div class="py-2 grid grid-cols-3 mb-4">
       <div>
-        <NuxtLink :to="{ name: 'category' }" class="btn btn-sm btn-ghost">
-          <IconChevronLeft class="w-3" />
+        <NuxtLink :to="{ name: 'category' }" class="btn btn-sm btn-square btn-ghost">
+          <IconChevronLeft class="w-2" />
         </NuxtLink>
       </div>
       <h1 class="text-2xl font-bold text-center">{{ t("screen.categoryEdit.title") }}</h1>
@@ -121,10 +122,15 @@ const handleDelete = async () => {
           </option>
         </select>
       </div>
-      <button class="btn btn-neutral" type="submit">{{ t('label.save') }}</button>
+      <button class="btn btn-neutral" type="submit"
+        :disabled="isLoading || !data.category.title['ru'] || !data.category.page">
+        <Loading v-if="isLoading" />
+        <template v-else>{{ t('label.save') }}</template>
+      </button>
     </form>
-    <button class="btn btn-neutral btn-outline w-full max-w-lg mt-2" @click="handleDelete">
-      {{ t('label.delete') }}
+    <button class="btn btn-neutral btn-outline w-full max-w-lg mt-2" @click="handleDelete" :disabled="isLoadingDelete">
+      <Loading v-if="isLoadingDelete" />
+      <template v-else>{{ t('label.delete') }}</template>
     </button>
-  </Container>
+  </div>
 </template>

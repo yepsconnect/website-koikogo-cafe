@@ -7,5 +7,6 @@ export default defineEventHandler((event) => {
   const decodedToken = verifyToken(token);
 
   event.context.userId = decodedToken.userId;
+  event.context.userRole = decodedToken.role;
   event.context.isAuth = true;
 });

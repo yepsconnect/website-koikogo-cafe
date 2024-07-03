@@ -2,7 +2,6 @@ import { Dish } from "~/server/models/dish.schema";
 
 export default defineEventHandler(async (event) => {
   const { available } = getQuery(event);
-  console.log(available);
 
   if (!!available) {
     const dishes = await Dish.find({ isAvailable: !!available });

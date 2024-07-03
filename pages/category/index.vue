@@ -31,7 +31,10 @@ const categories = computed(() => {
 
 const changeOrder = async (firstCategoryId: string, secondCategoryId: string) => {
   try {
-    const response = await fetch('/api/category/order', {
+    const response = await $fetch<{
+      ok: boolean;
+      message: string;
+    }>('/api/category/order', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -43,20 +46,21 @@ const changeOrder = async (firstCategoryId: string, secondCategoryId: string) =>
       }),
     });
 
-    const result = await response.json();
 
-    if (result.ok) {
-      const firstCategoryIndex = data.value!.categories.findIndex(cat => cat._id === firstCategoryId);
-      const secondCategoryIndex = data.value!.categories.findIndex(cat => cat._id === secondCategoryId);
-
-      if (firstCategoryIndex !== -1 && secondCategoryIndex !== -1) {
-        const tempOrder = data.value!.categories[firstCategoryIndex].order;
-        data.value!.categories[firstCategoryIndex].order = data.value!.categories[secondCategoryIndex].order;
-        data.value!.categories[secondCategoryIndex].order = tempOrder;
-      }
-    } else {
-      console.error('Failed to update order:', result.message);
+    if (!response.ok) {
+      alert(response.message);
+      return
     }
+
+    const firstCategoryIndex = data.value!.categories.findIndex(cat => cat._id === firstCategoryId);
+    const secondCategoryIndex = data.value!.categories.findIndex(cat => cat._id === secondCategoryId);
+
+    if (firstCategoryIndex !== -1 && secondCategoryIndex !== -1) {
+      const tempOrder = data.value!.categories[firstCategoryIndex].order;
+      data.value!.categories[firstCategoryIndex].order = data.value!.categories[secondCategoryIndex].order;
+      data.value!.categories[secondCategoryIndex].order = tempOrder;
+    }
+
   } catch (error) {
     console.error('An error occurred while updating the order:', error);
   }
@@ -64,20 +68,21 @@ const changeOrder = async (firstCategoryId: string, secondCategoryId: string) =>
 </script>
 
 <template>
-  <Container>
-    <div class="py-2 grid grid-cols-3 mb-4">
+  <div class=" flex flex-col gap-4 p-3">
+    <div class="grid grid-cols-3">
       <div>
-        <NuxtLink :to="{ name: 'admin' }" class="btn btn-sm btn-ghost">
-          <IconChevronLeft class="w-3" />
+        <NuxtLink :to="{ name: 'admin' }" class="btn btn-sm btn-square btn-ghost">
+          <IconChevronLeft class="w-2" />
         </NuxtLink>
       </div>
       <h1 class="text-2xl font-bold text-center">{{ $t("screen.category.title") }}</h1>
       <div class="flex justify-end">
-        <NuxtLink :to="{ name: 'category-add' }" class="btn btn-sm btn-primary btn-outline">{{ $t("label.add") }}
+        <NuxtLink :to="{ name: 'category-add' }" class="btn btn-sm btn-square">
+          <IconPlus class="w-3" />
         </NuxtLink>
       </div>
     </div>
-    <div class="py-3">
+    <div>
       <input v-model="searchableCategory" type="text" class="input input-bordered w-full"
         :placeholder="t('label.search', { field: t('label.categoryName') })">
     </div>
@@ -105,5 +110,5 @@ const changeOrder = async (firstCategoryId: string, secondCategoryId: string) =>
         </div>
       </div>
     </div>
-  </Container>
+  </div>
 </template>
