@@ -24,7 +24,7 @@ const closeDropdown = () => {
 
 <template>
 
-  <details ref="dropdown" class="dropdown">
+  <details ref="dropdown" class="dropdown z-10">
     <summary class="btn btn-circle">
       <IconLanguage class="w-6" />
     </summary>

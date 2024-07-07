@@ -5,6 +5,7 @@ name:
 
 modal:
   reservation:
+    title: "Reservation"
     info: "To reserve a table call the phone number"
     error: “It is impossible to book a table at the time you specified. Please choose another time or call the number below for assistance with your reservation."
     freeNow: "Free now"
