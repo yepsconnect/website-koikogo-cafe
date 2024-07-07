@@ -4,7 +4,6 @@ export default defineNuxtConfig({
   css: ["~/assets/css/fonts.css"],
   runtimeConfig: {
     TOKEN_SECRET: process.env.TOKEN_SECRET,
-    PHONE_NUMBER: "+79511985779",
     REGISTER_ACCESS: process.env.REGISTER_ACCESS,
   },
   modules: [

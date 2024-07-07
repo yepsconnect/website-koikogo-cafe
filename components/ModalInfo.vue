@@ -4,6 +4,11 @@ const props = defineProps<{
   modelValue: boolean;
   dish: Dish | undefined;
 }>();
+// computed
+const isOpen = computed({
+  get: () => props.modelValue,
+  set: (value) => emit("update:modelValue", value),
+});
 
 //composables
 const { addToOrder } = useOrder();
@@ -11,11 +16,7 @@ const { t, locale } = useI18n();
 // state
 const count = ref(1);
 
-// computed
-const isOpen = computed({
-  get: () => props.modelValue,
-  set: (value) => emit("update:modelValue", value),
-});
+
 
 // methods
 const handleSubmit = () => {

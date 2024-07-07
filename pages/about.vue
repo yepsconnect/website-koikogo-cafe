@@ -1,6 +1,6 @@
 <script setup>
 // composables
-const config = useRuntimeConfig();
+const { phone } = useConfig()
 const { t } = useI18n()
 // state
 const active = ref(1);
@@ -63,7 +63,7 @@ onMounted(() => {
       <p>{{ t('screen.about.question.info[2]') }}:</p>
 
       <div class="flex flex-col md:flex-row justify-center gap-6">
-        <a class="btn btn-primary w-full md:max-w-xs" :href="`tel:${config.PHONE_NUMBER}`">
+        <a class="btn btn-primary w-full md:max-w-xs" :href="`tel:${phone}`">
           {{ $t('label.call') }}
         </a>
       </div>
@@ -128,7 +128,7 @@ onMounted(() => {
           <p class="text-lg">{{ t('screen.about.comfort.info[0]') }}</p>
           <p class="text-lg">{{ t('screen.about.comfort.info[1]') }}</p>
           <p class="text-lg">{{ t('screen.about.comfort.info[2]') }}</p>
-          <a class="btn btn-primary w-full md:max-w-xs" :href="`tel:${config.PHONE_NUMBER}`">{{ t('label.reserve')
+          <a class="btn btn-primary w-full md:max-w-xs" :href="`tel:${phone}`">{{ t('label.reserve')
             }}</a>
         </div>
         <div class="lg:order-1 columns-2">
@@ -155,7 +155,7 @@ onMounted(() => {
         <p class="text-lg">{{ t('screen.about.find.info[1]') }}</p>
         <p class="text-lg">{{ t('screen.about.find.info[2]') }}</p>
         <div class="flex">
-          <a class="btn btn-primary w-full md:max-w-xs" :href="`tel:${config.PHONE_NUMBER}`">{{ t('label.call') }}</a>
+          <a class="btn btn-primary w-full md:max-w-xs" :href="`tel:${phone}`">{{ t('label.call') }}</a>
         </div>
       </div>
       <iframe :src="mapLink" width="100%" height="400" frameborder="0"></iframe>

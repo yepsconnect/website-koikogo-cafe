@@ -40,9 +40,12 @@ const closeModal = () => {
 </script>
 
 <template>
-  <dialog ref="modalRef" class="modal modal-bottom sm:modal-middle">
+  <dialog ref="modalRef" class="modal modal-bottom sm:modal-middle" @keydown.escape="closeModal">
     <div class="modal-box relative">
       <slot />
+    </div>
+    <div class="modal-backdrop" @click="closeModal" @keydown.escape="closeModal">
+      <button>close</button>
     </div>
   </dialog>
 </template>

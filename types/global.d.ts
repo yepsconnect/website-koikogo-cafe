@@ -41,3 +41,36 @@ interface OrderItem {
   _id: string;
   count: number;
 }
+
+interface TableNew {
+  name: { [key: string]: string };
+  capacity: number;
+  hall: string;
+}
+
+interface Table extends TableNew {
+  order: number;
+  _id: string;
+}
+
+interface HallNew {
+  title: { [key: string]: string };
+}
+
+interface Hall extends HallNew {
+  _id: string;
+}
+
+interface ReservationNew {
+  tableId: string;
+  date: string;
+  from: string;
+  to: string;
+  name: string;
+  phone: string;
+  status: "pending" | "confirmed" | "cancelled";
+}
+
+interface Reservation extends ReservationNew {
+  _id: string;
+}

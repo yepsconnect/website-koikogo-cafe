@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import IconChevronLeft from '~/components/IconChevronLeft.vue';
-
 definePageMeta({
   middleware: 'auth',
   layout: 'auth'
@@ -113,15 +111,13 @@ const handleChangeVisibility = async (item: Dish) => {
 
 <template>
   <div class="flex flex-col gap-4 p-3">
-    <div class="flex items-center justify-between">
-      <NuxtLink :to="{ name: 'admin' }" class="btn btn-sm btn-square btn-ghost">
-        <IconChevronLeft class="w-2" />
-      </NuxtLink>
-      <h1 class="text-2xl font-bold">{{ $t("screen.dishes.title") }}</h1>
-      <NuxtLink :to="{ name: 'dish-add' }" class="btn btn-sm btn-square">
-        <IconPlus class="w-3" />
-      </NuxtLink>
-    </div>
+    <Header :title="$t('screen.dishes.title')">
+      <div class="flex justify-end">
+        <NuxtLink :to="{ name: 'admin-dish-add' }" class="btn btn-sm btn-square">
+          <IconPlus class="w-3" />
+        </NuxtLink>
+      </div>
+    </Header>
     <div class="py-3 flex flex-col gap-2">
       <input v-model="searchableDish" type="text" class="input input-bordered w-full" :placeholder="$t('label.search')">
       <div class="grid md:grid-cols-3 gap-2">
@@ -152,7 +148,7 @@ const handleChangeVisibility = async (item: Dish) => {
         </div>
         <p class="text-gray-400">{{ dish.price }}₽</p>
         <div class="flex-1 flex flex-col justify-end gap-1  mt-4 sm:mt-0">
-          <NuxtLink class="btn btn-sm hidden sm:inline-flex" :to="{ name: 'dish-id', params: { id: dish._id } }">
+          <NuxtLink class="btn btn-sm hidden sm:inline-flex" :to="{ name: 'admin-dish-id', params: { id: dish._id } }">
             {{ $t('label.edit') }}
           </NuxtLink>
 
@@ -161,7 +157,7 @@ const handleChangeVisibility = async (item: Dish) => {
               :disabled="isLoading">
               <IconChevronLeft class="w-2" />
             </button>
-            <NuxtLink class="btn btn-sm sm:hidden" :to="{ name: 'dish-id', params: { id: dish._id } }">
+            <NuxtLink class="btn btn-sm sm:hidden" :to="{ name: 'admin-dish-id', params: { id: dish._id } }">
               {{ $t('label.edit') }}
             </NuxtLink>
             <button v-if="index !== dishes.length - 1" class="btn btn-sm flex-1"
@@ -195,7 +191,7 @@ const handleChangeVisibility = async (item: Dish) => {
             <td>{{ item.price }}</td>
             <td>{{ dataCategory.categories.find(x => x._id === item.categoryId).title[locale] }}</td>
             <td>
-              <NuxtLink class="btn btn-sm  btn-square mr-2" :to="{ name: 'dish-id', params: { id: item._id } }">
+              <NuxtLink class="btn btn-sm  btn-square mr-2" :to="{ name: 'admin-dish-id', params: { id: item._id } }">
                 <IconPen class=" w-3" />
               </NuxtLink>
               <button v-if="index !== 0" class="btn btn-sm btn-square mr-2"

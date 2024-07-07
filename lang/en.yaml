@@ -4,6 +4,11 @@ name:
   - "Koikogo"
 
 modal:
+  reservation:
+    info: "To reserve a table call the phone number"
+    error: “It is impossible to book a table at the time you specified. Please choose another time or call the number below for assistance with your reservation."
+    freeNow: "Free now"
+    confirmation: "By clicking the button below, you consent to the use of the provided name and telephone number."
   order:
     title: "Your order"
     totalPrice: "Total price"
@@ -14,6 +19,22 @@ language:
   en: "English"
 
 label:
+  or: "or"
+  selectTable: "Select a table"
+  name: "Name"
+  phone: "Phone"
+  pending: "Pending"
+  confirm: "Confirm"
+  confirmed: "Confirmed"
+  cancelled: "Cancelled"
+  cancel: "Cancel"
+  capacity: "Capacity"
+  allHalls: "All halls"
+  free: "Free"
+  reserved: "Reserved"
+  occupied: "Occupied"
+  from: "From %{field}"
+  to: "To %{field}"
   action: "Action"
   add: "Add"
   added: "Added"
@@ -54,6 +75,10 @@ label:
   whatsapp: "WhatsApp"
 
 screen:
+  reserveAdd:
+    title: "New reservation"
+  reservation:
+    title: "Reservation"
   dishes:
     title: "Menu positions"
     subtitle: "Founded positions"

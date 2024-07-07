@@ -1,8 +1,4 @@
 <script setup lang="ts">
-import Container from '~/components/Container.vue';
-import { ref } from 'vue';
-import IconСircleXmark from '~/components/IconСircleXmark.vue';
-
 definePageMeta({
   middleware: 'auth',
   layout: 'auth'
@@ -58,14 +54,7 @@ const handleSubmit = async () => {
 
 <template>
   <div class="flex flex-col gap-2 p-3">
-    <div class="py-2 grid grid-cols-3 mb-4">
-      <div>
-        <NuxtLink :to="{ name: 'category' }" class="btn btn-sm btn-square btn-ghost">
-          <IconChevronLeft class="w-2" />
-        </NuxtLink>
-      </div>
-      <h1 class="text-2xl font-bold text-center">{{ t("screen.categoryAdd.title") }}</h1>
-    </div>
+    <Header :title="$t('screen.categoryAdd.title')" />
     <form @submit.prevent="handleSubmit" class="flex flex-col gap-2 w-full sm:max-w-lg">
       <div class="flex flex-col gap-2">
         <div class="flex items-center justify-between w-full">

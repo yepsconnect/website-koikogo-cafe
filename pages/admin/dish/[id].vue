@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import IconCheck from '~/components/IconCheck.vue';
-import IconСircleXmark from '~/components/IconСircleXmark.vue';
-
 definePageMeta({
   middleware: 'auth',
   layout: 'auth'
@@ -95,14 +92,7 @@ const handleDelete = async () => {
 
 <template>
   <div class="flex flex-col gap-4 p-3">
-    <div class="py-2 grid grid-cols-3 mb-4">
-      <div>
-        <NuxtLink :to="{ name: 'dish' }" class="btn btn-sm btn-square btn-ghost">
-          <IconChevronLeft class="w-2" />
-        </NuxtLink>
-      </div>
-      <h1 class="text-2xl font-bold text-center">{{ t("screen.dishEdit.title") }}</h1>
-    </div>
+    <Header :title="$t('screen.dishEdit.title')" />
     <div v-if="data.dish" class="flex flex-col gap-4 max-w-lg">
       <div class="avatar w-full">
         <div class="rounded-xl w-full bg-gray-200">
