@@ -76,13 +76,13 @@ const handleSubmit = async () => {
       </label>
       <input v-model="reservation.date" type="date" class="input input-bordered">
       <div class="grid md:grid-cols-2 gap-2">
-        <label class="form-control w-full max-w-xs">
+        <label class="form-control w-full">
           <div class="label">
             <span class="label-text">{{ $t('label.from') }}</span>
           </div>
           <input v-model="reservation.from" type="time" class="input input-bordered">
         </label>
-        <label class="form-control w-full max-w-xs">
+        <label class="form-control w-full">
           <div class="label">
             <span class="label-text">{{ $t('label.to') }}</span>
           </div>

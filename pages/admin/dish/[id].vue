@@ -19,7 +19,7 @@ const isLoading = ref(false);
 const isLoadingDelete = ref(false);
 
 
-const { data } = await useFetch<{
+const { data, refresh } = await useFetch<{
   ok: boolean,
   message: string
   dish: Dish
@@ -28,7 +28,7 @@ const { data } = await useFetch<{
 // methods
 const handleSubmit = async () => {
   if (!data.value.dish || !data.value.dish.title["ru"] || !data.value.dish.price || !data.value.dish.unit || !data.value.dish.categoryId) {
-    return alert("")
+    return
   }
   try {
     isLoading.value = true;
@@ -36,8 +36,8 @@ const handleSubmit = async () => {
       ok: boolean
       message: string
       dish: Dish
-    }>("/api/dish", {
-      method: 'POST',
+    }>(`/api/dish/${data.value.dish._id}`, {
+      method: 'PUT',
       headers: {
         Authorization: token.value!
       },
@@ -48,15 +48,9 @@ const handleSubmit = async () => {
     if (!response.ok) {
       return alert(response.message);
     }
-    const isConfirmed = confirm("Успуешно добавлено. Добавить еще?");
-    if (isConfirmed) {
-      data.value.dish.image = "";
-      data.value.dish.title = {};
-      data.value.dish.price = 0;
-      data.value.dish.unit = "";
-      data.value.dish.categoryId = "";
-    } else {
-      router.push({ name: 'dish' });
+    const isConfirmed = confirm("Обновленно. Изменить ещё?");
+    if (!isConfirmed) {
+      router.push({ name: 'admin-dish' });
     }
   } catch (error) {
     console.error(error);
@@ -65,7 +59,45 @@ const handleSubmit = async () => {
   }
 };
 
+const handleArchive = async () => {
+  const isConfirmed = confirm(t('modal.dishArchive.title'));
+  if (!isConfirmed) {
+    return;
+  }
+  try {
+    isLoading.value = true;
+    const response = await $fetch<{
+      ok: boolean
+      message: string
+      dish: Dish
+    }>(`/api/dish/${data.value.dish._id}`, {
+      method: 'PUT',
+      headers: {
+        Authorization: token.value!
+      },
+      body: JSON.stringify({
+        dish: {
+          isArchived: !data.value.dish.isArchived
+        },
+      })
+    });
+    if (!response.ok) {
+      return alert(response.message);
+    }
+    refresh()
+
+  } catch (error) {
+    console.error(error);
+  } finally {
+    isLoading.value = false;
+  }
+};
+
 const handleDelete = async () => {
+  const isConfirmed = confirm(t('modal.dishDelete.title'));
+  if (!isConfirmed) {
+    return;
+  }
   try {
     isLoadingDelete.value = true;
     const response = await $fetch<{
@@ -80,7 +112,8 @@ const handleDelete = async () => {
     if (!response.ok) {
       return alert(response.message);
     }
-    router.push({ name: 'dish' });
+    alert(t('modal.dishDelete.success'));
+    router.push({ name: 'admin-dish' });
 
   } catch (error) {
     console.error(error);
@@ -93,7 +126,7 @@ const handleDelete = async () => {
 <template>
   <div class="flex flex-col gap-4 p-3">
     <Header :title="$t('screen.dishEdit.title')" />
-    <div v-if="data.dish" class="flex flex-col gap-4 max-w-lg">
+    <div v-if="data?.dish" class="flex flex-col gap-4 max-w-lg">
       <div class="avatar w-full">
         <div class="rounded-xl w-full bg-gray-200">
           <img v-if="data.dish.image" :src="data.dish.image" />
@@ -107,7 +140,7 @@ const handleDelete = async () => {
         }" @click="selectedLocale = item.code">
           {{ $t(`language.${item.code}`) }}
           <IconCheck v-if="data.dish.title[item.code]" class="w-4 fill-success" />
-          <IconСircleXmark v-else class="w-4 fill-error" />
+          <IconCircleXmark v-else class="w-4 fill-error" />
         </div>
       </div>
       <input v-model="data.dish.title[selectedLocale]" class="input input-bordered"
@@ -125,16 +158,29 @@ const handleDelete = async () => {
           {{ category.title[locale] }}
         </option>
       </select>
-
+      <div class="form-control">
+        <label class="label cursor-pointer justify-start gap-2">
+          <input v-model="data.dish.isNew" type="checkbox" class="checkbox checkbox-primary" />
+          <span class="label-text">{{ $t('label.new') }}</span>
+        </label>
+      </div>
       <button class="btn btn-primary w-full" @click="handleSubmit()"
         :disabled="isLoading || !data.dish.title['ru'] || !data.dish.categoryId || !data.dish.price || !data.dish.unit">
         <Loading v-if="isLoading" />
         <template v-else>{{ $t('label.save') }}</template>
       </button>
+      <button class="btn btn-primary btn-outline w-full" @click="handleArchive()" :disabled="isLoading">
+        <Loading v-if="isLoadingDelete" />
+        <template v-else>{{ data?.dish.isArchived ? $t('label.fromArchive') : $t('label.toArchive') }}</template>
+      </button>
       <button class="btn btn-primary btn-outline w-full" @click="handleDelete()" :disabled="isLoadingDelete">
         <Loading v-if="isLoadingDelete" />
         <template v-else>{{ $t('label.delete') }}</template>
       </button>
+    </div>
+    <div v-else class="py-10 flex flex-col items-center gap-4">
+      <p class="text-center text-lg text-gray-500">{{ $t('label.dishNotExist') }}</p>
+      <NuxtLink :to="{ name: 'admin-dish' }" class="btn btn-primary">{{ $t('label.back') }}</NuxtLink>
     </div>
   </div>
 </template>

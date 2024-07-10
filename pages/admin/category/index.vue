@@ -80,7 +80,7 @@ const changeOrder = async (firstCategoryId: string, secondCategoryId: string) =>
       <input v-model="searchableCategory" type="text" class="input input-bordered w-full"
         :placeholder="t('label.search', { field: t('label.categoryName') })">
     </div>
-    <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+    <div v-if="categories.length" class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
       <div v-for="(category, index) in categories" :key="category._id"
         class="flex flex-col sm:aspect-square rounded-md border p-3 cursor:pointer hover:bg-gray-100">
         <p>{{ category?.title[locale] || category?.title["ru"] }}</p>
@@ -110,6 +110,10 @@ const changeOrder = async (firstCategoryId: string, secondCategoryId: string) =>
           </div>
         </div>
       </div>
+    </div>
+    <div v-else class="py-10 flex flex-col items-center gap-6">
+      <p class="text-lg text-center text-gray-500">{{ $t('label.empty') }}</p>
+      <NuxtLink :to="{ name: 'admin-category-add' }" class="btn btn-neutral">{{ $t('label.add') }}</NuxtLink>
     </div>
   </div>
 </template>

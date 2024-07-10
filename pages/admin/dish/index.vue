@@ -15,12 +15,14 @@ const { data: dataCategory } = useFetch<{
 }>('/api/category')
 
 // composables
-const { locale } = useI18n()
+const { locale, t } = useI18n()
 const { token } = useAuth()
 // state
 const mode = ref('cards')
-const isAvailable = ref(null)
+const selectedTab = ref<boolean | null>(true)
+const isArchived = ref(false)
 const selectedCategory = ref<string | null>(null)
+const selectedStatus = ref<boolean | null>(null)
 const isLoading = ref(false)
 const searchableDish = ref('')
 const dishes = computed(() => {
@@ -31,7 +33,9 @@ const dishes = computed(() => {
   return data.value.dishes
     .sort((a, b) => a.order - b.order)
     .filter(dish => selectedCategory.value ? dish.categoryId === selectedCategory.value : true)
-    .filter(dish => isAvailable.value === null ? dish : dish.isAvailable === isAvailable.value)
+    .filter(dish => isArchived.value === dish.isArchived)
+    .filter(dish => selectedStatus.value === null ? dish : selectedStatus.value === true ? dish.isNew === true : dish.isNew !== true)
+    .filter(dish => selectedTab.value === null ? dish : dish.isAvailable === selectedTab.value)
     .filter(dish => {
       const title = dish.title[currentLocale] || dish.title['en']
 
@@ -107,6 +111,21 @@ const handleChangeVisibility = async (item: Dish) => {
     isLoading.value = false;
   }
 }
+
+const tabs = computed(() => [
+  {
+    label: t("label.all"),
+    value: null,
+  },
+  {
+    label: t("label.available"),
+    value: true,
+  },
+  {
+    label: t("label.unavailable"),
+    value: false,
+  }
+])
 </script>
 
 <template>
@@ -119,51 +138,93 @@ const handleChangeVisibility = async (item: Dish) => {
       </div>
     </Header>
     <div class="py-3 flex flex-col gap-2">
-      <input v-model="searchableDish" type="text" class="input input-bordered w-full" :placeholder="$t('label.search')">
+      <label class="form-control w-full">
+        <div class="label">
+          <span class="label-text">{{ $t('label.search') }}</span>
+        </div>
+        <input v-model="searchableDish" type="text" class="input input-bordered w-full"
+          :placeholder="$t('label.title')">
+      </label>
       <div class="grid md:grid-cols-3 gap-2">
-        <select v-if="dataCategory" v-model="selectedCategory" class="select select-bordered">
-          <option :value="null">{{ $t("label.all") }}</option>
-          <option v-for="category in dataCategory.categories" :key="category._id" :value="category._id">
-            {{ category.title[locale] || category?.title["ru"] }}
-          </option>
-        </select>
-        <select v-model="isAvailable" class="select select-bordered">
-          <option :value="null">{{ $t("label.all") }}</option>
-          <option :value="true">{{ $t("label.available") }}</option>
-          <option :value="false">{{ $t("label.unavailable") }}</option>
-        </select>
-        <select v-model="mode" class="select select-bordered">
-          <option value="cards">{{ $t("label.cards") }}</option>
-          <option value="table">{{ $t("label.table") }}</option>
-        </select>
+
+        <label class="form-control w-full">
+          <div class="label">
+            <span class="label-text">{{ $t('label.category') }}</span>
+          </div>
+          <select v-if="dataCategory" v-model="selectedCategory" class="select select-bordered">
+            <option :value="null">{{ $t("label.all") }}</option>
+            <option v-for="category in dataCategory.categories" :key="category._id" :value="category._id">
+              {{ category.title[locale] || category?.title["ru"] }}
+            </option>
+          </select>
+        </label>
+        <label class="form-control w-full">
+          <div class="label">
+            <span class="label-text">{{ $t('label.status') }}</span>
+          </div>
+          <select v-model="isArchived" class="select select-bordered">
+            <option :value="false">{{ $t("label.inMenu") }}</option>
+            <option :value="true">{{ $t("label.inArchive") }}</option>
+          </select>
+        </label>
+        <label class="form-control w-full">
+          <div class="label">
+            <span class="label-text">{{ $t('label.status') }}</span>
+          </div>
+          <select v-model="selectedStatus" class="select select-bordered">
+            <option :value="null">{{ $t("label.all") }}</option>
+            <option :value="true">{{ $t("label.new") }}</option>
+            <option :value="false">{{ $t("label.current") }}</option>
+          </select>
+        </label>
+        <label class="form-control w-full">
+          <div class="label">
+            <span class="label-text">{{ $t('label.viewMode') }}</span>
+          </div>
+          <select v-model="mode" class="select select-bordered">
+            <option value="cards">{{ $t("label.cards") }}</option>
+            <option value="table">{{ $t("label.table") }}</option>
+          </select>
+        </label>
       </div>
+      <div role="tablist" class="tabs tabs-boxed">
+        <a v-for="tab in tabs" :key="tab.value" role="tab" class="tab" :class="{
+          'tab-active': selectedTab === tab.value,
+        }" @click="selectedTab = tab.value">
+          {{ tab.label }}
+        </a>
+      </div>
+
     </div>
     <h2 class="text-xl font-bold mb-2">{{ $t("screen.dishes.subtitle") }}</h2>
     <div v-if="mode === 'cards'" class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-      <div v-for="(dish, index) in dishes" :key="dish._id"
-        class=" flex flex-col sm:aspect-square rounded-md border p-3">
-        <div class="flex justify-between gap-2">
-          <p class="font-bold line-clamp-2">{{ dish.title[locale] || dish?.title["ru"] }}</p>
-          <input type="checkbox" class="toggle" :checked="dish.isAvailable" @change="handleChangeVisibility(dish)" />
-        </div>
-        <p class="text-gray-400">{{ dish.price }}₽</p>
-        <div class="flex-1 flex flex-col justify-end gap-1  mt-4 sm:mt-0">
-          <NuxtLink class="btn btn-sm hidden sm:inline-flex" :to="{ name: 'admin-dish-id', params: { id: dish._id } }">
-            {{ $t('label.edit') }}
-          </NuxtLink>
-
-          <div class="flex gap-1">
-            <button v-if="index !== 0" class="btn btn-sm flex-1" @click="changeOrder(dish._id, dishes[index - 1]._id)"
-              :disabled="isLoading">
-              <IconChevronLeft class="w-2" />
-            </button>
-            <NuxtLink class="btn btn-sm sm:hidden" :to="{ name: 'admin-dish-id', params: { id: dish._id } }">
+      <div v-for="(dish, index) in dishes" :key="dish._id" class="aspect-square w-full indicator">
+        <span v-if="dish.isNew" class="indicator-item badge badge-primary">{{ $t('label.new') }}</span>
+        <div class="flex flex-col sm:aspect-square rounded-md border p-3">
+          <div class="flex justify-between gap-2">
+            <p class="font-bold line-clamp-2">{{ dish.title[locale] || dish?.title["ru"] }}</p>
+            <input type="checkbox" class="toggle" :checked="dish.isAvailable" @change="handleChangeVisibility(dish)" />
+          </div>
+          <p class="text-gray-400">{{ dish.price }}₽</p>
+          <div class="flex-1 flex flex-col justify-end gap-1  mt-4 sm:mt-0">
+            <NuxtLink class="btn btn-sm hidden sm:inline-flex"
+              :to="{ name: 'admin-dish-id', params: { id: dish._id } }">
               {{ $t('label.edit') }}
             </NuxtLink>
-            <button v-if="index !== dishes.length - 1" class="btn btn-sm flex-1"
-              @click="changeOrder(dish._id, dishes[index + 1]._id)" :disabled="isLoading">
-              <IconChevronRight class="w-2" />
-            </button>
+
+            <div class="flex gap-1">
+              <button v-if="index !== 0" class="btn btn-sm flex-1" @click="changeOrder(dish._id, dishes[index - 1]._id)"
+                :disabled="isLoading">
+                <IconChevronLeft class="w-2" />
+              </button>
+              <NuxtLink class="btn btn-sm sm:hidden" :to="{ name: 'admin-dish-id', params: { id: dish._id } }">
+                {{ $t('label.edit') }}
+              </NuxtLink>
+              <button v-if="index !== dishes.length - 1" class="btn btn-sm flex-1"
+                @click="changeOrder(dish._id, dishes[index + 1]._id)" :disabled="isLoading">
+                <IconChevronRight class="w-2" />
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -188,9 +249,9 @@ const handleChangeVisibility = async (item: Dish) => {
             </th>
             <td>{{ item.title[locale] }}</td>
             <td>{{ item.price }}</td>
-            <td>{{ item.price }}</td>
+            <td>{{ item.unit }}</td>
             <td>{{ dataCategory.categories.find(x => x._id === item.categoryId).title[locale] }}</td>
-            <td>
+            <td class="flex">
               <NuxtLink class="btn btn-sm  btn-square mr-2" :to="{ name: 'admin-dish-id', params: { id: item._id } }">
                 <IconPen class=" w-3" />
               </NuxtLink>
@@ -207,8 +268,9 @@ const handleChangeVisibility = async (item: Dish) => {
         </tbody>
       </table>
     </div>
-    <div v-if="!dishes.length" class="flex flex-col justify-center items-center py-20 w-full">
+    <div v-if="!dishes.length" class="flex flex-col justify-center items-center py-20 w-full gap-6">
       <p class="text-lg text-gray-400">{{ $t('label.empty') }}</p>
+      <NuxtLink :to="{ name: 'admin-dish-add' }" class="btn btn-neutral">{{ $t('label.add') }}</NuxtLink>
     </div>
   </div>
 </template>

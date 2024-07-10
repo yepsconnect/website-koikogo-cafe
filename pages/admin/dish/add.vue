@@ -49,18 +49,18 @@ const handleSubmit = async () => {
       alert(response.message);
       return;
     }
-    const isConfirmed = confirm("Успуешно добавлено. Добавить еще?");
-    if (isConfirmed) {
-      dish.image = "";
-      dish.title = {};
-      dish.price = 0;
-      dish.unit = "";
-      dish.categoryId = "";
-    } else {
-      router.push({ name: 'dish' });
+    const isConfirmed = confirm(t('modal.dishAdd.success'));
+    dish.image = "";
+    dish.title = {};
+    dish.price = 0;
+    dish.unit = "";
+    dish.categoryId = "";
+
+    if (!isConfirmed) {
+      router.push({ name: 'admin-dish' });
     }
   } catch (error) {
-    console.error(error);
+    t('modal.dishAdd.error')
   } finally {
     isLoading.value = false;
   }
@@ -84,7 +84,7 @@ const handleSubmit = async () => {
         }" @click="selectedLocale = item.code">
           {{ $t(`language.${item.code}`) }}
           <IconCheck v-if="dish.title[item.code]" class="w-4 fill-success" />
-          <IconСircleXmark v-else class="w-4 fill-error" />
+          <IconCircleXmark v-else class="w-4 fill-error" />
         </div>
       </div>
       <input v-model="dish.title[selectedLocale]" class="input input-bordered"

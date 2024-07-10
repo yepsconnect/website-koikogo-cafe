@@ -19,4 +19,6 @@ export const Dish = defineMongooseModel<Dish>("Dish", {
   slug: { type: String, required: true, unique: true },
   order: { type: Number, default: 0, unique: true },
   isAvailable: { type: Boolean, default: true },
+  isArchived: { type: Boolean, default: false },
+  isNew: { type: Boolean, default: true },
 });

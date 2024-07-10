@@ -54,7 +54,6 @@ const selectedFrom = ref();
 const selectedTo = ref();
 
 const start = (time?: string) => {
-
   let candidate
   if (!time) {
     candidate = times.find(x => x >= moment().format("HH:mm"))
@@ -80,7 +79,7 @@ const { data: dataHalls } = useFetch<{
   halls: Hall[]
 }>(`/api/hall`)
 
-const { data: dataB } = await useAsyncData<{
+const { data: dataB, refresh } = await useAsyncData<{
   ok: boolean
   bookings: Booking[]
 }>(
@@ -173,6 +172,6 @@ watch(selectedFrom, (val) => {
 
     <ModalReservation v-model="isOpen" :table="selectedTable?._id ? selectedTable : null"
       :reservations="dataB?.bookings || []" :date="selectedDate" :from="selectedFrom" :to="selectedTo"
-      :halls="dataHalls?.halls || []" :capacity="selectedCapacity" />
+      :halls="dataHalls?.halls || []" :capacity="selectedCapacity" @on-booking="refresh()" />
   </div>
 </template>

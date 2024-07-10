@@ -37,15 +37,18 @@ const handleSubmit = async () => {
     if (!response.ok) {
       return alert(response.message)
     }
-    const isConfirmed = confirm(t("screen.categoryAdd.confirm"));
-    if (isConfirmed) {
-      category.value.title = {}
-      category.value.description = {}
-    } else {
-      router.push({ name: 'category' });
+    const isConfirmed = confirm(t("modal.categoryAdd.success"));
+
+    category.value.title = {}
+    category.value.description = {}
+    category.value.page = ""
+
+    if (!isConfirmed) {
+      router.push({ name: 'admin-category' });
     }
+
   } catch (error) {
-    console.error(error);
+    confirm(t("modal.categoryAdd.error"));
   } finally {
     isLoading.value = false;
   }
@@ -65,12 +68,12 @@ const handleSubmit = async () => {
               }" @click="selectedLocale = item.code">
               {{ $t(`language.${item.code}`) }}
               <IconCheck v-if="category.title[item.code]" class="w-4 fill-success" />
-              <IconСircleXmark v-else class="w-4 fill-error" />
+              <IconCircleXmark v-else class="w-4 fill-error" />
             </div>
           </div>
         </div>
         <input v-model="category.title[selectedLocale]" type="text" class="input input-bordered"
-          :placeholder="t('label.categoryName') + ' (selectedLocale' + selectedLocale + ')'">
+          :placeholder="t('label.categoryName') + ' (' + selectedLocale + ')'">
         <textarea v-model="category.description[selectedLocale]"
           class="textarea textarea-bordered placeholder:text-base text-base"
           :placeholder="t('label.categoryInfo') + ' (' + selectedLocale + ')'"></textarea>

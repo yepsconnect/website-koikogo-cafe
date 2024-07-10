@@ -117,9 +117,21 @@ function setItemsPerPage(newLimit) {
         </NuxtLink>
       </div>
     </Header>
-    <div>
-      <input v-model="selectedFrom" type="date" class="input input-bordered">
-      <input v-model="selectedTo" type="date" class="input input-bordered">
+    <div class="grid md:grid-cols-2 gap-4">
+      <label class="form-control w-full">
+        <div class="label">
+          <span class="label-text">{{ $t('label.from') }}</span>
+        </div>
+        <input v-model="selectedFrom" type="date" class="input input-bordered">
+      </label>
+      <label class="form-control w-full">
+        <div class=" label">
+          <span class="label-text">{{ $t('label.to') }}</span>
+        </div>
+        <input v-model="selectedTo" type="date" class="input input-bordered">
+      </label>
+
+
     </div>
     <div role="tablist" class="tabs tabs-boxed">
       <a v-for="tab in tabs" :key="tab.value" role="tab" class="tab" :class="{

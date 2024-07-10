@@ -46,18 +46,22 @@ const handleSubmit = async () => {
     if (!response.ok) {
       return alert(response.message)
     }
-    const isConfirm = confirm("Категория успешно обновлена. Закончить изменения?");
-    if (isConfirm) {
-      router.push({ name: 'category' })
+    const isConfirm = confirm(t("modal.categoryEdit.success"));
+    if (!isConfirm) {
+      router.push({ name: 'admin-category' })
     }
   } catch (error) {
-    console.error(error);
+    confirm(t("modal.categoryEdit.error"));
   } finally {
     isLoading.value = false;
   }
 };
 
 const handleDelete = async () => {
+  const isConfirm = confirm(t('modal.categoryDelete.title'));
+  if (!isConfirm) {
+    return
+  }
   try {
     isLoadingDelete.value = true
     const response = await $fetch<{
@@ -73,9 +77,10 @@ const handleDelete = async () => {
     if (!response.ok) {
       return alert(response.message)
     }
-    router.push({ name: 'category' })
+    alert(t('modal.categoryDelete.success'))
+    router.push({ name: 'admin-category' })
   } catch (error) {
-
+    alert(t('modal.categoryDelete.error'))
   } finally {
     isLoadingDelete.value = false
   }
@@ -85,7 +90,7 @@ const handleDelete = async () => {
 <template>
   <div class="flex flex-col gap-2 p-3">
     <Header :title="$t('screen.categoryEdit.title')" />
-    <form v-if="data?.category" @submit.prevent="handleSubmit" class="flex flex-col gap-2 w-full sm:max-w-lg">
+    <div v-if="data?.category" class="flex flex-col gap-2 w-full sm:max-w-lg">
       <div class="flex flex-col gap-2">
         <div class="flex items-center justify-between w-full">
           <div class="flex gap-1">
@@ -95,7 +100,7 @@ const handleDelete = async () => {
               }" @click="selectedLocale = item.code">
               {{ $t(`language.${item.code}`) }}
               <IconCheck v-if="data.category.title[item.code]" class="w-4 fill-success" />
-              <IconСircleXmark v-else class="w-4 fill-error" />
+              <IconCircleXmark v-else class="w-4 fill-error" />
             </div>
           </div>
         </div>
@@ -111,15 +116,21 @@ const handleDelete = async () => {
           </option>
         </select>
       </div>
-      <button class="btn btn-neutral" type="submit"
-        :disabled="isLoading || !data.category.title['ru'] || !data.category.page">
+      <button class="btn btn-neutral" :disabled="isLoading || !data.category.title['ru'] || !data.category.page"
+        @click="handleSubmit">
         <Loading v-if="isLoading" />
         <template v-else>{{ t('label.save') }}</template>
       </button>
-    </form>
-    <button class="btn btn-neutral btn-outline w-full max-w-lg mt-2" @click="handleDelete" :disabled="isLoadingDelete">
-      <Loading v-if="isLoadingDelete" />
-      <template v-else>{{ t('label.delete') }}</template>
-    </button>
+      <button class="btn btn-neutral btn-outline w-full max-w-lg mt-2" @click="handleDelete"
+        :disabled="isLoadingDelete">
+        <Loading v-if="isLoadingDelete" />
+        <template v-else>{{ t('label.delete') }}</template>
+      </button>
+    </div>
+    <div v-else class="py-12 flex flex-col items-center gap-6">
+      <p>{{ t('label.categoryNotFound') }}</p>
+      <NuxtLink :to="{ name: 'admin-category' }" class="btn btn-neutral">{{ $t('label.back') }}</NuxtLink>
+    </div>
+
   </div>
 </template>

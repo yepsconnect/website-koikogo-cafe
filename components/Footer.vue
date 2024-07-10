@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { formatPhoneNumber } from "~/services/phoneService";
-import IconTelegram from "../components/IconTelegram.vue"
-import IconViber from "../components/IconViber.vue"
-import IconVK from "../components/IconVK.vue"
-import IconWhatsApp from "../components/IconWhatsApp.vue"
+import IconTelegram from "./Icon/Telegram.vue"
+import IconViber from "./Icon/Viber.vue"
+import IconVK from "./Icon/VK.vue"
+import IconWhatsApp from "./Icon/WhatsApp.vue"
 
 const { phone } = useConfig()
 const { t } = useI18n();

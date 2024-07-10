@@ -3,7 +3,7 @@ import moment from "moment"
 import { getTimeDifference } from "../services/timeService"
 import { formatPhoneNumber } from "../services/phoneService"
 
-const emit = defineEmits(["update:modelValue", "show-order"]);
+const emit = defineEmits(["update:modelValue", "show-order", "onBooking"]);
 const props = defineProps<{
   modelValue: boolean;
   table: Table
@@ -50,7 +50,6 @@ const reservation = ref<BookingNew>({
 // methods 
 const isLoading = ref(false)
 const handleSubmit = async () => {
-  return
   isLoading.value = true
   try {
     reservation.value.tableId = props.table?._id
@@ -67,9 +66,19 @@ const handleSubmit = async () => {
       body: JSON.stringify({ reservation: reservation.value }),
     })
     alert(response.message)
+    reservation.value.tableId = ""
+    reservation.value.date = ""
+    reservation.value.from = ""
+    reservation.value.to = ""
+    reservation.value.name = ""
+    reservation.value.phone = ""
+    emit("update:modelValue", false)
+    emit("onBooking")
 
   } catch (error) {
     alert(error)
+  } finally {
+    isLoading.value = false
   }
 }
 </script>
@@ -99,10 +108,7 @@ const handleSubmit = async () => {
       <p v-if="capacity && capacity > table.capacity" class="text-lg text-center">
         {{ $t('modal.reservation.capacity') }}
       </p>
-      <template v-if="true">
-        <!-- TODO: delete this section -->
-      </template>
-      <template v-else-if="!bookings.length">
+      <template v-if="!bookings.length">
         <label class="input input-bordered flex items-center gap-2">
           <IconUser class="w-3" />
           <input v-model="reservation.name" type="text" class="grow" :placeholder="$t('label.name')" />

@@ -4,6 +4,30 @@ name:
   - "Koikogo"
 
 modal:
+  dishAdd:
+    success: "Dish add successfully. Add one more?"
+    error: "Error adding dish"
+  dishEdit:
+    success: "Dish updated successfully. Continue?"
+    error: "Error updated dish"
+  dishDelete:
+    title: "Do you want to delete this dish?"
+    success: "Dish deleted"
+    error: "Error deleting dish"
+  dishDelete:
+    title: "Do you want move this dish to archive?"
+    success: "Success"
+    error: "Error"
+  categoryAdd:
+    success: "Category add successfully. Add one more?"
+    error: "Error adding category"
+  categoryEdit:
+    success: "Category updated successfully. Continue?"
+    error: "Error updated category"
+  categoryDelete:
+    title: "Do you want to delete this category?"
+    success: "Category deleted"
+    error: "Error deleting category"
   reservation:
     title: "Reservation"
     info: "To reserve a table call the phone number"
@@ -21,6 +45,16 @@ language:
   en: "English"
 
 label:
+  dishNotExist: "Dish not exist"
+  back: "Go back"
+  fromArchive: "Move to archive"
+  toArchive: "Move from archive"
+  new: "New"
+  current: "Current"
+  status: "Status"
+  viewMode: "View mode"
+  inMenu: "Сurrent"
+  inArchive: "Archive"
   list: "List"
   map: "Map"
   or: "or"
