@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import moment from 'moment';
 // composables
-const { locale } = useI18n();
+const { locale, t } = useI18n();
 // state
 const times = [
   '10:00',
@@ -35,7 +35,18 @@ const times = [
 ]
 const isOpen = ref(false);
 const selectedHall = ref(null);
+const modes = computed(() => [
+  {
+    label: t('label.list'),
+    value: 'list'
+  },
+  {
+    label: t('label.map'),
+    value: 'map'
+  },
+])
 // filters state
+const selectedMode = ref('list')
 const selectedDate = ref(moment().format('YYYY-MM-DD'));
 const selectedCapacity = ref(0);
 const selectedTable = ref<Table>();
@@ -71,7 +82,7 @@ const { data: dataHalls } = useFetch<{
 
 const { data: dataB } = await useAsyncData<{
   ok: boolean
-  bookings: Reservation[]
+  bookings: Booking[]
 }>(
   'bookings',
   () =>
@@ -97,15 +108,15 @@ const tables = computed(() => {
   if (!data.value || !data.value.tables.length) {
     return []
   }
+  if (selectedMode.value === 'map') return data.value.tables
+
   return data.value.tables.filter(table =>
     table.capacity >= selectedCapacity.value && table.hall === selectedHall.value || selectedHall.value === null
   )
 })
 // methods
-const openModal = (table: Table) => {
-  console.log(table);
-
-  selectedTable.value = table;
+const openModal = (tableId: string) => {
+  selectedTable.value = tables.value.find(x => x._id === tableId);
   isOpen.value = true;
 }
 
@@ -127,6 +138,16 @@ watch(selectedFrom, (val) => {
     <div class="flex flex-col gap-6 relative">
       <h1 class="text-2xl font-bold">{{ $t('screen.reservation.title') }}</h1>
       <div class="flex flex-col md:flex-row gap-4">
+        <div class="flex gap-4">
+          <PickerTime v-model="selectedFrom" :times="times" :min="moment().format('HH:mm')" :date="selectedDate" />
+          <PickerTime v-model="selectedTo" :times="times" :min="selectedFrom" />
+        </div>
+        <select v-model="selectedMode" class="select select-bordered">
+
+          <option v-for="option in modes" :key="option.value" :value="option.value">
+            {{ option.label }}
+          </option>
+        </select>
         <select v-model="selectedHall" class="select select-bordered">
           <option :value="null">{{ $t('label.allHalls') }}</option>
           <option v-for="hall in dataHalls?.halls" :key="hall._id" :value="hall._id">
@@ -138,20 +159,20 @@ watch(selectedFrom, (val) => {
           <option v-for="item in 10" :key="item" :value="item">{{ item }}</option>
         </select>
         <input v-model="selectedDate" type="date" class="input input-bordered md:flex-1" @change="changeTime">
-        <div class="flex gap-4">
-          <PickerTime v-model="selectedFrom" :times="times" :min="moment().format('HH:mm')" :date="selectedDate" />
-          <PickerTime v-model="selectedTo" :times="times" :min="selectedFrom" />
-        </div>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+      <TableView v-if="selectedMode === 'map'" :selected-hall="selectedHall" :tables="tables"
+        :bookings="dataB?.bookings || []" :date="selectedDate" :from="selectedFrom" :to="selectedTo"
+        :capacity="selectedCapacity" @on-pick-desk="openModal" />
+      <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <CardTable v-for="table in tables" :key="table._id" :table="table" :halls="dataHalls?.halls || []"
-          :reservations="dataB.bookings || []" :date="selectedDate" :from="selectedFrom" :to="selectedTo"
+          :reservations="dataB?.bookings || []" :date="selectedDate" :from="selectedFrom" :to="selectedTo"
           @onSelect="openModal" />
       </div>
     </div>
 
     <ModalReservation v-model="isOpen" :table="selectedTable?._id ? selectedTable : null"
-      :reservations="dataB.bookings || []" :date="selectedDate" :from="selectedFrom" :to="selectedTo"
-      :halls="dataHalls?.halls || []" />
+      :reservations="dataB?.bookings || []" :date="selectedDate" :from="selectedFrom" :to="selectedTo"
+      :halls="dataHalls?.halls || []" :capacity="selectedCapacity" />
   </div>
 </template>

@@ -9,14 +9,14 @@ const { locale } = useI18n()
 const router = useRouter()
 // state
 const isLoading = ref(false)
-const reservation = ref<Reservation>({
+const reservation = ref<BookingNew>({
   tableId: "",
   date: "",
   from: "",
   to: "",
   name: "",
   phone: "",
-  status: "reserved",
+  status: "confirmed",
 })
 // fetch
 const { data } = useFetch<{
@@ -28,7 +28,7 @@ const handleSubmit = async () => {
   try {
     const response = await fetch<{
       ok: boolean
-      reservation: Reservation
+      reservation: Booking
       message: string
     }>(`/api/reservation`, {
       method: 'POST',

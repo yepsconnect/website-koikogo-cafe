@@ -32,7 +32,7 @@ const tabs = computed(() => [
 ]);
 const { data, pending, refresh } = await useAsyncData<{
   ok: boolean;
-  reservations: Reservation[];
+  reservations: Booking[];
   totalCount: number;
   totalPages: number;
   currentPage: number;
@@ -67,11 +67,11 @@ const reservations = computed(() => {
     .sort((a, b) => moment(a.date).diff(moment(b.date)));
 });
 //methods
-const handleSubmit = async (reservation: Reservation, status) => {
+const handleSubmit = async (reservation: Booking, status: string) => {
   try {
     const data = await $fetch<{
       ok: boolean
-      reservation: Reservation
+      reservation: Booking
       message: string
     }>(`/api/reservation/${reservation._id}`, {
       method: 'PUT',

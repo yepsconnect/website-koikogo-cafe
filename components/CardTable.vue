@@ -5,7 +5,7 @@ import { getTimeDifference } from "../services/timeService"
 defineEmits(["onSelect"])
 const props = defineProps<{
   table: Table
-  reservations: Reservation[]
+  reservations: Booking[]
   halls: Hall[]
   from: string
   to: string
@@ -31,7 +31,7 @@ const booking = computed(() => bookings.value[0])
 </script>
 
 <template>
-  <div class="border p-4 rounded-lg hover:bg-gray-200 cursor-pointer" @click="$emit('onSelect', table)">
+  <div class="border p-4 rounded-lg hover:bg-gray-200 cursor-pointer" @click="$emit('onSelect', table._id)">
     <div class="flex justify-between items-start gap-2">
       <div>
         <p class="font-bold">{{ table.name[locale] || table.name['ru'] }}</p>

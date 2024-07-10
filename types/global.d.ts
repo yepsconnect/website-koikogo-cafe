@@ -61,7 +61,7 @@ interface Hall extends HallNew {
   _id: string;
 }
 
-interface ReservationNew {
+interface BookingNew {
   tableId: string;
   date: string;
   from: string;
@@ -71,6 +71,6 @@ interface ReservationNew {
   status: "pending" | "confirmed" | "cancelled";
 }
 
-interface Reservation extends ReservationNew {
+interface Booking extends BookingNew {
   _id: string;
 }

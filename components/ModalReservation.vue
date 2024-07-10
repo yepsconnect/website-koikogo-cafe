@@ -10,8 +10,9 @@ const props = defineProps<{
   from: string
   to: string
   date: string
-  reservations: Reservation[]
+  reservations: Booking[]
   halls: Hall[]
+  capacity: number
 }>();
 // composables
 const { phone } = useConfig()
@@ -37,7 +38,7 @@ const bookings = computed(() => {
 const booking = computed(() => bookings.value[0])
 // state
 const isCheck = ref(false)
-const reservation = ref<ReservationNew>({
+const reservation = ref<BookingNew>({
   tableId: "",
   date: "",
   from: "",
@@ -59,7 +60,7 @@ const handleSubmit = async () => {
 
     const response = await $fetch<{
       ok: boolean
-      reservation: Reservation
+      reservation: Booking
       message: string
     }>('/api/reservation', {
       method: 'POST',
@@ -78,7 +79,7 @@ const handleSubmit = async () => {
     <div class="flex flex-col gap-4">
       <div class="flex justify-between items-start gap-2">
         <div>
-          <h2 class="text-xl font-bold">{{ table?.name[locale || 'ru'] }}</h2>
+          <h2 class="text-xl font-bold">{{ table?.name[table?.name[locale] ? locale : 'ru'] }}</h2>
           <p class="text-gray-500 text">{{ halls.find(x => x._id === table?.hall)?.title[locale || 'ru'] }}</p>
           <p v-if="!bookings.length || booking.status === 'cancelled'" class="text-green-500">{{
             $t('label.free') }}
@@ -95,6 +96,9 @@ const handleSubmit = async () => {
           <IconUserGroup class="w-6" />
         </div>
       </div>
+      <p v-if="capacity && capacity > table.capacity" class="text-lg text-center">
+        {{ $t('modal.reservation.capacity') }}
+      </p>
       <template v-if="true">
         <!-- TODO: delete this section -->
       </template>
@@ -126,7 +130,7 @@ const handleSubmit = async () => {
         <IconPhone class="w-3 fill-white" />
         {{ $t('label.call') }}
       </a>
-      <p class="text-sm text-gray-400 text-center max-w-xs mx-auto">
+      <p class="text-sm text-gray-400 text-center max-w-64 mx-auto">
         {{ $t('modal.reservation.info') }}
         <a :href="`tel:${phone}`" class="link link-hover link-primary">{{ formatPhoneNumber(phone) }}</a>
       </p>
