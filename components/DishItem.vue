@@ -9,9 +9,11 @@ const { t } = useI18n();
 </script>
 
 <template>
-  <div class="flex items-center gap-1 p-2 rounded-xl hover:bg-base-200 cursor-pointer" @click="$emit('onSubmit', dish)">
+  <div class="flex items-center gap-1 p-2 rounded-xl hover:bg-base-200 cursor-pointer  w-full"
+    @click="$emit('onSubmit', dish)">
     <div class="flex items-start gap-4 w-full">
-      <div class="avatar">
+      <div class="avatar indicator">
+        <span v-if="dish.new" class="indicator-item badge badge-primary">{{ $t('label.new') }}</span>
         <div class="w-14 rounded-xl bg-gray-200">
           <img v-if="dish.image" :src="dish.image" loading="lazy" />
           <img v-else src="https://multimedia.properati.com.co/properati/images/no-image-placeholder.png"

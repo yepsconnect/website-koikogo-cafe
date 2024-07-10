@@ -1,51 +1,51 @@
 name:
-  - "Сafe"
-  - "named"
-  - "Koikogo"
+  - Cafe
+  - Named
+  - Koikogo
 
 modal:
   dishAdd:
-    success: "Dish add successfully. Add one more?"
+    success: "Dish added successfully. Add another?"
     error: "Error adding dish"
   dishEdit:
-    success: "Dish updated successfully. Continue?"
-    error: "Error updated dish"
+    success: "Dish updated. Continue editing?"
+    error: "Error updating dish"
   dishDelete:
-    title: "Do you want to delete this dish?"
-    success: "Dish deleted"
-    error: "Error deleting dish"
+    title: "Are you sure you want to delete this item?"
+    success: "Item deleted"
+    error: "Error deleting item"
   dishArchive:
-    title: "Do you want move this dish to archive?"
+    title: "Are you sure you want to move this item to the archive? You can always restore it later."
     success: "Success"
-    error: "Error"
+    error: "Error moving to archive"
   categoryAdd:
-    success: "Category add successfully. Add one more?"
+    success: "Category added successfully. Add another?"
     error: "Error adding category"
   categoryEdit:
-    success: "Category updated successfully. Continue?"
-    error: "Error updated category"
+    success: "Category updated. Continue editing?"
+    error: "Error updating category"
   categoryDelete:
-    title: "Do you want to delete this category?"
+    title: "Are you sure you want to delete this category?"
     success: "Category deleted"
     error: "Error deleting category"
   reservation:
     title: "Reservation"
-    info: "To reserve a table call the phone number"
-    error: “It is impossible to book a table at the time you specified. Please choose another time or call the number below for assistance with your reservation."
+    info: "To reserve a table, please call the phone number"
+    error: "Unable to reserve a table at the time you specified. Please choose another time or call the phone number below."
     freeNow: "Free now"
-    confirmation: "By clicking the button below, you consent to the use of the provided name and telephone number."
+    confirmation: "By clicking the button below, you consent to the use of the specified name and phone number"
     capacity: "The capacity of this table is less than the number of guests."
   order:
     title: "Your order"
-    totalPrice: "Total price"
-    empty: "Add something to your order"
+    totalPrice: "Total order amount"
+    empty: "Your order is currently empty"
 
 language:
   ru: "Russian"
   en: "English"
 
 label:
-  action: "Action"
+  action: "Actions"
   add: "Add"
   added: "Added"
   all: "All"
@@ -57,31 +57,31 @@ label:
   call: "Call"
   cancel: "Cancel"
   cancelled: "Cancelled"
-  capacity: "Capacity"
+  capacity: "Number of guests"
   cards: "Cards"
   category: "Category"
-  categoryInfo: "Category Information"
-  categoryName: "Category Name"
-  clear: "Clear"
+  categoryInfo: "Category information"
+  categoryName: "Category name"
+  clear: "Clear all"
   close: "Close"
   confirm: "Confirm"
   confirmed: "Confirmed"
   current: "Current"
   delete: "Delete"
-  deleteTranslate: "Delete locale"
+  deleteTranslate: "Delete translation"
   description: "Description"
-  dishNotExist: "Dish not exist"
+  dishNotExist: "Dish does not exist"
   edit: "Edit"
   empty: "Empty"
   free: "Free"
   from: "From %{field}"
-  fromArchive: "Move to archive"
-  image: "Image URL"
+  fromArchive: "Remove from archive"
+  image: "Image link"
   inArchive: "Archive"
-  inMenu: "Сurrent"
+  inMenu: "Current"
   kitchen: "Kitchen"
   list: "List"
-  logout: "Logout"
+  logout: "Log out"
   map: "Map"
   name: "Name"
   new: "New"
@@ -93,23 +93,23 @@ label:
   price: "Price"
   reserve: "Reserve a table"
   reserved: "Reserved"
-  rub: "rub"
+  rub: "RUB"
   save: "Save"
-  search: "Find %{field}"
+  search: "Search %{field}"
   select: "Select"
   selectTable: "Select a table"
   status: "Status"
   table: "Table"
   talk: "Talk"
   telegram: "Telegram"
-  title: "Name"
+  title: "Title"
   to: "To %{field}"
-  toArchive: "Move from archive"
+  toArchive: "Move to archive"
   unavailable: "Unavailable"
-  unit: "Unit"
+  unit: "Portion size"
   viber: "Viber"
   viewMode: "View mode"
-  vk: "Vkontakte"
+  vk: "VKontakte"
   whatsapp: "WhatsApp"
 
 screen:
@@ -118,14 +118,14 @@ screen:
   reservation:
     title: "Reservation"
   dishes:
-    title: "Menu positions"
-    subtitle: "Founded positions"
+    title: "Items"
+    subtitle: "Found items"
   dishAdd:
-    title: "Add menu position"
-    remark: "Set image url for this menu item"
+    title: "Add item"
+    remark: "Insert image link"
   dishEdit:
-    title: "Edit menu position"
-    remark: "Set image url for this menu item"
+    title: "Edit item"
+    remark: "Insert image link"
   admin:
     title: "Admin panel"
   settings:
@@ -133,7 +133,7 @@ screen:
   index:
     title: "Menu"
   bar:
-    title: "Beverages"
+    title: "Bar menu"
   category:
     title: "Categories"
   categoryEdit:
@@ -141,44 +141,44 @@ screen:
   categoryAdd:
     title: "Add category"
   about:
-    title: "About restaurant"
+    title: "About the cafe"
     subtitle:
-      - "Cafe named after Koikogo."
+      - "Cafe Koikogo."
       - "So, after all, who?"
-    description: "Someone you come to visit as a good friend, who will feed you amazingly tasty food, will pleasantly surprise you every time, with whom a hearty dinner or a couple of glasses of wine will fly by unnoticed. A glass dome with panoramic views of the city, a varied menu and warm service will delight anyone who decides to visit us after a leisurely stroll through their favorite surroundings."
+    description: "Someone you visit like a good friend, who will feed you deliciously, pleasantly surprise you every time, with whom a hearty dinner or a couple of glasses of wine will fly by unnoticed. A glass dome with a panoramic view of the city, a diverse menu, and warm service will delight anyone who decides to visit us after a leisurely stroll through their favorite neighborhood."
     question:
-      title: "Why is there still a cafe named after KOIKOGO?"
+      title: "So why is it called Cafe KOIKOGO?"
       talk:
-        - "So. It is necessary to treat. You're going to bring a bottle to me dfa yaza in nephele."
-        - "Where to?"
+        - "So. Need to treat. Will you bring the girl to me twice a week?"
+        - "Where?"
         - "To Koikogo Street."
-        - "Where's To Koikogo?"
-        - "Koikogo Street"
+        - "Koikogo, where's that?"
+        - "Koikogo Street."
       info:
-        - "Inspiration came to us after watching the Soviet film 'For family Reasons', which became famous thanks to this dialogue"
-        - "Koikogo is how a burr-lisping speech therapist named Gorky Street in an old comedy."
-        - "This phrase hooked us and perfectly complemented the family concept of our institution."
+        - "Inspiration came to us after watching the Soviet film 'By Family Circumstances,' which became famous thanks to this dialogue."
+        - "'Koikogo' - that's how a lisping speech therapist in the old comedy referred to Gorky Street."
+        - "This phrase caught our attention and perfectly complemented the family concept of our establishment."
     new:
-      title: "Do you want something new?"
+      title: "Want something new?"
       info:
-        - "We made sure that no one went hungry after visiting our cafe, and that's why we paid special attention to developing dishes for the youngest guests"
-        - "And for those who want everything at once or can't decide on a choice, we did it for you! We are glad to present the most unpredictable combination: PIZZA WITH DUMPLINGS. Juicy, hearty pizza with homemade dumplings on crispy dough - you definitely did not expect this, but we promise that you will be delighted."
-        - "Have you tried it yet? We need to fix the situation urgently!"
+        - "We made sure that no one leaves our cafe hungry, which is why we paid special attention to developing dishes for our youngest guests."
+        - "And for those who want everything at once or can't decide, we've made the choice for you! We are pleased to present the most unpredictable combination: PIZZA WITH DUMPLINGS. Juicy, hearty pizza with homemade dumplings on crispy dough - you definitely didn't expect this, but we promise you'll be delighted."
+        - "Haven't tried it yet? You need to fix this immediately!"
     comfort:
       title: "Is it cozy?"
       info:
-        - "Stylish, modern, talking about many things, captivating with space and inspiring for new achievements"
-        - "The interior of the KOIKOGO cafe will not leave any lover of beauty, aesthete, gourmet of style and modern trends indifferent"
-        - "When you come to our cafe, you immerse yourself in a special atmosphere. A glass dome with panoramic views of the city, a varied menu and warm service will delight anyone who decides to stop by after a leisurely stroll through their favorite surroundings."
+        - "Stylish, modern, saying a lot, captivating with space and inspiring new achievements."
+        - "The interior of Cafe KOIKOGO will not leave any lover of beauty, aesthete, style gourmet, and modern trends indifferent."
+        - "When you come to our cafe, you immerse yourself in a special atmosphere. A glass dome with a panoramic view of the city, a diverse menu, and warm service will delight anyone who decides to visit us after a leisurely stroll through their favorite neighborhood."
     find:
-      title: "Is it easy to find?"
+      title: "Easy to find?"
       info:
-        - "We are always happy to welcome you to a cafe in the historical center of the city - on a well-known street in some park."
-        - "We chose a place away from the hustle and bustle of the carousels, overlooking the beautiful, picturesque rotunda. Ah, we are already looking forward to these magnificent sunsets on Izhevsk Pond, musical evenings and your smiles..."
-        - "Our home is a summer garden or Gorky Park!"
+        - "We are always happy to welcome you to our cafe in the historic city center - on the well-known street in a certain park."
+        - "We chose a spot away from the noise and hustle of the carousels, overlooking a beautiful, picturesque rotunda. Ah, we already anticipate these gorgeous sunsets on the Izhevsk pond, musical evenings, and your smiles..."
+        - "Our 'home' is the summer garden or Gorky Park!"
     gallery:
-      title: "Once you try it, you'll fall in love forever"
+      title: "Once tried, you'll fall in love forever"
       info:
-        - "Choose any of the reasons to visit the Hotel: meet friends for breakfast, have a romantic dinner with a view of the embankment or just for family reasons! In any weather, we will create an unsurpassed atmosphere, authentic cuisine and friendly service."
-        - "Have you been to our stylish space before?"
-        - "Share your feelings and feelings!"
+        - "Choose any reason to visit Koikogo: meet friends for breakfast, have a romantic dinner with a view of the embankment, or simply - by family circumstances! In any weather, we will create an unparalleled atmosphere, author cuisine, and friendly service."
+        - "Have you already been to our stylish space?"
+        - "Share your feelings and emotions!"
