@@ -34,12 +34,13 @@ const dishes = computed(() => {
     .sort((a, b) => a.order - b.order)
     .filter(dish => selectedCategory.value ? dish.categoryId === selectedCategory.value : true)
     .filter(dish => isArchived.value === dish.isArchived)
-    .filter(dish => selectedStatus.value === null ? dish : selectedStatus.value === true ? dish.isNew === true : dish.isNew !== true)
+    .filter(dish => selectedStatus.value === null ? dish : selectedStatus.value === true ? dish.new === true : dish.new !== true)
     .filter(dish => selectedTab.value === null ? dish : dish.isAvailable === selectedTab.value)
     .filter(dish => {
-      const title = dish.title[currentLocale] || dish.title['en']
+      const title = dish.title[currentLocale] || dish.title['ru']
 
-      return title.toLowerCase().includes(searchableDish.value.toLowerCase())
+      return title.toLowerCase()
+        .includes(searchableDish.value.toLowerCase())
     })
 })
 
@@ -199,7 +200,7 @@ const tabs = computed(() => [
     <h2 class="text-xl font-bold mb-2">{{ $t("screen.dishes.subtitle") }}</h2>
     <div v-if="mode === 'cards'" class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
       <div v-for="(dish, index) in dishes" :key="dish._id" class="aspect-square w-full indicator">
-        <span v-if="dish.isNew" class="indicator-item badge badge-primary">{{ $t('label.new') }}</span>
+        <span v-if="dish.new" class="indicator-item badge badge-primary">{{ $t('label.new') }}</span>
         <div class="flex flex-col sm:aspect-square rounded-md border p-3">
           <div class="flex justify-between gap-2">
             <p class="font-bold line-clamp-2">{{ dish.title[locale] || dish?.title["ru"] }}</p>
@@ -250,7 +251,8 @@ const tabs = computed(() => [
             <td>{{ item.title[locale] }}</td>
             <td>{{ item.price }}</td>
             <td>{{ item.unit }}</td>
-            <td>{{ dataCategory.categories.find(x => x._id === item.categoryId).title[locale] }}</td>
+            <td>{{ dataCategory ? dataCategory.categories.find(x => x._id === item.categoryId)?.title[locale] : "" }}
+            </td>
             <td class="flex">
               <NuxtLink class="btn btn-sm  btn-square mr-2" :to="{ name: 'admin-dish-id', params: { id: item._id } }">
                 <IconPen class=" w-3" />

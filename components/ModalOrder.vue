@@ -66,7 +66,7 @@ watch(isOpen, val => {
       <button class="btn btn-neutral" @click="isOpen = false">
         {{ t("label.close") }}
       </button>
-      <button class="btn btn-outline" @click="clearOrder()">
+      <button v-if="order.length" class="btn btn-outline" @click="clearOrder()">
         {{ t("label.clear") }}
       </button>
     </div>

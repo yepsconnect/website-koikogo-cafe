@@ -160,7 +160,7 @@ const handleDelete = async () => {
       </select>
       <div class="form-control">
         <label class="label cursor-pointer justify-start gap-2">
-          <input v-model="data.dish.isNew" type="checkbox" class="checkbox checkbox-primary" />
+          <input v-model="data.dish.new" type="checkbox" class="checkbox checkbox-primary" />
           <span class="label-text">{{ $t('label.new') }}</span>
         </label>
       </div>

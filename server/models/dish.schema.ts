@@ -20,5 +20,5 @@ export const Dish = defineMongooseModel<Dish>("Dish", {
   order: { type: Number, default: 0, unique: true },
   isAvailable: { type: Boolean, default: true },
   isArchived: { type: Boolean, default: false },
-  isNew: { type: Boolean, default: true },
+  new: { type: Boolean, default: true },
 });
