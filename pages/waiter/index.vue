@@ -4,7 +4,9 @@ const { data } = useFetch<{
   dishes: Dish[]
 }>('/api/dish')
 // state
+const modal = ref(false)
 const selectedTab = ref('menu')
+const selectedDish = ref<Dish>()
 const searchQuery = ref('')
 
 const order = ref<{
@@ -25,7 +27,12 @@ const orderDishes = computed(() => {
 const decrement = (id: string) => {
   order.value[id]--
   if (order.value[id] <= 0) delete order.value[id]
-} 
+}
+
+const openModal = (dish: Dish) => {
+  selectedDish.value = dish
+  modal.value = true
+}
 </script>
 
 <template>
@@ -49,7 +56,7 @@ const decrement = (id: string) => {
         'bg-gray-100': !item.isAvailable
       }">
         <div>
-          <p>{{ item.title['ru'] }}</p>
+          <p class="text-lg link link-hover" @click="openModal(item)">{{ item.title['ru'] }}</p>
           <p :class="{
             'text-red-500': !item.isAvailable,
             'text-green-500': item.isAvailable,
@@ -78,7 +85,7 @@ const decrement = (id: string) => {
         <div v-for="item in orderDishes" class="p-2 border rounded flex items-center justify-between" :class="{
           'bg-gray-100': !item.isAvailable
         }">
-          <p>{{ item.title['ru'] }}</p>
+          <p class="text-lg link link-hover" @click="openModal(item)">{{ item.title['ru'] }}</p>
           <div v-if="order[item._id]" class="flex items-center gap-2">
             <button class="btn btn-sm btn-square" @click="decrement(item._id)">
               <IconMinus class="w-3" />
@@ -96,5 +103,30 @@ const decrement = (id: string) => {
         <p>Пусто</p>
       </div>
     </template>
+    <Modal v-model="modal">
+      <div v-if="selectedDish" class="flex flex-col gap-4">
+        <p class="text-xl">{{ selectedDish.title['ru'] }}</p>
+        <p v-if="!selectedDish.isAvailable" class="text-red-500 text-center">В данный момент позиция недоступна для
+          заказа
+        </p>
+        <p v-if="selectedDish.description">{{ selectedDish.description['ru'] }}</p>
+        <div v-if="order[selectedDish._id]" class="flex items-center gap-2">
+          <button class="btn btn-square" @click="decrement(selectedDish._id)">
+            <IconMinus class="w-3" />
+          </button>
+          <p class="flex-1 text-center">
+            {{ order[selectedDish._id] }}
+          </p>
+          <button class="btn btn-square" @click="order[selectedDish._id]++">
+            <IconPlus class="w-3" />
+          </button>
+        </div>
+        <button v-else class="btn btn-primary" @click="order[selectedDish._id] = 1"
+          :disabled="!selectedDish.isAvailable">
+          Добавить в заказ
+        </button>
+        <button class="btn btn-outline" @click="modal = false">Закрыть</button>
+      </div>
+    </Modal>
   </div>
 </template>
