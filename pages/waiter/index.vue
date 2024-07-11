@@ -2,7 +2,7 @@
 const { data } = useFetch<{
   ok: boolean
   dishes: Dish[]
-}>('/api/dish')
+}>('/api/dish?available=true')
 // state
 const modal = ref(false)
 const selectedTab = ref('menu')
