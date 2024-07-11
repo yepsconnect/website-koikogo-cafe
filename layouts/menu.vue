@@ -16,7 +16,6 @@ const modalReserve = ref(false)
         @click="isModalOrder = true">
         <div class="indicator">
           <IconCart class="w-5 stroke-white" />
-          <!-- <span class="badge badge-sm indicator-item">{{ order.length }}</span> -->
         </div>
       </div>
       <div tabindex="0" role="button"

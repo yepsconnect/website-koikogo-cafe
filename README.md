@@ -61,3 +61,11 @@ yarn preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+## Order statuses
+Ordered: Заказ был сделан и ожидает обработки на кухне.
+Preparing: Кухня начала готовить заказ.
+Prepared: Заказ готов и ожидает передачи официанту.
+Served: Официант передал заказ клиенту.
+Completed: Клиент закончил с заказом (например, съел блюдо).
+Cancelled: Заказ был отменен.

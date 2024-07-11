@@ -44,6 +44,19 @@ interface OrderItem {
   count: number;
 }
 
+interface Order {
+  dishId: string;
+  quantity: number;
+  price: number;
+  status:
+    | "ordered"
+    | "preparing"
+    | "prepared"
+    | "served"
+    | "completed"
+    | "cancelled";
+}
+
 interface TableNew {
   name: { [key: string]: string };
   capacity: number;
