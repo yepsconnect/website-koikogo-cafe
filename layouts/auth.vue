@@ -16,13 +16,6 @@ const sidebar = ref()
       <ul class="menu bg-base-200 text-base-content min-h-full w-80 p-4">
         <ChangeLanguage class="mb-5" />
         <li>
-          <NuxtLink :to="{ name: 'admin-reserve' }" :class="{
-            'active': route.name === 'admin-reserve',
-          }">
-            {{ $t('screen.reservation.title') }}
-          </NuxtLink>
-        </li>
-        <li>
           <NuxtLink :to="{ name: 'admin-category' }" :class="{
             'active': route.name === 'admin-category',
           }">

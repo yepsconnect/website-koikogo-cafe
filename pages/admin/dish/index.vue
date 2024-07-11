@@ -19,7 +19,7 @@ const { locale } = useI18n()
 const { token } = useAuth()
 // state
 const mode = ref('cards')
-const isAvailable = ref(null)
+const isAvailable = ref(true)
 const selectedCategory = ref<string | null>(null)
 const isLoading = ref(false)
 const searchableDish = ref('')
@@ -30,8 +30,9 @@ const dishes = computed(() => {
 
   return data.value.dishes
     .sort((a, b) => a.order - b.order)
+    .filter(x => x.isArchived === false)
     .filter(dish => selectedCategory.value ? dish.categoryId === selectedCategory.value : true)
-    .filter(dish => isAvailable.value === null ? dish : dish.isAvailable === isAvailable.value)
+    .filter(x => x.isAvailable === isAvailable.value)
     .filter(dish => {
       const title = dish.title[currentLocale] || dish.title['en']
 
@@ -111,26 +112,15 @@ const handleChangeVisibility = async (item: Dish) => {
 
 <template>
   <div class="flex flex-col gap-4 p-3">
-    <Header :title="$t('screen.dishes.title')">
-      <div class="flex justify-end">
-        <NuxtLink :to="{ name: 'admin-dish-add' }" class="btn btn-sm btn-square">
-          <IconPlus class="w-3" />
-        </NuxtLink>
-      </div>
-    </Header>
+    <Header :title="$t('screen.dishes.title')" />
     <div class="py-3 flex flex-col gap-2">
       <input v-model="searchableDish" type="text" class="input input-bordered w-full" :placeholder="$t('label.search')">
-      <div class="grid md:grid-cols-3 gap-2">
+      <div class="grid md:grid-cols-2 gap-2">
         <select v-if="dataCategory" v-model="selectedCategory" class="select select-bordered">
           <option :value="null">{{ $t("label.all") }}</option>
           <option v-for="category in dataCategory.categories" :key="category._id" :value="category._id">
             {{ category.title[locale] || category?.title["ru"] }}
           </option>
-        </select>
-        <select v-model="isAvailable" class="select select-bordered">
-          <option :value="null">{{ $t("label.all") }}</option>
-          <option :value="true">{{ $t("label.available") }}</option>
-          <option :value="false">{{ $t("label.unavailable") }}</option>
         </select>
         <select v-model="mode" class="select select-bordered">
           <option value="cards">{{ $t("label.cards") }}</option>
@@ -138,8 +128,21 @@ const handleChangeVisibility = async (item: Dish) => {
         </select>
       </div>
     </div>
+    <div role="tablist" class="tabs tabs-boxed">
+      <div role="tab" class="tab" :class="{
+        'tab-active': isAvailable === true,
+      }" @click="isAvailable = true">
+        Активные
+      </div>
+      <div role="tab" class="tab" :class="{
+        'tab-active': isAvailable === false,
+      }" @click="isAvailable = false">
+        Стоп
+      </div>
+    </div>
     <h2 class="text-xl font-bold mb-2">{{ $t("screen.dishes.subtitle") }}</h2>
-    <div v-if="mode === 'cards'" class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+    <div v-if="mode === 'cards'"
+      class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4">
       <div v-for="(dish, index) in dishes" :key="dish._id"
         class=" flex flex-col sm:aspect-square rounded-md border p-3">
         <div class="flex justify-between gap-2">
@@ -147,25 +150,6 @@ const handleChangeVisibility = async (item: Dish) => {
           <input type="checkbox" class="toggle" :checked="dish.isAvailable" @change="handleChangeVisibility(dish)" />
         </div>
         <p class="text-gray-400">{{ dish.price }}₽</p>
-        <div class="flex-1 flex flex-col justify-end gap-1  mt-4 sm:mt-0">
-          <NuxtLink class="btn btn-sm hidden sm:inline-flex" :to="{ name: 'admin-dish-id', params: { id: dish._id } }">
-            {{ $t('label.edit') }}
-          </NuxtLink>
-
-          <div class="flex gap-1">
-            <button v-if="index !== 0" class="btn btn-sm flex-1" @click="changeOrder(dish._id, dishes[index - 1]._id)"
-              :disabled="isLoading">
-              <IconChevronLeft class="w-2" />
-            </button>
-            <NuxtLink class="btn btn-sm sm:hidden" :to="{ name: 'admin-dish-id', params: { id: dish._id } }">
-              {{ $t('label.edit') }}
-            </NuxtLink>
-            <button v-if="index !== dishes.length - 1" class="btn btn-sm flex-1"
-              @click="changeOrder(dish._id, dishes[index + 1]._id)" :disabled="isLoading">
-              <IconChevronRight class="w-2" />
-            </button>
-          </div>
-        </div>
       </div>
     </div>
     <div v-else-if="mode === 'table'" class="overflow-x-auto">
@@ -177,7 +161,6 @@ const handleChangeVisibility = async (item: Dish) => {
             <td>{{ $t('label.price') }}</td>
             <td>{{ $t('label.unit') }}</td>
             <td>{{ $t('label.category') }}</td>
-            <td>{{ $t('label.action') }}</td>
           </tr>
         </thead>
         <tbody>
@@ -190,19 +173,6 @@ const handleChangeVisibility = async (item: Dish) => {
             <td>{{ item.price }}</td>
             <td>{{ item.price }}</td>
             <td>{{ dataCategory.categories.find(x => x._id === item.categoryId).title[locale] }}</td>
-            <td>
-              <NuxtLink class="btn btn-sm  btn-square mr-2" :to="{ name: 'admin-dish-id', params: { id: item._id } }">
-                <IconPen class=" w-3" />
-              </NuxtLink>
-              <button v-if="index !== 0" class="btn btn-sm btn-square mr-2"
-                @click="changeOrder(item._id, dishes[index - 1]._id)" :disabled="isLoading">
-                <IconChevronUp class=" w-3" />
-              </button>
-              <button v-if="index !== dishes.length - 1" class="btn btn-sm btn-square"
-                @click="changeOrder(item._id, dishes[index + 1]._id)" :disabled="isLoading">
-                <IconChevronDown class="w-3" />
-              </button>
-            </td>
           </tr>
         </tbody>
       </table>
