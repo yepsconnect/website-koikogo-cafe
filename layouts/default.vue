@@ -11,11 +11,18 @@ const modalReserve = ref(false)
         <ChangeLanguage />
       </div>
       <div class="navbar-end">
-        <ul class="hidden lg:flex menu menu-lg menu-horizontal gap-2">
+        <ul class="hidden lg:flex menu menu-horizontal gap-2">
           <li>
             <NuxtLink :to="{ name: 'index' }" :class="{
               'active': route.name === 'index'
             }">{{ $t('screen.about.title') }}</NuxtLink>
+          </li>
+          <li>
+            <NuxtLink :to="{ name: 'banquet' }" :class="{
+              'active': route.name === 'banquet'
+            }">
+              {{ $t('screen.banquet.shortTitle') }}
+            </NuxtLink>
           </li>
           <li>
             <NuxtLink :to="{ name: 'menu' }" :class="{
@@ -34,9 +41,8 @@ const modalReserve = ref(false)
     <main class="flex-1">
       <slot />
       <ModalOrder v-model="isModalOrder" />
-      <div v-if="route.name !== 'index'" tabindex="0" role="button"
-        class="btn btn-circle bg-[#f65d32] border-[#f65d32] hover:bg-[#f65d32] hover:border-[#f65d32] hover:shadow-custom-hover fixed bottom-6 left-6 z-50"
-        @click="isModalOrder = true">
+      <div v-if="route.name === 'menu' || route.name === 'bar'" tabindex="0" role="button"
+        class="btn btn-circle btn-primary fixed bottom-6 left-6 z-50" @click="isModalOrder = true">
         <div class="indicator">
           <IconCart class="w-5 stroke-white" />
         </div>

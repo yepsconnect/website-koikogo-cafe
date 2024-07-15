@@ -12,24 +12,24 @@ const socials = [
     icon: IconVK,
     link: "https://vk.com/imeny_koykogo"
   },
-  {
-    label: t('label.telegram'),
-    value: "telegram",
-    icon: IconTelegram,
-    link: "https://t.me/+79511985779"
-  },
-  {
-    label: t('label.whatsapp'),
-    value: "whatsapp",
-    icon: IconWhatsApp,
-    link: "https://wa.me/79511985779"
-  },
-  {
-    label: t('label.viber'),
-    value: "viber",
-    icon: IconViber,
-    link: "viber://chat?number=79511985779"
-  },
+  // {
+  //   label: t('label.telegram'),
+  //   value: "telegram",
+  //   icon: IconTelegram,
+  //   link: "https://t.me/+79511985779"
+  // },
+  // {
+  //   label: t('label.whatsapp'),
+  //   value: "whatsapp",
+  //   icon: IconWhatsApp,
+  //   link: "https://wa.me/79511985779"
+  // },
+  // {
+  //   label: t('label.viber'),
+  //   value: "viber",
+  //   icon: IconViber,
+  //   link: "viber://chat?number=79511985779"
+  // },
 ]
 </script>
 
@@ -49,10 +49,12 @@ const socials = [
         <h6 class="footer-title">{{ $t('label.services') }}</h6>
         <NuxtLink :to="{ name: 'menu' }" class="link link-hover">{{ $t('screen.index.title') }}</NuxtLink>
         <NuxtLink :to="{ name: 'bar' }" class="link link-hover">{{ $t('screen.bar.title') }}</NuxtLink>
+        <NuxtLink :to="{ name: 'banquet-menu' }" class="link link-hover">{{ $t('screen.banquet.menuTitle') }}</NuxtLink>
       </nav>
       <nav>
         <h6 class="footer-title">{{ $t('label.company') }}</h6>
         <NuxtLink :to="{ name: 'index' }" class="link link-hover">{{ $t('screen.about.title') }}</NuxtLink>
+        <NuxtLink :to="{ name: 'banquet' }" class="link link-hover">{{ $t('screen.banquet.shortTitle') }}</NuxtLink>
       </nav>
       <nav>
         <h6 class="footer-title">{{ $t('label.legal') }}</h6>
@@ -63,7 +65,7 @@ const socials = [
         <div class="grid grid-flow-col gap-4">
           <a v-for="social in socials" :key="social.value" :href="social.link" :title="social.value" target="_blank"
             class="flex items-center gap-2">
-            <component :is="social.icon" class="w-8" />
+            <component :is="social.icon" class="w-8 fill-current hover:fill-primary cursor-pointer" />
           </a>
         </div>
       </nav>

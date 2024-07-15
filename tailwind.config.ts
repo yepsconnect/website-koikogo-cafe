@@ -6,12 +6,17 @@ module.exports = {
     "./plugins/**/*.{js,ts}",
     "./nuxt.config.{js,ts}",
   ],
-  theme: {
-    extend: {
-      boxShadow: {
-        "custom-hover": "0 0 5px 1px #f65d32",
-      },
-    },
-  },
   plugins: [require("daisyui")],
+  daisyui: {
+    themes: [
+      {
+        mytheme: {
+          ...require("daisyui/src/theming/themes")["pastel"],
+          primary: "C30B52",
+          active: "C30B52",
+          neutral: "C30B52",
+        },
+      },
+    ],
+  },
 };

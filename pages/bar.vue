@@ -34,7 +34,7 @@ const selectedDish = ref();
 const { data } = useFetch<{
   ok: boolean
   categories: Category[]
-}>(`/api/category?page=${route.name?.toString()}`)
+}>(`/api/category?page=bar`)
 const { data: dataMenu } = useFetch<{
   ok: boolean
   dishes: Dish[]
