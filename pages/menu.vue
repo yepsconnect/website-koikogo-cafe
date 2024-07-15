@@ -55,7 +55,7 @@ const openModalInfo = (dish: Dish) => {
 
 <template>
   <div>
-    <div class="w-full flex justify-center items-center py-96">
+    <div class="w-full flex justify-center items-center py-12 lg:py-48">
       <div class="flex flex-col md:flex-row items-center md:items-end">
         <LogoMenu class="max-w-64" animated />
         <div>

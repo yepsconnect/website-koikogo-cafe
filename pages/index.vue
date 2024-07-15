@@ -23,7 +23,7 @@ onMounted(() => {
 
 <template>
   <Container class="flex flex-col gap-10">
-    <section class="py-96 w-full flex justify-center items-center">
+    <section class="w-full flex justify-center items-center py-12 lg:py-48">
       <div class="flex flex-col md:flex-row items-center md:items-end">
         <Logo class="max-w-64" animated />
         <div>
