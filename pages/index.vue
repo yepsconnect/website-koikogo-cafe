@@ -1,93 +1,197 @@
 <script setup lang="ts">
+import moment from 'moment';
+
 definePageMeta({
-  layout: 'menu'
-});
-
-useSeoMeta({
-  title: "Кафе имени Койкого",
-  description:
-    "Мы рады приветствовать вас в кафе в историческом центре города - на всеми известной улице в кой-каком парке.",
-  ogTitle: "Кафе имени Койкого",
-  ogDescription:
-    "Мы рады приветствовать вас в кафе в историческом центре города - на всеми известной улице в кой-каком парке.",
-  ogImage: "https://koikogo.cafe/logo.png",
-  ogUrl: "https://koikogo.cafe/",
-  twitterTitle: "Кафе имени Койкого",
-  twitterDescription:
-    "Мы рады приветствовать вас в кафе в историческом центре города - на всеми известной улице в кой-каком парке.",
-  twitterImage: "https://koikogo.cafe/logo.png",
-  twitterCard: "summary",
-})
-
-useHead({
-  link: [
-    {
-      rel: "icon",
-      type: "image/png",
-      href: "logo.png",
-    },
-  ],
+  middleware: 'auth',
+  layout: 'auth'
 });
 // composables
-const route = useRoute();
-const { locale, t } = useI18n();
+const { t, locale } = useI18n();
+const { token } = useAuth()
 // state
-const activeCategory = ref(null);
-const isModalInfo = ref(false);
-const selectedDish = ref();
-const { data } = useFetch<{
+const selectedTab = ref("pending")
+// filter
+const selectedPage = ref(1);
+const itemsPerPage = ref(6);
+const selectedFrom = ref(moment().format('YYYY-MM-DD'));
+const selectedTo = ref(null);
+// computed 
+const tabs = computed(() => [
+  {
+    label: t('label.pending'),
+    value: 'pending',
+  },
+  {
+    label: t('label.confirmed'),
+    value: 'confirmed',
+  },
+  {
+    label: t('label.cancelled'),
+    value: 'cancelled',
+  },
+]);
+const { data, pending, refresh } = await useAsyncData<{
+  ok: boolean;
+  reservations: Booking[];
+  totalCount: number;
+  totalPages: number;
+  currentPage: number;
+}>(
+  "reservation",
+  () =>
+    $fetch("/api/reservation", {
+      query: {
+        from: selectedFrom.value,
+        to: selectedTo.value,
+        page: selectedPage.value,
+        limit: itemsPerPage.value,
+        status: selectedTab.value,
+      },
+    }),
+  {
+    watch: [selectedFrom, selectedTo, selectedPage, itemsPerPage, selectedTab],
+  }
+);
+const { data: dataTables } = useFetch<{
   ok: boolean
-  categories: Category[]
-}>(`/api/category?page=${route.name?.toString()}`)
-const { data: dataMenu } = useFetch<{
-  ok: boolean
-  dishes: Dish[]
-}>('/api/dish?available=true')
+  tables: Table[]
+}>(`/api/tables`)
 
-// computed
-const result = computed(() => {
-  if (!data.value?.categories) return []
-  return data.value?.categories.sort((a, b) => a.order - b.order)
-})
+const reservations = computed(() => {
+  // Копируем массив, чтобы избежать мутации исходных данных
+  const filteredReservations = [...data.value.reservations];
 
-// methods
-const openModalInfo = (dish: Dish) => {
-  isModalInfo.value = true
-  selectedDish.value = dish
+  // Фильтруем и сортируем по полю date с использованием Moment.js
+  return filteredReservations
+    .filter(x => x.status === selectedTab.value)
+    .sort((a, b) => moment(a.date).diff(moment(b.date)));
+});
+//methods
+const handleSubmit = async (reservation: Booking, status: string) => {
+  try {
+    const data = await $fetch<{
+      ok: boolean
+      reservation: Booking
+      message: string
+    }>(`/api/reservation/${reservation._id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: token.value!
+      },
+      body: JSON.stringify({ status })
+    })
+    if (!data.ok) {
+      alert(data.message)
+    }
+    refresh()
+  } catch (error) {
+    alert(error)
+  }
+}
+
+function goToNextPage() {
+  if (selectedPage.value < data.value.totalPages) {
+    selectedPage.value += 1;
+  }
+}
+
+function goToPreviousPage() {
+  if (selectedPage.value > 1) {
+    selectedPage.value -= 1;
+  }
+}
+
+function setItemsPerPage(newLimit) {
+  itemsPerPage.value = newLimit;
+  selectedPage.value = 1;
 }
 </script>
 
 <template>
-  <div>
-    <div class="h-screen w-full flex justify-center items-center">
-      <div class="flex flex-col md:flex-row items-center md:items-end">
-        <LogoMenu class="max-w-64" animated />
-        <div>
-          <h1 class="text-4xl font-bold uppercase">
-            <span class="text-2xl">{{ t('name[0]') }}</span>
-            <br />
-            {{ t('name[1]') }}
-            <br />
-            {{ t('name[2]') }}
-          </h1>
-          <br>
-          <p class="text-xl uppercase">
-            {{ t("screen.index.title") }}
-          </p>
+  <div class="p-3 flex flex-col gap-4">
+    <Header :title="$t('screen.reservation.title')">
+      <div class="flex justify-end">
+        <NuxtLink :to="{ name: 'reserve-add' }" class="btn btn-sm btn-square">
+          <IconPlus class="w-3" />
+        </NuxtLink>
+      </div>
+    </Header>
+    <div class="grid md:grid-cols-2 gap-4">
+      <label class="form-control w-full">
+        <div class="label">
+          <span class="label-text">{{ $t('label.from') }}</span>
+        </div>
+        <input v-model="selectedFrom" type="date" class="input input-bordered">
+      </label>
+      <label class="form-control w-full">
+        <div class=" label">
+          <span class="label-text">{{ $t('label.to') }}</span>
+        </div>
+        <input v-model="selectedTo" type="date" class="input input-bordered">
+      </label>
+
+
+    </div>
+    <div role="tablist" class="tabs tabs-boxed">
+      <a v-for="tab in tabs" :key="tab.value" role="tab" class="tab" :class="{
+        'tab-active': selectedTab === tab.value,
+      }" @click="selectedTab = tab.value, selectedPage = 1">
+        {{ tab.label }}
+      </a>
+    </div>
+    <div v-if="reservations.length" class="flex flex-col gap-2">
+      <div v-for="reservation in reservations" :key="reservation._id" class="p-2 border rounded flex flex-col gap-3">
+        <div class="flex justify-between gap-3">
+          <div>
+            <p class="text-lg">{{ reservation.name }}</p>
+            <p>{{ $t('label.phone') }}: {{ reservation.phone }}</p>
+          </div>
+          <div class="text-right">
+            <p class="text-lg">{{ moment(reservation.date).format('DD.MM') }}</p>
+            <p>{{ reservation.from }} - {{ reservation.to }}</p>
+          </div>
+        </div>
+        <div class="flex flex-col md:flex-row justify-between gap-3">
+          <a :href="`tel:+${reservation.phone}`" class="btn">
+            <IconPhone class="w-4" />
+            {{ $t('label.call') }}
+          </a>
+          <div class="flex flex-col sm:flex-row gap-2">
+            <button v-if="selectedTab === 'pending'" class="btn btn-outline flex-1 md:flex-auto btn-success"
+              @click="handleSubmit(reservation, 'confirmed')">
+              <IconCheck class="w-5 fill-success" />
+              {{ $t('label.confirm') }}
+            </button>
+            <button v-if="selectedTab === 'pending' || selectedTab === 'confirmed'"
+              class="btn btn-outline flex-1 md:flex-auto btn-error" @click="handleSubmit(reservation, 'cancelled')">
+              <IconXmark class="w-4  fill-error" />
+              {{ $t('label.cancel') }}
+            </button>
+          </div>
         </div>
       </div>
     </div>
-    <Container v-if="dataMenu">
-      <CategoryMenu :categories="result" :active-category="activeCategory" @on-submit="val => activeCategory = val"
-        :locale="locale" />
-      <div v-for="(category) in result" :key="category._id" class="relative mb-6">
-        <span :id="category.slug" class="absolute -top-16"></span>
-        <h2 class="text-2xl font-bold uppercase">{{ category?.title[locale] || "ru" }}</h2>
-        <DishItem v-for="item in dataMenu.dishes.filter(x => x.categoryId === category._id)" :key="item._id"
-          :dish="item" :locale="locale" @on-submit="openModalInfo" />
-      </div>
-    </Container>
+    <div v-else class="py-10 flex justify-center items-center">
+      <span v-if="pending" class="loading"></span>
+      <p v-else class="text-center text-lg text-gray-300">{{ $t('label.empty') }}</p>
+    </div>
+    <div class="flex justify-between gap-2">
+      <div class="flex gap-2">
+        <button @click="goToPreviousPage" :disabled="selectedPage === 1"
+          class="btn btn-sm btn-outline">Previous</button>
+        <button @click="goToNextPage" :disabled="selectedPage === data.totalPages || data.totalPages === 0"
+          class="btn btn-sm btn-outline">Next</button>
 
-    <ModalInfo v-model="isModalInfo" :dish="selectedDish" />
+      </div>
+      <div>
+        <select v-model="itemsPerPage" @change="setItemsPerPage($event.target.value)"
+          class="select select-sm select-bordered">
+          <option value="6">6</option>
+          <option value="12">12</option>
+          <option value="20">20</option>
+        </select>
+      </div>
+    </div>
   </div>
 </template>

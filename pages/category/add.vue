@@ -44,7 +44,7 @@ const handleSubmit = async () => {
     category.value.page = ""
 
     if (!isConfirmed) {
-      router.push({ name: 'admin-category' });
+      router.push({ name: 'category' });
     }
 
   } catch (error) {

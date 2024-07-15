@@ -1,3 +1,11 @@
+page:
+  login:
+    title: "Sign In"
+email: "email"
+password: "password"
+recoverAccess: "Recover access"
+login: "login"
+
 name:
   - Cafe
   - Named

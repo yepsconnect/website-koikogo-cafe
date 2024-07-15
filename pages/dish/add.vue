@@ -57,7 +57,7 @@ const handleSubmit = async () => {
     dish.categoryId = "";
 
     if (!isConfirmed) {
-      router.push({ name: 'admin-dish' });
+      router.push({ name: 'dish' });
     }
   } catch (error) {
     t('modal.dishAdd.error')

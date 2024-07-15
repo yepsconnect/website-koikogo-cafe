@@ -71,7 +71,7 @@ const changeOrder = async (firstCategoryId: string, secondCategoryId: string) =>
   <div class=" flex flex-col gap-4 p-3">
     <Header :title="$t('screen.category.title')">
       <div class="flex justify-end">
-        <NuxtLink :to="{ name: 'admin-category-add' }" class="btn btn-sm btn-square">
+        <NuxtLink :to="{ name: 'category-add' }" class="btn btn-sm btn-square">
           <IconPlus class="w-3" />
         </NuxtLink>
       </div>
@@ -86,7 +86,7 @@ const changeOrder = async (firstCategoryId: string, secondCategoryId: string) =>
         <p>{{ category?.title[locale] || category?.title["ru"] }}</p>
         <p v-if="category?.page" class="text-xs text-gray-400">{{ $t(`screen.${category?.page}.title`) }}</p>
         <div class="flex flex-col gap-2 justify-end flex-1 mt-4 sm:mt-0">
-          <NuxtLink :to="{ name: 'admin-category-id', params: { id: category._id } }"
+          <NuxtLink :to="{ name: 'category-id', params: { id: category._id } }"
             class="btn btn-sm btn-glass hidden sm:inline-flex">
             {{
               $t('label.edit')
@@ -97,7 +97,7 @@ const changeOrder = async (firstCategoryId: string, secondCategoryId: string) =>
               @click="changeOrder(category._id, categories[index - 1]._id)">
               <IconChevronLeft class="w-2" />
             </button>
-            <NuxtLink :to="{ name: 'admin-category-id', params: { id: category._id } }"
+            <NuxtLink :to="{ name: 'category-id', params: { id: category._id } }"
               class="btn btn-sm btn-glass flex-1 sm:hidden">
               {{
                 $t('label.edit')
@@ -113,7 +113,7 @@ const changeOrder = async (firstCategoryId: string, secondCategoryId: string) =>
     </div>
     <div v-else class="py-10 flex flex-col items-center gap-6">
       <p class="text-lg text-center text-gray-500">{{ $t('label.empty') }}</p>
-      <NuxtLink :to="{ name: 'admin-category-add' }" class="btn btn-neutral">{{ $t('label.add') }}</NuxtLink>
+      <NuxtLink :to="{ name: 'category-add' }" class="btn btn-neutral">{{ $t('label.add') }}</NuxtLink>
     </div>
   </div>
 </template>

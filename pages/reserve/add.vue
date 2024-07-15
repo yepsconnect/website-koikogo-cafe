@@ -54,7 +54,7 @@ const handleSubmit = async () => {
       }
       return
     }
-    router.push({ name: 'admin-reserve' })
+    router.push({ name: 'index' })
 
   } catch (error) {
     alert(error)

@@ -1,3 +1,11 @@
+page:
+  login:
+    title: "Авторизация"
+email: "Электронная почта"
+password: "Пароль"
+recoverAccess: "Восстановить доступ"
+login: "Войти"
+
 name:
   - Кафе
   - Имени

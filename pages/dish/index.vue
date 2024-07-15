@@ -133,7 +133,7 @@ const tabs = computed(() => [
   <div class="flex flex-col gap-4 p-3">
     <Header :title="$t('screen.dishes.title')">
       <div class="flex justify-end">
-        <NuxtLink :to="{ name: 'admin-dish-add' }" class="btn btn-sm btn-square">
+        <NuxtLink :to="{ name: 'dish-add' }" class="btn btn-sm btn-square">
           <IconPlus class="w-3" />
         </NuxtLink>
       </div>
@@ -208,8 +208,7 @@ const tabs = computed(() => [
           </div>
           <p class="text-gray-400">{{ dish.price }}₽</p>
           <div class="flex-1 flex flex-col justify-end gap-1  mt-4 sm:mt-0">
-            <NuxtLink class="btn btn-sm hidden sm:inline-flex"
-              :to="{ name: 'admin-dish-id', params: { id: dish._id } }">
+            <NuxtLink class="btn btn-sm hidden sm:inline-flex" :to="{ name: 'dish-id', params: { id: dish._id } }">
               {{ $t('label.edit') }}
             </NuxtLink>
 
@@ -218,7 +217,7 @@ const tabs = computed(() => [
                 :disabled="isLoading">
                 <IconChevronLeft class="w-2" />
               </button>
-              <NuxtLink class="btn btn-sm sm:hidden" :to="{ name: 'admin-dish-id', params: { id: dish._id } }">
+              <NuxtLink class="btn btn-sm sm:hidden" :to="{ name: 'dish-id', params: { id: dish._id } }">
                 {{ $t('label.edit') }}
               </NuxtLink>
               <button v-if="index !== dishes.length - 1" class="btn btn-sm flex-1"
@@ -254,7 +253,7 @@ const tabs = computed(() => [
             <td>{{ dataCategory ? dataCategory.categories.find(x => x._id === item.categoryId)?.title[locale] : "" }}
             </td>
             <td class="flex">
-              <NuxtLink class="btn btn-sm  btn-square mr-2" :to="{ name: 'admin-dish-id', params: { id: item._id } }">
+              <NuxtLink class="btn btn-sm  btn-square mr-2" :to="{ name: 'dish-id', params: { id: item._id } }">
                 <IconPen class=" w-3" />
               </NuxtLink>
               <button v-if="index !== 0" class="btn btn-sm btn-square mr-2"
@@ -272,7 +271,7 @@ const tabs = computed(() => [
     </div>
     <div v-if="!dishes.length" class="flex flex-col justify-center items-center py-20 w-full gap-6">
       <p class="text-lg text-gray-400">{{ $t('label.empty') }}</p>
-      <NuxtLink :to="{ name: 'admin-dish-add' }" class="btn btn-neutral">{{ $t('label.add') }}</NuxtLink>
+      <NuxtLink :to="{ name: 'dish-add' }" class="btn btn-neutral">{{ $t('label.add') }}</NuxtLink>
     </div>
   </div>
 </template>

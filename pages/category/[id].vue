@@ -48,7 +48,7 @@ const handleSubmit = async () => {
     }
     const isConfirm = confirm(t("modal.categoryEdit.success"));
     if (!isConfirm) {
-      router.push({ name: 'admin-category' })
+      router.push({ name: 'category' })
     }
   } catch (error) {
     confirm(t("modal.categoryEdit.error"));
@@ -78,7 +78,7 @@ const handleDelete = async () => {
       return alert(response.message)
     }
     alert(t('modal.categoryDelete.success'))
-    router.push({ name: 'admin-category' })
+    router.push({ name: 'category' })
   } catch (error) {
     alert(t('modal.categoryDelete.error'))
   } finally {
@@ -129,7 +129,7 @@ const handleDelete = async () => {
     </div>
     <div v-else class="py-12 flex flex-col items-center gap-6">
       <p>{{ t('label.categoryNotFound') }}</p>
-      <NuxtLink :to="{ name: 'admin-category' }" class="btn btn-neutral">{{ $t('label.back') }}</NuxtLink>
+      <NuxtLink :to="{ name: 'category' }" class="btn btn-neutral">{{ $t('label.back') }}</NuxtLink>
     </div>
 
   </div>

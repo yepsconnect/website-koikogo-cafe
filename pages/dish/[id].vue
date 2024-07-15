@@ -50,7 +50,7 @@ const handleSubmit = async () => {
     }
     const isConfirmed = confirm("Обновленно. Изменить ещё?");
     if (!isConfirmed) {
-      router.push({ name: 'admin-dish' });
+      router.push({ name: 'dish' });
     }
   } catch (error) {
     console.error(error);
@@ -113,7 +113,7 @@ const handleDelete = async () => {
       return alert(response.message);
     }
     alert(t('modal.dishDelete.success'));
-    router.push({ name: 'admin-dish' });
+    router.push({ name: 'dish' });
 
   } catch (error) {
     console.error(error);
@@ -180,7 +180,7 @@ const handleDelete = async () => {
     </div>
     <div v-else class="py-10 flex flex-col items-center gap-4">
       <p class="text-center text-lg text-gray-500">{{ $t('label.dishNotExist') }}</p>
-      <NuxtLink :to="{ name: 'admin-dish' }" class="btn btn-primary">{{ $t('label.back') }}</NuxtLink>
+      <NuxtLink :to="{ name: 'dish' }" class="btn btn-primary">{{ $t('label.back') }}</NuxtLink>
     </div>
   </div>
 </template>
