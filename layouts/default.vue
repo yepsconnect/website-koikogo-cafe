@@ -18,8 +18,8 @@ const modalReserve = ref(false)
             }">{{ $t('screen.about.title') }}</NuxtLink>
           </li>
           <li>
-            <NuxtLink :to="{ name: 'banquet' }" :class="{
-              'active': route.name === 'banquet'
+            <NuxtLink :to="{ name: 'events' }" :class="{
+              'active': route.name === 'events'
             }">
               {{ $t('screen.banquet.shortTitle') }}
             </NuxtLink>

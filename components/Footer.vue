@@ -49,12 +49,12 @@ const socials = [
         <h6 class="footer-title">{{ $t('label.services') }}</h6>
         <NuxtLink :to="{ name: 'menu' }" class="link link-hover">{{ $t('screen.index.title') }}</NuxtLink>
         <NuxtLink :to="{ name: 'bar' }" class="link link-hover">{{ $t('screen.bar.title') }}</NuxtLink>
-        <NuxtLink :to="{ name: 'banquet-menu' }" class="link link-hover">{{ $t('screen.banquet.menuTitle') }}</NuxtLink>
+        <NuxtLink :to="{ name: 'banquet' }" class="link link-hover">{{ $t('screen.banquet.menuTitle') }}</NuxtLink>
       </nav>
       <nav>
         <h6 class="footer-title">{{ $t('label.company') }}</h6>
         <NuxtLink :to="{ name: 'index' }" class="link link-hover">{{ $t('screen.about.title') }}</NuxtLink>
-        <NuxtLink :to="{ name: 'banquet' }" class="link link-hover">{{ $t('screen.banquet.shortTitle') }}</NuxtLink>
+        <NuxtLink :to="{ name: 'events' }" class="link link-hover">{{ $t('screen.banquet.shortTitle') }}</NuxtLink>
       </nav>
       <nav>
         <h6 class="footer-title">{{ $t('label.legal') }}</h6>

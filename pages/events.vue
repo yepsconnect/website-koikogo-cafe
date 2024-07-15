@@ -28,7 +28,7 @@ onMounted(() => {
       <div class="flex flex-col gap-4 items-start justify-center lg:order-2">
         <h2 class="text-2xl font-bold">{{ $t('screen.banquet.menu.title') }}</h2>
         <p class="text-lg">{{ $t('screen.banquet.menu.text') }}</p>
-        <NuxtLink :to="{ name: 'banquet-menu' }" class="btn btn-primary">{{ $t('screen.banquet.menu.btn') }}</NuxtLink>
+        <NuxtLink :to="{ name: 'banquet' }" class="btn btn-primary">{{ $t('screen.banquet.menu.btn') }}</NuxtLink>
       </div>
       <div>
         <img v-show="selectedPhoto === 1"
@@ -58,15 +58,9 @@ onMounted(() => {
           <input type="time" class="input input-bordered" />
           <input type="time" class="input input-bordered" />
         </div>
-        <label class="form-control w-full">
-          <div class="label">
-            <span class="label-text">Количество гостей</span>
-          </div>
-          <select class="select select-bordered">
-            <option v-for="i in 10" :key="i" :value="i">{{ i }}</option>
-          </select>
-        </label>
-        <textarea class="textarea textarea-bordered" placeholder="Комментарий"></textarea>
+        <input type="numeric" class="input input-bordered" placeholder="Количество гостей" />
+        <textarea class="textarea textarea-bordered placeholder:text-base text-base"
+          placeholder="Комментарий"></textarea>
         <button class="btn btn-primary" :disabled="!isChecked">{{ $t('label.reserve') }}</button>
         <div class="form-control">
           <label class="label cursor-pointer justify-start gap-2">
