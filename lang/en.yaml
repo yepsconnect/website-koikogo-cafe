@@ -81,6 +81,21 @@ label:
   whatsapp: "WhatsApp"
 
 screen:
+  banquet:
+    title: "Koykoy Cafe - The Perfect Place for Your Event."
+    shortTitle: "Banquets"
+    menuTitle: "Banquet Menu"
+    text:
+      - "Significant events deserve special attention — hold them in the bright and cozy interior of our cafe. Your guests will enjoy exquisite cuisine by our talented chef Artem Akhmetshin, as well as panoramic views of the Izhevsk pond and our impeccable service."
+      - "Want to host a corporate event, birthday, anniversary, wedding, business breakfast, or presentation? We can help organize any type of meeting. We have halls with a total capacity of up to 150 people, with comfortable tables and soft chairs."
+    btnReserve: "Book a Banquet"
+    booking:
+      title: "Booking Form"
+    menu:
+      title: "Banquet Menu"
+      text: "The banquet menu of Koykoy Cafe is designed with the various gastronomic preferences of our guests in mind. It is based on the best traditional Russian recipes, complemented by a fusion concept, and includes a wide selection of appetizers, cold cuts, hot dishes, light salads, and festive banquet dishes."
+      btn: "View Menu"
+
   reserveAdd:
     title: "New reservation"
   reservation:
