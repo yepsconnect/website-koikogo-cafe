@@ -5,7 +5,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   if (process.client) {
     nuxtApp.hook("app:mounted", () => {
       const route = useRoute();
-      const allowedRoutes = ["index", "bar", "about"];
+      const allowedRoutes = ["index", "bar", "menu"];
 
       if (allowedRoutes.includes(route.name)) {
         const script = document.createElement("script");

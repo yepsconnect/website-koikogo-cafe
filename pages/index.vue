@@ -1,67 +1,31 @@
-<script setup lang="ts">
-definePageMeta({
-  layout: 'menu'
-});
-
-useSeoMeta({
-  title: "Кафе имени Койкого",
-  description:
-    "Мы рады приветствовать вас в кафе в историческом центре города - на всеми известной улице в кой-каком парке.",
-  ogTitle: "Кафе имени Койкого",
-  ogDescription:
-    "Мы рады приветствовать вас в кафе в историческом центре города - на всеми известной улице в кой-каком парке.",
-  ogImage: "https://koikogo.cafe/logo.png",
-  ogUrl: "https://koikogo.cafe/",
-  twitterTitle: "Кафе имени Койкого",
-  twitterDescription:
-    "Мы рады приветствовать вас в кафе в историческом центре города - на всеми известной улице в кой-каком парке.",
-  twitterImage: "https://koikogo.cafe/logo.png",
-  twitterCard: "summary",
-})
-
-useHead({
-  link: [
-    {
-      rel: "icon",
-      type: "image/png",
-      href: "logo.png",
-    },
-  ],
-});
+<script setup>
 // composables
-const route = useRoute();
-const { locale, t } = useI18n();
+const { phone } = useConfig()
+const { t } = useI18n()
 // state
-const activeCategory = ref(null);
-const isModalInfo = ref(false);
-const selectedDish = ref();
-const { data } = useFetch<{
-  ok: boolean
-  categories: Category[]
-}>(`/api/category?page=${route.name?.toString()}`)
-const { data: dataMenu } = useFetch<{
-  ok: boolean
-  dishes: Dish[]
-}>('/api/dish?available=true')
+const active = ref(1);
+const activeDish = ref(1);
+const mapLink = "https://yandex.ru/map-widget/v1/?um=constructor%3A63ccde52ac73bdd72e9a96d3dfe386069f6869a31541ddf24841c7908d8bc31b&amp;source=constructor"
 
-// computed
-const result = computed(() => {
-  if (!data.value?.categories) return []
-  return data.value?.categories.sort((a, b) => a.order - b.order)
+onMounted(() => {
+  setInterval(() => {
+    if (active.value === 8) {
+      active.value = 0;
+    }
+    if (activeDish.value === 4) {
+      activeDish.value = 0;
+    }
+    active.value++;
+    activeDish.value++;
+  }, 3000);
 })
-
-// methods
-const openModalInfo = (dish: Dish) => {
-  isModalInfo.value = true
-  selectedDish.value = dish
-}
 </script>
 
 <template>
-  <div>
-    <div class="h-screen w-full flex justify-center items-center">
+  <Container class="flex flex-col gap-10">
+    <section class="py-96 w-full flex justify-center items-center">
       <div class="flex flex-col md:flex-row items-center md:items-end">
-        <LogoMenu class="max-w-64" animated />
+        <Logo class="max-w-64" animated />
         <div>
           <h1 class="text-4xl font-bold uppercase">
             <span class="text-2xl">{{ t('name[0]') }}</span>
@@ -70,24 +34,226 @@ const openModalInfo = (dish: Dish) => {
             <br />
             {{ t('name[2]') }}
           </h1>
-          <br>
-          <p class="text-xl uppercase">
-            {{ t("screen.index.title") }}
-          </p>
         </div>
       </div>
-    </div>
-    <Container v-if="dataMenu">
-      <CategoryMenu :categories="result" :active-category="activeCategory" @on-submit="val => activeCategory = val"
-        :locale="locale" />
-      <div v-for="(category) in result" :key="category._id" class="relative mb-6">
-        <span :id="category.slug" class="absolute -top-16"></span>
-        <h2 class="text-2xl font-bold uppercase">{{ category?.title[locale] || "ru" }}</h2>
-        <DishItem v-for="item in dataMenu.dishes.filter(x => x.categoryId === category._id)" :key="item._id"
-          :dish="item" :locale="locale" @on-submit="openModalInfo" />
+    </section>
+    <section class="flex flex-col gap-6">
+      <h2 class="text-3xl font-bold">
+        {{ t('screen.about.subtitle[0]') }} <br />{{ t('screen.about.subtitle[1]') }}
+      </h2>
+      <div class="max-h-96 overflow-hidden">
+        <img src="@/assets/images/place0.jpg" alt="place0" loading="lazy" class="object-cover" />
       </div>
-    </Container>
+      <p class="text-lg">{{ t('screen.about.description') }}</p>
+    </section>
+    <section class="flex flex-col gap-2">
+      <h2 class="text-2xl font-bold">{{ t('screen.about.question.title') }}</h2>
 
-    <ModalInfo v-model="isModalInfo" :dish="selectedDish" />
-  </div>
+      <div>
+        <p>{{ t('screen.about.question.info[0]') }}:</p>
+        <ul>
+          <li>— {{ t('screen.about.question.talk[0]') }}</li>
+          <li>— {{ t('screen.about.question.talk[1]') }}</li>
+          <li>— {{ t('screen.about.question.talk[2]') }}</li>
+          <li>— {{ t('screen.about.question.talk[3]') }}</li>
+          <li>— {{ t('screen.about.question.talk[4]') }}</li>
+        </ul>
+      </div>
+      <p>{{ t('screen.about.question.info[1]') }}:</p>
+      <p>{{ t('screen.about.question.info[2]') }}:</p>
+
+      <div class="flex flex-col md:flex-row justify-center gap-6">
+        <a class="btn btn-primary w-full md:max-w-xs" :href="`tel:${phone}`">
+          {{ $t('label.call') }}
+        </a>
+      </div>
+    </section>
+    <section class="grid md:grid-cols-2 gap-6">
+      <div class="flex flex-col justify-center gap-6">
+        <h2 class="text-3xl">{{ t('screen.about.new.title') }}</h2>
+        <p class="text-lg">{{ t('screen.about.new.info[0]') }}</p>
+        <p class="text-lg">{{ t('screen.about.new.info[1]') }}</p>
+        <p class="text-lg">{{ t('screen.about.new.info[2]') }}</p>
+        <div class="grid grid-cols-2 gap-6">
+          <NuxtLink to="/" class="btn btn-primary md:w-auto btn-block">
+            {{ $t('label.kitchen') }}
+          </NuxtLink>
+          <NuxtLink to="/bar" class="btn btn-primary md:w-auto btn-block">
+            {{ $t('label.bar') }}
+          </NuxtLink>
+        </div>
+      </div>
+      <div class="columns-2 hidden md:block">
+        <div class="h-6"></div>
+        <div class="avatar w-full mb-4">
+          <div class="w-full">
+            <img src="@/assets/images/dish2.jpeg" alt="dish2" loading="lazy" />
+          </div>
+        </div>
+        <img src="@/assets/images/dish1.jpeg" alt="dish1" loading="lazy" />
+        <img src="@/assets/images/dish4.jpeg" alt="dish4" loading="lazy" class="mb-4" />
+        <div class="avatar w-full">
+          <div class="w-full">
+            <img src="@/assets/images/dish3.jpeg" alt="dish3" loading="lazy" />
+          </div>
+        </div>
+      </div>
+      <div class="md:hidden">
+        <div class="avatar w-full" v-if="activeDish === 1">
+          <div class="w-full">
+            <img src="@/assets/images/dish1.jpeg" alt="dish1" loading="lazy" class="object-cover" />
+          </div>
+        </div>
+        <div class="avatar w-full" v-else-if="activeDish === 2">
+          <div class="w-full">
+            <img src="@/assets/images/dish2.jpeg" alt="dish2" loading="lazy" class="object-cover" />
+          </div>
+        </div>
+        <div class="avatar w-full" v-else-if="activeDish === 3">
+          <div class="w-full">
+            <img src="@/assets/images/dish3.jpeg" alt="dish3" loading="lazy" class="object-cover" />
+          </div>
+        </div>
+        <div class="avatar w-full" v-else-if="activeDish === 4">
+          <div class="w-full">
+            <img src="@/assets/images/dish4.jpeg" alt="dish4" loading="lazy" class="object-cover" />
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="grid lg:grid-cols-2 gap-6">
+        <div class="lg:order-2 flex flex-col justify-center gap-6">
+          <h2 class="text-3xl">{{ t('screen.about.comfort.title') }}</h2>
+          <p class="text-lg">{{ t('screen.about.comfort.info[0]') }}</p>
+          <p class="text-lg">{{ t('screen.about.comfort.info[1]') }}</p>
+          <p class="text-lg">{{ t('screen.about.comfort.info[2]') }}</p>
+          <a class="btn btn-primary w-full md:max-w-xs" :href="`tel:${phone}`">{{ t('label.reserve')
+            }}</a>
+        </div>
+        <div class="lg:order-1 columns-2">
+          <div class="avatar w-full mb-4">
+            <div class="w-full">
+              <img src="@/assets/images/place1.jpeg" alt="1" loading="lazy" />
+            </div>
+          </div>
+
+          <img src="@/assets/images/place3.jpeg" alt="3" loading="lazy" class="mb-4" />
+          <img src="@/assets/images/place4.jpeg" alt="4" loading="lazy" class="mb-4" />
+          <div class="avatar w-full">
+            <div class="w-full">
+              <img src="@/assets/images/place5.jpeg" alt="5" loading="lazy" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="grid lg:grid-cols-2 gap-6">
+      <div class="flex flex-col gap-6">
+        <h2 class="text-3xl font-bold">{{ t('screen.about.find.title') }}</h2>
+        <p class="text-lg">{{ t('screen.about.find.info[0]') }}</p>
+        <p class="text-lg">{{ t('screen.about.find.info[1]') }}</p>
+        <p class="text-lg">{{ t('screen.about.find.info[2]') }}</p>
+        <div class="flex">
+          <a class="btn btn-primary w-full md:max-w-xs" :href="`tel:${phone}`">{{ t('label.call') }}</a>
+        </div>
+      </div>
+      <iframe :src="mapLink" width="100%" height="400" frameborder="0"></iframe>
+    </section>
+    <section class="flex flex-col gap-6">
+      <h2 class="text-3xl font-bold">{{ t('screen.about.gallery.title') }}</h2>
+      <p class="text-lg">{{ t('screen.about.gallery.info[0]') }}</p>
+
+      <div class="md:hidden">
+        <div class="avatar w-full" v-if="active === 1">
+          <div class="w-full">
+            <img src="@/assets/images/people1.jpeg" alt="1" loading="lazy" />
+          </div>
+        </div>
+        <div class="avatar w-full" v-else-if="active === 2">
+          <div class="w-full">
+            <img src="@/assets/images/people2.jpeg" alt="2" loading="lazy" />
+          </div>
+        </div>
+        <div class="avatar w-full" v-else-if="active === 3">
+          <div class="w-full">
+            <img src="@/assets/images/people3.jpeg" alt="3" loading="lazy" />
+          </div>
+        </div>
+        <div class="avatar w-full" v-else-if="active === 4">
+          <div class="w-full">
+            <img src="@/assets/images/people4.jpeg" alt="4" loading="lazy" />
+          </div>
+        </div>
+        <div class="avatar w-full" v-else-if="active === 5">
+          <div class="w-full">
+            <img src="@/assets/images/people5.jpeg" alt="5" loading="lazy" />
+          </div>
+        </div>
+        <div class="avatar w-full" v-else-if="active === 6">
+          <div class="w-full">
+            <img src="@/assets/images/people6.jpeg" alt="6" loading="lazy" />
+          </div>
+        </div>
+        <div class="avatar w-full" v-else-if="active === 7">
+          <div class="w-full">
+            <img src="@/assets/images/people7.jpeg" alt="7" loading="lazy" />
+          </div>
+        </div>
+        <div class="avatar w-full" v-else-if="active === 8">
+          <div class="w-full">
+            <img src="@/assets/images/people8.jpeg" alt="8" loading="lazy" />
+          </div>
+        </div>
+      </div>
+      <div class="hidden md:grid md:grid-cols-4 gap-6">
+        <div class="avatar w-full">
+          <div class="w-full">
+            <img src="@/assets/images/people1.jpeg" alt="1" loading="lazy" />
+          </div>
+        </div>
+        <div class="avatar w-full">
+          <div class="w-full">
+            <img src="@/assets/images/people2.jpeg" alt="2" loading="lazy" />
+          </div>
+        </div>
+        <div class="avatar w-full">
+          <div class="w-full">
+            <img src="@/assets/images/people3.jpeg" alt="3" loading="lazy" />
+          </div>
+        </div>
+        <div class="avatar w-full">
+          <div class="w-full">
+            <img src="@/assets/images/people4.jpeg" alt="4" loading="lazy" />
+          </div>
+        </div>
+        <div class="avatar w-full">
+          <div class="w-full">
+            <img src="@/assets/images/people5.jpeg" alt="5" loading="lazy" />
+          </div>
+        </div>
+        <div class="avatar w-full">
+          <div class="w-full">
+            <img src="@/assets/images/people6.jpeg" alt="6" loading="lazy" />
+          </div>
+        </div>
+        <div class="avatar w-full">
+          <div class="w-full">
+            <img src="@/assets/images/people7.jpeg" alt="7" loading="lazy" />
+          </div>
+        </div>
+        <div class="avatar w-full">
+          <div class="w-full">
+            <img src="@/assets/images/people8.jpeg" alt="8" loading="lazy" />
+          </div>
+        </div>
+      </div>
+      <p class="text-lg">{{ t('screen.about.gallery.info[1]') }}</p>
+      <p class="text-lg">{{ t('screen.about.gallery.info[2]') }}</p>
+      <a class="btn btn-primary capitalize md:max-w-xs"
+        href="https://yandex.ru/maps/org/imeni_koykogo/66827419380/?ll=53.197919%2C56.846779&z=16" target="_blank">
+        {{ t('label.talk') }}
+      </a>
+    </section>
+  </Container>
 </template>

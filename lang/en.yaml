@@ -20,6 +20,11 @@ language:
   en: "English"
 
 label:
+  company: "Explore"
+  legal: "Legal"
+  socials: "Socials"
+  privacyPolicy: "Privacy Policy"
+  services: "Services"
   or: "or"
   selectTable: "Select a table"
   name: "Name"

@@ -1,16 +1,16 @@
 <script setup lang="ts">
 useSeoMeta({
-  title: "Кафе имени Койкого - Карта бара",
+  title: "Кафе имени Койкого",
   description:
-    "Мы рады предложить вам ознакомиться с винной картой нашего кафе.",
-  ogTitle: "Кафе имени Койкого - Карта бара",
+    "Мы рады приветствовать вас в кафе в историческом центре города - на всеми известной улице в кой-каком парке.",
+  ogTitle: "Кафе имени Койкого",
   ogDescription:
-    "Мы рады предложить вам ознакомиться с винной картой нашего кафе.",
+    "Мы рады приветствовать вас в кафе в историческом центре города - на всеми известной улице в кой-каком парке.",
   ogImage: "https://koikogo.cafe/logo.png",
   ogUrl: "https://koikogo.cafe/",
-  twitterTitle: "Кафе имени Койкого - Карта бара",
+  twitterTitle: "Кафе имени Койкого",
   twitterDescription:
-    "Мы рады предложить вам ознакомиться с винной картой нашего кафе.",
+    "Мы рады приветствовать вас в кафе в историческом центре города - на всеми известной улице в кой-каком парке.",
   twitterImage: "https://koikogo.cafe/logo.png",
   twitterCard: "summary",
 })
@@ -34,7 +34,7 @@ const selectedDish = ref();
 const { data } = useFetch<{
   ok: boolean
   categories: Category[]
-}>(`/api/category?page=${route.name?.toString()}`)
+}>(`/api/category?page=index`)
 const { data: dataMenu } = useFetch<{
   ok: boolean
   dishes: Dish[]
@@ -57,7 +57,7 @@ const openModalInfo = (dish: Dish) => {
   <div>
     <div class="w-full flex justify-center items-center py-96">
       <div class="flex flex-col md:flex-row items-center md:items-end">
-        <Vine class="max-w-64" />
+        <LogoMenu class="max-w-64" animated />
         <div>
           <h1 class="text-4xl font-bold uppercase">
             <span class="text-2xl">{{ t('name[0]') }}</span>
@@ -66,9 +66,9 @@ const openModalInfo = (dish: Dish) => {
             <br />
             {{ t('name[2]') }}
           </h1>
-          <br />
+          <br>
           <p class="text-xl uppercase">
-            {{ t("screen.bar.title") }}
+            {{ t("screen.index.title") }}
           </p>
         </div>
       </div>

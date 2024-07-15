@@ -20,6 +20,11 @@ language:
   en: "Английский"
 
 label:
+  company: "Заведение"
+  legal: "Документы"
+  socials: "Социальные сети"
+  privacyPolicy: "Политика"
+  services: "Услуги"
   or: "или"
   selectTable: "Выберите столик"
   name: "Имя"
