@@ -25,31 +25,25 @@ useHead({
   ],
 });
 // composables
-const route = useRoute();
 const { locale, t } = useI18n();
 // state
 const activeCategory = ref(null);
 const isModalInfo = ref(false);
-const selectedDish = ref();
+const selectedPosition = ref();
 const { data } = useFetch<{
   ok: boolean
   categories: Category[]
-}>(`/api/category?page=bar`)
-const { data: dataMenu } = useFetch<{
-  ok: boolean
-  dishes: Dish[]
-}>('/api/dish?available=true')
-
-// computed
-const result = computed(() => {
-  if (!data.value?.categories) return []
-  return data.value?.categories.sort((a, b) => a.order - b.order)
+  positions: Position[]
+}>(`/api/menu`, {
+  query: {
+    pageId: '66952c98a9159c7fc085a875'
+  }
 })
 
 // methods
-const openModalInfo = (dish: Dish) => {
+const openModalInfo = (position: Position) => {
   isModalInfo.value = true
-  selectedDish.value = dish
+  selectedPosition.value = position
 }
 </script>
 
@@ -73,17 +67,17 @@ const openModalInfo = (dish: Dish) => {
         </div>
       </div>
     </div>
-    <Container v-if="dataMenu">
-      <CategoryMenu :categories="result" :active-category="activeCategory" @on-submit="val => activeCategory = val"
-        :locale="locale" />
-      <div v-for="(category) in result" :key="category._id" class="relative mb-6">
+    <Container v-if="data">
+      <CategoryMenu :categories="data?.categories" :active-category="activeCategory"
+        @on-submit="val => activeCategory = val" :locale="locale" />
+      <div v-for="(category) in data?.categories" :key="category._id" class="relative mb-6">
         <span :id="category.slug" class="absolute -top-16"></span>
-        <h2 class="text-2xl font-bold uppercase">{{ category?.title[locale] || "ru" }}</h2>
-        <DishItem v-for="item in dataMenu.dishes.filter(x => x.categoryId === category._id)" :key="item._id"
-          :dish="item" :locale="locale" @on-submit="openModalInfo" />
+        <h2 class="text-2xl font-bold uppercase">{{ category?.title[locale] || category?.title['ru'] }}</h2>
+        <PositionItem v-for="item in data.positions.filter(x => x.categoryId === category._id)" :key="item._id"
+          :position="item" :locale="locale" @on-submit="openModalInfo" />
       </div>
     </Container>
 
-    <ModalInfo v-model="isModalInfo" :dish="selectedDish" />
+    <ModalInfo v-model="isModalInfo" :position="selectedPosition" />
   </div>
 </template>

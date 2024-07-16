@@ -10,7 +10,7 @@ const props = defineProps<{
   from: string
   to: string
   date: string
-  reservations: Reservation[]
+  reservations: Booking[]
   halls: Hall[]
 }>();
 // composables
@@ -37,7 +37,7 @@ const bookings = computed(() => {
 const booking = computed(() => bookings.value[0])
 // state
 const isCheck = ref(false)
-const reservation = ref<ReservationNew>({
+const reservation = ref<BookingNew>({
   tableId: "",
   date: "",
   from: "",
@@ -45,11 +45,12 @@ const reservation = ref<ReservationNew>({
   name: "",
   phone: "",
   status: "pending",
+  order: [],
+  specialRequests: ""
 })
 // methods 
 const isLoading = ref(false)
 const handleSubmit = async () => {
-  return
   isLoading.value = true
   try {
     reservation.value.tableId = props.table?._id
@@ -59,9 +60,9 @@ const handleSubmit = async () => {
 
     const response = await $fetch<{
       ok: boolean
-      reservation: Reservation
+      reservation: Booking
       message: string
-    }>('/api/reservation', {
+    }>('/api/booking', {
       method: 'POST',
       body: JSON.stringify({ reservation: reservation.value }),
     })

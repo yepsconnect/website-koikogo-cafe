@@ -1,4 +1,4 @@
-import { Dish } from "~/server/models/dish.schema";
+import { Position } from "~/server/models/position.schema";
 
 export default defineEventHandler(async (event) => {
   const { isAuth, userRole } = event.context;
@@ -16,26 +16,26 @@ export default defineEventHandler(async (event) => {
   const { firstCategoryId, secondCategoryId } = await readBody(event);
 
   try {
-    const firstDish = await Dish.findById(firstCategoryId);
-    const secondDish = await Dish.findById(secondCategoryId);
+    const firstPosition = await Position.findById(firstCategoryId);
+    const secondPosition = await Position.findById(secondCategoryId);
 
-    if (!firstDish || !secondDish) {
+    if (!firstPosition || !secondPosition) {
       return {
         ok: false,
-        message: "Dishes not found",
+        message: "Positiones not found",
       };
     }
 
-    const orderOne = firstDish.order;
-    const orderTwo = secondDish.order;
+    const orderOne = firstPosition.order;
+    const orderTwo = secondPosition.order;
 
-    firstDish.order = -1;
-    await firstDish.save();
+    firstPosition.order = -1;
+    await firstPosition.save();
 
-    secondDish.order = orderOne;
-    firstDish.order = orderTwo;
-    await secondDish.save();
-    await firstDish.save();
+    secondPosition.order = orderOne;
+    firstPosition.order = orderTwo;
+    await secondPosition.save();
+    await firstPosition.save();
 
     return {
       ok: true,

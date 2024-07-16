@@ -1,6 +1,7 @@
 interface User {
   _id: string;
   email: string;
+  phone?: string;
   password: string;
   role: "root" | "owner" | "manager" | "waiter" | "guest";
 }
@@ -12,7 +13,6 @@ interface CategoryNew {
   title: {
     [key: string]: string;
   };
-  page: string;
 }
 
 interface Category extends CategoryNew {
@@ -21,7 +21,8 @@ interface Category extends CategoryNew {
   slug: string;
 }
 
-interface NewDish {
+interface NewPosition {
+  pageId: string[];
   categoryId: string;
   description: { [key: string]: string };
   image: string | null;
@@ -30,16 +31,17 @@ interface NewDish {
   unit: string;
 }
 
-interface Dish extends NewDish {
+interface Position extends NewPosition {
   _id: string;
   order: number;
-  slug: string;
+  isArchived: boolean;
   isAvailable: boolean;
+  type: string;
 }
 
 interface OrderItem {
   _id: string;
-  count: number;
+  quantity: number;
 }
 
 interface TableNew {
@@ -61,7 +63,13 @@ interface Hall extends HallNew {
   _id: string;
 }
 
-interface ReservationNew {
+interface Order {
+  positionId: string;
+  quantity: number;
+  priceAtOrder: number;
+}
+
+interface BookingNew {
   tableId: string;
   date: string;
   from: string;
@@ -69,8 +77,11 @@ interface ReservationNew {
   name: string;
   phone: string;
   status: "pending" | "confirmed" | "cancelled";
+  order: Order[];
+  specialRequests: string;
 }
 
-interface Reservation extends ReservationNew {
+interface Booking extends BookingNew {
   _id: string;
+  bookingNumber: string;
 }

@@ -1,4 +1,4 @@
-import { Reservation } from "~/server/models/reservation.schema";
+import { Booking } from "~/server/models/booking.schema";
 
 export default defineEventHandler(async (event) => {
   const { from, to, page = 1, limit = 10, status } = getQuery(event);
@@ -19,12 +19,12 @@ export default defineEventHandler(async (event) => {
 
   const skip = (page - 1) * limit;
 
-  const reservations = await Reservation.find(dateFilter)
+  const reservations = await Booking.find(dateFilter)
     .sort({ date: 1 })
     .skip(skip)
     .limit(parseInt(limit));
 
-  const totalCount = await Reservation.countDocuments(dateFilter);
+  const totalCount = await Booking.countDocuments(dateFilter);
 
   return {
     ok: true,

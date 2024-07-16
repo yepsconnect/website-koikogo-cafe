@@ -4,7 +4,7 @@ const { phone } = useConfig()
 const { t } = useI18n()
 // state
 const active = ref(1);
-const activeDish = ref(1);
+const activePosition = ref(1);
 const mapLink = "https://yandex.ru/map-widget/v1/?um=constructor%3A63ccde52ac73bdd72e9a96d3dfe386069f6869a31541ddf24841c7908d8bc31b&amp;source=constructor"
 
 onMounted(() => {
@@ -12,11 +12,11 @@ onMounted(() => {
     if (active.value === 8) {
       active.value = 0;
     }
-    if (activeDish.value === 4) {
-      activeDish.value = 0;
+    if (activePosition.value === 4) {
+      activePosition.value = 0;
     }
     active.value++;
-    activeDish.value++;
+    activePosition.value++;
   }, 3000);
 })
 </script>
@@ -99,22 +99,22 @@ onMounted(() => {
         </div>
       </div>
       <div class="md:hidden">
-        <div class="avatar w-full" v-if="activeDish === 1">
+        <div class="avatar w-full" v-if="activePosition === 1">
           <div class="w-full">
             <img src="@/assets/images/dish1.jpeg" alt="dish1" loading="lazy" class="object-cover" />
           </div>
         </div>
-        <div class="avatar w-full" v-else-if="activeDish === 2">
+        <div class="avatar w-full" v-else-if="activePosition === 2">
           <div class="w-full">
             <img src="@/assets/images/dish2.jpeg" alt="dish2" loading="lazy" class="object-cover" />
           </div>
         </div>
-        <div class="avatar w-full" v-else-if="activeDish === 3">
+        <div class="avatar w-full" v-else-if="activePosition === 3">
           <div class="w-full">
             <img src="@/assets/images/dish3.jpeg" alt="dish3" loading="lazy" class="object-cover" />
           </div>
         </div>
-        <div class="avatar w-full" v-else-if="activeDish === 4">
+        <div class="avatar w-full" v-else-if="activePosition === 4">
           <div class="w-full">
             <img src="@/assets/images/dish4.jpeg" alt="dish4" loading="lazy" class="object-cover" />
           </div>

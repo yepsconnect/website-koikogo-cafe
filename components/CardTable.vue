@@ -5,7 +5,7 @@ import { getTimeDifference } from "../services/timeService"
 defineEmits(["onSelect"])
 const props = defineProps<{
   table: Table
-  reservations: Reservation[]
+  reservations: Booking[]
   halls: Hall[]
   from: string
   to: string

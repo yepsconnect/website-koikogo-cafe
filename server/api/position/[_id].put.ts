@@ -1,4 +1,4 @@
-import { Dish } from "~/server/models/dish.schema";
+import { Position } from "~/server/models/position.schema";
 
 export default defineEventHandler(async (event) => {
   const { isAuth, userRole } = event.context;
@@ -12,22 +12,25 @@ export default defineEventHandler(async (event) => {
       ok: false,
       message: "Недостаточно прав для выполнения операции",
     };
-  // update category
-  const { isAvailable, id } = await readBody(event);
 
-  await Dish.findByIdAndUpdate(
+  const id = event.context.params?._id;
+  if (!id) return;
+
+  // update category
+  const { position } = await readBody(event);
+
+  const updatedPosition = await Position.findByIdAndUpdate(
     id,
     {
-      isAvailable,
+      ...position,
     },
     {
       new: true,
     }
   );
-  const dishes = await Dish.find();
 
   return {
     ok: true,
-    dishes,
+    position: updatedPosition,
   };
 });

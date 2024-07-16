@@ -1,4 +1,4 @@
-import { Dish } from "~/server/models/dish.schema";
+import { Position } from "~/server/models/position.schema";
 
 export default defineEventHandler(async (event) => {
   const { isAuth, userRole } = event.context;
@@ -16,10 +16,10 @@ export default defineEventHandler(async (event) => {
   const id = event.context.params?._id;
   if (!id) return;
 
-  const dish = await Dish.findByIdAndDelete(id);
+  const position = await Position.findByIdAndDelete(id);
 
   return {
     ok: true,
-    dish,
+    position,
   };
 });

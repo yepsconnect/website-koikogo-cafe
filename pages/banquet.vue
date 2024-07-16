@@ -1,3 +1,53 @@
+<script setup lang="ts">
+useSeoMeta({
+  title: "Банкетное меню",
+  description:
+    "Мы рады приветствовать вас в кафе в историческом центре города - на всеми известной улице в кой-каком парке.",
+  ogTitle: "Кафе имени Койкого",
+  ogDescription:
+    "Мы рады приветствовать вас в кафе в историческом центре города - на всеми известной улице в кой-каком парке.",
+  ogImage: "https://koikogo.cafe/logo.png",
+  ogUrl: "https://koikogo.cafe/",
+  twitterTitle: "Кафе имени Койкого",
+  twitterDescription:
+    "Мы рады приветствовать вас в кафе в историческом центре города - на всеми известной улице в кой-каком парке.",
+  twitterImage: "https://koikogo.cafe/logo.png",
+  twitterCard: "summary",
+})
+
+useHead({
+  link: [
+    {
+      rel: "icon",
+      type: "image/png",
+      href: "logo.png",
+    },
+  ],
+});
+// composables
+const route = useRoute();
+const { locale, t } = useI18n();
+// state
+const activeCategory = ref(null);
+const isModalInfo = ref(false);
+const selectedPosition = ref();
+const { data } = useFetch<{
+  ok: boolean
+  categories: Category[]
+  positions: Position[]
+}>(`/api/menu`, {
+  query: {
+    pageId: '66952c99a9159c7fc085a878'
+  }
+})
+
+// methods
+const openModalInfo = (position: Position) => {
+  isModalInfo.value = true
+  selectedPosition.value = position
+}
+</script>
+
 <template>
   <div>
     <div class="w-full flex justify-center items-center py-12 lg:py-48">
@@ -5,11 +55,11 @@
         <LogoMenu class="max-w-64" animated />
         <div>
           <h1 class="text-4xl font-bold uppercase">
-            <span class="text-2xl">{{ $t('name[0]') }}</span>
+            <span class="text-2xl">{{ t('name[0]') }}</span>
             <br />
-            {{ $t('name[1]') }}
+            {{ t('name[1]') }}
             <br />
-            {{ $t('name[2]') }}
+            {{ t('name[2]') }}
           </h1>
           <br>
           <p class="text-xl uppercase">
@@ -18,5 +68,16 @@
         </div>
       </div>
     </div>
+    <Container v-if="data">
+      <CategoryMenu :categories="data?.categories" :active-category="activeCategory"
+        @on-submit="val => activeCategory = val" :locale="locale" />
+      <div v-for="(category) in data?.categories" :key="category._id" class="relative mb-6">
+        <span :id="category.slug" class="absolute -top-16"></span>
+        <h2 class="text-2xl font-bold uppercase">{{ category?.title[locale] || category?.title['ru'] }}</h2>
+        <PositionItem v-for="item in data.positions.filter(x => x.categoryId === category._id)" :key="item._id"
+          :position="item" :locale="locale" @on-submit="openModalInfo" />
+      </div>
+    </Container>
+    <ModalInfo v-model="isModalInfo" :position="selectedPosition" />
   </div>
 </template>

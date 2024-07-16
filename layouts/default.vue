@@ -11,7 +11,7 @@ const modalReserve = ref(false)
         <ChangeLanguage />
       </div>
       <div class="navbar-end">
-        <ul class="hidden lg:flex menu menu-horizontal gap-2">
+        <ul class="hidden lg:flex justify-end menu menu-horizontal gap-2">
           <li>
             <NuxtLink :to="{ name: 'index' }" :class="{
               'active': route.name === 'index'
@@ -33,6 +33,11 @@ const modalReserve = ref(false)
             <NuxtLink :to="{ name: 'bar' }" :class="{
               'active': route.name === 'bar'
             }">{{ $t('screen.bar.title') }}</NuxtLink>
+          </li>
+          <li>
+            <NuxtLink :to="{ name: 'banquet' }" :class="{
+              'active': route.name === 'banquet'
+            }">{{ $t('screen.banquet.menu.title') }}</NuxtLink>
           </li>
         </ul>
         <Menu class="lg:hidden" />

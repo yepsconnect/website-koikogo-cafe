@@ -93,20 +93,20 @@ screen:
       title: "Booking Form"
     menu:
       title: "Banquet Menu"
-      text: "The banquet menu of Koykoy Cafe is designed with the various gastronomic preferences of our guests in mind. It is based on the best traditional Russian recipes, complemented by a fusion concept, and includes a wide selection of appetizers, cold cuts, hot dishes, light salads, and festive banquet dishes."
+      text: "The banquet menu of Koykoy Cafe is designed with the various gastronomic preferences of our guests in mind. It is based on the best traditional Russian recipes, complemented by a fusion concept, and includes a wide selection of appetizers, cold cuts, hot positions, light salads, and festive banquet positions."
       btn: "View Menu"
 
   reserveAdd:
     title: "New reservation"
   reservation:
     title: "Reservation"
-  dishes:
+  positions:
     title: "Menu positions"
     subtitle: "Founded positions"
-  dishAdd:
+  positionAdd:
     title: "Add menu position"
     remark: "Set image url for this menu item"
-  dishEdit:
+  positionEdit:
     title: "Edit menu position"
     remark: "Set image url for this menu item"
   admin:
@@ -144,7 +144,7 @@ screen:
     new:
       title: "Do you want something new?"
       info:
-        - "We made sure that no one went hungry after visiting our cafe, and that's why we paid special attention to developing dishes for the youngest guests"
+        - "We made sure that no one went hungry after visiting our cafe, and that's why we paid special attention to developing positions for the youngest guests"
         - "And for those who want everything at once or can't decide on a choice, we did it for you! We are glad to present the most unpredictable combination: PIZZA WITH DUMPLINGS. Juicy, hearty pizza with homemade dumplings on crispy dough - you definitely did not expect this, but we promise that you will be delighted."
         - "Have you tried it yet? We need to fix the situation urgently!"
     comfort:

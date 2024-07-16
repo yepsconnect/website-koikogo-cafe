@@ -100,13 +100,13 @@ screen:
     title: "Новое бронирование"
   reservation:
     title: "Бронирование"
-  dishes:
+  positions:
     title: "Позиции"
     subtitle: "Найденные позиции"
-  dishAdd:
+  positionAdd:
     title: "Добавление позиции"
     remark: "Вставьте ссылку на изображение"
-  dishEdit:
+  positionEdit:
     title: "Редактирование позиции"
     remark: "Вставьте ссылку на изображение"
   admin:
