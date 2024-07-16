@@ -58,7 +58,7 @@ watch(isOpen, val => {
     <div class="flex flex-col gap-4">
       <h2 class="text-2xl font-bold">{{ t("modal.order.title") }}</h2>
       <div v-if="order.length && positions" class="flex flex-col gap-3 max-h-[310px] overflow-y-scroll">
-        <PositionOrderCard v-for="orderItem in order" :key="orderItem._id" :order-item="orderItem" :menu="positions" />
+        <OrderCard v-for="orderItem in order" :key="orderItem._id" :order-item="orderItem" :menu="positions" />
       </div>
       <div v-else>
         <p class="text-center">{{ t('modal.order.empty') }}</p>
