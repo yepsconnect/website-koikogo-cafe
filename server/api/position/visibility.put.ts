@@ -1,4 +1,4 @@
-import { Reservation } from "~/server/models/reservation.schema";
+import { Position } from "~/server/models/position.schema";
 
 export default defineEventHandler(async (event) => {
   const { isAuth, userRole } = event.context;
@@ -12,19 +12,22 @@ export default defineEventHandler(async (event) => {
       ok: false,
       message: "Недостаточно прав для выполнения операции",
     };
+  // update category
+  const { isAvailable, id } = await readBody(event);
 
-  const id = event.context.params?._id;
-  if (!id) return;
-
-  const { status } = await readBody(event);
-  console.log(status);
-
-  const updatedItem = await Reservation.findByIdAndUpdate(id, {
-    status: status,
-  });
+  await Position.findByIdAndUpdate(
+    id,
+    {
+      isAvailable,
+    },
+    {
+      new: true,
+    }
+  );
+  const positions = await Position.find();
 
   return {
     ok: true,
-    reservation: updatedItem,
+    positions,
   };
 });

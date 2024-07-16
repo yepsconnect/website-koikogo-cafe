@@ -1,4 +1,4 @@
-import { Dish } from "~/server/models/dish.schema";
+import { Position } from "~/server/models/position.schema";
 import slugify from "slugify";
 
 export default defineEventHandler(async (event) => {
@@ -14,9 +14,9 @@ export default defineEventHandler(async (event) => {
       message: "Недостаточно прав для выполнения операции",
     };
 
-  const { dish } = await readBody(event);
+  const { position } = await readBody(event);
 
-  const { categoryId, title, description, unit, price, image } = dish;
+  const { categoryId, title, description, unit, price, image } = position;
 
   let slug;
   if (title["en"]) {
@@ -27,7 +27,7 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const newDish = await Dish.create({
+  const newPosition = await Position.create({
     categoryId,
     title,
     description,
@@ -40,6 +40,6 @@ export default defineEventHandler(async (event) => {
   return {
     ok: true,
     message: "Позиция создана",
-    dish: newDish,
+    position: newPosition,
   };
 });

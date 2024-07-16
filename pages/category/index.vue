@@ -28,43 +28,6 @@ const categories = computed(() => {
       return title.toLowerCase().includes(searchableCategory.value.toLowerCase())
     })
 })
-
-const changeOrder = async (firstCategoryId: string, secondCategoryId: string) => {
-  try {
-    const response = await $fetch<{
-      ok: boolean;
-      message: string;
-    }>('/api/category/order', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: token.value!
-      },
-      body: JSON.stringify({
-        firstCategoryId,
-        secondCategoryId,
-      }),
-    });
-
-
-    if (!response.ok) {
-      alert(response.message);
-      return
-    }
-
-    const firstCategoryIndex = data.value!.categories.findIndex(cat => cat._id === firstCategoryId);
-    const secondCategoryIndex = data.value!.categories.findIndex(cat => cat._id === secondCategoryId);
-
-    if (firstCategoryIndex !== -1 && secondCategoryIndex !== -1) {
-      const tempOrder = data.value!.categories[firstCategoryIndex].order;
-      data.value!.categories[firstCategoryIndex].order = data.value!.categories[secondCategoryIndex].order;
-      data.value!.categories[secondCategoryIndex].order = tempOrder;
-    }
-
-  } catch (error) {
-    console.error('An error occurred while updating the order:', error);
-  }
-}
 </script>
 
 <template>
@@ -76,6 +39,13 @@ const changeOrder = async (firstCategoryId: string, secondCategoryId: string) =>
         </NuxtLink>
       </div>
     </Header>
+    <div role="alert" class="alert max-w-xl">
+      <IconInformationSquare class="w-12 sm:w-8" />
+      <span>В данном разделе находятся все категории. Вы можете добавить новую категорию, а также редактировать или
+        удалить уже существущие. Категории можно привязать к определенному разделу меню на странице <NuxtLink
+          :to="{ name: 'page' }" class="link link-primary">Страницы</NuxtLink>, а также к конкретной позиции на
+        странице <NuxtLink :to="{ name: 'position' }" class="link link-primary">Позиции</NuxtLink>.</span>
+    </div>
     <div>
       <input v-model="searchableCategory" type="text" class="input input-bordered w-full"
         :placeholder="t('label.search', { field: t('label.categoryName') })">
@@ -83,37 +53,16 @@ const changeOrder = async (firstCategoryId: string, secondCategoryId: string) =>
     <div v-if="categories.length" class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
       <div v-for="(category, index) in categories" :key="category._id"
         class="flex flex-col sm:aspect-square rounded-md border p-3 cursor:pointer hover:bg-gray-100">
-        <p>{{ category?.title[locale] || category?.title["ru"] }}</p>
-        <p v-if="category?.page" class="text-xs text-gray-400">{{ $t(`screen.${category?.page}.title`) }}</p>
-        <div class="flex flex-col gap-2 justify-end flex-1 mt-4 sm:mt-0">
-          <NuxtLink :to="{ name: 'category-id', params: { id: category._id } }"
-            class="btn btn-sm btn-glass hidden sm:inline-flex">
-            {{
-              $t('label.edit')
-            }}
+        <div class="flex justify-between items-start gap-2">
+          <p>{{ category?.title[locale] || category?.title["ru"] }}</p>
+          <NuxtLink :to="{ name: 'category-id', params: { id: category._id } }" class="btn btn-sm btn-circle">
+            <IconPen class="w-4" />
           </NuxtLink>
-          <div class="flex gap-2">
-            <button v-if="index !== 0" class="btn btn-sm flex-1"
-              @click="changeOrder(category._id, categories[index - 1]._id)">
-              <IconChevronLeft class="w-2" />
-            </button>
-            <NuxtLink :to="{ name: 'category-id', params: { id: category._id } }"
-              class="btn btn-sm btn-glass flex-1 sm:hidden">
-              {{
-                $t('label.edit')
-              }}
-            </NuxtLink>
-            <button v-if="index !== categories.length - 1" class="btn btn-sm flex-1"
-              @click="changeOrder(category._id, categories[index + 1]._id)">
-              <IconChevronRight class="w-2" />
-            </button>
-          </div>
         </div>
       </div>
     </div>
     <div v-else class="py-10 flex flex-col items-center gap-6">
       <p class="text-lg text-center text-gray-500">{{ $t('label.empty') }}</p>
-      <NuxtLink :to="{ name: 'category-add' }" class="btn btn-neutral">{{ $t('label.add') }}</NuxtLink>
     </div>
   </div>
 </template>

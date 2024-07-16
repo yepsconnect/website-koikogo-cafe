@@ -8,7 +8,7 @@ const props = defineProps<{
 const { t } = useI18n();
 const { order, clearOrder } = useOrder();
 const isLoading = ref(false)
-const dishes = ref<Dish[]>()
+const positions = ref<Position[]>()
 const totalPrice = ref()
 // computed
 const isOpen = computed({
@@ -21,7 +21,7 @@ async function handleGetOrder() {
   try {
     const response = await $fetch<{
       ok: boolean;
-      dishes: Dish[];
+      positions: Position[];
       totalPrice: number;
     }>('/api/order', {
       method: "POST",
@@ -36,7 +36,7 @@ async function handleGetOrder() {
       return false;
     }
 
-    dishes.value = response.dishes
+    positions.value = response.positions
     totalPrice.value = response.totalPrice
   } catch (error) {
     console.error(error)
@@ -57,8 +57,8 @@ watch(isOpen, val => {
   <Modal v-model="isOpen">
     <div class="flex flex-col gap-4">
       <h2 class="text-2xl font-bold">{{ t("modal.order.title") }}</h2>
-      <div v-if="order.length && dishes" class="flex flex-col gap-3 max-h-[310px] overflow-y-scroll">
-        <DishOrderCard v-for="orderItem in order" :key="orderItem._id" :order-item="orderItem" :menu="dishes" />
+      <div v-if="order.length && positions" class="flex flex-col gap-3 max-h-[310px] overflow-y-scroll">
+        <PositionOrderCard v-for="orderItem in order" :key="orderItem._id" :order-item="orderItem" :menu="positions" />
       </div>
       <div v-else>
         <p class="text-center">{{ t('modal.order.empty') }}</p>

@@ -18,9 +18,6 @@ const { data } = await useFetch<{
   ok: boolean,
   category: Category
 }>(`/api/category/${route.params.id}`)
-// computed
-const availablePages = router.options.routes.filter(x => x.meta?.layout === 'menu')
-
 // methods
 const handleSubmit = async () => {
   if (!data.value?.category) {
@@ -39,8 +36,7 @@ const handleSubmit = async () => {
       },
       body: JSON.stringify({
         title: data.value.category.title,
-        description: data.value.category.description,
-        page: data.value.category.page,
+        // description: data.value.category.description,
       })
     });
     if (!response.ok) {
@@ -106,18 +102,11 @@ const handleDelete = async () => {
         </div>
         <input v-model="data.category.title[selectedLocale]" type="text" class="input input-bordered"
           :placeholder="t('label.categoryName') + ' (selectedLocale' + selectedLocale + ')'">
-        <textarea v-model="data.category.description[selectedLocale]"
+        <!-- <textarea v-model="data.category.description[selectedLocale]"
           class="textarea textarea-bordered placeholder:text-base text-base"
-          :placeholder="t('label.categoryInfo') + ' (' + selectedLocale + ')'"></textarea>
-        <select v-model="data.category.page" class="select select-bordered">
-          <option :value="undefined" disabled>{{ $t('label.select') }}</option>
-          <option v-for="route in availablePages" :key="route.name" :value="route.name">
-            {{ $t(`screen.${route.name?.toString()}.title`) }}
-          </option>
-        </select>
+          :placeholder="t('label.categoryInfo') + ' (' + selectedLocale + ')'"></textarea> -->
       </div>
-      <button class="btn btn-neutral" :disabled="isLoading || !data.category.title['ru'] || !data.category.page"
-        @click="handleSubmit">
+      <button class="btn btn-neutral" :disabled="isLoading || !data.category.title['ru']" @click="handleSubmit">
         <Loading v-if="isLoading" />
         <template v-else>{{ t('label.save') }}</template>
       </button>

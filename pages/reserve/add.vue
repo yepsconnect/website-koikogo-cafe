@@ -30,7 +30,7 @@ const handleSubmit = async () => {
       ok: boolean
       reservation: Booking
       message: string
-    }>(`/api/reservation`, {
+    }>(`/api/booking`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

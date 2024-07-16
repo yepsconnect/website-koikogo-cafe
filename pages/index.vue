@@ -39,7 +39,7 @@ const { data, pending, refresh } = await useAsyncData<{
 }>(
   "reservation",
   () =>
-    $fetch("/api/reservation", {
+    $fetch("/api/booking", {
       query: {
         from: selectedFrom.value,
         to: selectedTo.value,
@@ -73,7 +73,7 @@ const handleSubmit = async (reservation: Booking, status: string) => {
       ok: boolean
       reservation: Booking
       message: string
-    }>(`/api/reservation/${reservation._id}`, {
+    }>(`/api/booking/${reservation._id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

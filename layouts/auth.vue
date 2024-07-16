@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import IconComputer from '@/components/Icon/Computer.vue'
 import IconRestaurantTable from '@/components/Icon/RestaurantTable.vue'
 import IconMenuRestaurant from '@/components/Icon/MenuRestaurant.vue'
 import IconRestaurant02 from '@/components/Icon/Restaurant02.vue'
@@ -16,14 +17,19 @@ const menu = computed(() => [
     label: t('screen.reservation.title'),
   },
   {
+    name: 'page',
+    icon: IconComputer,
+    label: t('screen.page.title'),
+  },
+  {
     name: 'category',
     icon: IconMenuRestaurant,
     label: t('screen.category.title'),
   },
   {
-    name: 'dish',
+    name: 'position',
     icon: IconRestaurant02,
-    label: t('screen.dishes.title'),
+    label: t('screen.positions.title'),
   },
   {
     name: 'settings',

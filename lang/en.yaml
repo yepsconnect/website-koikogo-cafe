@@ -12,17 +12,17 @@ name:
   - Koikogo
 
 modal:
-  dishAdd:
-    success: "Dish added successfully. Add another?"
-    error: "Error adding dish"
-  dishEdit:
-    success: "Dish updated. Continue editing?"
-    error: "Error updating dish"
-  dishDelete:
+  positionAdd:
+    success: "Position added successfully. Add another?"
+    error: "Error adding position"
+  positionEdit:
+    success: "Position updated. Continue editing?"
+    error: "Error updating position"
+  positionDelete:
     title: "Are you sure you want to delete this item?"
     success: "Item deleted"
     error: "Error deleting item"
-  dishArchive:
+  positionArchive:
     title: "Are you sure you want to move this item to the archive? You can always restore it later."
     success: "Success"
     error: "Error moving to archive"
@@ -78,7 +78,7 @@ label:
   delete: "Delete"
   deleteTranslate: "Delete translation"
   description: "Description"
-  dishNotExist: "Dish does not exist"
+  positionNotExist: "Position does not exist"
   edit: "Edit"
   empty: "Empty"
   free: "Free"
@@ -125,13 +125,13 @@ screen:
     title: "New reservation"
   reservation:
     title: "Reservation"
-  dishes:
+  positions:
     title: "Items"
     subtitle: "Found items"
-  dishAdd:
+  positionAdd:
     title: "Add item"
     remark: "Insert image link"
-  dishEdit:
+  positionEdit:
     title: "Edit item"
     remark: "Insert image link"
   admin:
@@ -169,7 +169,7 @@ screen:
     new:
       title: "Want something new?"
       info:
-        - "We made sure that no one leaves our cafe hungry, which is why we paid special attention to developing dishes for our youngest guests."
+        - "We made sure that no one leaves our cafe hungry, which is why we paid special attention to developing positions for our youngest guests."
         - "And for those who want everything at once or can't decide, we've made the choice for you! We are pleased to present the most unpredictable combination: PIZZA WITH DUMPLINGS. Juicy, hearty pizza with homemade dumplings on crispy dough - you definitely didn't expect this, but we promise you'll be delighted."
         - "Haven't tried it yet? You need to fix this immediately!"
     comfort:

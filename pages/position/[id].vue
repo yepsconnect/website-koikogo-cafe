@@ -22,12 +22,12 @@ const isLoadingDelete = ref(false);
 const { data, refresh } = await useFetch<{
   ok: boolean,
   message: string
-  dish: Dish
-}>(`/api/dish/${route.params.id}`)
+  position: Position
+}>(`/api/position/${route.params.id}`)
 
 // methods
 const handleSubmit = async () => {
-  if (!data.value.dish || !data.value.dish.title["ru"] || !data.value.dish.price || !data.value.dish.unit || !data.value.dish.categoryId) {
+  if (!data.value.position || !data.value.position.title["ru"] || !data.value.position.price || !data.value.position.unit || !data.value.position.categoryId) {
     return
   }
   try {
@@ -35,14 +35,14 @@ const handleSubmit = async () => {
     const response = await $fetch<{
       ok: boolean
       message: string
-      dish: Dish
-    }>(`/api/dish/${data.value.dish._id}`, {
+      position: Position
+    }>(`/api/position/${data.value.position._id}`, {
       method: 'PUT',
       headers: {
         Authorization: token.value!
       },
       body: JSON.stringify({
-        dish: data.value.dish,
+        position: data.value.position,
       })
     });
     if (!response.ok) {
@@ -50,7 +50,7 @@ const handleSubmit = async () => {
     }
     const isConfirmed = confirm("Обновленно. Изменить ещё?");
     if (!isConfirmed) {
-      router.push({ name: 'dish' });
+      router.push({ name: 'position' });
     }
   } catch (error) {
     console.error(error);
@@ -60,7 +60,7 @@ const handleSubmit = async () => {
 };
 
 const handleArchive = async () => {
-  const isConfirmed = confirm(t('modal.dishArchive.title'));
+  const isConfirmed = confirm(t('modal.positionArchive.title'));
   if (!isConfirmed) {
     return;
   }
@@ -69,15 +69,15 @@ const handleArchive = async () => {
     const response = await $fetch<{
       ok: boolean
       message: string
-      dish: Dish
-    }>(`/api/dish/${data.value.dish._id}`, {
+      position: Position
+    }>(`/api/position/${data.value.position._id}`, {
       method: 'PUT',
       headers: {
         Authorization: token.value!
       },
       body: JSON.stringify({
-        dish: {
-          isArchived: !data.value.dish.isArchived
+        position: {
+          isArchived: !data.value.position.isArchived
         },
       })
     });
@@ -94,7 +94,7 @@ const handleArchive = async () => {
 };
 
 const handleDelete = async () => {
-  const isConfirmed = confirm(t('modal.dishDelete.title'));
+  const isConfirmed = confirm(t('modal.positionDelete.title'));
   if (!isConfirmed) {
     return;
   }
@@ -103,7 +103,7 @@ const handleDelete = async () => {
     const response = await $fetch<{
       ok: boolean
       message: string
-    }>(`/api/dish/${route.params.id}`, {
+    }>(`/api/position/${route.params.id}`, {
       method: 'DELETE',
       headers: {
         Authorization: token.value!
@@ -112,8 +112,8 @@ const handleDelete = async () => {
     if (!response.ok) {
       return alert(response.message);
     }
-    alert(t('modal.dishDelete.success'));
-    router.push({ name: 'dish' });
+    alert(t('modal.positionDelete.success'));
+    router.push({ name: 'position' });
 
   } catch (error) {
     console.error(error);
@@ -125,34 +125,34 @@ const handleDelete = async () => {
 
 <template>
   <div class="flex flex-col gap-4 p-3">
-    <Header :title="$t('screen.dishEdit.title')" />
-    <div v-if="data?.dish" class="flex flex-col gap-4 max-w-lg">
+    <Header :title="$t('screen.positionEdit.title')" />
+    <div v-if="data?.position" class="flex flex-col gap-4 max-w-lg">
       <div class="avatar w-full">
         <div class="rounded-xl w-full bg-gray-200">
-          <img v-if="data.dish.image" :src="data.dish.image" />
+          <img v-if="data.position.image" :src="data.position.image" />
         </div>
       </div>
-      <input v-model="data.dish.image" class="input input-bordered" :placeholder="$t('label.image')" type="text" />
-      <p class="text-center text-gray-500 text-sm">{{ $t('screen.dishAdd.remark') }}</p>
+      <input v-model="data.position.image" class="input input-bordered" :placeholder="$t('label.image')" type="text" />
+      <p class="text-center text-gray-500 text-sm">{{ $t('screen.positionAdd.remark') }}</p>
       <div class="flex gap-1">
         <div v-for="item in locales" :key="item.code" class="badge badge-lg badge-outline cursor-pointer gap-1" :class="{
           'badge-primary': item.code === selectedLocale,
         }" @click="selectedLocale = item.code">
           {{ $t(`language.${item.code}`) }}
-          <IconCheck v-if="data.dish.title[item.code]" class="w-4 fill-success" />
+          <IconCheck v-if="data.position.title[item.code]" class="w-4 fill-success" />
           <IconCircleXmark v-else class="w-4 fill-error" />
         </div>
       </div>
-      <input v-model="data.dish.title[selectedLocale]" class="input input-bordered"
+      <input v-model="data.position.title[selectedLocale]" class="input input-bordered"
         :placeholder="$t('label.title') + ' (' + selectedLocale + ')'" />
-      <textarea v-model="data.dish.description[selectedLocale]"
+      <textarea v-model="data.position.description[selectedLocale]"
         class="textarea textarea-bordered placeholder:text-base text-base"
         :placeholder="$t('label.description') + ' (' + selectedLocale + ')'"></textarea>
-      <input v-model="data.dish.unit" class="input input-bordered" :placeholder="$t('label.unit')" type="text"
+      <input v-model="data.position.unit" class="input input-bordered" :placeholder="$t('label.unit')" type="text"
         inputmode="numeric" />
-      <input v-model="data.dish.price" class="input input-bordered" :placeholder="$t('label.price')" type="number"
+      <input v-model="data.position.price" class="input input-bordered" :placeholder="$t('label.price')" type="number"
         inputmode="numeric" />
-      <select v-if="dataCategory?.categories" v-model="data.dish.categoryId" class="select select-bordered w-full">
+      <select v-if="dataCategory?.categories" v-model="data.position.categoryId" class="select select-bordered w-full">
         <option value="" disabled>{{ $t('label.select', { field: $t('label.category') }) }}</option>
         <option v-for="category in dataCategory.categories" :key="category._id" :value="category._id">
           {{ category.title[locale] }}
@@ -160,18 +160,18 @@ const handleDelete = async () => {
       </select>
       <div class="form-control">
         <label class="label cursor-pointer justify-start gap-2">
-          <input v-model="data.dish.new" type="checkbox" class="checkbox checkbox-primary" />
+          <input v-model="data.position.new" type="checkbox" class="checkbox checkbox-primary" />
           <span class="label-text">{{ $t('label.new') }}</span>
         </label>
       </div>
       <button class="btn btn-primary w-full" @click="handleSubmit()"
-        :disabled="isLoading || !data.dish.title['ru'] || !data.dish.categoryId || !data.dish.price || !data.dish.unit">
+        :disabled="isLoading || !data.position.title['ru'] || !data.position.categoryId || !data.position.price || !data.position.unit">
         <Loading v-if="isLoading" />
         <template v-else>{{ $t('label.save') }}</template>
       </button>
       <button class="btn btn-primary btn-outline w-full" @click="handleArchive()" :disabled="isLoading">
         <Loading v-if="isLoadingDelete" />
-        <template v-else>{{ data?.dish.isArchived ? $t('label.fromArchive') : $t('label.toArchive') }}</template>
+        <template v-else>{{ data?.position.isArchived ? $t('label.fromArchive') : $t('label.toArchive') }}</template>
       </button>
       <button class="btn btn-primary btn-outline w-full" @click="handleDelete()" :disabled="isLoadingDelete">
         <Loading v-if="isLoadingDelete" />
@@ -179,8 +179,8 @@ const handleDelete = async () => {
       </button>
     </div>
     <div v-else class="py-10 flex flex-col items-center gap-4">
-      <p class="text-center text-lg text-gray-500">{{ $t('label.dishNotExist') }}</p>
-      <NuxtLink :to="{ name: 'dish' }" class="btn btn-primary">{{ $t('label.back') }}</NuxtLink>
+      <p class="text-center text-lg text-gray-500">{{ $t('label.positionNotExist') }}</p>
+      <NuxtLink :to="{ name: 'position' }" class="btn btn-primary">{{ $t('label.back') }}</NuxtLink>
     </div>
   </div>
 </template>

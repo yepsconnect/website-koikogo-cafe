@@ -14,11 +14,8 @@ const selectedLocale = ref('ru');
 // form
 const category = ref<CategoryNew>({
   title: {},
-  description: {},
-  page: ""
+  // description: {},
 })
-// computed
-const availablePages = router.options.routes.filter(x => x.meta?.layout === 'menu')
 // methods
 const handleSubmit = async () => {
   try {
@@ -40,8 +37,7 @@ const handleSubmit = async () => {
     const isConfirmed = confirm(t("modal.categoryAdd.success"));
 
     category.value.title = {}
-    category.value.description = {}
-    category.value.page = ""
+    // category.value.description = {}
 
     if (!isConfirmed) {
       router.push({ name: 'category' });
@@ -74,21 +70,14 @@ const handleSubmit = async () => {
         </div>
         <input v-model="category.title[selectedLocale]" type="text" class="input input-bordered"
           :placeholder="t('label.categoryName') + ' (' + selectedLocale + ')'">
-        <textarea v-model="category.description[selectedLocale]"
+        <!-- <textarea v-model="category.description[selectedLocale]"
           class="textarea textarea-bordered placeholder:text-base text-base"
-          :placeholder="t('label.categoryInfo') + ' (' + selectedLocale + ')'"></textarea>
-        <select v-model="category.page" class="select select-bordered">
-          <option value="" disabled>{{ $t('label.select') }}</option>
-          <option v-for="route in availablePages" :key="route.name" :value="route.name">
-            {{ $t(`screen.${route.name?.toString()}.title`) }}
-          </option>
-        </select>
+          :placeholder="t('label.categoryInfo') + ' (' + selectedLocale + ')'"></textarea> -->
       </div>
-      <button class="btn btn-neutral" type="submit" :disabled="isLoading || !category.title['ru'] || !category.page">
+      <button class="btn btn-neutral" type="submit" :disabled="isLoading || !category.title['ru']">
         <span v-if="isLoading" class="loading loading-dots loading-sm"></span>
         <template v-else>{{ t('label.add') }}</template>
       </button>
     </form>
-
   </div>
 </template>

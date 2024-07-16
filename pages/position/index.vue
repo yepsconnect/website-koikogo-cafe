@@ -6,8 +6,8 @@ definePageMeta({
 
 const { data } = useFetch<{
   ok: boolean
-  dishes: Dish[]
-}>('/api/dish')
+  positions: Position[]
+}>('/api/position')
 
 const { data: dataCategory } = useFetch<{
   ok: boolean
@@ -24,23 +24,23 @@ const isArchived = ref(false)
 const selectedCategory = ref<string | null>(null)
 const selectedStatus = ref<boolean | null>(null)
 const isLoading = ref(false)
-const searchableDish = ref('')
-const dishes = computed(() => {
+const searchablePosition = ref('')
+const positions = computed(() => {
   if (!data.value) return []
 
   const currentLocale = locale.value
 
-  return data.value.dishes
+  return data.value.positions
     .sort((a, b) => a.order - b.order)
-    .filter(dish => selectedCategory.value ? dish.categoryId === selectedCategory.value : true)
-    .filter(dish => isArchived.value === dish.isArchived)
-    .filter(dish => selectedStatus.value === null ? dish : selectedStatus.value === true ? dish.new === true : dish.new !== true)
-    .filter(dish => selectedTab.value === null ? dish : dish.isAvailable === selectedTab.value)
-    .filter(dish => {
-      const title = dish.title[currentLocale] || dish.title['ru']
+    .filter(position => selectedCategory.value ? position.categoryId === selectedCategory.value : true)
+    .filter(position => isArchived.value === position.isArchived)
+    .filter(position => selectedStatus.value === null ? position : selectedStatus.value === true ? position.new === true : position.new !== true)
+    .filter(position => selectedTab.value === null ? position : position.isAvailable === selectedTab.value)
+    .filter(position => {
+      const title = position.title[currentLocale] || position.title['ru']
 
       return title.toLowerCase()
-        .includes(searchableDish.value.toLowerCase())
+        .includes(searchablePosition.value.toLowerCase())
     })
 })
 
@@ -51,8 +51,8 @@ const changeOrder = async (firstCategoryId: string, secondCategoryId: string) =>
     const response = await $fetch<{
       ok: boolean
       message: string
-      dishes: Dish[]
-    }>('/api/dish/order', {
+      positions: Position[]
+    }>('/api/position/order', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -68,13 +68,13 @@ const changeOrder = async (firstCategoryId: string, secondCategoryId: string) =>
       return alert(response.message)
     }
 
-    const firstCategoryIndex = data.value!.dishes.findIndex(cat => cat._id === firstCategoryId);
-    const secondCategoryIndex = data.value!.dishes.findIndex(cat => cat._id === secondCategoryId);
+    const firstCategoryIndex = data.value!.positions.findIndex(cat => cat._id === firstCategoryId);
+    const secondCategoryIndex = data.value!.positions.findIndex(cat => cat._id === secondCategoryId);
 
     if (firstCategoryIndex !== -1 && secondCategoryIndex !== -1) {
-      const tempOrder = data.value!.dishes[firstCategoryIndex].order;
-      data.value!.dishes[firstCategoryIndex].order = data.value!.dishes[secondCategoryIndex].order;
-      data.value!.dishes[secondCategoryIndex].order = tempOrder;
+      const tempOrder = data.value!.positions[firstCategoryIndex].order;
+      data.value!.positions[firstCategoryIndex].order = data.value!.positions[secondCategoryIndex].order;
+      data.value!.positions[secondCategoryIndex].order = tempOrder;
     }
 
   } catch (error) {
@@ -84,13 +84,13 @@ const changeOrder = async (firstCategoryId: string, secondCategoryId: string) =>
   }
 }
 
-const handleChangeVisibility = async (item: Dish) => {
+const handleChangeVisibility = async (item: Position) => {
   try {
     const response = await $fetch<{
       ok: boolean
       message: string
-      dishes: Dish[]
-    }>(`/api/dish/visibility`, {
+      positions: Position[]
+    }>(`/api/position/visibility`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -104,7 +104,7 @@ const handleChangeVisibility = async (item: Dish) => {
     if (!response.ok) {
       return alert(response.message)
     }
-    data.value!.dishes = response.dishes;
+    data.value!.positions = response.positions;
 
   } catch (error) {
     console.error('An error occurred while updating the order:', error);
@@ -131,9 +131,9 @@ const tabs = computed(() => [
 
 <template>
   <div class="flex flex-col gap-4 p-3">
-    <Header :title="$t('screen.dishes.title')">
+    <Header :title="$t('screen.positions.title')">
       <div class="flex justify-end">
-        <NuxtLink :to="{ name: 'dish-add' }" class="btn btn-sm btn-square">
+        <NuxtLink :to="{ name: 'position-add' }" class="btn btn-sm btn-square">
           <IconPlus class="w-3" />
         </NuxtLink>
       </div>
@@ -143,7 +143,7 @@ const tabs = computed(() => [
         <div class="label">
           <span class="label-text">{{ $t('label.search') }}</span>
         </div>
-        <input v-model="searchableDish" type="text" class="input input-bordered w-full"
+        <input v-model="searchablePosition" type="text" class="input input-bordered w-full"
           :placeholder="$t('label.title')">
       </label>
       <div class="grid md:grid-cols-3 gap-2">
@@ -197,31 +197,33 @@ const tabs = computed(() => [
       </div>
 
     </div>
-    <h2 class="text-xl font-bold mb-2">{{ $t("screen.dishes.subtitle") }}</h2>
+    <h2 class="text-xl font-bold mb-2">{{ $t("screen.positions.subtitle") }}</h2>
     <div v-if="mode === 'cards'" class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-      <div v-for="(dish, index) in dishes" :key="dish._id" class="aspect-square w-full indicator">
-        <span v-if="dish.new" class="indicator-item badge badge-primary">{{ $t('label.new') }}</span>
+      <div v-for="(position, index) in positions" :key="position._id" class="aspect-square w-full indicator">
+        <span v-if="position.new" class="indicator-item badge badge-primary">{{ $t('label.new') }}</span>
         <div class="flex flex-col sm:aspect-square rounded-md border p-3">
           <div class="flex justify-between gap-2">
-            <p class="font-bold line-clamp-2">{{ dish.title[locale] || dish?.title["ru"] }}</p>
-            <input type="checkbox" class="toggle" :checked="dish.isAvailable" @change="handleChangeVisibility(dish)" />
+            <p class="font-bold line-clamp-2">{{ position.title[locale] || position?.title["ru"] }}</p>
+            <input type="checkbox" class="toggle" :checked="position.isAvailable"
+              @change="handleChangeVisibility(position)" />
           </div>
-          <p class="text-gray-400">{{ dish.price }}₽</p>
+          <p class="text-gray-400">{{ position.price }}₽</p>
           <div class="flex-1 flex flex-col justify-end gap-1  mt-4 sm:mt-0">
-            <NuxtLink class="btn btn-sm hidden sm:inline-flex" :to="{ name: 'dish-id', params: { id: dish._id } }">
+            <NuxtLink class="btn btn-sm hidden sm:inline-flex"
+              :to="{ name: 'position-id', params: { id: position._id } }">
               {{ $t('label.edit') }}
             </NuxtLink>
 
             <div class="flex gap-1">
-              <button v-if="index !== 0" class="btn btn-sm flex-1" @click="changeOrder(dish._id, dishes[index - 1]._id)"
-                :disabled="isLoading">
+              <button v-if="index !== 0" class="btn btn-sm flex-1"
+                @click="changeOrder(position._id, positions[index - 1]._id)" :disabled="isLoading">
                 <IconChevronLeft class="w-2" />
               </button>
-              <NuxtLink class="btn btn-sm sm:hidden" :to="{ name: 'dish-id', params: { id: dish._id } }">
+              <NuxtLink class="btn btn-sm sm:hidden" :to="{ name: 'position-id', params: { id: position._id } }">
                 {{ $t('label.edit') }}
               </NuxtLink>
-              <button v-if="index !== dishes.length - 1" class="btn btn-sm flex-1"
-                @click="changeOrder(dish._id, dishes[index + 1]._id)" :disabled="isLoading">
+              <button v-if="index !== positions.length - 1" class="btn btn-sm flex-1"
+                @click="changeOrder(position._id, positions[index + 1]._id)" :disabled="isLoading">
                 <IconChevronRight class="w-2" />
               </button>
             </div>
@@ -242,7 +244,7 @@ const tabs = computed(() => [
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(item, index) in dishes" :key="item._id">
+          <tr v-for="(item, index) in positions" :key="item._id">
             <th>
               <input type="checkbox" class="checkbox checkbox-sm" :checked="item.isAvailable"
                 @change="handleChangeVisibility(item)" />
@@ -253,15 +255,15 @@ const tabs = computed(() => [
             <td>{{ dataCategory ? dataCategory.categories.find(x => x._id === item.categoryId)?.title[locale] : "" }}
             </td>
             <td class="flex">
-              <NuxtLink class="btn btn-sm  btn-square mr-2" :to="{ name: 'dish-id', params: { id: item._id } }">
+              <NuxtLink class="btn btn-sm  btn-square mr-2" :to="{ name: 'position-id', params: { id: item._id } }">
                 <IconPen class=" w-3" />
               </NuxtLink>
               <button v-if="index !== 0" class="btn btn-sm btn-square mr-2"
-                @click="changeOrder(item._id, dishes[index - 1]._id)" :disabled="isLoading">
+                @click="changeOrder(item._id, positions[index - 1]._id)" :disabled="isLoading">
                 <IconChevronUp class=" w-3" />
               </button>
-              <button v-if="index !== dishes.length - 1" class="btn btn-sm btn-square"
-                @click="changeOrder(item._id, dishes[index + 1]._id)" :disabled="isLoading">
+              <button v-if="index !== positions.length - 1" class="btn btn-sm btn-square"
+                @click="changeOrder(item._id, positions[index + 1]._id)" :disabled="isLoading">
                 <IconChevronDown class="w-3" />
               </button>
             </td>
@@ -269,9 +271,9 @@ const tabs = computed(() => [
         </tbody>
       </table>
     </div>
-    <div v-if="!dishes.length" class="flex flex-col justify-center items-center py-20 w-full gap-6">
+    <div v-if="!positions.length" class="flex flex-col justify-center items-center py-20 w-full gap-6">
       <p class="text-lg text-gray-400">{{ $t('label.empty') }}</p>
-      <NuxtLink :to="{ name: 'dish-add' }" class="btn btn-neutral">{{ $t('label.add') }}</NuxtLink>
+      <NuxtLink :to="{ name: 'position-add' }" class="btn btn-neutral">{{ $t('label.add') }}</NuxtLink>
     </div>
   </div>
 </template>

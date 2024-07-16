@@ -12,17 +12,17 @@ name:
   - Койкого
 
 modal:
-  dishAdd:
+  positionAdd:
     success: "Блюдо успешно добавлено. Добавить ещё?"
     error: "Ошибка при добавлении блюда"
-  dishEdit:
+  positionEdit:
     success: "Блюдо обновлено. Продолжить изменения?"
     error: "Ошибка при обновлении"
-  dishDelete:
+  positionDelete:
     title: "Вы действительно хотите удалить позицию?"
     success: "Позиция удалена"
     error: "Ошибка при удалении позиции"
-  dishArchive:
+  positionArchive:
     title: "Вы действительно хотите переместить позицию в архив? Ее всегда можно вернуть обратно."
     success: "Успех"
     error: "Ошибка при переносе в архив"
@@ -53,6 +53,7 @@ language:
   en: "Английский"
 
 label:
+  categories: "Категории"
   action: "Действия"
   add: "Добавить"
   added: "Добавлено"
@@ -78,7 +79,7 @@ label:
   delete: "Удалить"
   deleteTranslate: "Удалить перевод"
   description: "Описание"
-  dishNotExist: "Блюда не существует"
+  positionNotExist: "Блюда не существует"
   edit: "Редактировать"
   empty: "Пусто"
   free: "Свободен"
@@ -121,17 +122,19 @@ label:
   whatsapp: "WhatsApp"
 
 screen:
+  page:
+    title: "Страницы"
   reserveAdd:
     title: "Новое бронирование"
   reservation:
     title: "Бронирование"
-  dishes:
+  positions:
     title: "Позиции"
     subtitle: "Найденные позиции"
-  dishAdd:
+  positionAdd:
     title: "Добавление позиции"
     remark: "Вставьте ссылку на изображение"
-  dishEdit:
+  positionEdit:
     title: "Редактирование позиции"
     remark: "Вставьте ссылку на изображение"
   admin:

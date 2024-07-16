@@ -6,13 +6,12 @@ interface User {
 }
 
 interface CategoryNew {
-  description: {
+  description?: {
     [key: string]: string;
   };
   title: {
     [key: string]: string;
   };
-  page: string;
 }
 
 interface Category extends CategoryNew {
@@ -21,16 +20,18 @@ interface Category extends CategoryNew {
   slug: string;
 }
 
-interface NewDish {
+interface NewPosition {
+  pageIds: string[];
   categoryId: string;
   description: { [key: string]: string };
   image: string | null;
   title: { [key: string]: string };
   price: number;
   unit: string;
+  type?: string;
 }
 
-interface Dish extends NewDish {
+interface Position extends NewPosition {
   _id: string;
   order: number;
   slug: string;
@@ -45,7 +46,7 @@ interface OrderItem {
 }
 
 interface Order {
-  dishId: string;
+  positionId: string;
   quantity: number;
   price: number;
   status:
@@ -88,4 +89,13 @@ interface BookingNew {
 
 interface Booking extends BookingNew {
   _id: string;
+}
+
+interface Page {
+  _id: string;
+  title: {
+    ru: string;
+    en: string;
+  };
+  categories: string[];
 }

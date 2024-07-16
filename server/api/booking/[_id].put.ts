@@ -1,4 +1,4 @@
-import { Dish } from "~/server/models/dish.schema";
+import { Booking } from "~/server/models/booking.schema";
 
 export default defineEventHandler(async (event) => {
   const { isAuth, userRole } = event.context;
@@ -16,20 +16,15 @@ export default defineEventHandler(async (event) => {
   const id = event.context.params?._id;
   if (!id) return;
 
-  // update category
-  const { dish } = await readBody(event);
+  const { status } = await readBody(event);
+  console.log(status);
 
-  const updatedDish = await Dish.findByIdAndUpdate(
-    id,
-    {
-      ...dish,
-    },
-    {
-      new: true,
-    }
-  );
+  const updatedItem = await Booking.findByIdAndUpdate(id, {
+    status: status,
+  });
 
   return {
     ok: true,
+    reservation: updatedItem,
   };
 });

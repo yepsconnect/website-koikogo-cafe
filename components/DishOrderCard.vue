@@ -2,7 +2,7 @@
 defineEmits(["onOpen"])
 const props = defineProps<{
   orderItem: OrderItem
-  menu: Dish[]
+  menu: Position[]
 }>()
 
 const { t, locale } = useI18n()

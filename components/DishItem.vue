@@ -1,7 +1,7 @@
 <script setup lang="ts">
 defineEmits(["onSubmit"]);
 defineProps<{
-  dish: Dish;
+  position: Position;
   locale: string;
 }>();
 
@@ -10,12 +10,12 @@ const { t } = useI18n();
 
 <template>
   <div class="flex items-center gap-1 p-2 rounded-xl hover:bg-base-200 cursor-pointer  w-full"
-    @click="$emit('onSubmit', dish)">
+    @click="$emit('onSubmit', position)">
     <div class="flex items-start gap-4 w-full">
       <div class="avatar indicator">
-        <span v-if="dish.new" class="indicator-item badge badge-primary">{{ $t('label.new') }}</span>
+        <span v-if="position.new" class="indicator-item badge badge-primary">{{ $t('label.new') }}</span>
         <div class="w-14 rounded-xl bg-gray-200">
-          <img v-if="dish.image" :src="dish.image" loading="lazy" />
+          <img v-if="position.image" :src="position.image" loading="lazy" />
           <img v-else src="https://multimedia.properati.com.co/properati/images/no-image-placeholder.png"
             loading="lazy" />
         </div>
@@ -23,14 +23,14 @@ const { t } = useI18n();
       <div class="flex flex-col w-full">
         <div class="flex-1 flex flex-col items-start">
           <p class="uppercase">
-            {{ dish.title[locale] || dish.title["ru"] }}
+            {{ position.title[locale] || position.title["ru"] }}
           </p>
         </div>
 
         <p>
-          {{ dish.price }}₽
+          {{ position.price }}₽
           <span class="text-sm text-gray-600">
-            {{ dish.unit }}
+            {{ position.unit }}
           </span>
         </p>
       </div>
