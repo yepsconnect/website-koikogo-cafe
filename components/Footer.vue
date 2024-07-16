@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import IconTelegram from "../components/IconTelegram.vue"
-import IconViber from "../components/IconViber.vue"
-import IconVK from "../components/IconVK.vue"
-import IconWhatsApp from "../components/IconWhatsApp.vue"
+import IconVK from "./Icon/VK.vue"
 
 const { t } = useI18n();
 const socials = [
@@ -12,24 +9,6 @@ const socials = [
     icon: IconVK,
     link: "https://vk.com/imeny_koykogo"
   },
-  // {
-  //   label: t('label.telegram'),
-  //   value: "telegram",
-  //   icon: IconTelegram,
-  //   link: "https://t.me/+79511985779"
-  // },
-  // {
-  //   label: t('label.whatsapp'),
-  //   value: "whatsapp",
-  //   icon: IconWhatsApp,
-  //   link: "https://wa.me/79511985779"
-  // },
-  // {
-  //   label: t('label.viber'),
-  //   value: "viber",
-  //   icon: IconViber,
-  //   link: "viber://chat?number=79511985779"
-  // },
 ]
 </script>
 
