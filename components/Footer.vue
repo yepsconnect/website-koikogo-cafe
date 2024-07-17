@@ -17,7 +17,7 @@ const socials = [
     <Container class="footer ">
       <NuxtLink to="/">
         <aside>
-          <Logo class="w-20" />
+          <Logo class="w-12" />
           <p class="text-lg">
             {{ $t('name[0]') }} {{ $t('name[1]') }} {{ $t('name[2]') }}
             <br />

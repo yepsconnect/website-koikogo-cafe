@@ -77,6 +77,7 @@ interface BookingNew {
   name: string;
   phone: string;
   status: "pending" | "confirmed" | "cancelled";
+  quantity: number;
   order: Order[];
   specialRequests: string;
 }

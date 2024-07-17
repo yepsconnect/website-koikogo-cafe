@@ -1,16 +1,82 @@
 <script setup lang="ts">
+import moment from 'moment';
+// composables
+const { times, phone } = useConfig()
 // state
+const modalSuccess = ref(false)
+const modalError = ref(false)
+const errorMessage = ref("")
 const isChecked = ref(false)
 const selectedPhoto = ref(1)
-
-// auth change selected photo from 1 to 5
+const isLoading = ref(false)
+const booking = reactive({
+  name: "",
+  phone: "",
+  date: moment().format('YYYY-MM-DD'),
+  from: null,
+  to: null,
+  quantity: null,
+  specialRequests: null,
+})
+// mounted
 onMounted(() => {
   setInterval(() => {
     selectedPhoto.value = (selectedPhoto.value + 1) % 6 + 1
   }, 3000)
 })
+// methods
+const handleSubmit = async () => {
+  isLoading.value = true
 
+  if (booking.date < moment().format('YYYY-MM-DD')) {
+    errorMessage.value = "Некорректная дата бронирования"
+    modalError.value = true
+    isLoading.value = false
+    return
+  }
 
+  if (booking.from > booking.to) {
+    errorMessage.value = "Время окончания бронирования не может превышать время начала бронирования"
+    modalError.value = true
+    isLoading.value = false
+    return
+  }
+
+  try {
+    const response = await $fetch<{
+      ok: boolean,
+      message: string
+    }>('/api/booking', {
+      method: 'POST',
+      body: JSON.stringify({
+        booking
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    if (!response.ok) {
+      errorMessage.value = response.message
+      modalError.value = true
+      return
+    }
+    modalSuccess.value = true
+    booking.name = ""
+    booking.phone = ""
+    booking.date = moment().format('YYYY-MM-DD')
+    booking.from = null
+    booking.to = null
+    booking.quantity = null
+    booking.specialRequests = null
+
+  } catch (e) {
+    errorMessage.value = `Произошла непредвиденная ошибка при бронировании. Пожалуйста, попробуйте снова или позвоните по номеру ${phone}`
+    modalError.value = true
+    return
+  } finally {
+    isLoading.value = false
+  }
+}
 </script>
 
 <template>
@@ -51,17 +117,20 @@ onMounted(() => {
     <Container id="booking" class="py-8 flex flex-col  items-center">
       <h2 class="text-2xl font-bold mb-6">{{ $t('screen.banquet.booking.title') }}</h2>
       <div class="flex flex-col gap-4 max-w-96">
-        <input type="text" class="input input-bordered" :placeholder="$t('label.name')" />
-        <input type="text" inputmode="numeric" class="input input-bordered" :placeholder="$t('label.phone')" />
-        <input type="date" class="input input-bordered" />
+        <input v-model="booking.name" type="text" class="input input-bordered" :placeholder="$t('label.name')" />
+        <input v-model="booking.phone" type="text" inputmode="numeric" class="input input-bordered"
+          :placeholder="$t('label.phone')" />
+        <input v-model="booking.date" type="date" class="input input-bordered"
+          @change="booking.from = null, booking.to = null" />
         <div class="grid lg:grid-cols-2 gap-2">
-          <input type="time" class="input input-bordered" />
-          <input type="time" class="input input-bordered" />
+          <!-- <input v-model="booking.from" type="time" class="input input-bordered" /> -->
+          <TimePicker v-model="booking.from" :times="times" :date="booking.date" />
+          <TimePicker v-model="booking.to" :times="times" :date="booking.date" />
         </div>
-        <input type="numeric" class="input input-bordered" placeholder="Количество гостей" />
-        <textarea class="textarea textarea-bordered placeholder:text-base text-base"
+        <input v-model="booking.quantity" type="numeric" class="input input-bordered" placeholder="Количество гостей" />
+        <textarea v-model="booking.specialRequests" class="textarea textarea-bordered placeholder:text-base text-base"
           placeholder="Комментарий"></textarea>
-        <button class="btn btn-primary" :disabled="!isChecked">{{ $t('label.reserve') }}</button>
+        <button class="btn btn-primary" :disabled="!isChecked" @click="handleSubmit">{{ $t('label.reserve') }}</button>
         <div class="form-control">
           <label class="label cursor-pointer justify-start gap-2">
             <input v-model="isChecked" type="checkbox" class="checkbox" />
@@ -73,5 +142,17 @@ onMounted(() => {
         </div>
       </div>
     </Container>
+    <Modal v-model="modalSuccess">
+      <h2 class="text-xl font-bold text-center mb-4">Успех</h2>
+      <p class="text-lg text-center">Ваша заявка на успешно создана. В ближайшее время с Вами свяжется менеджер для
+        подтверждения бронирования и
+        уточнения деталей.</p>
+      <button class="btn btn-primary w-full mt-4" @click="modalSuccess = false">Закрыть</button>
+    </Modal>
+    <Modal v-model="modalError">
+      <h2 class="text-xl font-bold text-center mb-4">Ошибка при бронировании</h2>
+      <p class="text-lg text-center">{{ errorMessage }}</p>
+      <button class="btn btn-primary w-full mt-4" @click="modalError = false, errorMessage = ''">Закрыть</button>
+    </Modal>
   </div>
 </template>
