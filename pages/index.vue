@@ -146,6 +146,7 @@ function setItemsPerPage(newLimit) {
           <div>
             <p class="text-lg">{{ reservation.name }}</p>
             <p>{{ $t('label.phone') }}: {{ reservation.phone }}</p>
+            <p>{{ reservation.specialRequests }}</p>
           </div>
           <div class="text-right">
             <p class="text-lg">{{ moment(reservation.date).format('DD.MM') }}</p>
