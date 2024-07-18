@@ -1,18 +1,12 @@
 import { defineMongooseModel } from "#nuxt/mongoose";
-
-interface Page {
-  _id: string;
-  title: {
-    ru: string;
-    en: string;
-  };
-  categories: [string];
-}
+import mongoose from "mongoose";
 
 export const Page = defineMongooseModel<Page>("Page", {
   title: {
-    ru: { type: String },
-    en: { type: String },
+    ru: { type: String, required: true },
+    en: { type: String, required: true },
   },
-  categories: [{ type: String }],
+  slug: { type: String, required: true },
+  categories: [{ type: mongoose.Schema.Types.ObjectId, ref: "Category" }],
+  positions: [{ type: mongoose.Schema.Types.ObjectId, ref: "Position" }],
 });

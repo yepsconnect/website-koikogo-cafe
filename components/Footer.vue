@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import IconVK from "./Icon/VK.vue"
+import IconInstagram from "./Icon/Instagram.vue"
 
 const { t } = useI18n();
 const socials = [
@@ -8,6 +9,12 @@ const socials = [
     value: "vk",
     icon: IconVK,
     link: "https://vk.com/imeny_koykogo"
+  },
+  {
+    label: 'Instagram',
+    value: "inst",
+    icon: IconInstagram,
+    link: "https://www.instagram.com/imeny_koykogo/"
   },
 ]
 </script>
@@ -44,7 +51,7 @@ const socials = [
         <div class="grid grid-flow-col gap-4">
           <a v-for="social in socials" :key="social.value" :href="social.link" :title="social.value" target="_blank"
             class="flex items-center gap-2">
-            <component :is="social.icon" class="w-8 fill-current hover:fill-primary cursor-pointer" />
+            <component :is="social.icon" class="w-8 text-current hover:text-primary cursor-pointer" />
           </a>
         </div>
       </nav>

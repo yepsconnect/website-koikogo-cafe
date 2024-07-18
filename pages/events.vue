@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import moment from 'moment';
+import LogoBanquet from '~/components/Icon/LogoBanquet.vue';
 // composables
 const { times, phone } = useConfig()
 // state
@@ -82,6 +83,7 @@ const handleSubmit = async () => {
 <template>
   <div>
     <Container class="py-12">
+      <img src="@/assets/images/friends.jpg" alt="" class="w-full max-w-xl mx-auto">
       <h1 class="text-3xl font-bold text-center max-w-lg mx-auto">{{ $t('screen.banquet.title') }}</h1>
     </Container>
     <Container class="py-8 flex flex-col gap-4 items-start">
@@ -123,36 +125,35 @@ const handleSubmit = async () => {
         <input v-model="booking.date" type="date" class="input input-bordered"
           @change="booking.from = null, booking.to = null" />
         <div class="grid lg:grid-cols-2 gap-2">
-          <!-- <input v-model="booking.from" type="time" class="input input-bordered" /> -->
+
           <TimePicker v-model="booking.from" :times="times" :date="booking.date" />
           <TimePicker v-model="booking.to" :times="times" :date="booking.date" />
         </div>
-        <input v-model="booking.quantity" type="numeric" class="input input-bordered" placeholder="Количество гостей" />
+        <input v-model="booking.quantity" type="numeric" class="input input-bordered"
+          :placeholder="$t('label.guestCount')" />
         <textarea v-model="booking.specialRequests" class="textarea textarea-bordered placeholder:text-base text-base"
-          placeholder="Комментарий"></textarea>
+          :placeholder="$t('')"></textarea>
         <button class="btn btn-primary" :disabled="!isChecked" @click="handleSubmit">{{ $t('label.reserve') }}</button>
         <div class="form-control">
           <label class="label cursor-pointer justify-start gap-2">
             <input v-model="isChecked" type="checkbox" class="checkbox" />
-            <span class="label-text">Отправляя заявку на звонок банкетного менеджера, Вы принимаете <a
-                href="/privacy-policy.pdf" target="_blank" rel="noopener noreferrer"
-                class="link link-primary link-hover">политику
-                конфиденциальности</a></span>
+            <span class="label-text">{{ $t('label.acceptCallManager') }} <a href="/privacy-policy.pdf" target="_blank"
+                rel="noopener noreferrer" class="link link-primary link-hover">{{ $t('label.politics')
+                }}</a></span>
           </label>
         </div>
       </div>
     </Container>
     <Modal v-model="modalSuccess">
-      <h2 class="text-xl font-bold text-center mb-4">Успех</h2>
-      <p class="text-lg text-center">Ваша заявка на успешно создана. В ближайшее время с Вами свяжется менеджер для
-        подтверждения бронирования и
-        уточнения деталей.</p>
-      <button class="btn btn-primary w-full mt-4" @click="modalSuccess = false">Закрыть</button>
+      <h2 class="text-xl font-bold text-center mb-4">{{ $t('modal.desertOrder.successTitle') }}</h2>
+      <p class="text-lg text-center">{{ $t('modal.desertOrder.successDetails') }}</p>
+      <button class="btn btn-primary w-full mt-4" @click="modalSuccess = false">{{ $t('label.close') }}</button>
     </Modal>
     <Modal v-model="modalError">
-      <h2 class="text-xl font-bold text-center mb-4">Ошибка при бронировании</h2>
+      <h2 class="text-xl font-bold text-center mb-4">{{ $t('modal.desertOrder.errorTitle') }}</h2>
       <p class="text-lg text-center">{{ errorMessage }}</p>
-      <button class="btn btn-primary w-full mt-4" @click="modalError = false, errorMessage = ''">Закрыть</button>
+      <button class="btn btn-primary w-full mt-4" @click="modalError = false, errorMessage = ''">{{ $t('label.close')
+        }}</button>
     </Modal>
   </div>
 </template>

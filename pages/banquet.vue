@@ -1,6 +1,6 @@
 <script setup lang="ts">
 useSeoMeta({
-  title: "Банкетное меню",
+  title: "Кафе имени Койкого",
   description:
     "Мы рады приветствовать вас в кафе в историческом центре города - на всеми известной улице в кой-каком парке.",
   ogTitle: "Кафе имени Койкого",
@@ -32,12 +32,11 @@ const activeCategory = ref(null);
 const isModalInfo = ref(false);
 const selectedPosition = ref();
 const { data } = useFetch<{
-  ok: boolean
-  categories: Category[]
-  positions: Position[]
+  categories: Category[];
+  positions: Position[];
 }>(`/api/menu`, {
   query: {
-    pageId: '66952c99a9159c7fc085a878'
+    slug: 'banquet'
   }
 })
 
@@ -52,7 +51,7 @@ const openModalInfo = (position: Position) => {
   <div>
     <div class="w-full flex justify-center items-center py-12 lg:py-48">
       <div class="flex flex-col md:flex-row items-center md:items-end">
-        <LogoMenu class="max-w-64" animated />
+        <LogoChef class="max-w-80" />
         <div>
           <h1 class="text-4xl font-bold uppercase">
             <span class="text-2xl">{{ t('name[0]') }}</span>
@@ -69,11 +68,11 @@ const openModalInfo = (position: Position) => {
       </div>
     </div>
     <Container v-if="data">
-      <CategoryMenu :categories="data?.categories" :active-category="activeCategory"
+      <CategoryMenu :categories="data.categories" :active-category="activeCategory"
         @on-submit="val => activeCategory = val" :locale="locale" />
-      <div v-for="(category) in data?.categories" :key="category._id" class="relative mb-6">
+      <div v-for="(category) in data.categories" :key="category._id" class="relative mb-6">
         <span :id="category.slug" class="absolute -top-16"></span>
-        <h2 class="text-2xl font-bold uppercase">{{ category?.title[locale] || category?.title['ru'] }}</h2>
+        <h2 class="text-2xl font-bold uppercase">{{ category.title[locale as Locale] || category.title['ru'] }}</h2>
         <PositionItem v-for="item in data.positions.filter(x => x.categoryId === category._id)" :key="item._id"
           :position="item" :locale="locale" @on-submit="openModalInfo" />
       </div>

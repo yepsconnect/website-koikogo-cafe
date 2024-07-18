@@ -2,7 +2,6 @@ import { defineMongooseModel } from "#nuxt/mongoose";
 
 export const Position = defineMongooseModel<Position>("Position", {
   categoryId: { type: String },
-  pageId: [{ type: String, default: [] }],
   description: {
     ru: { type: String },
     en: { type: String },

@@ -4,6 +4,18 @@ name:
   - "Koikogo"
 
 modal:
+  desertOrder:
+    title: "Order Placement"
+    details:
+      - "Orders for cakes are accepted at least 48 hours in advance"
+      - "The delivery cost is 300 RUB"
+      - "During holidays, the delivery cost is calculated separately."
+      - "Delivery outside the city is calculated individually"
+    errorTitle: "Error during booking"
+    errorDetails: "There was an error with your booking. Please try again or call %{phone}"
+    successTitle: "Success"
+    successDetails: "Your application has been successfully created. A manager will contact you shortly to confirm your reservation and clarify details."
+
   reservation:
     title: "Reservation"
     info: "To reserve a table call the phone number"
@@ -20,6 +32,22 @@ language:
   en: "English"
 
 label:
+  pickup: "Pickup"
+  pickupAddress: "Pickup address"
+  delivery: "Delivery"
+  deliveryType: "Delivery type"
+  acceptCallManager: "By submitting a request for a call from the banquet manager, you accept"
+  agreeWith: "I agree with"
+  politics: "privacy policy"
+  guestCount: "Number of guests"
+  comment: "Comment on the order"
+  moreDetails: "Details"
+  order: "Create order"
+  city: "City"
+  street: "Street"
+  house: "House"
+  flat: "Flat"
+  apartment: "Apartment"
   company: "Explore"
   legal: "Legal"
   socials: "Socials"
@@ -81,6 +109,10 @@ label:
   whatsapp: "WhatsApp"
 
 screen:
+  desert:
+    title: "Desserts to order"
+    details: "A cake is an integral attribute of any holiday. A cake with an individual design can be both a gift and a pleasant surprise for your guests. Now you can apply to order a cake on our website. Imagine yourself as a pastry chef and create your perfect dessert! Choose your favorite filling flavor, design and shape, and our confectioners will make sure that your wishes come true. Imagine, embody, tempt!"
+    btnOrder: "Order a cake"
   banquet:
     title: "Koykoy Cafe - The Perfect Place for Your Event."
     shortTitle: "Banquets"

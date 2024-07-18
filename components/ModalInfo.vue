@@ -50,10 +50,12 @@ const handleSubmit = () => {
         </p>
         <div class="flex items-center justify-between gap-2">
           <button class="btn btn-sm btn-circle btn-glass" :disabled="count < 2" @click="count--">
-            -
+            <IconRemove01 class="w-3" />
           </button>
           <div>{{ count }} {{ t("label.pieces") }}</div>
-          <button class="btn btn-sm btn-circle btn-glass" @click="count++">+</button>
+          <button class="btn btn-sm btn-circle btn-glass" @click="count++">
+            <IconAdd01 class="w-3" />
+          </button>
         </div>
       </div>
       <div class="mt-4 flex justify-between gap-2">

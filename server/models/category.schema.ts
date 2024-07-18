@@ -12,6 +12,4 @@ export const Category = defineMongooseModel<Category>("Category", {
     of: String,
     default: {},
   },
-  slug: { type: String, required: true, unique: true },
-  order: { type: Number, required: true, unique: true },
 });

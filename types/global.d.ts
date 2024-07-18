@@ -1,3 +1,21 @@
+type Locale = "ru" | "en";
+
+interface Bakery {
+  _id?: string;
+  name: string;
+  phone: string;
+  date: string;
+  time: string;
+  deliveryType: string;
+  pickupAddress: string;
+  city: string;
+  street: string;
+  house: string;
+  flat: string;
+  apartment: string;
+  bookingNumber?: string;
+}
+
 interface User {
   _id: string;
   email: string;
@@ -8,27 +26,33 @@ interface User {
 
 interface CategoryNew {
   description: {
-    [key: string]: string;
+    ru: string;
+    en: string;
   };
   title: {
-    [key: string]: string;
+    ru: string;
+    en: string;
   };
 }
 
 interface Category extends CategoryNew {
   _id: string;
-  order: number;
   slug: string;
 }
 
 interface NewPosition {
-  pageId: string[];
-  categoryId: string;
-  description: { [key: string]: string };
+  description: {
+    ru: string;
+    en: string;
+  };
   image: string | null;
-  title: { [key: string]: string };
+  title: {
+    ru: string;
+    en: string;
+  };
   price: number;
   unit: string;
+  categoryId: string;
 }
 
 interface Position extends NewPosition {
@@ -85,4 +109,15 @@ interface BookingNew {
 interface Booking extends BookingNew {
   _id: string;
   bookingNumber: string;
+}
+
+interface Page {
+  _id: string;
+  title: {
+    ru: string;
+    en: string;
+  };
+  slug: string;
+  categories: [string];
+  positions: [string];
 }
