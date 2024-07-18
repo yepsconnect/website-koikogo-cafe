@@ -63,12 +63,24 @@ interface NewPosition {
   categoryId: string;
 }
 
-interface Position extends NewPosition {
+interface Position {
   _id: string;
   order: number;
   isArchived: boolean;
   isAvailable: boolean;
-  type: string;
+  type?: string;
+  description: {
+    ru: string;
+    en: string;
+  };
+  image: string | null;
+  title: {
+    ru: string;
+    en: string;
+  };
+  price: number;
+  unit: string;
+  categoryId: string;
 }
 
 interface OrderItem {
