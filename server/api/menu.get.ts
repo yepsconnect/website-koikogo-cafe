@@ -6,7 +6,7 @@ export default defineEventHandler(async (event) => {
   const page = await Page.findOne({
     slug,
   })
-    .populate("categories")
+    // .populate("categories")
     .populate({
       path: "positions",
       match: {
