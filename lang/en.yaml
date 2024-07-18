@@ -53,6 +53,7 @@ language:
   en: "English"
 
 label:
+  reject: "Reject"
   action: "Actions"
   add: "Add"
   added: "Added"
@@ -68,6 +69,7 @@ label:
   capacity: "Number of guests"
   cards: "Cards"
   category: "Category"
+  categories: "Categories"
   categoryInfo: "Category information"
   categoryName: "Category name"
   clear: "Clear all"
@@ -121,6 +123,10 @@ label:
   whatsapp: "WhatsApp"
 
 screen:
+  page:
+    title: "Pages"
+  bakery:
+    title: "Bakery"
   reserveAdd:
     title: "New reservation"
   reservation:

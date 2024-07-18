@@ -4,6 +4,7 @@ import IconRestaurantTable from '@/components/Icon/RestaurantTable.vue'
 import IconMenuRestaurant from '@/components/Icon/MenuRestaurant.vue'
 import IconRestaurant02 from '@/components/Icon/Restaurant02.vue'
 import IconSettings02 from '@/components/Icon/Settings02.vue'
+import IconCheeseCake01 from '@/components/Icon/CheeseCake01.vue'
 // composables
 const route = useRoute()
 const { t } = useI18n()
@@ -30,6 +31,11 @@ const menu = computed(() => [
     name: 'position',
     icon: IconRestaurant02,
     label: t('screen.positions.title'),
+  },
+  {
+    name: 'bakery',
+    icon: IconCheeseCake01,
+    label: t('screen.bakery.title'),
   },
   {
     name: 'settings',

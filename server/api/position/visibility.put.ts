@@ -7,12 +7,13 @@ export default defineEventHandler(async (event) => {
       ok: false,
       message: "Срок сессии истек",
     };
-  if (userRole !== "root")
+
+  if (userRole !== "root" && userRole !== "admin" && userRole !== "сhef")
     return {
       ok: false,
       message: "Недостаточно прав для выполнения операции",
     };
-  // update category
+
   const { isAvailable, id } = await readBody(event);
 
   await Position.findByIdAndUpdate(

@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
       ok: false,
       message: "Срок сессии истек",
     };
-  if (userRole !== "root")
+  if (userRole !== "root" && userRole !== "admin" && userRole !== "сhef")
     return {
       ok: false,
       message: "Недостаточно прав для выполнения операции",
@@ -17,7 +17,6 @@ export default defineEventHandler(async (event) => {
   if (!id) return;
 
   const { status } = await readBody(event);
-  console.log(status);
 
   const updatedItem = await Booking.findByIdAndUpdate(id, {
     status: status,

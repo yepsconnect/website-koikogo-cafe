@@ -5,6 +5,30 @@ interface User {
   role: "root" | "owner" | "manager" | "waiter" | "guest";
 }
 
+interface Bakery {
+  _id: string;
+  name: string;
+  phone: string;
+  date: string;
+  time: string;
+  deliveryType: string;
+  pickupAddress: string;
+  city: string;
+  street: string;
+  house: string;
+  flat: string;
+  apartment: string;
+  bookingNumber?: string;
+  status:
+    | "new"
+    | "reject"
+    | "approved"
+    | "progress"
+    | "pending"
+    | "pickup"
+    | "delivered";
+}
+
 interface CategoryNew {
   description?: {
     [key: string]: string;

@@ -53,6 +53,7 @@ language:
   en: "Английский"
 
 label:
+  reject: "Отменить"
   categories: "Категории"
   action: "Действия"
   add: "Добавить"
@@ -122,6 +123,8 @@ label:
   whatsapp: "WhatsApp"
 
 screen:
+  bakery:
+    title: "Производство"
   page:
     title: "Страницы"
   reserveAdd:

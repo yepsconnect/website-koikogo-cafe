@@ -1,4 +1,4 @@
-import { Category } from "~/server/models/category.schema";
+import { Bakery } from "~/server/models/bakery.schema";
 
 export default defineEventHandler(async (event) => {
   const { isAuth, userRole } = event.context;
@@ -14,12 +14,15 @@ export default defineEventHandler(async (event) => {
     };
 
   const id = event.context.params?._id;
-  if (!id) return;
+  const { status, date } = await readBody(event);
 
-  const category = await Category.findByIdAndDelete(id);
+  const updatedItem = await Bakery.findByIdAndUpdate(id, {
+    status,
+    date,
+  });
 
   return {
     ok: true,
-    category,
+    bakery: updatedItem,
   };
 });
