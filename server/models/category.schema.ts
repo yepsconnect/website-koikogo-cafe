@@ -7,11 +7,5 @@ export const Category = defineMongooseModel<Category>("Category", {
     required: true,
     default: {},
   },
-  description: {
-    type: Map,
-    of: String,
-    default: {},
-  },
   slug: { type: String, required: true, unique: true },
-  order: { type: Number, required: true, unique: true },
 });

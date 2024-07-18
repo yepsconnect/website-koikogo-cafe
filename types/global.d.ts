@@ -1,9 +1,4 @@
-interface User {
-  _id: string;
-  email: string;
-  password: string;
-  role: "root" | "owner" | "manager" | "waiter" | "guest";
-}
+type Locale = "ru" | "en";
 
 interface Bakery {
   _id: string;
@@ -18,7 +13,6 @@ interface Bakery {
   house: string;
   flat: string;
   apartment: string;
-  bookingNumber?: string;
   status:
     | "new"
     | "reject"
@@ -29,57 +23,57 @@ interface Bakery {
     | "delivered";
 }
 
+interface User {
+  _id: string;
+  email: string;
+  phone?: string;
+  password: string;
+  role: "root" | "owner" | "manager" | "waiter" | "guest";
+}
+
 interface CategoryNew {
-  description?: {
-    [key: string]: string;
+  description: {
+    ru: string;
+    en: string;
   };
   title: {
-    [key: string]: string;
+    ru: string;
+    en: string;
   };
 }
 
 interface Category extends CategoryNew {
   _id: string;
-  order: number;
   slug: string;
 }
 
 interface NewPosition {
-  pageIds: string[];
-  categoryId: string;
-  description: { [key: string]: string };
+  description: {
+    ru: string;
+    en: string;
+  };
   image: string | null;
-  title: { [key: string]: string };
+  title: {
+    ru: string;
+    en: string;
+  };
   price: number;
   unit: string;
   type?: string;
+  categoryId: string;
 }
 
 interface Position extends NewPosition {
   _id: string;
   order: number;
-  slug: string;
-  isAvailable: boolean;
   isArchived: boolean;
-  new: boolean;
+  isAvailable: boolean;
+  type: string;
 }
 
 interface OrderItem {
   _id: string;
-  count: number;
-}
-
-interface Order {
-  positionId: string;
   quantity: number;
-  price: number;
-  status:
-    | "ordered"
-    | "preparing"
-    | "prepared"
-    | "served"
-    | "completed"
-    | "cancelled";
 }
 
 interface TableNew {
@@ -101,6 +95,31 @@ interface Hall extends HallNew {
   _id: string;
 }
 
+interface Order {
+  positionId: string;
+  quantity: number;
+  price: number;
+  status:
+    | "ordered"
+    | "preparing"
+    | "prepared"
+    | "served"
+    | "completed"
+    | "cancelled";
+}
+interface Order {
+  positionId: string;
+  quantity: number;
+  price: number;
+  status:
+    | "ordered"
+    | "preparing"
+    | "prepared"
+    | "served"
+    | "completed"
+    | "cancelled";
+}
+
 interface BookingNew {
   tableId: string;
   date: string;
@@ -109,6 +128,9 @@ interface BookingNew {
   name: string;
   phone: string;
   status: "pending" | "confirmed" | "cancelled";
+  quantity: number;
+  order: Order[];
+  specialRequests: string;
 }
 
 interface Booking extends BookingNew {
@@ -121,5 +143,7 @@ interface Page {
     ru: string;
     en: string;
   };
-  categories: string[];
+  slug: string;
+  categories: [string];
+  positions: [string];
 }
