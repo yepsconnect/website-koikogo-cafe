@@ -1,20 +1,25 @@
 import { defineMongooseModel } from "#nuxt/mongoose";
+import mongoose from "mongoose";
 
 export const Position = defineMongooseModel<Position>("Position", {
-  categoryId: { type: String },
+  order: { type: Number, required: true },
+  isArchived: { type: Boolean, default: false },
+  title: {
+    ru: { type: String, required: true },
+    en: { type: String },
+  },
   description: {
     ru: { type: String },
     en: { type: String },
   },
+  unit: { type: String, required: true },
+  price: { type: Number, required: true },
   image: { type: String, default: null },
-  title: {
-    ru: { type: String },
-    en: { type: String },
-  },
-  price: { type: Number },
-  unit: { type: String },
-  order: { type: Number },
-  isAvailable: { type: Boolean },
-  isArchived: { type: Boolean },
   type: { type: String },
+  isAvailable: { type: Boolean, default: true },
+  categoryId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Category",
+    required: true,
+  },
 });
