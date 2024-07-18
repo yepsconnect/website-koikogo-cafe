@@ -1,7 +1,7 @@
 type Locale = "ru" | "en";
 
 interface Bakery {
-  _id?: string;
+  _id: string;
   name: string;
   phone: string;
   date: string;
@@ -13,7 +13,14 @@ interface Bakery {
   house: string;
   flat: string;
   apartment: string;
-  bookingNumber?: string;
+  status:
+    | "new"
+    | "reject"
+    | "approved"
+    | "progress"
+    | "pending"
+    | "pickup"
+    | "delivered";
 }
 
 interface User {
@@ -52,6 +59,7 @@ interface NewPosition {
   };
   price: number;
   unit: string;
+  type?: string;
   categoryId: string;
 }
 
@@ -90,7 +98,26 @@ interface Hall extends HallNew {
 interface Order {
   positionId: string;
   quantity: number;
-  priceAtOrder: number;
+  price: number;
+  status:
+    | "ordered"
+    | "preparing"
+    | "prepared"
+    | "served"
+    | "completed"
+    | "cancelled";
+}
+interface Order {
+  positionId: string;
+  quantity: number;
+  price: number;
+  status:
+    | "ordered"
+    | "preparing"
+    | "prepared"
+    | "served"
+    | "completed"
+    | "cancelled";
 }
 
 interface BookingNew {
@@ -108,7 +135,6 @@ interface BookingNew {
 
 interface Booking extends BookingNew {
   _id: string;
-  bookingNumber: string;
 }
 
 interface Page {

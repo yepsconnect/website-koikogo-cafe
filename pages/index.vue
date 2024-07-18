@@ -5,16 +5,17 @@ import moment from 'moment';
 const { phone } = useConfig()
 const { t } = useI18n()
 // state
+const loading = ref(false)
 const isChecked = ref(false)
 const modalDesert = ref(false)
 const active = ref(1);
 const activePosition = ref(1);
 const mapLink = "https://yandex.ru/map-widget/v1/?um=constructor%3A63ccde52ac73bdd72e9a96d3dfe386069f6869a31541ddf24841c7908d8bc31b&amp;source=constructor"
 const order = reactive({
-  name: "Дмитрий",
-  phone: "+79124490575",
+  name: null,
+  phone: null,
   date: moment().add(2, 'day').format("YYYY-MM-DD"),
-  time: "10:00",
+  time: null,
   deliveryType: null,
   pickupAddress: null,
   city: null,
@@ -52,6 +53,7 @@ const handleSubmit = async () => {
     order.flat = null
     order.apartment = null
   }
+  loading.value = true;
   try {
     const response = await $fetch("/api/bakery", {
       method: "POST",
@@ -78,6 +80,8 @@ const handleSubmit = async () => {
     isChecked.value = false
   } catch (error) {
     alert("Произошла ошибка при оформлении заказа")
+  } finally {
+    loading.value = false;
   }
 }
 </script>
@@ -242,9 +246,9 @@ const handleSubmit = async () => {
         <h2 class="text-3xl font-bold">{{ t('screen.desert.title') }}</h2>
         <p class="text-lg">{{ t('screen.desert.details') }}</p>
         <div class="flex flex-col sm:flex-row gap-2">
-          <btn class="btn btn-primary" @click="modalDesert = true">
+          <button class="btn btn-primary" @click="modalDesert = true">
             {{ t('screen.desert.btnOrder') }}
-          </btn>
+          </button>
         </div>
       </div>
       <img src="@/assets/images/cake.webp" alt="cake" class="lg:max-w-md object-cover mx-auto">
@@ -366,7 +370,7 @@ const handleSubmit = async () => {
           </select>
           <iframe
             src="https://yandex.ru/map-widget/v1/?um=constructor%3Ac7c94380bee70b9f720bd64e999a2c799df5275b8b93785bbe1425f250f7736d&amp;source=constructor"
-            width="100%" height="350" frameborder="0"></iframe>
+            width="100%" height="270" frameborder="0"></iframe>
         </template>
         <template v-else-if="order.deliveryType === 'delivery'">
           <input v-model="order.city" type="text" class="input input-bordered" :placeholder="$t('label.city')">
@@ -388,16 +392,16 @@ const handleSubmit = async () => {
           <span class="label-text">{{ $t('label.agreeWith') }}
             <a href="/privacy-policy.pdf" target="_blank" rel="noopener noreferrer"
               class="link link-primary link-hover">
-              {{ $t('label.privacyPolicy') }}
+              {{ $t('label.politics') }}
             </a>
           </span>
         </label>
-        <div class="text-xs text-gray-400 mx-auto">
+        <!-- <div class="text-xs text-gray-400 mx-auto">
           <li>{{ $t('modal.desertOrder.details[0]') }}</li>
           <li>{{ $t('modal.desertOrder.details[1]') }}</li>
           <li>{{ $t('modal.desertOrder.details[2]') }}</li>
           <li>{{ $t('modal.desertOrder.details[3]') }}</li>
-        </div>
+        </div> -->
       </div>
     </Modal>
   </Container>

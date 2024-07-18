@@ -12,4 +12,5 @@ export const Bakery = defineMongooseModel<Bakery>("Bakery", {
   house: { type: String },
   flat: { type: String },
   apartment: { type: String },
+  status: { type: String, required: true, default: "new" },
 });
