@@ -1,4 +1,4 @@
-import { Position } from "~/server/models/position.schema";
+import { Position } from "~/server/models/index.schema";
 
 export default defineEventHandler(async (event) => {
   const { available } = getQuery(event);

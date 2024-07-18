@@ -1,4 +1,4 @@
-import { Booking } from "~/server/models/booking.schema";
+import { Booking } from "~/server/models/index.schema";
 
 export default defineEventHandler(async (event) => {
   const { reservation } = await readBody(event);

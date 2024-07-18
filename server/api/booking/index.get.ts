@@ -1,4 +1,4 @@
-import { Booking } from "~/server/models/booking.schema";
+import { Booking } from "~/server/models/index.schema";
 
 export default defineEventHandler(async (event) => {
   const { from, to, page = 1, limit = 10, status } = getQuery(event);

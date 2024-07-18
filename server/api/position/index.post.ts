@@ -1,4 +1,4 @@
-import { Position } from "~/server/models/position.schema";
+import { Position } from "~/server/models/index.schema";
 import slugify from "slugify";
 
 export default defineEventHandler(async (event) => {

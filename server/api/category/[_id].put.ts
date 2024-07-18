@@ -1,4 +1,4 @@
-import { Category } from "~/server/models/category.schema";
+import { Category } from "~/server/models/index.schema";
 
 export default defineEventHandler(async (event) => {
   const { isAuth, userRole } = event.context;

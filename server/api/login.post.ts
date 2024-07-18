@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import { User } from "~/server/models/user.schema";
+import { User } from "~/server/models/index.schema";
 import { generateToken } from "~/utils/tokenUtils";
 
 export default defineEventHandler(async (event) => {

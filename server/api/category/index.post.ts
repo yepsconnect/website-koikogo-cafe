@@ -1,4 +1,4 @@
-import { Category } from "~/server/models/category.schema";
+import { Category } from "~/server/models/index.schema";
 import slugify from "slugify";
 
 export default defineEventHandler(async (event) => {

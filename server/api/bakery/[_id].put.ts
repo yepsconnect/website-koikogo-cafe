@@ -1,4 +1,4 @@
-import { Bakery } from "~/server/models/bakery.schema";
+import { Bakery } from "~/server/models/index.schema";
 
 export default defineEventHandler(async (event) => {
   const { isAuth, userRole } = event.context;
