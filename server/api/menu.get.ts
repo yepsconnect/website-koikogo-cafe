@@ -1,4 +1,5 @@
-import { Page } from "~/server/models/page.schema";
+// @/serve/api/menu.get.ts
+import { Page } from "~/server/models/index.schema";
 
 export default defineEventHandler(async (event) => {
   const { slug } = getQuery(event);
