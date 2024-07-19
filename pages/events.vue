@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import moment from 'moment';
-import LogoBanquet from '~/components/Icon/LogoBanquet.vue';
 // composables
 const { times, phone } = useConfig()
 // state
@@ -13,9 +12,7 @@ const isLoading = ref(false)
 const booking = reactive({
   name: "",
   phone: "",
-  date: moment().format('YYYY-MM-DD'),
-  from: null,
-  to: null,
+  date: moment().add(1, 'day').format('YYYY-MM-DD'),
   quantity: null,
   specialRequests: null,
 })
@@ -29,15 +26,8 @@ onMounted(() => {
 const handleSubmit = async () => {
   isLoading.value = true
 
-  if (booking.date < moment().format('YYYY-MM-DD')) {
+  if (booking.date <= moment().format('YYYY-MM-DD')) {
     errorMessage.value = "Некорректная дата бронирования"
-    modalError.value = true
-    isLoading.value = false
-    return
-  }
-
-  if (booking.from > booking.to) {
-    errorMessage.value = "Время окончания бронирования не может превышать время начала бронирования"
     modalError.value = true
     isLoading.value = false
     return
@@ -64,9 +54,7 @@ const handleSubmit = async () => {
     modalSuccess.value = true
     booking.name = ""
     booking.phone = ""
-    booking.date = moment().format('YYYY-MM-DD')
-    booking.from = null
-    booking.to = null
+    booking.date = moment().add(1, 'day').format('YYYY-MM-DD')
     booking.quantity = null
     booking.specialRequests = null
 
@@ -122,17 +110,11 @@ const handleSubmit = async () => {
         <input v-model="booking.name" type="text" class="input input-bordered" :placeholder="$t('label.name')" />
         <input v-model="booking.phone" type="text" inputmode="numeric" class="input input-bordered"
           :placeholder="$t('label.phone')" />
-        <input v-model="booking.date" type="date" class="input input-bordered"
-          @change="booking.from = null, booking.to = null" />
-        <div class="grid lg:grid-cols-2 gap-2">
-
-          <TimePicker v-model="booking.from" :times="times" :date="booking.date" />
-          <TimePicker v-model="booking.to" :times="times" :date="booking.date" />
-        </div>
+        <input v-model="booking.date" type="date" class="input input-bordered" />
         <input v-model="booking.quantity" type="numeric" class="input input-bordered"
           :placeholder="$t('label.guestCount')" />
         <textarea v-model="booking.specialRequests" class="textarea textarea-bordered placeholder:text-base text-base"
-          :placeholder="$t('')"></textarea>
+          :placeholder="$t('label.comment')"></textarea>
         <button class="btn btn-primary" :disabled="!isChecked" @click="handleSubmit">{{ $t('label.reserve') }}</button>
         <div class="form-control">
           <label class="label cursor-pointer justify-start gap-2">

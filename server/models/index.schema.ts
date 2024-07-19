@@ -60,8 +60,8 @@ export const Bakery = defineMongooseModel<Bakery>("Bakery", {
 export const Booking = defineMongooseModel<Booking>("Booking", {
   tableId: { type: String },
   date: { type: String, required: true },
-  from: { type: String, required: true },
-  to: { type: String, required: true },
+  from: { type: String },
+  to: { type: String },
   name: { type: String, required: true },
   phone: { type: String, required: true },
   quantity: { type: Number, required: true },
