@@ -1,7 +1,35 @@
 <script setup lang="ts">
 import moment from 'moment';
+
+useSeoMeta({
+  title: "Банкеты",
+  description:
+    "Мы рады приветствовать вас в кафе в историческом центре города - на всеми известной улице в кой-каком парке.",
+  ogTitle: "Банкеты",
+  ogDescription:
+    "Мы рады приветствовать вас в кафе в историческом центре города - на всеми известной улице в кой-каком парке.",
+  ogImage: "https://koikogo.cafe/logo.png",
+  ogUrl: "https://koikogo.cafe/",
+  twitterTitle: "Банкеты",
+  twitterDescription:
+    "Мы рады приветствовать вас в кафе в историческом центре города - на всеми известной улице в кой-каком парке.",
+  twitterImage: "https://koikogo.cafe/logo.png",
+  twitterCard: "summary",
+})
+
+useHead({
+  link: [
+    {
+      rel: "icon",
+      type: "image/png",
+      href: "logo.png",
+    },
+  ],
+});
+
 // composables
 const { times, phone } = useConfig()
+
 // state
 const modalSuccess = ref(false)
 const modalError = ref(false)
@@ -16,12 +44,14 @@ const booking = reactive({
   quantity: null,
   specialRequests: null,
 })
+
 // mounted
 onMounted(() => {
   setInterval(() => {
     selectedPhoto.value = (selectedPhoto.value + 1) % 6 + 1
   }, 3000)
 })
+
 // methods
 const handleSubmit = async () => {
   isLoading.value = true
@@ -46,18 +76,19 @@ const handleSubmit = async () => {
         'Content-Type': 'application/json',
       },
     })
+
     if (!response.ok) {
       errorMessage.value = response.message
       modalError.value = true
       return
     }
+
     modalSuccess.value = true
     booking.name = ""
     booking.phone = ""
     booking.date = moment().add(1, 'day').format('YYYY-MM-DD')
     booking.quantity = null
     booking.specialRequests = null
-
   } catch (e) {
     errorMessage.value = `Произошла непредвиденная ошибка при бронировании. Пожалуйста, попробуйте снова или позвоните по номеру ${phone}`
     modalError.value = true

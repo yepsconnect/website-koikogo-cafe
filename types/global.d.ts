@@ -47,7 +47,7 @@ interface Category extends CategoryNew {
   slug: string;
 }
 
-interface NewPosition {
+interface PositionNew {
   description: {
     ru: string;
     en: string;
@@ -57,30 +57,17 @@ interface NewPosition {
     ru: string;
     en: string;
   };
-  price: number;
+  price: string;
   unit: string;
   type?: string;
   categoryId: string;
 }
 
-interface Position {
+interface Position extends PositionNew {
   _id: string;
   order: number;
   isArchived: boolean;
   isAvailable: boolean;
-  type?: string;
-  description: {
-    ru: string;
-    en: string;
-  };
-  image: string | null;
-  title: {
-    ru: string;
-    en: string;
-  };
-  price: number;
-  unit: string;
-  categoryId: string;
 }
 
 interface OrderItem {
@@ -107,18 +94,6 @@ interface Hall extends HallNew {
   _id: string;
 }
 
-interface Order {
-  positionId: string;
-  quantity: number;
-  price: number;
-  status:
-    | "ordered"
-    | "preparing"
-    | "prepared"
-    | "served"
-    | "completed"
-    | "cancelled";
-}
 interface Order {
   positionId: string;
   quantity: number;

@@ -1,14 +1,14 @@
 <script setup lang="ts">
 useSeoMeta({
-  title: "Кафе имени Койкого",
+  title: "Основное меню",
   description:
     "Мы рады приветствовать вас в кафе в историческом центре города - на всеми известной улице в кой-каком парке.",
-  ogTitle: "Кафе имени Койкого",
+  ogTitle: "Основное меню",
   ogDescription:
     "Мы рады приветствовать вас в кафе в историческом центре города - на всеми известной улице в кой-каком парке.",
   ogImage: "https://koikogo.cafe/logo.png",
   ogUrl: "https://koikogo.cafe/",
-  twitterTitle: "Кафе имени Койкого",
+  twitterTitle: "Основное меню",
   twitterDescription:
     "Мы рады приветствовать вас в кафе в историческом центре города - на всеми известной улице в кой-каком парке.",
   twitterImage: "https://koikogo.cafe/logo.png",

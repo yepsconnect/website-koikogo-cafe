@@ -1,6 +1,32 @@
 <script setup>
 import moment from 'moment';
 
+useSeoMeta({
+  title: "Кафе Имени Койкого",
+  description:
+    "Мы рады приветствовать вас в кафе в историческом центре города - на всеми известной улице в кой-каком парке.",
+  ogTitle: "Кафе Имени Койкого",
+  ogDescription:
+    "Мы рады приветствовать вас в кафе в историческом центре города - на всеми известной улице в кой-каком парке.",
+  ogImage: "https://koikogo.cafe/logo.png",
+  ogUrl: "https://koikogo.cafe/",
+  twitterTitle: "Кафе Имени Койкого",
+  twitterDescription:
+    "Мы рады приветствовать вас в кафе в историческом центре города - на всеми известной улице в кой-каком парке.",
+  twitterImage: "https://koikogo.cafe/logo.png",
+  twitterCard: "summary",
+})
+
+useHead({
+  link: [
+    {
+      rel: "icon",
+      type: "image/png",
+      href: "logo.png",
+    },
+  ],
+});
+
 // composables
 const { phone } = useConfig()
 const { t } = useI18n()
@@ -16,8 +42,8 @@ const order = reactive({
   phone: null,
   date: moment().add(2, 'day').format("YYYY-MM-DD"),
   time: null,
-  deliveryType: null,
-  pickupAddress: null,
+  deliveryType: 'pickup',
+  pickupAddress: 'Милиционная, 4',
   city: null,
   street: null,
   house: null,
@@ -70,8 +96,8 @@ const handleSubmit = async () => {
     order.phone = null
     order.date = moment().add(2, 'day').format("YYYY-MM-DD")
     order.time = "10:00"
-    order.deliveryType = null
-    order.pickupAddress = null
+    order.deliveryType = 'pickup'
+    order.pickupAddress = 'Милиционная, 4'
     order.city = null
     order.street = null
     order.house = null
@@ -357,20 +383,33 @@ const handleSubmit = async () => {
           <input v-model="order.date" type="date" class="input input-bordered flex-1">
           <input v-model="order.time" type="time" class="input input-bordered flex-1">
         </div>
-        <select v-model="order.deliveryType" class="select select-bordered" @change="">
-          <option :value="null">{{ $t('label.deliveryType') }}</option>
-          <option value="pickup">{{ $t('label.pickup') }}</option>
-          <option value="delivery">{{ $t('label.delivery') }}</option>
-        </select>
+        <div class="text-xs text-center text-gray-400">
+          <p>{{ $t('modal.desertOrder.details[0]') }}</p>
+        </div>
+        <div role="tablist" class="tabs tabs-boxed">
+          <a role="tab" class="tab" :class="{
+            'tab-active': order.deliveryType == 'pickup'
+          }" @click="order.deliveryType = 'pickup', order.pickupAddress = 'Милиционная, 4'">{{ $t('label.pickup')
+            }}</a>
+          <a role="tab" class="tab" :class="{
+            'tab-active': order.deliveryType == 'delivery'
+          }" @click="order.deliveryType = 'delivery'">{{ $t('label.delivery') }}</a>
+        </div>
         <template v-if="order.deliveryType === 'pickup'">
-          <select v-model="order.pickupAddress" class="select select-bordered">
-            <option :value="null">{{ $t('label.pickupAddress') }}</option>
-            <option value="Удмуртская, 268">Удмуртская, 268</option>
-            <option value="Милиционная, 4">Милиционная, 4</option>
-          </select>
-          <iframe
+          <iframe v-if="order.pickupAddress === 'Милиционная, 4'"
+            src="https://yandex.ru/map-widget/v1/?um=constructor%3Ad757b7e47aa65f5bd804206fddd3dbfad8f59fa982c7c52930a441959e16fd8b&amp;source=constructor"
+            width="100%" height="250" frameborder="0"></iframe>
+          <iframe v-else
             src="https://yandex.ru/map-widget/v1/?um=constructor%3Ac7c94380bee70b9f720bd64e999a2c799df5275b8b93785bbe1425f250f7736d&amp;source=constructor"
-            width="100%" height="270" frameborder="0"></iframe>
+            width="100%" height="250" frameborder="0"></iframe>
+          <div role="tablist" class="tabs tabs-boxed">
+            <a role="tab" class="tab" :class="{
+              'tab-active': order.pickupAddress == 'Милиционная, 4'
+            }" @click="order.pickupAddress = 'Милиционная, 4'">Милиционная, 4</a>
+            <a role="tab" class="tab" :class="{
+              'tab-active': order.pickupAddress == 'Удмуртская, 268'
+            }" @click="order.pickupAddress = 'Удмуртская, 268'">Удмуртская, 268</a>
+          </div>
         </template>
         <template v-else-if="order.deliveryType === 'delivery'">
           <input v-model="order.city" type="text" class="input input-bordered" :placeholder="$t('label.city')">
@@ -380,6 +419,11 @@ const handleSubmit = async () => {
             <input v-model="order.flat" type="text" class="input input-bordered" :placeholder="$t('label.flat')">
             <input v-model="order.apartment" type="text" class="input input-bordered"
               :placeholder="$t('label.apartment')">
+          </div>
+          <div class="text-xs text-gray-400">
+            <li>{{ $t('modal.desertOrder.details[1]') }}</li>
+            <li>{{ $t('modal.desertOrder.details[2]') }}</li>
+            <li>{{ $t('modal.desertOrder.details[3]') }}</li>
           </div>
         </template>
         <button class="btn btn-primary"
@@ -396,12 +440,6 @@ const handleSubmit = async () => {
             </a>
           </span>
         </label>
-        <!-- <div class="text-xs text-gray-400 mx-auto">
-          <li>{{ $t('modal.desertOrder.details[0]') }}</li>
-          <li>{{ $t('modal.desertOrder.details[1]') }}</li>
-          <li>{{ $t('modal.desertOrder.details[2]') }}</li>
-          <li>{{ $t('modal.desertOrder.details[3]') }}</li>
-        </div> -->
       </div>
     </Modal>
   </Container>
