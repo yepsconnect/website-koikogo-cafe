@@ -14,7 +14,8 @@ const { t } = useI18n();
     <div class="flex items-start gap-4 w-full">
       <div class="avatar">
         <div class="w-14 rounded-xl bg-gray-200">
-          <img v-if="position.image" :src="`http://localhost:3000/positions/${position.image}`" loading="lazy" />
+          <img v-if="position.image" :src="`https://koikogo-sandbox.netlify.app/positions/${position.image}`"
+            loading="lazy" />
           <img v-else src="https://multimedia.properati.com.co/properati/images/no-image-placeholder.png"
             loading="lazy" />
         </div>
