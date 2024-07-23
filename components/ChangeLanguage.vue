@@ -32,7 +32,7 @@ const closeDropdown = () => {
       <li v-for="x in locales" :key="x.code" @click="setLocale(x.code); closeDropdown()">
         <a class="flex justify-between">
           {{ getLanguageName(x.code) }}
-          <IconCheck v-if="x.code === locale" class="w-4" />
+          <IconCheckmarkCircle02 v-if="x.code === locale" class="w-4" />
         </a>
       </li>
     </ul>

@@ -1,14 +1,14 @@
 <script setup lang="ts">
 useSeoMeta({
-  title: "Карта бара",
+  title: "Основное меню",
   description:
     "Мы рады приветствовать вас в кафе в историческом центре города - на всеми известной улице в кой-каком парке.",
-  ogTitle: "Карта бара",
+  ogTitle: "Основное меню",
   ogDescription:
     "Мы рады приветствовать вас в кафе в историческом центре города - на всеми известной улице в кой-каком парке.",
   ogImage: "https://koikogo.cafe/logo.png",
   ogUrl: "https://koikogo.cafe/",
-  twitterTitle: "Карта бара",
+  twitterTitle: "Основное меню",
   twitterDescription:
     "Мы рады приветствовать вас в кафе в историческом центре города - на всеми известной улице в кой-каком парке.",
   twitterImage: "https://koikogo.cafe/logo.png",
@@ -36,7 +36,7 @@ const { data } = useFetch<{
   positions: Position[];
 }>(`/api/menu`, {
   query: {
-    slug: 'bar'
+    slug: 'menu'
   }
 })
 
@@ -51,7 +51,7 @@ const openModalInfo = (position: Position) => {
   <div>
     <div class="w-full flex justify-center items-center py-12 lg:py-48">
       <div class="flex flex-col md:flex-row items-center md:items-end">
-        <Vine class="max-w-64" />
+        <LogoMenu class="max-w-64" animated />
         <div>
           <h1 class="text-4xl font-bold uppercase">
             <span class="text-2xl">{{ t('name[0]') }}</span>
@@ -60,9 +60,9 @@ const openModalInfo = (position: Position) => {
             <br />
             {{ t('name[2]') }}
           </h1>
-          <br />
+          <br>
           <p class="text-xl uppercase">
-            {{ t("screen.bar.title") }}
+            {{ t("screen.index.title") }}
           </p>
         </div>
       </div>

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const route = useRoute()
 const { t } = useI18n()
 const dropdown = ref()
 
@@ -17,14 +18,30 @@ const closeDropdown = () => {
     </summary>
     <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-200 rounded-box w-52">
       <li>
-        <NuxtLink :to="{ name: 'about' }">{{ t('screen.about.title') }}</NuxtLink>
+        <NuxtLink :to="{ name: 'index' }" @click="closeDropdown" :class="{
+          'active': route.name === 'index'
+        }">{{ t('screen.about.title') }}</NuxtLink>
+      </li>
+      <li>
+        <NuxtLink :to="{ name: 'events' }" @click="closeDropdown" :class="{
+          'active': route.name === 'events'
+        }">{{ t('screen.banquet.shortTitle') }}</NuxtLink>
       </li>
       <li></li>
       <li>
-        <NuxtLink to="/" @click="closeDropdown()">{{ t('screen.index.title') }}</NuxtLink>
+        <NuxtLink :to="{ name: 'menu' }" @click="closeDropdown" :class="{
+          'active': route.name === 'menu'
+        }">{{ t('screen.index.title') }}</NuxtLink>
       </li>
       <li>
-        <NuxtLink :to="{ name: 'bar' }" @click="closeDropdown()">{{ t('screen.bar.title') }}</NuxtLink>
+        <NuxtLink :to="{ name: 'bar' }" @click="closeDropdown" :class="{
+          'active': route.name === 'bar'
+        }">{{ t('screen.bar.title') }}</NuxtLink>
+      </li>
+      <li>
+        <NuxtLink :to="{ name: 'banquet' }" @click="closeDropdown" :class="{
+          'active': route.name === 'banquet'
+        }">{{ $t('screen.banquet.menu.title') }}</NuxtLink>
       </li>
     </ul>
   </details>
