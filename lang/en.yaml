@@ -13,7 +13,7 @@ modal:
       - "Delivery outside the city is calculated individually"
     errorTitle: "Error during booking"
     errorDetails: "There was an error with your booking. Please try again or call %{phone}"
-    successTitle: "Success"
+    successTitle: "Thank you!"
     successDetails: "Your application has been successfully created. A manager will contact you shortly to confirm your reservation and clarify details."
 
   reservation:

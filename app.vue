@@ -9,3 +9,18 @@
 
   </Html>
 </template>
+
+<style>
+.btn-primary {
+  background: linear-gradient(90deg, #820042 0%, #C30B52 100%);
+}
+
+.btn-primary:disabled {
+  background: #cecece;
+  color: #ffffff
+}
+
+.active {
+  background: linear-gradient(90deg, #820042 0%, #C30B52 100%);
+}
+</style>

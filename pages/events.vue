@@ -146,7 +146,9 @@ const handleSubmit = async () => {
           :placeholder="$t('label.guestCount')" />
         <textarea v-model="booking.specialRequests" class="textarea textarea-bordered placeholder:text-base text-base"
           :placeholder="$t('label.comment')"></textarea>
-        <button class="btn btn-primary" :disabled="!isChecked" @click="handleSubmit">{{ $t('label.reserve') }}</button>
+        <button class="btn btn-primary"
+          :disabled="!isChecked || !booking.name || !booking.phone || !booking.date || !booking.quantity"
+          @click="handleSubmit">{{ $t('label.reserve') }}</button>
         <div class="form-control">
           <label class="label cursor-pointer justify-start gap-2">
             <input v-model="isChecked" type="checkbox" class="checkbox" />
@@ -165,8 +167,10 @@ const handleSubmit = async () => {
     <Modal v-model="modalError">
       <h2 class="text-xl font-bold text-center mb-4">{{ $t('modal.desertOrder.errorTitle') }}</h2>
       <p class="text-lg text-center">{{ errorMessage }}</p>
-      <button class="btn btn-primary w-full mt-4" @click="modalError = false, errorMessage = ''">{{ $t('label.close')
-        }}</button>
+      <button class="btn btn-primary w-full mt-4" @click="modalError = false, errorMessage = ''">
+        {{ $t('label.close')
+        }}
+      </button>
     </Modal>
   </div>
 </template>
