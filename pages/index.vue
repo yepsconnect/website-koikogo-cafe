@@ -267,7 +267,7 @@ const handleSubmit = async () => {
         </div>
       </div>
     </section>
-    <section class="grid lg:grid-cols-2 gap-4">
+    <section class="grid lg:grid-cols-2 gap-4" id="dessert">
       <div class="flex flex-col items-start justify-center gap-4">
         <h2 class="text-3xl font-bold">{{ t('screen.desert.title') }}</h2>
         <p class="text-lg">{{ t('screen.desert.details') }}</p>
