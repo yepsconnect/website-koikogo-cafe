@@ -33,8 +33,7 @@ const handleSubmit = () => {
       <div class="flex justify-center">
         <div class="avatar w-full mb-2">
           <div class="rounded-xl bg-gray-200 w-full">
-            <img v-if="position.image" :src="`https://koikogo-sandbox.netlify.app/positions/${position.image}`"
-              loading="lazy" />
+            <img v-if="position.image" :src="`https://koikogo.cafe/positions/${position.image}`" loading="lazy" />
             <img v-else src="https://multimedia.properati.com.co/properati/images/no-image-placeholder.png"
               loading="lazy" />
           </div>
