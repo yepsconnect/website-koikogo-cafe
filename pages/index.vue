@@ -1,5 +1,6 @@
 <script setup>
 import moment from 'moment';
+import { formatPhoneNumber, normalizePhone, validatePhone } from '~/services/validationService';
 
 useSeoMeta({
   title: "Кафе Имени Койкого",
@@ -84,7 +85,7 @@ const handleSubmit = async () => {
     const response = await $fetch("/api/bakery", {
       method: "POST",
       body: JSON.stringify({
-        bakery: order
+        bakery: { ...order, phone: normalizePhone(order.phone) }
       }),
     })
     if (!response.ok) {
@@ -110,6 +111,14 @@ const handleSubmit = async () => {
     loading.value = false;
   }
 }
+watch(
+  () => order.phone,
+  (newPhone) => {
+    if (newPhone) {
+      order.phone = formatPhoneNumber(newPhone);
+    }
+  }
+);
 </script>
 
 <template>
@@ -427,7 +436,7 @@ const handleSubmit = async () => {
           </div>
         </template>
         <button class="btn btn-primary"
-          :disabled="loading || !isChecked || !order.name || !order.phone || !order.date || !order.time || !order.deliveryType"
+          :disabled="loading || !isChecked || !order.name || !validatePhone(order.phone) || !order.date || !order.time || !order.deliveryType"
           @click="handleSubmit">
           {{ $t('label.order') }}
         </button>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import moment from 'moment';
+import { formatPhoneNumber, normalizePhone, validatePhone } from '~/services/validationService';
 
 useSeoMeta({
   title: "Банкеты",
@@ -54,14 +55,15 @@ onMounted(() => {
 
 // methods
 const handleSubmit = async () => {
-  isLoading.value = true
-
   if (booking.date <= moment().format('YYYY-MM-DD')) {
     errorMessage.value = "Некорректная дата бронирования"
     modalError.value = true
-    isLoading.value = false
     return
   }
+
+
+
+  isLoading.value = true
 
   try {
     const response = await $fetch<{
@@ -70,7 +72,10 @@ const handleSubmit = async () => {
     }>('/api/booking', {
       method: 'POST',
       body: JSON.stringify({
-        booking
+        booking: {
+          ...booking,
+          phone: normalizePhone(booking.phone),
+        }
       }),
       headers: {
         'Content-Type': 'application/json',
@@ -97,6 +102,15 @@ const handleSubmit = async () => {
     isLoading.value = false
   }
 }
+
+watch(
+  () => booking.phone,
+  (newPhone) => {
+    if (newPhone) {
+      booking.phone = formatPhoneNumber(newPhone);
+    }
+  }
+);
 </script>
 
 <template>
@@ -147,7 +161,7 @@ const handleSubmit = async () => {
         <textarea v-model="booking.specialRequests" class="textarea textarea-bordered placeholder:text-base text-base"
           :placeholder="$t('label.comment')"></textarea>
         <button class="btn btn-primary"
-          :disabled="!isChecked || !booking.name || !booking.phone || !booking.date || !booking.quantity"
+          :disabled="!isChecked || !booking.name || !validatePhone(booking.phone) || !booking.date || !booking.quantity"
           @click="handleSubmit">{{ $t('label.reserve') }}</button>
         <div class="form-control">
           <label class="label cursor-pointer justify-start gap-2">
