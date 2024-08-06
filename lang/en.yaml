@@ -109,10 +109,11 @@ label:
   whatsapp: "WhatsApp"
 
 screen:
-  desert:
+  cake:
     title: "Desserts to order"
-    details: "A cake is an integral attribute of any holiday. A cake with an individual design can be both a gift and a pleasant surprise for your guests. Now you can apply to order a cake on our website. Imagine yourself as a pastry chef and create your perfect dessert! Choose your favorite filling flavor, design and shape, and our confectioners will make sure that your wishes come true. Imagine, embody, tempt!"
+    promo: "A cake is an integral attribute of any holiday. A cake with an individual design can be both a gift and a pleasant surprise for your guests. Now you can apply to order a cake on our website. Imagine yourself as a pastry chef and create your perfect dessert! Choose your favorite filling flavor, design and shape, and our confectioners will make sure that your wishes come true. Imagine, embody, tempt!"
     btnOrder: "Order a cake"
+    btnQuestion: "Ask in Telegram"
   banquet:
     title: "Koykoy Cafe - The Perfect Place for Your Event."
     shortTitle: "Banquets"

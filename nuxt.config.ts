@@ -9,8 +9,8 @@ export default defineNuxtConfig({
   modules: [
     "@nuxtjs/tailwindcss",
     "nuxt-mongoose",
-    "yandex-metrika-module-nuxt3",
     "@nuxtjs/i18n",
+    "yandex-metrika-module-nuxt3",
   ],
   mongoose: {
     uri: process.env.MONGODB_URI,

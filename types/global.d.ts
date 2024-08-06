@@ -134,3 +134,39 @@ interface Page {
   categories: [string];
   positions: [string];
 }
+
+interface Cake {
+  title: string;
+  description: string | null;
+  price?: string;
+}
+
+interface CakeOrder {
+  title: string;
+  description: string;
+  filling: string;
+  weight: number;
+  price: number;
+  comment: string | null;
+}
+
+interface CakeBento {
+  title: string;
+  description: string;
+  fillings: string[];
+  options: {
+    weight: number;
+    size: string;
+    price: number;
+  }[];
+}
+
+interface Cupcake {
+  title: string;
+  description: null;
+  filling: string[];
+  prices: {
+    type: string;
+    price: number;
+  }[];
+}

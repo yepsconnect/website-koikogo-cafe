@@ -278,11 +278,11 @@ watch(
     </section>
     <section class="grid lg:grid-cols-2 gap-4" id="dessert">
       <div class="flex flex-col items-start justify-center gap-4">
-        <h2 class="text-3xl font-bold">{{ t('screen.desert.title') }}</h2>
-        <p class="text-lg">{{ t('screen.desert.details') }}</p>
+        <h2 class="text-3xl font-bold">{{ t('screen.cake.title') }}</h2>
+        <p class="text-lg">{{ t('screen.cake.promo') }}</p>
         <div class="flex flex-col sm:flex-row gap-2">
           <button class="btn btn-primary" @click="modalDesert = true">
-            {{ t('screen.desert.btnOrder') }}
+            {{ t('screen.cake.btnOrder') }}
           </button>
         </div>
       </div>
