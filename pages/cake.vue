@@ -25,8 +25,27 @@ useHead({
   ],
 });
 
-// composables
+// composabeles
+const { cakes } = useCakes()
 const { t } = useI18n()
+const selectedCake = ref<CakeOrder | null>(null)
+
+
+// state
+const order = ref<CakeOrder[]>([])
+const visible = ref(false)
+
+// computed
+const cakesBento = computed(() => cakes.filter(x => x.type === 'bento'))
+const cakesTraditional = computed(() => cakes.filter(x => x.type === 'traditional'))
+const cakesWedding = computed(() => cakes.filter(x => x.type === 'wedding'))
+const cupcakes = computed(() => cakes.filter(x => x.type === 'cupcake'))
+
+// methods
+const addToOrder = (cake: CakeOrder) => {
+  selectedCake.value = cake
+  visible.value = true
+}
 </script>
 
 <template>
@@ -85,17 +104,29 @@ const { t } = useI18n()
         <p class="text-lg text-center group-hover:text-white z-10">Капкейки и другие десерты</p>
       </a>
     </section>
-    <CakeBento id="bento" />
-    <CakeTraditional id="traditional" />
-    <CakeWedding id="wedding" />
+    <SectionCake id="bento" title="Бенто торты" :cakes="cakesBento" :order="order" @onAdd="addToOrder" />
+    <SectionCake id="traditional" title="Традиционные торты на заказ" :cakes="cakesTraditional" :order="order"
+      @onAdd="addToOrder" />
+    <SectionCake id="wedding" title="Свадебные торты от одного яруса и выше" :cakes="cakesWedding" :order="order"
+      @onAdd="addToOrder" />
     <section id="events">
       <h2 class="text-xl font-bold">Корпоративные и праздничные торты</h2>
       <p>Пусто</p>
     </section>
-    <CakeCupcake id="cupcake" />
+    <SectionCake id="cupcake" title="Капкейки и другие десерты" :cakes="cupcakes" :order="order" @onAdd="addToOrder" />
     <section>
       <div class="flex flex-col gap-3 max-w-md">
-        <h2>Заказ</h2>
+        <h2 class="text-xl font-bold">Заказ</h2>
+        <div>
+          <div v-for="(item, index) in order" :key="index">
+            <div class="flex gap-2">
+              <p>{{ item.title }}</p>
+              <p>{{ item.weight }}{{ item.unit }}</p>
+              <p>{{ item.price }}₽</p>
+            </div>
+            <p v-if="item.comment"><strong>Комментарий: </strong>{{ item.comment }}</p>
+          </div>
+        </div>
         <input type="text" class="input input-bordered" placeholder="Имя">
         <input type="text" class="input input-bordered" placeholder="Номер телефона">
         <input type="date" class="input input-bordered" />
@@ -122,5 +153,26 @@ const { t } = useI18n()
         </ul>
       </div>
     </section>
+
+    <Modal v-model="visible">
+      <div v-if="selectedCake" class="flex flex-col gap-3">
+        <h2 class="text-xl font-bold">Заказ торта {{ selectedCake?.title }}</h2>
+        <p>{{ selectedCake?.description || 'Нет описания' }}</p>
+        <div class="flex justify-between gap-2">
+          <p><strong>Размер:</strong> {{ selectedCake.weight }}</p>
+          <p><strong>Цена:</strong> {{ selectedCake.price }}₽</p>
+        </div>
+        <p v-if="selectedCake?.filling"><strong>Начинка:</strong> {{ selectedCake?.filling }}</p>
+        <textarea v-if="selectedCake" v-model="selectedCake.comment" class="textarea textarea-bordered"
+          placeholder="Здесь вы можете указать ваши пожелания по дизайну торта или задать вопрос, и мы сориентируем вас по стоимости и подберем идеальный вариант декора."
+          rows="4"></textarea>
+        <button class=" btn btn-primary" @click="visible = false, order.push(selectedCake), selectedCake = null">
+          Добавить в заказ
+        </button>
+        <button class="btn btn-outline" @click="visible = false, selectedCake = null">
+          Отменить
+        </button>
+      </div>
+    </Modal>
   </Container>
 </template>

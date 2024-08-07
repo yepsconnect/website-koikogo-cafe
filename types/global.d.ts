@@ -135,12 +135,6 @@ interface Page {
   positions: [string];
 }
 
-interface Cake {
-  title: string;
-  description: string | null;
-  price?: string;
-}
-
 interface CakeOrder {
   title: string;
   description: string;
@@ -148,15 +142,17 @@ interface CakeOrder {
   weight: number;
   price: number;
   comment: string | null;
+  additional: string | null;
 }
 
-interface CakeBento {
+interface Cake {
   title: string;
   description: string;
   fillings: string[];
   options: {
-    weight: number;
-    size: string;
+    weight?: string;
+    size?: string;
+    type?: string;
     price: number;
   }[];
 }
