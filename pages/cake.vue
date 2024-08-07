@@ -54,7 +54,7 @@ const addToOrder = (cake: CakeOrder) => {
       <div class="flex flex-col md:flex-row items-center md:items-end">
         <LogoCake class="" animated />
         <div>
-          <h1 class="text-4xl font-bold uppercase w-48">
+          <h1 class="text-4xl font-bold uppercase w-32">
             {{ t('screen.cake.title') }}
           </h1>
         </div>
@@ -67,37 +67,36 @@ const addToOrder = (cake: CakeOrder) => {
           {{ t('screen.cake.btnQuestion') }}
         </button>
       </div>
-
     </section>
     <section>
       <p class="text-lg text-center">{{ t('screen.cake.promo') }}</p>
     </section>
-    <section class="grid grid-cols-5 gap-6">
+    <section class="grid md:grid-cols-5 gap-4">
       <a href="#bento"
-        class="rounded-lg aspect-[1/2]  flex justify-center items-center p-8 bg-[url('@/assets/images/cake/bento.webp')] bg-cover group relative">
+        class="rounded-lg aspect-[3/1] md:aspect-[1/2] flex justify-center items-center p-8 bg-[url('@/assets/images/cake/bento.webp')] bg-cover group relative">
         <div
           class="absolute inset-0 bg-gradient-to-b from-transparent to-[#C30B52] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
         </div>
         <p class="text-lg text-center group-hover:text-white z-10">Бенто торты</p>
       </a>
       <a href="#traditional"
-        class="bg-gray-200 rounded-lg aspect-[1/2] hover:bg-gray-300 flex justify-center items-center p-8">
+        class="bg-gray-200 rounded-lg aspect-[3/1] md:aspect-[1/2] hover:bg-gray-300 flex justify-center items-center p-8">
         <p class="text-lg text-center">Традиционные торты на заказ </p>
       </a>
       <a href="#wedding"
-        class="rounded-lg aspect-[1/2]  flex justify-center items-center p-8 bg-[url('@/assets/images/cake/weeding.webp')] bg-cover group relative">
+        class="rounded-lg aspect-[3/1] md:aspect-[1/2] flex justify-center items-center p-8 bg-[url('@/assets/images/cake/weeding.webp')] bg-cover group relative">
         <div
           class="absolute inset-0 bg-gradient-to-b from-transparent to-[#C30B52] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
         </div>
         <p class="text-lg text-center group-hover:text-white z-10">Свадебные торты от одного яруса и выше</p>
       </a>
       <a href="#events"
-        class="bg-gray-200 rounded-lg aspect-[1/2] hover:bg-gray-300 flex justify-center items-center p-8">
+        class="bg-gray-200 rounded-lg aspect-[3/1] md:aspect-[1/2] hover:bg-gray-300 flex justify-center items-center p-8">
         <p class="text-lg text-center">Корпоративные и праздничные торты</p>
       </a>
 
       <a href="#cupcake"
-        class="rounded-lg aspect-[1/2]  flex justify-center items-center p-8 bg-[url('@/assets/images/cake/cupcake.webp')] bg-cover group relative">
+        class="rounded-lg aspect-[3/1] md:aspect-[1/2] flex justify-center items-center p-8 bg-[url('@/assets/images/cake/cupcake.webp')] bg-cover group relative">
         <div
           class="absolute inset-0 bg-gradient-to-b from-transparent to-[#C30B52] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
         </div>
@@ -153,7 +152,6 @@ const addToOrder = (cake: CakeOrder) => {
         </ul>
       </div>
     </section>
-
     <Modal v-model="visible">
       <div v-if="selectedCake" class="flex flex-col gap-3">
         <h2 class="text-xl font-bold">Заказ торта {{ selectedCake?.title }}</h2>
