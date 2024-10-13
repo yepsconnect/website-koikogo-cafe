@@ -175,7 +175,7 @@ watch(
         <p class="text-lg">{{ t('screen.about.new.info[1]') }}</p>
         <p class="text-lg">{{ t('screen.about.new.info[2]') }}</p>
         <div class="grid lg:grid-cols-2 gap-6">
-          <NuxtLink to="/" class="btn btn-primary md:w-auto btn-block">
+          <NuxtLink to="/menu" class="btn btn-primary md:w-auto btn-block">
             {{ $t('label.kitchen') }}
           </NuxtLink>
           <NuxtLink to="/bar" class="btn btn-primary md:w-auto btn-block">
