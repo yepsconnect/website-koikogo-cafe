@@ -2,7 +2,7 @@
 const emit = defineEmits(["update:modelValue", "show-order"]);
 const props = defineProps<{
   modelValue: boolean;
-  position: Position | undefined;
+  product: Product | undefined;
 }>();
 // computed
 const isOpen = computed({
@@ -12,44 +12,55 @@ const isOpen = computed({
 
 //composables
 const { addToOrder } = useOrder();
-const { t, locale } = useI18n();
+const { t } = useI18n();
 // state
 const count = ref(1);
 
-
-
 // methods
 const handleSubmit = () => {
-  if (!props.position) return;
-  addToOrder(props.position._id, count.value)
-  isOpen.value = false
-  count.value = 1
-}
+  if (!props.product) return;
+  addToOrder(props.product._id, count.value);
+  isOpen.value = false;
+  count.value = 1;
+};
 </script>
 
 <template>
   <Modal v-model="isOpen">
-    <div v-if="position">
+    <div v-if="product">
       <div class="flex justify-center">
         <div class="avatar w-full mb-2">
           <div class="rounded-xl bg-gray-200 w-full">
-            <img v-if="position.image" :src="`https://koikogo.cafe/positions/${position.image}`" loading="lazy" />
-            <img v-else src="https://multimedia.properati.com.co/properati/images/no-image-placeholder.png"
-              loading="lazy" />
+            <img
+              v-if="product.images && product.images[0]"
+              :src="`https://koikogo.cafe/positions/${product.images[0]}`"
+              loading="lazy"
+            />
+            <img
+              v-else
+              src="https://multimedia.properati.com.co/properati/images/no-image-placeholder.png"
+              loading="lazy"
+            />
           </div>
         </div>
       </div>
-      <h2 class="uppercase text-lg font-bold">{{ position?.title[locale] || position?.title['ru'] }}</h2>
-      <p v-if="position?.description" class="text-sm text-gray-500">{{ position.description[locale] ||
-        position.description['ru'] }}
+      <h2 class="uppercase text-lg font-bold">
+        {{ product.name }}
+      </h2>
+      <p v-if="product?.description" class="text-sm text-gray-500">
+        {{ product.description }}
       </p>
       <div class="flex items-center justify-between gap-2">
         <p class="text-sm">
-          <span class="text-lg font-bold">{{ position?.price }} р</span>
-          {{ position?.unit }}
+          <span class="text-lg font-bold">{{ product?.price }} р</span>
+          {{ product?.output }}
         </p>
         <div class="flex items-center justify-between gap-2">
-          <button class="btn btn-sm btn-circle btn-glass" :disabled="count < 2" @click="count--">
+          <button
+            class="btn btn-sm btn-circle btn-glass"
+            :disabled="count < 2"
+            @click="count--"
+          >
             <IconRemove01 class="w-3" />
           </button>
           <div>{{ count }} {{ t("label.pieces") }}</div>
@@ -60,10 +71,10 @@ const handleSubmit = () => {
       </div>
       <div class="mt-4 flex justify-between gap-2">
         <button class="btn btn-sm btn-outline flex-1" @click="isOpen = false">
-          {{ t('label.close') }}
+          {{ t("label.close") }}
         </button>
         <button class="btn btn-sm btn-neutral flex-1" @click="handleSubmit">
-          {{ t('label.add') }}
+          {{ t("label.add") }}
         </button>
       </div>
     </div>

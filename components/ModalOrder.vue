@@ -7,66 +7,69 @@ const props = defineProps<{
 // composables
 const { t } = useI18n();
 const { order, clearOrder } = useOrder();
-const isLoading = ref(false)
-const positions = ref<Position[]>()
-const totalPrice = ref()
+const positions = ref<Product[]>();
+
 // computed
 const isOpen = computed({
   get: () => props.modelValue,
   set: (value) => emit("update:modelValue", value),
 });
 
-async function handleGetOrder() {
-  isLoading.value = true;
-  try {
-    const response = await $fetch<{
-      ok: boolean;
-      positions: Position[];
-      totalPrice: number;
-    }>('/api/order', {
-      method: "POST",
+const config = useRuntimeConfig();
+const { isLoading, data } = useQuery<Product[]>({
+  queryKey: [`products`],
+  queryFn: () =>
+    $fetch(`${config.public.API_URL}/product`, {
       headers: {
-        "Content-Type": "application/json",
+        "x-api-key": config.public.X_API_KEY,
       },
-      body: JSON.stringify({
-        order: order.value,
-      }),
+    }),
+});
+
+const products = computed(() => {
+  if (!data.value) return [];
+
+  return data.value
+    .map((product) => {
+      // Find the corresponding order item for the product
+      const orderItem = order.value.find(
+        (item) => item.productId === product._id
+      );
+
+      // If orderItem exists, include the count, otherwise set count to 0
+      if (orderItem) {
+        return {
+          ...product,
+          count: orderItem.count,
+        };
+      }
+      return null; // This should never happen because of the filter condition
     })
-    if (!response.ok) {
-      return false;
-    }
-
-    positions.value = response.positions
-    totalPrice.value = response.totalPrice
-  } catch (error) {
-    console.error(error)
-  } finally {
-    isLoading.value = false;
-  }
-}
-
-watch(isOpen, val => {
-  if (val) {
-    handleGetOrder()
-  }
-})
-
+    .filter(Boolean); // Remove any null values (in case of mismatch)
+});
 </script>
 
 <template>
   <Modal v-model="isOpen">
     <div class="flex flex-col gap-4">
       <h2 class="text-2xl font-bold">{{ t("modal.order.title") }}</h2>
-      <div v-if="order.length && positions" class="flex flex-col gap-3 max-h-[310px] overflow-y-scroll">
-        <OrderCard v-for="orderItem in order" :key="orderItem._id" :order-item="orderItem" :menu="positions" />
+      <div
+        v-if="products && products.length"
+        class="flex flex-col gap-3 max-h-[310px] overflow-y-scroll"
+      >
+        <OrderCard
+          v-for="product in products"
+          :key="product._id"
+          :product="product"
+        />
       </div>
       <div v-else>
-        <p class="text-center">{{ t('modal.order.empty') }}</p>
+        <p class="text-center">{{ t("modal.order.empty") }}</p>
       </div>
       <button class="btn btn-neutral" @click="isOpen = false">
         {{ t("label.close") }}
       </button>
-      <button class="btn btn-outline" @click="clearOrder()">
+      <button v-if="order.length" class="btn btn-outline" @click="clearOrder()">
         {{ t("label.clear") }}
       </button>
     </div>

@@ -1,13 +1,13 @@
 export default function () {
   const order = useState<OrderItem[]>("order", () => []);
 
-  const addToOrder = (_id: string, count: number) => {
-    const orderItem = order.value.find((item) => item._id === _id);
+  const addToOrder = (productId: string, count: number) => {
+    const orderItem = order.value.find((item) => item.productId === productId);
     if (orderItem) {
       orderItem.count += count;
     } else {
       order.value.push({
-        _id,
+        productId,
         count,
       });
     }
@@ -15,18 +15,18 @@ export default function () {
   };
 
   const decrementOrder = (_id: string) => {
-    const orderItem = order.value.find((item) => item._id === _id);
+    const orderItem = order.value.find((item) => item.productId === _id);
     if (orderItem) {
       orderItem.count -= 1;
       if (orderItem.count === 0) {
-        order.value = order.value.filter((item) => item._id !== _id);
+        order.value = order.value.filter((item) => item.productId !== _id);
       }
     }
     localStorage.setItem("order", JSON.stringify(order.value));
   };
 
   const incrementOrder = (_id: string) => {
-    const orderItem = order.value.find((item) => item._id === _id);
+    const orderItem = order.value.find((item) => item.productId === _id);
     if (orderItem) {
       orderItem.count += 1;
     }

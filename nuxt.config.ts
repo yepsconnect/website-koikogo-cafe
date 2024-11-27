@@ -2,25 +2,27 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ["~/assets/css/fonts.css"],
+
   runtimeConfig: {
-    TOKEN_SECRET: process.env.TOKEN_SECRET,
-    REGISTER_ACCESS: process.env.REGISTER_ACCESS,
+    TOKEN_SECRET: process.env.DEV_MODE,
+    public: {
+      API_URL: process.env.API_URL,
+      X_API_KEY: process.env.X_API_KEY,
+    },
   },
+
   modules: [
     "@nuxtjs/tailwindcss",
-    "nuxt-mongoose",
     "yandex-metrika-module-nuxt3",
     "@nuxtjs/i18n",
+    "@hebilicious/vue-query-nuxt",
   ],
-  mongoose: {
-    uri: process.env.MONGODB_URI,
-    options: {},
-    modelsDir: "models",
-  },
+
   yandexMetrika: {
     id: process.env.YANDEX_METRIKA_ID,
     webvisor: true,
   },
+
   i18n: {
     strategy: "no_prefix",
     locales: [
@@ -37,4 +39,6 @@ export default defineNuxtConfig({
     langDir: "lang",
     defaultLocale: "ru",
   },
+
+  compatibilityDate: "2024-11-27",
 });

@@ -1,7 +1,8 @@
 <script setup lang="ts">
 const route = useRoute();
-const isModalOrder = ref(false);
-const modalReserve = ref(false);
+const { order } = useOrder();
+
+const visible = ref(false);
 </script>
 
 <template>
@@ -44,8 +45,15 @@ const modalReserve = ref(false);
     </div>
     <main class="flex-1">
       <slot />
-      <ModalOrder v-model="isModalOrder" />
+      <ModalOrder v-model="visible" />
     </main>
     <Footer class="mt-10" />
+    <button
+      v-if="order.length"
+      class="btn btn-primary fixed bottom-5 left-5 uppercase"
+      @click="visible = true"
+    >
+      Мой заказ
+    </button>
   </div>
 </template>

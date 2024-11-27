@@ -13,7 +13,7 @@ useSeoMeta({
     "Мы рады приветствовать вас в кафе в историческом центре города - на всеми известной улице в кой-каком парке.",
   twitterImage: "https://koikogo.cafe/logo.png",
   twitterCard: "summary",
-})
+});
 
 useHead({
   link: [
@@ -24,27 +24,40 @@ useHead({
     },
   ],
 });
-// composables
-const route = useRoute();
-const { locale, t } = useI18n();
-// state
-const activeCategory = ref(null);
+
+const { t } = useI18n();
+
 const isModalInfo = ref(false);
 const selectedPosition = ref();
-const { data } = useFetch<{
-  categories: Category[];
-  positions: Position[];
-}>(`/api/menu`, {
-  query: {
-    slug: 'banquet'
+const config = useRuntimeConfig();
+
+const { isLoading: loadingCategories, data: categories } = useQuery<Category[]>(
+  {
+    queryKey: [`categories`],
+    queryFn: () =>
+      $fetch(`${config.public.API_URL}/category`, {
+        headers: {
+          "x-api-key": config.public.X_API_KEY,
+        },
+      }),
   }
-})
+);
+
+const { isLoading: loadingProducts, data: products } = useQuery<Product[]>({
+  queryKey: [`products`],
+  queryFn: () =>
+    $fetch(`${config.public.API_URL}/product`, {
+      headers: {
+        "x-api-key": config.public.X_API_KEY,
+      },
+    }),
+});
 
 // methods
-const openModalInfo = (position: Position) => {
-  isModalInfo.value = true
-  selectedPosition.value = position
-}
+const openModalInfo = (product: Product) => {
+  isModalInfo.value = true;
+  selectedPosition.value = product;
+};
 </script>
 
 <template>
@@ -54,29 +67,47 @@ const openModalInfo = (position: Position) => {
         <LogoChef class="max-w-80" />
         <div>
           <h1 class="text-4xl font-bold uppercase">
-            <span class="text-2xl">{{ t('name[0]') }}</span>
+            <span class="text-2xl">{{ t("name[0]") }}</span>
             <br />
-            {{ t('name[1]') }}
+            {{ t("name[1]") }}
             <br />
-            {{ t('name[2]') }}
+            {{ t("name[2]") }}
           </h1>
-          <br>
+          <br />
           <p class="text-xl uppercase">
             {{ $t("screen.banquet.menu.title") }}
           </p>
         </div>
       </div>
     </div>
-    <Container v-if="data">
-      <CategoryMenu :categories="data.categories" :active-category="activeCategory"
-        @on-submit="val => activeCategory = val" :locale="locale" />
-      <div v-for="(category) in data.categories" :key="category._id" class="relative mb-6">
+    <Container>
+      <!-- <CategoryMenu
+        v-if="categories"
+        :categories="categories"
+        :active-category="activeCategory"
+        @on-submit="(val) => (activeCategory = val)"
+      /> -->
+      <div
+        v-for="category in categories"
+        :key="category._id"
+        class="relative mb-6"
+      >
         <span :id="category.slug" class="absolute -top-16"></span>
-        <h2 class="text-2xl font-bold uppercase">{{ category.title[locale as Locale] || category.title['ru'] }}</h2>
-        <PositionItem v-for="item in data.positions.filter(x => x.categoryId === category._id)" :key="item._id"
-          :position="item" :locale="locale" @on-submit="openModalInfo" />
+        <h2 class="text-2xl font-bold uppercase">
+          {{ category.name }}
+        </h2>
+        <template v-if="products">
+          <ProductItem
+            v-for="product in products.filter(
+              (x) => x.category === category._id
+            )"
+            :key="product._id"
+            :product="product"
+            @on-submit="openModalInfo"
+          />
+        </template>
       </div>
     </Container>
-    <ModalInfo v-model="isModalInfo" :position="selectedPosition" />
+    <ModalInfo v-model="isModalInfo" :product="selectedPosition" />
   </div>
 </template>

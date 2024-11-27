@@ -31,48 +31,31 @@ interface User {
   role: "root" | "owner" | "manager" | "waiter" | "guest";
 }
 
-interface CategoryNew {
-  description: {
-    ru: string;
-    en: string;
-  };
-  title: {
-    ru: string;
-    en: string;
-  };
-}
-
-interface Category extends CategoryNew {
+interface Category {
   _id: string;
+  description: string;
+  name: string;
   slug: string;
 }
 
-interface PositionNew {
-  description: {
-    ru: string;
-    en: string;
-  };
-  image: string | null;
-  title: {
-    ru: string;
-    en: string;
-  };
-  price: string;
-  unit: string;
-  type?: string;
-  categoryId: string;
+interface Product {
+  _id: string;
+  category?: string;
+  company: string;
+  description?: string;
+  images?: string[];
+  name: string;
+  output: string;
+  price: number;
 }
 
-interface Position extends PositionNew {
-  _id: string;
-  order: number;
-  isArchived: boolean;
-  isAvailable: boolean;
+interface ProductOrder extends Product {
+  count: number;
 }
 
 interface OrderItem {
-  _id: string;
-  quantity: number;
+  productId: string;
+  count: number;
 }
 
 interface TableNew {
