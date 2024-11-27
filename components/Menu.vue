@@ -29,16 +29,6 @@ const closeDropdown = () => {
       </li>
       <li></li>
       <li>
-        <NuxtLink :to="{ name: 'menu' }" @click="closeDropdown" :class="{
-          'active': route.name === 'menu'
-        }">{{ t('screen.index.title') }}</NuxtLink>
-      </li>
-      <li>
-        <NuxtLink :to="{ name: 'bar' }" @click="closeDropdown" :class="{
-          'active': route.name === 'bar'
-        }">{{ t('screen.bar.title') }}</NuxtLink>
-      </li>
-      <li>
         <NuxtLink :to="{ name: 'banquet' }" @click="closeDropdown" :class="{
           'active': route.name === 'banquet'
         }">{{ $t('screen.banquet.menu.title') }}</NuxtLink>

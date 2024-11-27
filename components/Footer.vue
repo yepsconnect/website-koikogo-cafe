@@ -33,8 +33,6 @@ const socials = [
       </NuxtLink>
       <nav>
         <h6 class="footer-title">{{ $t('label.services') }}</h6>
-        <NuxtLink :to="{ name: 'menu' }" class="link link-hover">{{ $t('screen.index.title') }}</NuxtLink>
-        <NuxtLink :to="{ name: 'bar' }" class="link link-hover">{{ $t('screen.bar.title') }}</NuxtLink>
         <NuxtLink :to="{ name: 'banquet' }" class="link link-hover">{{ $t('screen.banquet.menuTitle') }}</NuxtLink>
       </nav>
       <nav>
