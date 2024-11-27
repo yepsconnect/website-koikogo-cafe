@@ -26,7 +26,7 @@ useHead({
 });
 
 const { t } = useI18n();
-
+const isCard = ref(true);
 const isModalInfo = ref(false);
 const selectedPosition = ref();
 const config = useRuntimeConfig();
@@ -80,6 +80,14 @@ const openModalInfo = (product: Product) => {
         </div>
       </div>
     </div>
+    <div class="py-3 sticky top-0 bg-white z-10 shadow-md mb-4">
+      <Container>
+        <Toggle
+          v-model="isCard"
+          :label="isCard ? 'Показать списком' : 'Показать карточками'"
+        />
+      </Container>
+    </div>
     <Container>
       <!-- <CategoryMenu
         v-if="categories"
@@ -87,24 +95,40 @@ const openModalInfo = (product: Product) => {
         :active-category="activeCategory"
         @on-submit="(val) => (activeCategory = val)"
       /> -->
+
       <div
         v-for="category in categories"
         :key="category._id"
-        class="relative mb-6"
+        class="relative mb-12"
       >
         <span :id="category.slug" class="absolute -top-16"></span>
-        <h2 class="text-2xl font-bold uppercase">
+        <h2 class="text-2xl font-bold uppercase mb-4">
           {{ category.name }}
         </h2>
         <template v-if="products">
-          <ProductItem
-            v-for="product in products.filter(
-              (x) => x.category === category._id
-            )"
-            :key="product._id"
-            :product="product"
-            @on-submit="openModalInfo"
-          />
+          <div
+            v-if="isCard"
+            class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4"
+          >
+            <ProductCard
+              v-for="product in products.filter(
+                (x) => x.category === category._id
+              )"
+              :key="product._id"
+              :product="product"
+              @on-submit="openModalInfo"
+            />
+          </div>
+          <div v-else class="flex flex-col gap-1">
+            <ProductRow
+              v-for="product in products.filter(
+                (x) => x.category === category._id
+              )"
+              :key="product._id"
+              :product="product"
+              @on-submit="openModalInfo"
+            />
+          </div>
         </template>
       </div>
     </Container>
