@@ -4,7 +4,6 @@ export default defineNuxtConfig({
   css: ["~/assets/css/fonts.css"],
 
   runtimeConfig: {
-    TOKEN_SECRET: process.env.DEV_MODE,
     public: {
       API_URL: process.env.API_URL,
       X_API_KEY: process.env.X_API_KEY,
