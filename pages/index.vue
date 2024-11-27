@@ -38,7 +38,6 @@ const { t } = useI18n();
 // state
 const loading = ref(false);
 const isChecked = ref(false);
-const modalDesert = ref(false);
 const active = ref(1);
 const activePosition = ref(1);
 const mapLink =
@@ -68,60 +67,7 @@ onMounted(() => {
     activePosition.value++;
   }, 3000);
 });
-const handleSubmit = async () => {
-  if (order.deliveryType === "delivery") {
-    if (
-      !order.city ||
-      !order.street ||
-      !order.house ||
-      !order.flat ||
-      !order.apartment
-    ) {
-      return alert("Необходимо заполнить все поля");
-    }
-    order.pickupAddress = null;
-  }
-  if (order.deliveryType === "pickup") {
-    if (!order.pickupAddress) {
-      return alert("Выберите адрес для самовывоза");
-    }
-    order.city = null;
-    order.street = null;
-    order.house = null;
-    order.flat = null;
-    order.apartment = null;
-  }
-  loading.value = true;
-  try {
-    const response = await $fetch("/api/bakery", {
-      method: "POST",
-      body: JSON.stringify({
-        bakery: { ...order, phone: normalizePhone(order.phone) },
-      }),
-    });
-    if (!response.ok) {
-      return alert(response.message);
-    }
-    alert("Заказ успешно оформлен!");
-    modalDesert.value = false;
-    order.name = null;
-    order.phone = null;
-    order.date = moment().add(2, "day").format("YYYY-MM-DD");
-    order.time = "10:00";
-    order.deliveryType = "pickup";
-    order.pickupAddress = "Милиционная, 4";
-    order.city = null;
-    order.street = null;
-    order.house = null;
-    order.flat = null;
-    order.apartment = null;
-    isChecked.value = false;
-  } catch (error) {
-    alert("Произошла ошибка при оформлении заказа");
-  } finally {
-    loading.value = false;
-  }
-};
+
 watch(
   () => order.phone,
   (newPhone) => {
@@ -332,22 +278,6 @@ watch(
         </div>
       </div>
     </section>
-    <section class="grid lg:grid-cols-2 gap-4" id="dessert">
-      <div class="flex flex-col items-start justify-center gap-4">
-        <h2 class="text-3xl font-bold">{{ t("screen.desert.title") }}</h2>
-        <p class="text-lg">{{ t("screen.desert.details") }}</p>
-        <div class="flex flex-col sm:flex-row gap-2">
-          <button class="btn btn-primary" @click="modalDesert = true">
-            {{ t("screen.desert.btnOrder") }}
-          </button>
-        </div>
-      </div>
-      <img
-        src="@/assets/images/cake.webp"
-        alt="cake"
-        class="lg:max-w-md object-cover mx-auto"
-      />
-    </section>
     <section class="flex flex-col gap-6">
       <h2 class="text-3xl font-bold">{{ t("screen.about.gallery.title") }}</h2>
       <p class="text-lg">{{ t("screen.about.gallery.info[0]") }}</p>
@@ -446,166 +376,5 @@ watch(
         {{ t("label.talk") }}
       </a>
     </section>
-    <Modal v-model="modalDesert">
-      <h2 class="text-xl font-semibold text-center mb-4">
-        {{ $t("modal.desertOrder.title") }}
-      </h2>
-      <div class="flex flex-col gap-2 w-full">
-        <input
-          v-model="order.name"
-          type="text"
-          class="input input-bordered"
-          :placeholder="$t('label.name')"
-        />
-        <input
-          v-model="order.phone"
-          type="text"
-          class="input input-bordered"
-          :placeholder="$t('label.phone')"
-        />
-        <div class="grid grid-cols-2 gap-2">
-          <input
-            v-model="order.date"
-            type="date"
-            class="input input-bordered flex-1"
-          />
-          <input
-            v-model="order.time"
-            type="time"
-            class="input input-bordered flex-1"
-          />
-        </div>
-        <div class="text-xs text-center text-gray-400">
-          <p>{{ $t("modal.desertOrder.details[0]") }}</p>
-        </div>
-        <div role="tablist" class="tabs tabs-boxed">
-          <a
-            role="tab"
-            class="tab"
-            :class="{
-              'tab-active': order.deliveryType == 'pickup',
-            }"
-            @click="
-              (order.deliveryType = 'pickup'),
-                (order.pickupAddress = 'Милиционная, 4')
-            "
-            >{{ $t("label.pickup") }}</a
-          >
-          <a
-            role="tab"
-            class="tab"
-            :class="{
-              'tab-active': order.deliveryType == 'delivery',
-            }"
-            @click="order.deliveryType = 'delivery'"
-            >{{ $t("label.delivery") }}</a
-          >
-        </div>
-        <template v-if="order.deliveryType === 'pickup'">
-          <iframe
-            v-if="order.pickupAddress === 'Милиционная, 4'"
-            src="https://yandex.ru/map-widget/v1/?um=constructor%3Ad757b7e47aa65f5bd804206fddd3dbfad8f59fa982c7c52930a441959e16fd8b&amp;source=constructor"
-            width="100%"
-            height="250"
-            frameborder="0"
-          ></iframe>
-          <iframe
-            v-else
-            src="https://yandex.ru/map-widget/v1/?um=constructor%3Ac7c94380bee70b9f720bd64e999a2c799df5275b8b93785bbe1425f250f7736d&amp;source=constructor"
-            width="100%"
-            height="250"
-            frameborder="0"
-          ></iframe>
-          <div role="tablist" class="tabs tabs-boxed">
-            <a
-              role="tab"
-              class="tab"
-              :class="{
-                'tab-active': order.pickupAddress == 'Милиционная, 4',
-              }"
-              @click="order.pickupAddress = 'Милиционная, 4'"
-              >Милиционная, 4</a
-            >
-            <a
-              role="tab"
-              class="tab"
-              :class="{
-                'tab-active': order.pickupAddress == 'Удмуртская, 268',
-              }"
-              @click="order.pickupAddress = 'Удмуртская, 268'"
-              >Удмуртская, 268</a
-            >
-          </div>
-        </template>
-        <template v-else-if="order.deliveryType === 'delivery'">
-          <input
-            v-model="order.city"
-            type="text"
-            class="input input-bordered"
-            :placeholder="$t('label.city')"
-          />
-          <input
-            v-model="order.street"
-            type="text"
-            class="input input-bordered"
-            :placeholder="$t('label.street')"
-          />
-          <div class="grid grid-cols-3 gap-2">
-            <input
-              v-model="order.house"
-              type="text"
-              class="input input-bordered"
-              :placeholder="$t('label.house')"
-            />
-            <input
-              v-model="order.flat"
-              type="text"
-              class="input input-bordered"
-              :placeholder="$t('label.flat')"
-            />
-            <input
-              v-model="order.apartment"
-              type="text"
-              class="input input-bordered"
-              :placeholder="$t('label.apartment')"
-            />
-          </div>
-          <div class="text-xs text-gray-400">
-            <li>{{ $t("modal.desertOrder.details[1]") }}</li>
-            <li>{{ $t("modal.desertOrder.details[2]") }}</li>
-            <li>{{ $t("modal.desertOrder.details[3]") }}</li>
-          </div>
-        </template>
-        <button
-          class="btn btn-primary"
-          :disabled="
-            loading ||
-            !isChecked ||
-            !order.name ||
-            !validatePhone(order.phone) ||
-            !order.date ||
-            !order.time ||
-            !order.deliveryType
-          "
-          @click="handleSubmit"
-        >
-          {{ $t("label.order") }}
-        </button>
-        <label class="label cursor-pointer justify-start gap-2">
-          <input v-model="isChecked" type="checkbox" class="checkbox" />
-          <span class="label-text"
-            >{{ $t("label.agreeWith") }}
-            <a
-              href="/privacy-policy.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="link link-primary link-hover"
-            >
-              {{ $t("label.politics") }}
-            </a>
-          </span>
-        </label>
-      </div>
-    </Modal>
   </Container>
 </template>
